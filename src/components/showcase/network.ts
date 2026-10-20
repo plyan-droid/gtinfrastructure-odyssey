@@ -14,7 +14,7 @@ export const nodes: Node[] = [
   { id: "cloudB", label: "cloud-south", kind: "cloud", x: 1370, y: 600, mx: 1330, my: 560 },
 ];
 
-export const byId = Object.fromEntries(nodes.map((n) => [n.id, n]));
+export const byId = Object.fromEntries(nodes.map((n) => [n.id, n])) as Record<string, Node>;
 
 export const ecoEdges: [string, string][] = [
   ["web", "gateway"], ["mobile", "gateway"], ["gateway", "checkout"], ["gateway", "catalog"],
