@@ -44,7 +44,7 @@ export function Showcase() {
         const tl = gsap.timeline({
           defaults: { ease: "power2.inOut" },
           scrollTrigger: {
-            trigger: q(".stage")[0],
+            trigger: q(".stage")[0] as HTMLElement,
             start: "top top",
             end: `+=${SCROLL_LEN}`,
             pin: true,
@@ -107,7 +107,7 @@ export function Showcase() {
 
         const st = tl.scrollTrigger!;
         const total = tl.duration();
-        holdsRef.current = HOLDS.map((l) => st.start + (tl.labels[l] / total) * (st.end - st.start));
+        holdsRef.current = HOLDS.map((l) => st.start + ((tl.labels[l] ?? 0) / total) * (st.end - st.start));
       }, root);
     })();
     return () => {
