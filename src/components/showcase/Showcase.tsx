@@ -24,6 +24,7 @@ const inPath = (path: string[], a: string, b: string) => {
 };
 const touches = (id: string, a: string, b: string) => a === id || b === id;
 const products = { elastic, dynatrace };
+const nd = (id: string) => byId[id]!;
 
 export function Showcase() {
   const root = useRef<HTMLDivElement>(null);
@@ -81,7 +82,7 @@ export function Showcase() {
         const show = (sel: string, at: number, d = 0.4) => tl.to(q(sel), { autoAlpha: 1, duration: d }, at);
         const hide = (sel: string, at: number, d = 0.4) => tl.to(q(sel), { autoAlpha: 0, duration: d }, at);
         const neutral = { stroke: "var(--foreground)", strokeWidth: 1.2, strokeOpacity: 0.22, duration: 0.4 };
-        const inc = byId[incidentId];
+        const inc = nd(incidentId);
 
         // 1. Opening: healthy flow, then one service slows and the camera leans in.
         tl.addLabel("opening", 0.2);
@@ -191,7 +192,7 @@ export function Showcase() {
         const total = tl.duration();
         const map: Record<string, number> = {};
         for (const [k, v] of Object.entries(tl.labels)) map[k] = st.start + (v / total) * (st.end - st.start);
-        map.opening = 0;
+        map["opening"] = 0;
         labelsRef.current = map;
       }, root);
     })();
@@ -227,7 +228,7 @@ export function Showcase() {
           next = 0;
           holdUntil = t + 800;
         } else {
-          const stop = presentationStops[next];
+          const stop = presentationStops[next]!;
           const target = labelsRef.current[stop.label] ?? max;
           let ny = y + speed * dt;
           if (ny >= target) {
@@ -280,7 +281,7 @@ export function Showcase() {
                 <path
                   key={edgeKey(a, b)}
                   id={`e-${edgeKey(a, b)}`}
-                  d={curve(byId[a], byId[b])}
+                  d={curve(nd(a), nd(b))}
                   className={`eco-edge ${inPath(tracePath, a, b) ? "trace-edge" : ""} ${touches(incidentId, a, b) ? "inc-edge" : ""}`}
                   fill="none"
                   stroke="var(--foreground)"
@@ -297,8 +298,8 @@ export function Showcase() {
               ))}
 
               {mapEdges.map(([a, b]) => {
-                const A = { x: byId[a].mx, y: byId[a].my };
-                const B = { x: byId[b].mx, y: byId[b].my };
+                const A = { x: nd(a).mx, y: nd(a).my };
+                const B = { x: nd(b).mx, y: nd(b).my };
                 const lat = inPath(latencyChain, a, b);
                 const dep = !lat && (touches("gateway", a, b) || touches("web", a, b));
                 return (
@@ -317,7 +318,7 @@ export function Showcase() {
               {/* Challenge: signal clusters */}
               {clusters.map((c) =>
                 c.from.map((id) => (
-                  <path key={`cl-${c.key}-${id}`} className="cluster-link" d={`M${byId[id].x},${byId[id].y} L${c.x},${c.y}`} stroke="var(--accent)" strokeOpacity="0.4" strokeDasharray="3 6" />
+                  <path key={`cl-${c.key}-${id}`} className="cluster-link" d={`M${nd(id).x},${nd(id).y} L${c.x},${c.y}`} stroke="var(--accent)" strokeOpacity="0.4" strokeDasharray="3 6" />
                 )),
               )}
               {clusters.map((c, i) => (
