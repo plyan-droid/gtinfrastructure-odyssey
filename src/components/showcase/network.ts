@@ -28,8 +28,20 @@ export const mapEdges: [string, string][] = [
   ["payments", "cloudA"], ["inventory", "cloudB"],
 ];
 
-export const tracePath = ["web", "gateway", "checkout", "payments"];
+// The single fictional incident used across the whole story.
+export const incidentId = "catalog";
+// Elastic demo: trace followed through the ecosystem layout.
+export const tracePath = ["mobile", "gateway", "catalog", "inventory"];
+// Dynatrace demo: latency chain in the dependency-map layout.
 export const latencyChain = ["gateway", "catalog", "inventory"];
+// Nodes that raise warnings in the Dynatrace "before" view.
+export const alertNodes = ["web", "gateway", "checkout", "catalog", "orders"];
+// Challenge scene: where each signal type clusters (SVG coords).
+export const clusters = [
+  { key: "LOGS", x: 330, y: 200, from: ["web", "mobile", "gateway"] },
+  { key: "METRICS", x: 1240, y: 200, from: ["payments", "checkout", "cloudA"] },
+  { key: "TRACES", x: 1000, y: 780, from: ["catalog", "inventory", "orders"] },
+];
 
 export function curve(a: { x: number; y: number }, b: { x: number; y: number }) {
   const mx = (a.x + b.x) / 2;
