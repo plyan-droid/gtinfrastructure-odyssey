@@ -31,6 +31,15 @@ export function ReadMorePanel({ product, onClose }: { product: Product | null; o
                 <section key={s.heading}>
                   <h4 className="text-lg font-medium">{s.heading}</h4>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
+                  {s.links && (
+                    <ul className="mt-3 space-y-1">
+                      {s.links.map((l) => (
+                        <li key={l.href}>
+                          <a href={l.href} target="_blank" rel="noreferrer" className="font-mono text-xs text-primary underline-offset-4 hover:underline">{l.label} ↗</a>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </section>
               ))}
             </div>
@@ -67,7 +76,7 @@ function Dashboard() {
           <rect key={i} x={i * 10 + 1} y={100 - (v / max) * 92} width="7" height={(v / max) * 92} rx="1.5" fill={i === 22 ? "var(--error)" : "var(--primary)"} fillOpacity={i === 22 ? 1 : 0.55} />
         ))}
       </svg>
-      <p className="mt-2 font-mono text-[10px] text-muted-foreground">checkout-svc · errors spike correlated with trace a91f… (fictional)</p>
+      <p className="mt-2 font-mono text-[10px] text-muted-foreground">catalog-svc · latency spike correlated with trace 7c2e… (synthetic data)</p>
     </div>
   );
 }

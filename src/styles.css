@@ -101,3 +101,5 @@
 @media (prefers-reduced-motion: reduce) {
   .signal { display: none; }
 }
+.present-qr { display: none; }
+.present-mode .present-qr { display: flex; }
