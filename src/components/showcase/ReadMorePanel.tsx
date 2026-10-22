@@ -1,82 +1,28 @@
-import { useEffect, useState } from "react";
-import { disclaimer, type Product } from "@/content/showcase";
+import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
+import { customerStories, disclaimer, sources, ui, type Detail } from "@/content/showcase";
 
-export function ReadMorePanel({ product, onClose }: { product: Product | null; onClose: () => void }) {
-  useEffect(() => {
-    if (!product) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [product, onClose]);
-
-  const open = !!product;
+export function ReadMorePanel({ detail, onClose, onRestoreFocus }: { detail: Detail | null; onClose: () => void; onRestoreFocus: () => void }) {
+  const customer = customerStories.some(s => s.id === detail?.id);
   return (
-    <div className={`fixed inset-0 z-50 transition ${open ? "visible" : "invisible"}`} aria-hidden={!open}>
-      <div onClick={onClose} className={`absolute inset-0 bg-background/70 backdrop-blur-sm transition-opacity duration-500 ${open ? "opacity-100" : "opacity-0"}`} />
-      <aside
-        role="dialog"
-        aria-modal="true"
-        aria-label={product?.readMore.title}
-        className={`absolute right-0 top-0 h-full w-full max-w-xl overflow-y-auto overscroll-contain border-l bg-popover p-8 transition-transform duration-500 md:p-12 ${open ? "translate-x-0" : "translate-x-full"}`}
-      >
-        {product && (
-          <>
-            <div className="flex items-start justify-between">
-              <p className="eyebrow text-primary">{product.eyebrow}</p>
-              <button onClick={onClose} className="font-mono text-xs tracking-widest text-muted-foreground hover:text-foreground">CLOSE ✕</button>
-            </div>
-            <h3 className="mt-6 text-3xl font-semibold tracking-tight md:text-4xl">{product.readMore.title}</h3>
-            <div className="mt-8 space-y-7">
-              {product.readMore.sections.map((s) => (
-                <section key={s.heading}>
-                  <h4 className="text-lg font-medium">{s.heading}</h4>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
-                  {s.links && (
-                    <ul className="mt-3 space-y-1">
-                      {s.links.map((l) => (
-                        <li key={l.href}>
-                          <a href={l.href} target="_blank" rel="noreferrer" className="font-mono text-xs text-primary underline-offset-4 hover:underline">{l.label} ↗</a>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </section>
-              ))}
-            </div>
-            {product.id === "elastic" && <Dashboard />}
-            <p className="mt-10 border-t pt-6 text-xs text-muted-foreground">{disclaimer}</p>
-          </>
-        )}
-      </aside>
-    </div>
-  );
-}
-
-// Illustrative dashboard with synthetic data, built after mount (no randomness at module scope).
-function Dashboard() {
-  const [series] = useState(() => Array.from({ length: 32 }, (_, i) => 40 + Math.sin(i / 3) * 18 + (i === 22 ? 45 : 0) + ((i * 7) % 9)));
-  const max = Math.max(...series);
-  return (
-    <div className="mt-10 rounded-xl border bg-card p-5">
-      <p className="eyebrow mb-1">ILLUSTRATIVE DASHBOARD · SYNTHETIC DATA</p>
-      <div className="mt-4 grid grid-cols-3 gap-3 font-mono">
-        {[
-          ["events/min", "48.2k"],
-          ["error rate", "0.42%"],
-          ["p95 latency", "312ms"],
-        ].map(([k, v]) => (
-          <div key={k} className="rounded-lg border p-3">
-            <p className="text-[10px] text-muted-foreground">{k}</p>
-            <p className="mt-1 text-lg">{v}</p>
+    <Dialog open={Boolean(detail)} onOpenChange={open => { if (!open) onClose(); }}>
+      <DialogContent className="detail-modal w-[calc(100%-2rem)] max-w-[72rem] gap-0 overflow-hidden rounded-lg bg-popover p-0 md:w-[72vw]" onCloseAutoFocus={event => { event.preventDefault(); onRestoreFocus(); }}>
+        {detail && <>
+          <header className="border-b px-6 pb-5 pt-8 pr-14 md:px-10 md:pr-16">
+            <p className="eyebrow text-primary">{detail.eyebrow}</p>
+            <DialogTitle className="mt-3 text-2xl font-semibold leading-tight md:text-3xl">{detail.readMore.title}</DialogTitle>
+            <DialogDescription className="sr-only">{detail.eyebrow}</DialogDescription>
+          </header>
+          <div className="detail-scroll overflow-y-auto overscroll-contain px-6 py-7 md:px-10">
+            <div className="space-y-7">{detail.readMore.sections.map(section => <section key={section.heading}>
+              <h3 className="text-lg font-medium">{section.heading}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground md:text-base">{section.body}</p>
+              {section.links && <ul className="mt-3 space-y-2">{section.links.map(link => <li key={link.href}><a href={link.href} target="_blank" rel="noreferrer" className="text-sm text-primary underline underline-offset-4">{link.label} ↗</a></li>)}</ul>}
+            </section>)}</div>
+            {customer && <a href={sources.stories} target="_blank" rel="noreferrer" className="mt-7 inline-block text-sm text-primary underline underline-offset-4">{ui.source} ↗</a>}
+            <p className="mt-8 border-t pt-5 text-xs leading-relaxed text-muted-foreground">{disclaimer}</p>
           </div>
-        ))}
-      </div>
-      <svg viewBox="0 0 320 100" className="mt-4 w-full">
-        {series.map((v, i) => (
-          <rect key={i} x={i * 10 + 1} y={100 - (v / max) * 92} width="7" height={(v / max) * 92} rx="1.5" fill={i === 22 ? "var(--error)" : "var(--primary)"} fillOpacity={i === 22 ? 1 : 0.55} />
-        ))}
-      </svg>
-      <p className="mt-2 font-mono text-[10px] text-muted-foreground">catalog-svc · latency spike correlated with trace 7c2e… (synthetic data)</p>
-    </div>
+        </>}
+      </DialogContent>
+    </Dialog>
   );
 }
