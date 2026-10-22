@@ -1,42 +1,133 @@
-// All showcase copy lives here so it can be edited without touching animation code.
-// Unofficial prototype: every service name, metric and dashboard is fictional.
-
-export const opening = {
-  eyebrow: "STACKOPS / OBSERVABILITY",
-  headline: ["Complex Systems.", "Clearer Insights."],
-  sub: "Modern digital services rely on connected applications, infrastructure and cloud environments. When something goes wrong, finding the cause isn't always straightforward.",
-  secondary: "Explore how observability technologies help teams understand system behaviour and investigate operational issues.",
-  offerings: ["Elastic", "Dynatrace"],
-  offeringsNote: "Two observability offerings featured in this showcase",
-  incidentLabel: "catalog-svc · unusual latency",
-};
-
-export const challenge = {
-  eyebrow: "THE CHALLENGE",
-  headline: ["When Something Breaks,", "Where Do You Look First?"],
-  sub: "Operational data can be scattered across tools, applications and cloud environments, making troubleshooting more complicated.",
-  items: [
-    { n: "01", title: "Scattered Information", body: "Logs, metrics and monitoring data are spread across different systems." },
-    { n: "02", title: "Unclear Causes", body: "A slow application may depend on many connected services." },
-    { n: "03", title: "Manual Investigation", body: "Engineers spend time switching between tools and connecting information." },
-  ],
-  clusters: ["LOGS", "METRICS", "TRACES"],
-};
-
+// All visitor-facing showcase copy and evidence live here. Demonstrations use fictional infrastructure.
 export type Point = { n: string; title: string; body: string };
 export type Section = { heading: string; body: string; links?: { label: string; href: string }[] };
-export type Product = {
-  id: "elastic" | "dynatrace";
-  eyebrow: string;
-  problem: string;
-  problemSub: string;
-  headline: string[];
-  description: string;
-  points: Point[];
-  readMore: { title: string; sections: Section[] };
+export type Detail = { id: string; eyebrow: string; readMore: { title: string; sections: Section[] } };
+export type Product = Detail & { problem: string; problemSub: string; headline: string[]; description: string; points: Point[] };
+export type TechnologyOption = Product;
+export const sources = {
+  stories: "https://www.developer.tech.gov.sg/products/categories/devops/stackops/customer-stories",
+  positioning: "https://govinsider.asia/intl-en/article/how-govtech-singapores-stackops-enhances-observability-in-public-sector-it",
 };
+export const ui = {
+  readMore: "Read more", siteMap: "Site Map", presentation: "Presentation Mode", start: "Scroll to begin", close: "Close",
+  brand: "StackOps", pricing: "Pricing details to be confirmed", optionScope: "Capabilities, operating models and adoption details depend on the selected option and agency requirements. Confirm these with the StackOps team.",
+  source: "Official customer story", attributed: "Reported in the official StackOps customer story", storySection: "Customer stories", storyNumber: "Story", previous: "Previous customer story", next: "Next customer story",
+  technologyMore: "Technical details", toolsNote: "Scope, availability and supported technology options to be confirmed.", toolsBuilt: "Built by StackOps", explore: "Explore StackOps",
+};
+export const diagram = {
+  analytics: "MONITORING INSIGHTS", telemetry: "logs · metrics · traces", latency: "latency ↑", response: "response time ↑", spans: "slow spans · trace 7c2e…", query: "query latency ↑",
+  paths: ["VISIBILITY", "RELIABILITY"], fragmented: ["logs-view", "metrics-view", "trace-view"],
+};
+export const opening = {
+  eyebrow: "STACKOPS / WHOLE-OF-GOVERNMENT OBSERVABILITY",
+  headline: ["Observability.", "Reimagined."],
+  sub: "Helping government agencies understand, monitor and improve the reliability of their digital services.",
+  secondary: "GovTech’s Whole-of-Government observability offering.",
+};
+export const challenge = {
+  eyebrow: "THE CHALLENGE", headline: ["Complex Systems.", "Fragmented Visibility."],
+  sub: "As digital services become more interconnected, understanding system health and investigating issues becomes increasingly complex.",
+  items: [
+    { n: "01", title: "Fragmented monitoring information", body: "Operational signals are spread across separate views." },
+    { n: "02", title: "Increasing system complexity", body: "Applications and infrastructure rely on more connected components." },
+    { n: "03", title: "Difficult incident investigation", body: "Engineers need context to narrow down possible causes." },
+    { n: "04", title: "Limited end-to-end visibility", body: "Interconnected services can be hard to follow." },
+  ],
+};
+export const capabilities: Product = {
+  id: "capabilities", eyebrow: "STACKOPS CAPABILITIES", problem: "", problemSub: "", headline: ["See the", "Bigger Picture."],
+  description: "Bring operational insights together to better understand applications, infrastructure and the digital services they support.",
+  points: [
+    { n: "01", title: "Operational Visibility", body: "Understand application and infrastructure health." },
+    { n: "02", title: "Logs, Metrics and Traces", body: "Use different types of telemetry to understand system behaviour." },
+    { n: "03", title: "Application Performance", body: "Gain insights into service performance and operational health." },
+    { n: "04", title: "Incident Investigation", body: "Support troubleshooting and root-cause analysis." },
+    { n: "05", title: "Shared Monitoring Insights", body: "Collaborate through appropriate access to monitoring information." },
+  ],
+  readMore: { title: "See the bigger picture with StackOps", sections: [
+    { heading: "Whole-of-Government observability", body: "StackOps is GovTech’s Whole-of-Government observability offering. It helps agencies monitor applications and infrastructure, understand operational data and investigate issues that can affect digital service reliability." },
+    { heading: "Logs, metrics and traces", body: "Logs record events; metrics measure behaviour over time; traces follow requests across connected services. Examining related signals gives engineers richer operational context." },
+    { heading: "Performance and incident investigation", body: "Monitoring dashboards and application performance information help teams identify abnormal behaviour, investigate dependencies and narrow down potential causes. Observability supports engineering judgement; it does not guarantee diagnosis or resolution." },
+    { heading: "Shared insights, appropriate access", body: "Access to relevant monitoring information can support collaboration across technical teams and agencies. Access arrangements and available capabilities depend on the adopted configuration and operating model." },
+    { heading: "Implementation varies", body: "StackOps offers underlying observability technology options. Implementations and feature availability differ by option; the capabilities above describe the offering’s purpose, not an identical feature set for every deployment." },
+    { heading: "Positioning reference", body: "Public coverage of StackOps and observability in government.", links: [{ label: "GovInsider — StackOps observability", href: sources.positioning }] },
+  ] },
+};
+export const investigation = {
+  eyebrow: "FROM VISIBILITY TO ACTION", scenario: "Understand Issues. Respond with Confidence.",
+  beforeTag: "FRAGMENTED SIGNALS", beforeLabels: ["Slower fictional service", "Abnormal monitoring signals", "Request path needs investigation"],
+  withTag: "CONNECTED INVESTIGATION", query: 'service.name:"catalog-svc" AND event.outcome:failure',
+  steps: [{ k: "SIGNALS", v: "Review relevant logs and events" }, { k: "METRICS", v: "Compare performance signals" }, { k: "TRACE", v: "Follow application connections" }, { k: "CONTEXT", v: "Review database calls as a possible contributor" }],
+  value: ["Follow the Connections.", "Narrow the Investigation."], valueSub: "Operational data helps engineers build a better understanding of where an issue may be occurring.",
+  note: "Illustrative investigation · fictional systems and synthetic data · no guaranteed diagnosis",
+};
+export const investigationDetails: Detail = {
+  id: "investigation", eyebrow: investigation.eyebrow,
+  readMore: { title: "From monitoring signals to a clearer investigation", sections: [
+    { heading: "The fictional scenario", body: "catalog-svc begins responding more slowly. An engineer reviews abnormal signals, compares related performance metrics and follows a request through connected application components." },
+    { heading: "Narrowing the possibilities", body: "The illustrative trace shows slower calls to inventory-db. This is a lead for further investigation, not a confirmed root cause. Additional evidence and engineering review are needed before taking action." },
+    { heading: "What the animation represents", body: "The infrastructure, query and trace are synthetic. Available tracing and monitoring workflows depend on the chosen technology and configuration. The demonstration does not show an actual agency incident or promise automated resolution." },
+  ] },
+};
+export const modules = {
+  sora: { enabled: true, id: "sora", name: "SORA", eyebrow: "STACKOPS-BUILT TOOL / SORA", headline: "Streamlining Observability Setup", summary: "Simplify observability setup and reduce manual configuration effort.", steps: ["Manual setup", "Clearer workflow", "Supported automation"], readMore: { title: "SORA — Streamlining Observability Setup", sections: [
+    { heading: "Built by StackOps", body: "SORA is a StackOps-built supporting tool that helps simplify or automate observability setup. It is not a product developed by an underlying technology vendor." },
+    { heading: "Scope awaiting confirmation", body: "Supported environments, available automation, eligibility and underlying technology compatibility need confirmation. This showcase does not assume support across all StackOps technology options." },
+  ] } },
+  soda: { enabled: true, id: "soda", name: "SODA", eyebrow: "STACKOPS-BUILT TOOL / SODA", headline: "Supporting Cost Visibility and Optimisation", summary: "Bring cost information into clearer view to support optimisation decisions.", steps: ["Fragmented costs", "Shared cost view", "Informed decisions"], readMore: { title: "SODA — Supporting Cost Visibility and Optimisation", sections: [
+    { heading: "Built by StackOps", body: "SODA is a StackOps-built supporting tool that provides cost insights to support optimisation decisions. It is not a product developed by an underlying technology vendor." },
+    { heading: "Insights, not guaranteed savings", body: "Cost information can inform a review of resource usage and configuration. The illustration makes no savings claim and uses no real agency cost data." },
+    { heading: "Scope awaiting confirmation", body: "Availability, cost sources, supported underlying technologies and operating arrangements need confirmation. No separate charge or universal platform support is assumed." },
+  ] } },
+};
+export const tools = { eyebrow: "STACKOPS-BUILT TOOLS", headline: ["Simplifying", "Observability Operations."], sub: "Supporting setup workflows and better-informed cost decisions." };
+export type CustomerStory = Detail & { name: string; title: string; benefit: string; metric?: string; metricLabel?: string; evidence: { workflows?: number; improvementPercent?: number; logsPerMonth?: number; baselineHours?: number[]; afterMinutes?: number; underMinutes?: number; complianceStatus?: "planned"; quantitativeOutcome?: false } };
+export const customerStories: CustomerStory[] = [
+  { id: "cft", name: "CFT", eyebrow: "CLOUD FILE TRANSFER", title: "From Reactive to Proactive Operations", benefit: "Real-time monitoring and earlier issue identification support more efficient incident handling.", metric: "75%", metricLabel: "improvement in incident-handling efficiency", evidence: { workflows: 1500, improvementPercent: 75, baselineHours: [2, 3], afterMinutes: 30 }, readMore: { title: "CFT — From Reactive to Proactive Operations", sections: [
+    { heading: "The challenge", body: "Fragmented monitoring and manual investigation limited operational visibility." },
+    { heading: "StackOps’ contribution", body: "Real-time monitoring across more than 1,500 workflows enabled earlier identification of operational issues and supported a move towards proactive operations." },
+    { heading: "Verified outcomes", body: "The official customer story reports a 75% improvement in incident-handling efficiency, with incident handling reduced from approximately 2–3 hours to 30 minutes. These are customer-specific reported results, not guaranteed outcomes for other deployments." },
+  ] } },
+  { id: "ship-hats", name: "SHIP-HATS", eyebrow: "SHIP-HATS", title: "Faster Detection. Faster Recovery.", benefit: "SLO monitoring and proactive alerts support faster incident detection and service recovery.", metric: "75%", metricLabel: "reduction in service recovery time", evidence: { improvementPercent: 75, baselineHours: [2], underMinutes: 30 }, readMore: { title: "SHIP-HATS — Faster Detection. Faster Recovery.", sections: [
+    { heading: "The challenge", body: "The team sought to improve service monitoring and incident response." },
+    { heading: "StackOps’ contribution", body: "Service Level Objective monitoring and proactive alerts supported earlier incident detection and a faster operational response." },
+    { heading: "Verified outcomes", body: "The official customer story reports a 75% reduction in service recovery time, from approximately two hours to under 30 minutes. This is an attributed customer result, not a universal service commitment." },
+  ] } },
+  { id: "hdb", name: "HDB", eyebrow: "HOUSING & DEVELOPMENT BOARD", title: "Visibility Across Distributed Cloud Systems", benefit: "A clearer view of application health and performance across independently managed cloud workloads.", evidence: { complianceStatus: "planned", quantitativeOutcome: false }, readMore: { title: "HDB — Visibility Across Distributed Cloud Systems", sections: [
+    { heading: "The challenge", body: "HDB’s distributed cloud architecture made organisation-wide visibility across independently managed workloads difficult." },
+    { heading: "StackOps’ contribution", body: "StackOps improved visibility into application health and performance, supporting monitoring across distributed systems." },
+    { heading: "Planned expansion", body: "HDB plans to expand StackOps capabilities for more centralised monitoring of standards and compliance. This is a planned expansion, not a completed result." },
+  ] } },
+  { id: "htx", name: "HTX", eyebrow: "HOME TEAM SCIENCE & TECHNOLOGY AGENCY", title: "Supporting Cloud-Native Transformation", benefit: "Unified observability and developer enablement support increasingly complex cloud-native systems.", evidence: { quantitativeOutcome: false }, readMore: { title: "HTX — Supporting Cloud-Native Transformation", sections: [
+    { heading: "The challenge", body: "HTX’s evolving cloud-native environment required observability across increasingly complex systems." },
+    { heading: "StackOps’ contribution", body: "StackOps supported unified observability across MHA systems hosted in Government Commercial Cloud, alongside developer enablement and operational visibility." },
+    { heading: "Outcome context", body: "The story illustrates cloud-native enablement and shared operational visibility. No quantitative result is asserted here." },
+  ] } },
+  { id: "apex", name: "APEX", eyebrow: "API EXCHANGE", title: "Greater Visibility Across API Operations", benefit: "Self-service troubleshooting dashboards and operational insights support API platform teams.", metric: "90M+", metricLabel: "API transaction logs processed monthly", evidence: { logsPerMonth: 90000000 }, readMore: { title: "APEX — Greater Visibility Across API Operations", sections: [
+    { heading: "The operational context", body: "APEX teams use operational data to understand API activity and support platform operations." },
+    { heading: "Reported results", body: "The official customer story reports more than 90 million API transaction logs processed monthly, improved threat detection and prevention, self-service troubleshooting dashboards, and better platform adoption and usage insights." },
+    { heading: "StackOps’ role", body: "StackOps supports visibility and analysis of operational data in this customer context. The figure refers to API transaction logs; it does not mean StackOps processes API transactions or replaces APEX’s core gateway or dedicated security capabilities." },
+  ] } },
+];
+export const customers = { eyebrow: "STACKOPS CUSTOMER STORIES", headline: ["Real Systems.", "Measurable Impact."], sub: "Discover how government teams use StackOps to improve visibility, strengthen operations and support reliable digital services." };
+export const options = { eyebrow: "PRICING / TECHNOLOGY OPTIONS", headline: ["Explore Your", "StackOps Options."], sub: "Underlying observability technologies within the complete StackOps offering.", platforms: [
+  { id: "elastic", name: "Elastic", summary: "Search, analytics and observability for logs, metrics, traces and operational data." },
+  { id: "dynatrace", name: "Dynatrace", summary: "Observability for application performance, service dependencies and AI-assisted analysis." },
+], note: "Both technologies provide observability. Their implementations and supported features differ." };
+export const closing = { headline: ["Build More Resilient", "Digital Services with StackOps."], sub: "Explore how StackOps can help your team gain greater operational visibility and support more reliable digital services.", href: sources.stories };
+export const disclaimer = "Illustrative infrastructure and synthetic monitoring data. Customer outcomes are attributed to official StackOps stories and are not guaranteed for other deployments.";
+export const siteMap = [
+  { name: "Overview", label: "opening" }, { name: "The Challenge", label: "challenge" }, { name: "StackOps Capabilities", label: "capabilities" }, { name: "From Visibility to Action", label: "action" },
+  { name: "StackOps Tools", label: "tools" }, { name: "Customer Stories", label: "customers" }, { name: "Pricing & Technology Options", label: "options" }, { name: "Get Started", label: "closing" },
+];
+// Travel time (~33s) plus these holds (~27s) gives an approximately one-minute loop.
+export const presentationSpeed = 480;
+export const presentationStops = [
+  { label: "opening", hold: 4000 }, { label: "challenge", hold: 2500 }, { label: "capabilities", hold: 3500 }, { label: "action", hold: 3500 },
+  { label: "tools", hold: 2500 }, { label: "customers", hold: 4500 }, { label: "options", hold: 2500 }, { label: "closing", hold: 4000 },
+];
 
-export const elastic: Product = {
+export const elastic: TechnologyOption = {
   id: "elastic",
   eyebrow: "PRODUCT 01 / ELASTIC",
   problem: "Monitoring Data Everywhere. Answers Hard to Find?",
@@ -71,7 +162,8 @@ export const elastic: Product = {
   },
 };
 
-export const dynatrace: Product = {
+
+export const dynatrace: TechnologyOption = {
   id: "dynatrace",
   eyebrow: "PRODUCT 02 / DYNATRACE",
   problem: "Too Many Alerts. Not Enough Answers?",
@@ -104,126 +196,5 @@ export const dynatrace: Product = {
   },
 };
 
-export const elasticDemo = {
-  eyebrow: "ELASTIC USE CASE · ILLUSTRATIVE",
-  scenario: "A Digital Service Suddenly Becomes Slow",
-  beforeTag: "BEFORE",
-  beforeLabels: ["Multiple monitoring views", "Disconnected investigation", "Difficult to follow the request"],
-  withTag: "WITH ELASTIC",
-  query: 'service.name:"catalog-svc" AND event.outcome:failure',
-  steps: [
-    { k: "SEARCH", v: "Relevant logs and events" },
-    { k: "METRICS", v: "Related performance metrics" },
-    { k: "TRACE", v: "Follow a distributed trace" },
-    { k: "FOCUS", v: "inventory-db appears to contribute to latency" },
-  ],
-  value: ["Find Relevant Signals.", "Investigate with More Context."],
-  valueSub: "Connected observability data helps teams investigate where performance issues may originate.",
-  note: "Illustrative workflow · fictional data · not a measured outcome",
-};
 
-export const dynatraceDemo = {
-  eyebrow: "DYNATRACE USE CASE · ILLUSTRATIVE",
-  scenario: "A Slow Service Affects a Digital Transaction",
-  beforeTag: "BEFORE",
-  beforeLabels: ["Performance degradation", "Multiple alerts", "Unclear dependencies"],
-  withTag: "WITH DYNATRACE",
-  steps: ["Affected application", "Dependent services", "Related latency", "AI-assisted analysis", "Possible contributor"],
-  value: ["See the Dependencies.", "Investigate the Cause.", "Act with Better Context."],
-  note: "Illustrative workflow · fictional data · not real analysis output",
-};
-
-export const aiAnalysis = {
-  title: "AI-assisted analysis (fictional)",
-  finding: "Potential contributor: increased database query latency.",
-  confidence: "Review recommended. Additional investigation may be required.",
-  next: "Related entity: inventory-db",
-};
-
-export const comparison = {
-  eyebrow: "ILLUSTRATIVE WORKFLOW SCENARIO",
-  headline: "Why Connected Observability Can Help",
-  withoutTag: "WITHOUT A CONNECTED VIEW",
-  withTag: "WITH CONNECTED OBSERVABILITY",
-  rows: [
-    { without: "Information may be spread across several tools.", with: "Related telemetry can be examined together." },
-    { without: "Engineers manually correlate relevant signals.", with: "Traces help reveal request paths." },
-    { without: "Dependencies can be harder to understand.", with: "Dependency views provide context." },
-    { without: "Investigation involves navigating separate views.", with: "Teams can make better-informed troubleshooting decisions." },
-  ],
-};
-
-export const closing = {
-  headline: ["From Complexity", "to Clarity."],
-  sub: "Explore how observability technologies help teams understand connected systems, investigate operational issues and make informed decisions.",
-  options: [
-    { id: "elastic" as const, name: "Elastic", body: "Search, analyse and visualise operational data." },
-    { id: "dynatrace" as const, name: "Dynatrace", body: "Understand application performance and service dependencies." },
-  ],
-};
-
-// QR: leave url null until a destination is approved; a placeholder is shown instead.
-export const qr = {
-  url: null as string | null,
-  title: "Want to Explore the Technical Details?",
-  sub: "Scan to explore the interactive experience.",
-};
-
-export const disclaimer =
-  "Unofficial concept prototype. All services, metrics and dashboards are fictional and synthetic. Elastic and Dynatrace are shown as separate solutions; no integration between them is implied.";
-
-// Site Map: `label` jumps to a story position; `panel` opens a Read More panel.
-export type SiteMapEntry = { name: string; label?: string; panel?: "elastic" | "dynatrace" };
-export const siteMap: SiteMapEntry[] = [
-  { name: "StackOps Overview", label: "opening" },
-  { name: "The Challenges", label: "challenge" },
-  { name: "Elastic", label: "elastic" },
-  { name: "Elastic Use Case", label: "elastic-demo" },
-  { name: "Elastic Technical Details", panel: "elastic" },
-  { name: "Dynatrace", label: "dyn" },
-  { name: "Dynatrace Use Case", label: "dyn-demo" },
-  { name: "Dynatrace Technical Details", panel: "dynatrace" },
-  { name: "Explore Further", label: "closing" },
-];
-
-// Presentation Mode stops (timeline labels) and how long to hold each, in ms.
-export const presentationStops: { label: string; hold: number }[] = [
-  { label: "opening", hold: 6000 },
-  { label: "incident", hold: 3500 },
-  { label: "challenge", hold: 6000 },
-  { label: "elastic", hold: 5000 },
-  { label: "elastic-points", hold: 6000 },
-  { label: "elastic-demo", hold: 4000 },
-  { label: "elastic-value", hold: 5000 },
-  { label: "dyn", hold: 5000 },
-  { label: "dyn-points", hold: 6000 },
-  { label: "dyn-demo", hold: 4000 },
-  { label: "dyn-value", hold: 5000 },
-  { label: "compare", hold: 6000 },
-  { label: "closing", hold: 9000 },
-];
-
-// Optional modules — DISABLED. Placeholder copy only; not rendered or listed until product owners approve.
-export const modules = {
-  sora: {
-    enabled: false,
-    name: "SORA — StackOps Resiliency Accelerator",
-    headline: "Less Manual Setup. More Time to Monitor.",
-    steps: ["Discover monitoring gaps", "Review proposed configuration", "Deploy supported components", "View monitoring information"],
-    readMore: "Placeholder — awaiting product-owner-approved details.",
-  },
-  soda: {
-    enabled: false,
-    name: "SODA — cost optimisation (placeholder)",
-    headline: "Understand Your Infrastructure Spending.",
-    problem: "Are your infrastructure resources configured efficiently?",
-    steps: [
-      "Collect relevant cost and configuration information",
-      "Analyse resource utilisation",
-      "Identify potential optimisation opportunities",
-      "Review estimated savings, risks and suggested actions",
-    ],
-    syntheticNote: "All figures are synthetic. No savings have been achieved.",
-    readMore: "Placeholder — awaiting approval for public use.",
-  },
-};
+export const details: Record<string, Detail> = Object.fromEntries([capabilities, investigationDetails, modules.sora, modules.soda, ...customerStories, elastic, dynatrace].map(d => [d.id, d]));
