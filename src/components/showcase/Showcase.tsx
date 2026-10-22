@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
-  aiAnalysis, challenge, closing, comparison, disclaimer, dynatrace, dynatraceDemo, elastic, elasticDemo,
-  opening, presentationStops, qr, type Product,
+  challenge, closing, disclaimer, capabilities, investigation, modules, tools, customerStories, customers, options,
+  opening, presentationStops, presentationSpeed, details, diagram, ui, type Detail, type Product,
 } from "@/content/showcase";
 import { alertNodes, byId, clusters, curve, ecoEdges, incidentId, latencyChain, mapEdges, nodes, tracePath } from "./network";
 import { ReadMorePanel } from "./ReadMorePanel";
 import { SiteMap } from "./SiteMap";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, ArrowLeft, Play, ExternalLink } from "lucide-react";
 
 const SCROLL_LEN = 16000; // px of scroll mapped to the full story
 
@@ -23,20 +25,27 @@ const inPath = (path: string[], a: string, b: string) => {
   return i >= 0 && path[i + 1] === b;
 };
 const touches = (id: string, a: string, b: string) => a === id || b === id;
-const products = { elastic, dynatrace };
-const nd = (id: string) => byId[id]!;
+const nd = (id: string) => {
+  const node = byId[id];
+  if (!node) throw new Error(`Unknown network node: ${id}`);
+  return node;
+};
 
 export function Showcase() {
   const root = useRef<HTMLDivElement>(null);
-  const [panel, setPanel] = useState<Product | null>(null);
+  const [panel, setPanel] = useState<Detail | null>(null);
   const [presenting, setPresenting] = useState(false);
   const labelsRef = useRef<Record<string, number>>({});
   const savedY = useRef(0);
+  const triggerRef = useRef<HTMLElement | null>(null);
+  const [storyIndex, setStoryIndex] = useState(0);
 
-  const openPanel = useCallback((id: "elastic" | "dynatrace") => {
+  const openPanel = useCallback((id: string) => {
+    if (presenting || !details[id]) return;
     savedY.current = window.scrollY;
-    setPanel(products[id]);
-  }, []);
+    triggerRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    setPanel(details[id]);
+  }, [presenting]);
   const closePanel = useCallback(() => {
     setPanel(null);
     window.scrollTo(0, savedY.current);
@@ -59,7 +68,7 @@ export function Showcase() {
       ctx = gsap.context(() => {
         const q = gsap.utils.selector(root);
         gsap.set(
-          q(".scene-el, .to-hub, .hub, .map-edge, .ai-panel, .paths, .qr, .ring, .cluster, .cluster-link, .demo-panel, .es-step, .dt-step, .cmp-with"),
+          q(".scene-el, .to-hub, .hub, .map-edge, .ai-panel, .paths, .qr, .ring, .cluster, .cluster-link, .demo-panel, .es-step, .dt-step, .cmp-with, .tool-flow, .customer-beacon"),
           { autoAlpha: 0 },
         );
         gsap.set(q(".scene-opening .scene-el"), { autoAlpha: 1 });
@@ -84,111 +93,76 @@ export function Showcase() {
         const neutral = { stroke: "var(--foreground)", strokeWidth: 1.2, strokeOpacity: 0.22, duration: 0.4 };
         const inc = nd(incidentId);
 
-        // 1. Opening: healthy flow, then one service slows and the camera leans in.
+        // The existing world evolves continuously; all navigation uses timeline labels.
         tl.addLabel("opening", 0.2);
-        tl.to(cam, { scale: 1.05, x: -10, duration: 0.8 }, 0.3);
-        show(".inc-ring", 0.9);
-        tl.to(q(".inc-edge"), { stroke: "var(--warn)", strokeOpacity: 0.9, strokeWidth: 2, duration: 0.4 }, 0.9);
-        tl.to(cam, { scale: 1.3, x: 800 - inc.x * 1.3 + 200, y: 450 - inc.y * 1.3, duration: 1 }, 1);
-        tl.addLabel("incident", 1.7);
-        exit(".scene-opening .scene-el", 1.9);
+        tl.to(cam, { scale: 1.08, x: -10, duration: 1 }, 0.3);
+        exit(".scene-opening .scene-el", 1.8);
+        show(".inc-ring", 1.9);
+        tl.to(q(".inc-edge"), { stroke: "var(--warn)", strokeOpacity: 0.9, strokeWidth: 2, duration: 0.6 }, 1.9);
+        tl.to(cam, { scale: 1.25, x: 800 - inc.x * 1.25 + 200, y: 450 - inc.y * 1.25, duration: 1 }, 2);
+        show(".cluster, .cluster-link", 2.2);
+        enter(".scene-challenge .head", 2.2);
+        challenge.items.forEach((_, i) => enter(`.scene-challenge .c${i}`, 2.5 + i * 0.2));
+        tl.addLabel("challenge", 3.5);
+        exit(".scene-challenge .scene-el", 3.9);
+        hide(".cluster-link", 3.9);
+        clusters.forEach(c => tl.to(q(`.cluster-${c.key}`), { x: 800 - c.x, y: 430 - c.y, scale: 0.6, duration: 0.8 }, 4));
+        hide(".cluster, .inc-ring", 4.7);
+        tl.to(cam, { scale: 1.18, x: 200, y: 10, duration: 1 }, 4.2);
+        show(".hub", 4.5);
+        tl.to(q(".to-hub"), { autoAlpha: 1, duration: 0.5, stagger: 0.04 }, 4.5);
+        enter(".scene-capabilities .head", 4.6);
+        capabilities.points.forEach((_, i) => enter(`.scene-capabilities .p${i}`, 5 + i * 0.25));
+        tl.addLabel("capabilities", 6.5);
+        exit(".scene-capabilities .scene-el", 6.9);
+        hide(".hub, .to-hub", 7);
+        hide(".eco-edge", 7.1);
+        nodes.forEach(n => tl.to(q(`.node-${n.id}`), { x: n.mx - n.x, y: n.my - n.y, duration: 1 }, 7.2));
+        tl.to(cam, { scale: 1.12, x: 240, y: 0, duration: 1 }, 7.2);
+        tl.to(q(".map-edge"), { autoAlpha: 1, duration: 0.5, stagger: 0.03 }, 7.8);
+        enter(".scene-action .head", 7.4);
+        show(".action-before, .alert-ring", 7.6);
+        hide(".action-before, .alert-ring", 8.4);
+        enter(".action-with", 8.5);
+        investigation.steps.forEach((_, i) => show(`.dt-step-${i}`, 8.8 + i * 0.35));
+        show(".app-ring", 8.8);
+        tl.to(q(".dep-edge"), { stroke: "var(--healthy)", strokeOpacity: 0.8, strokeWidth: 2, duration: 0.5 }, 9);
+        show(".lat-ring", 9.2);
+        tl.to(q(".lat-edge"), { stroke: "var(--warn)", strokeWidth: 3, strokeOpacity: 1, duration: 0.5 }, 9.2);
+        show(".db-ring", 9.8);
+        enter(".scene-action .value", 10);
+        tl.addLabel("action", 10.7);
+        exit(".scene-action .scene-el, .action-with", 11.1);
+        hide(".app-ring, .lat-ring, .db-ring", 11.2);
+        tl.to(q(".dep-edge, .lat-edge, .inc-edge"), neutral, 11.2);
+        tl.to(cam, { scale: 0.95, x: 0, y: -40, duration: 1 }, 11.2);
+        enter(".scene-tools .head", 11.5);
+        enter(".scene-tools .tool-item", 11.9);
+        show(".tool-flow", 12);
+        tl.fromTo(q(".tool-flow path"), { strokeDashoffset: 180 }, { strokeDashoffset: 0, duration: 1.2, stagger: 0.1 }, 12);
+        tl.addLabel("tools", 13.6);
+        exit(".scene-tools .scene-el", 14);
+        hide(".tool-flow", 14);
+        tl.to(cam, { scale: 0.86, x: 0, y: -70, duration: 1 }, 14);
+        tl.to(q(".net"), { opacity: 0.35, duration: 0.7 }, 14.2);
+        enter(".scene-customers .scene-el", 14.4);
+        show(".customer-beacon", 14.7);
+        tl.addLabel("customers", 16);
+        exit(".scene-customers .scene-el", 16.6);
+        hide(".customer-beacon", 16.6);
+        tl.to(cam, { scale: 0.78, x: 0, y: -60, duration: 1 }, 16.6);
+        show(".paths", 17);
+        enter(".scene-options .scene-el", 17);
+        tl.addLabel("options", 18.5);
+        exit(".scene-options .scene-el", 19);
+        hide(".paths", 19);
+        enter(".scene-closing .scene-el", 19.4);
+        tl.to(q(".net"), { opacity: 0.5, duration: 0.8 }, 19.5);
+        tl.addLabel("closing", 20.7);
+        tl.to({}, { duration: 0.6 });
 
-        // 2. Challenge: signals scatter into separate clusters, then drift together.
-        tl.to(cam, { scale: 1, x: 0, y: 0, duration: 1 }, 2.2);
-        show(".cluster, .cluster-link", 2.6, 0.5);
-        enter(".scene-challenge .head", 2.6);
-        enter(".scene-challenge .c0", 3);
-        enter(".scene-challenge .c1", 3.3);
-        enter(".scene-challenge .c2", 3.6);
-        tl.addLabel("challenge", 4.1);
-        hide(".cluster-link", 4.4, 0.3);
-        clusters.forEach((c) => tl.to(q(`.cluster-${c.key}`), { x: 800 - c.x, y: 430 - c.y, scale: 0.6, duration: 0.8 }, 4.5));
-        exit(".scene-challenge .scene-el", 4.6);
-        hide(".cluster", 5.2, 0.3);
-
-        // 3. Elastic intro: analytics hub gathers the data.
-        tl.to(cam, { scale: 1.18, x: 200, y: 10, duration: 1 }, 5);
-        show(".hub", 5.2, 0.5);
-        tl.to(q(".to-hub"), { autoAlpha: 1, duration: 0.5, stagger: 0.04 }, 5.4);
-        enter(".scene-elastic .head", 5.3);
-        tl.addLabel("elastic", 6.1);
-        [0, 1, 2, 3, 4].forEach((i) => enter(`.scene-elastic .p${i}`, 6.3 + i * 0.35));
-        tl.addLabel("elastic-points", 8.1);
-        exit(".scene-elastic .scene-el", 8.4);
-        hide(".hub, .to-hub", 8.5);
-
-        // 4. Elastic use case: fragmented views -> connected analysis.
-        enter(".scene-edemo .head", 8.8);
-        show(".edemo-before", 8.9, 0.5);
-        tl.addLabel("elastic-demo", 9.6);
-        hide(".edemo-before", 9.9);
-        enter(".edemo-with", 10.1);
-        [0, 1, 2, 3].forEach((i) => show(`.es-step-${i}`, 10.4 + i * 0.4, 0.3));
-        tl.to(q(".trace-edge"), { stroke: "var(--primary)", strokeWidth: 3, strokeOpacity: 1, duration: 0.5 }, 11.2);
-        show(".es-focus", 11.6);
-        enter(".scene-edemo .value", 12);
-        tl.addLabel("elastic-value", 12.6);
-        exit(".scene-edemo .scene-el, .edemo-with", 12.9);
-        hide(".es-focus, .inc-ring", 13);
-        tl.to(q(".trace-edge, .inc-edge"), neutral, 13);
-
-        // 5. Dynatrace intro: same nodes reconfigure into a dependency map.
-        hide(".eco-edge", 13.1);
-        nodes.forEach((n) => tl.to(q(`.node-${n.id}`), { x: n.mx - n.x, y: n.my - n.y, duration: 1 }, 13.3));
-        tl.to(cam, { scale: 1.12, x: 240, y: 0, duration: 1 }, 13.2);
-        tl.to(q(".map-edge"), { autoAlpha: 1, duration: 0.5, stagger: 0.03 }, 14);
-        enter(".scene-dyn .head", 13.8);
-        tl.addLabel("dyn", 14.6);
-        [0, 1, 2, 3, 4].forEach((i) => enter(`.scene-dyn .p${i}`, 14.8 + i * 0.35));
-        tl.addLabel("dyn-points", 16.6);
-        exit(".scene-dyn .scene-el", 16.9);
-
-        // 6. Dynatrace use case: many alerts -> contextual investigation.
-        enter(".scene-ddemo .head", 17.2);
-        tl.to(q(".alert-ring"), { autoAlpha: 1, duration: 0.3, stagger: 0.08 }, 17.3);
-        show(".ddemo-before", 17.4, 0.5);
-        tl.addLabel("dyn-demo", 18.1);
-        hide(".alert-ring, .ddemo-before", 18.4);
-        enter(".ddemo-with", 18.5);
-        show(".dt-step-0, .app-ring", 18.8, 0.3);
-        show(".dt-step-1", 19.1, 0.3);
-        tl.to(q(".dep-edge"), { stroke: "var(--healthy)", strokeOpacity: 0.8, strokeWidth: 2, duration: 0.4 }, 19.1);
-        show(".dt-step-2, .lat-ring", 19.4, 0.3);
-        tl.to(q(".lat-edge"), { stroke: "var(--warn)", strokeWidth: 3, strokeOpacity: 1, duration: 0.4 }, 19.4);
-        show(".dt-step-3", 19.7, 0.3);
-        tl.fromTo(q(".ai-panel"), { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.5 }, 19.7);
-        show(".dt-step-4, .db-ring", 20.1, 0.3);
-        enter(".scene-ddemo .value", 20.4);
-        tl.addLabel("dyn-value", 21.1);
-        exit(".scene-ddemo .scene-el, .ddemo-with, .ai-panel", 21.4);
-        hide(".app-ring, .lat-ring, .db-ring", 21.5);
-        tl.to(q(".dep-edge, .lat-edge"), neutral, 21.5);
-
-        // 7. Why connected helps: each "without" line transforms into a "with" line.
-        tl.to(q(".net"), { opacity: 0.4, duration: 0.5 }, 21.6);
-        enter(".scene-cmp .head", 21.8);
-        tl.fromTo(q(".cmp-without"), { autoAlpha: 0, x: reduce ? 0 : -30 }, { autoAlpha: 1, x: 0, duration: 0.4, stagger: 0.12 }, 22);
-        comparison.rows.forEach((_, i) => {
-          tl.to(q(`.cmp-without-${i}`), { autoAlpha: 0.25, duration: 0.3 }, 22.9 + i * 0.3);
-          tl.fromTo(q(`.cmp-with-${i}`), { autoAlpha: 0, x: reduce ? 0 : 30 }, { autoAlpha: 1, x: 0, duration: 0.4 }, 22.9 + i * 0.3);
-        });
-        tl.to(q(".net"), { opacity: 1, duration: 0.6 }, 23.2);
-        tl.to(q(".lat-edge"), { stroke: "var(--primary)", strokeWidth: 2.4, strokeOpacity: 1, duration: 0.5 }, 23.4);
-        tl.addLabel("compare", 24.3);
-        exit(".scene-cmp .scene-el", 24.6);
-        tl.to(q(".cmp-with"), { autoAlpha: 0, duration: 0.3 }, 24.6);
-        tl.to(q(".lat-edge"), neutral, 24.7);
-
-        // 8. Closing: pull back, two distinct exploration paths.
-        tl.to(cam, { scale: 0.78, x: 0, y: -60, duration: 1.2 }, 24.8);
-        tl.to(q(".net"), { opacity: 0.35, duration: 0.8 }, 25);
-        show(".paths", 25.5, 0.7);
-        enter(".scene-closing .scene-el", 25.6);
-        tl.fromTo(q(".qr"), { autoAlpha: 0, scale: 0.9 }, { autoAlpha: 1, scale: 1, duration: 0.5 }, 26.2);
-        tl.addLabel("closing", 26.9);
-        tl.to({}, { duration: 0.5 });
-
-        const st = tl.scrollTrigger!;
+        const st = tl.scrollTrigger;
+        if (!st) return;
         const total = tl.duration();
         const map: Record<string, number> = {};
         for (const [k, v] of Object.entries(tl.labels)) map[k] = st.start + (v / total) * (st.end - st.start);
@@ -211,12 +185,13 @@ export function Showcase() {
     document.documentElement.classList.toggle("present-mode", presenting);
     if (!presenting) return;
     setPanel(null);
+    setStoryIndex(0);
     let raf = 0;
     let last = performance.now();
     let holdUntil = 0;
     let next = 0;
     window.scrollTo(0, 0);
-    const speed = 900; // px per second between stops
+    const speed = presentationSpeed; // px per second between stops
     const tick = (t: number) => {
       const dt = Math.min(0.05, (t - last) / 1000);
       last = t;
@@ -228,8 +203,10 @@ export function Showcase() {
           next = 0;
           holdUntil = t + 800;
         } else {
-          const stop = presentationStops[next]!;
-          const target = labelsRef.current[stop.label] ?? max;
+          const stop = presentationStops[next];
+          if (!stop) return;
+          const target = labelsRef.current[stop.label];
+          if (target === undefined) { raf = requestAnimationFrame(tick); return; }
           let ny = y + speed * dt;
           if (ny >= target) {
             ny = target;
@@ -259,6 +236,8 @@ export function Showcase() {
 
   const hub = { x: 800, y: 430 };
   const mono = "var(--font-mono)";
+  const story = customerStories[storyIndex] ?? customerStories[0];
+  if (!story) return null;
 
   return (
     <div ref={root}>
@@ -344,8 +323,8 @@ export function Showcase() {
               <g className="hub">
                 <circle cx={hub.x} cy={hub.y} r="90" fill="url(#hubGrad)" />
                 <circle cx={hub.x} cy={hub.y} r="34" fill="var(--background)" stroke="var(--primary)" strokeWidth="1.5" />
-                <text x={hub.x} y={hub.y + 4} textAnchor="middle" fontSize="11" fill="var(--foreground)" fontFamily={mono}>ANALYTICS</text>
-                <text x={hub.x} y={hub.y + 58} textAnchor="middle" fontSize="10" fill="var(--muted-foreground)" fontFamily={mono}>logs · metrics · traces</text>
+                <text x={hub.x} y={hub.y + 4} textAnchor="middle" fontSize="11" fill="var(--foreground)" fontFamily={mono}>{diagram.analytics}</text>
+                <text x={hub.x} y={hub.y + 58} textAnchor="middle" fontSize="10" fill="var(--muted-foreground)" fontFamily={mono}>{diagram.telemetry}</text>
               </g>
 
               {nodes.map((n) => (
@@ -354,11 +333,11 @@ export function Showcase() {
                     <>
                       <g className="ring inc-ring">
                         <circle cx={n.x} cy={n.y} r="30" fill="none" stroke="var(--warn)" strokeWidth="2" />
-                        <text x={n.x + 36} y={n.y + 44} fontSize="12" fill="var(--warn)" fontFamily={mono}>latency ↑</text>
+                        <text x={n.x + 36} y={n.y + 44} fontSize="12" fill="var(--warn)" fontFamily={mono}>{diagram.latency}</text>
                       </g>
                       <g className="ring lat-ring">
                         <circle cx={n.x} cy={n.y} r="30" fill="none" stroke="var(--warn)" strokeWidth="2" />
-                        <text x={n.x + 36} y={n.y + 44} fontSize="12" fill="var(--warn)" fontFamily={mono}>response time ↑</text>
+                        <text x={n.x + 36} y={n.y + 44} fontSize="12" fill="var(--warn)" fontFamily={mono}>{diagram.response}</text>
                       </g>
                     </>
                   )}
@@ -366,11 +345,11 @@ export function Showcase() {
                     <>
                       <g className="ring es-focus">
                         <circle cx={n.x} cy={n.y} r="32" fill="none" stroke="var(--primary)" strokeWidth="2.5" />
-                        <text x={n.x - 40} y={n.y + 56} fontSize="12" fill="var(--primary)" fontFamily={mono}>slow spans · trace 7c2e…</text>
+                        <text x={n.x - 40} y={n.y + 56} fontSize="12" fill="var(--primary)" fontFamily={mono}>{diagram.spans}</text>
                       </g>
                       <g className="ring db-ring">
                         <circle cx={n.x} cy={n.y} r="32" fill="none" stroke="var(--error)" strokeWidth="2.5" />
-                        <text x={n.x + 38} y={n.y + 6} fontSize="12" fill="var(--error)" fontFamily={mono}>query latency ↑</text>
+                        <text x={n.x + 38} y={n.y + 6} fontSize="12" fill="var(--error)" fontFamily={mono}>{diagram.query}</text>
                       </g>
                     </>
                   )}
@@ -396,11 +375,18 @@ export function Showcase() {
               ))}
             </g>
 
+            <g className="tool-flow" fill="none" stroke="var(--primary)" strokeWidth="2">
+              <path d="M250 280 C600 180 800 450 1300 280" strokeDasharray="180 12" />
+              <path d="M250 650 C600 750 800 450 1300 650" stroke="var(--healthy)" strokeDasharray="180 12" />
+            </g>
+            <g className="customer-beacon" fill="none" stroke="var(--healthy)" strokeWidth="1.5">
+              <circle cx="1120" cy="420" r="100" /><circle cx="1120" cy="420" r="140" strokeOpacity="0.35" />
+            </g>
             <g className="paths" fontFamily={mono}>
               <path d="M760,1050 C700,800 420,760 330,560" fill="none" stroke="var(--primary)" strokeWidth="3" />
-              <text x="250" y="530" fontSize="22" fill="var(--primary)">ELASTIC</text>
+              <text x="250" y="530" fontSize="22" fill="var(--primary)">{diagram.paths[0]}</text>
               <path d="M840,1050 C900,800 1180,760 1270,560" fill="none" stroke="var(--healthy)" strokeWidth="3" />
-              <text x="1180" y="530" fontSize="22" fill="var(--healthy)">DYNATRACE</text>
+              <text x="1180" y="530" fontSize="22" fill="var(--healthy)">{diagram.paths[1]}</text>
             </g>
           </g>
         </svg>
@@ -409,22 +395,14 @@ export function Showcase() {
         {/* 1. Opening */}
         <div className="scene-opening absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
           <p className="scene-el eyebrow mb-6">{opening.eyebrow}</p>
-          <h1 className="scene-el text-5xl font-semibold leading-[0.95] tracking-tight md:text-8xl lg:text-[8.5rem]">
+          <h1 className="scene-el text-4xl font-semibold leading-[0.95] tracking-tight md:text-8xl lg:text-[7rem]">
             {opening.headline[0]}
             <br />
             <span className="text-signal">{opening.headline[1]}</span>
           </h1>
           <p className="scene-el mt-8 max-w-2xl text-base text-foreground/85 md:text-xl">{opening.sub}</p>
           <p className="scene-el mt-4 max-w-xl text-sm text-muted-foreground md:text-base">{opening.secondary}</p>
-          <div className="scene-el mt-10 flex flex-col items-center gap-3">
-            <div className="flex gap-3">
-              {opening.offerings.map((o, i) => (
-                <span key={o} className={`rounded-full border px-4 py-1.5 font-mono text-xs tracking-widest ${i === 0 ? "border-primary/60 text-primary" : "border-healthy/60 text-healthy"}`}>{o.toUpperCase()}</span>
-              ))}
-            </div>
-            <p className="text-[11px] text-muted-foreground">{opening.offeringsNote}</p>
-          </div>
-          <p className="scene-el eyebrow mt-12">SCROLL TO BEGIN ↓</p>
+          <p className="scene-el eyebrow mt-10">{ui.start} ↓</p>
         </div>
 
         {/* 2. Challenge */}
@@ -448,143 +426,78 @@ export function Showcase() {
           </ol>
         </div>
 
-        <ProductScene p={elastic} cls="scene-elastic" onMore={() => openPanel("elastic")} />
+        <ProductScene p={capabilities} cls="scene-capabilities" onMore={() => openPanel("capabilities")} />
 
-        {/* 4. Elastic use case */}
-        <DemoText cls="scene-edemo" eyebrow={elasticDemo.eyebrow} scenario={elasticDemo.scenario} value={elasticDemo.value} valueSub={elasticDemo.valueSub} note={elasticDemo.note} />
-        <div className="demo-panel edemo-before absolute right-4 top-20 grid w-[min(92vw,26rem)] gap-3 md:right-16 md:top-auto md:bottom-24">
-          <p className="eyebrow text-warn">{elasticDemo.beforeTag}</p>
-          <div className="grid grid-cols-3 gap-2">
-            {["logs-tool", "metrics-tool", "apm-tool"].map((t, i) => (
-              <div key={t} className="rounded-lg border bg-card/80 p-2 backdrop-blur" style={{ transform: `rotate(${(i - 1) * 3}deg)` }}>
-                <p className="font-mono text-[9px] text-muted-foreground">{t}</p>
-                <div className="mt-2 space-y-1">
-                  {[0, 1, 2].map((r) => <div key={r} className="h-1.5 rounded bg-muted" style={{ width: `${50 + ((r + i) % 3) * 20}%` }} />)}
-                </div>
-              </div>
-            ))}
+        <DemoText cls="scene-action" eyebrow={investigation.eyebrow} scenario={investigation.scenario} value={investigation.value} valueSub={investigation.valueSub} note={investigation.note} onMore={() => openPanel("investigation")} />
+        <div className="demo-panel action-before investigation-console absolute right-4 top-20 w-[min(92vw,26rem)] rounded-lg border border-warn/40 bg-card/85 p-5 backdrop-blur md:right-16 md:top-24">
+          <p className="eyebrow mb-3 text-warn">{investigation.beforeTag}</p>
+          <div className="flex gap-3">{diagram.fragmented.map(t => <span key={t} className="border-b border-warn/50 pb-2 font-mono text-xs">{t}</span>)}</div>
+          <ul className="mt-4 space-y-2 text-sm text-muted-foreground">{investigation.beforeLabels.map(l => <li key={l}>{l}</li>)}</ul>
+        </div>
+        <div className="demo-panel action-with investigation-console absolute right-4 top-20 w-[min(92vw,26rem)] rounded-lg border border-primary/40 bg-card/85 p-5 backdrop-blur md:right-16 md:top-24">
+          <p className="eyebrow mb-3 text-primary">{investigation.withTag}</p>
+          <div className="break-all rounded-md border bg-background/70 px-3 py-2 font-mono text-[11px]">⌕ {investigation.query}</div>
+          <ol className="mt-4 space-y-3">{investigation.steps.map((step, i) => <li key={step.k} className={`dt-step dt-step-${i} flex gap-3 text-sm`}><span className="w-16 shrink-0 font-mono text-[10px] text-primary">{step.k}</span><span>{step.v}</span></li>)}</ol>
+        </div>
+
+        <div className="scene-tools story-full absolute inset-0 flex flex-col justify-center px-6 md:px-16">
+          <SceneHeading cls="head" eyebrow={tools.eyebrow} headline={tools.headline} sub={tools.sub} />
+          <div className="mt-8 grid max-w-5xl gap-8 md:grid-cols-2 md:gap-16">
+            {Object.values(modules).filter(t => t.enabled).map(t => <article key={t.id} className="scene-el tool-item border-t border-primary/50 pt-5">
+              <p className="eyebrow text-primary">{ui.toolsBuilt}</p><h3 className="mt-2 text-3xl font-semibold">{t.name}</h3><p className="mt-2 text-lg">{t.headline}</p><p className="mt-2 max-w-md text-sm text-muted-foreground">{t.summary}</p>
+              <ol className="mt-5 flex flex-wrap gap-3 font-mono text-[10px] text-healthy">{t.steps.map((step,i) => <li key={step}>{i > 0 && "→ "}{step}</li>)}</ol>
+              <Button onClick={() => openPanel(t.id)} variant="link" className="read-more mt-4 px-0">{ui.readMore}<ArrowRight /></Button>
+            </article>)}
+          </div><p className="scene-el tool-item mt-5 text-xs text-muted-foreground">{ui.toolsNote}</p>
+        </div>
+
+        <div className="scene-customers story-full absolute inset-0 flex flex-col justify-center px-6 md:px-16">
+          <SceneHeading eyebrow={customers.eyebrow} headline={customers.headline} sub={customers.sub} />
+          <div className="scene-el interactive-stories mt-7 max-w-5xl">
+            <div className="flex flex-wrap gap-2 border-b pb-3" role="tablist" aria-label={ui.storySection}>
+              {customerStories.map((c,i) => <Button key={c.id} role="tab" aria-selected={i === storyIndex} aria-controls="customer-story-detail" id={`story-tab-${c.id}`} variant={i === storyIndex ? "default" : "ghost"} onClick={() => setStoryIndex(i)}>{c.name}</Button>)}
+            </div>
+            <article id="customer-story-detail" role="tabpanel" aria-labelledby={`story-tab-${story.id}`} className="mt-5 grid gap-5 md:grid-cols-[1.3fr_1fr] md:gap-16">
+              <div><p className="eyebrow text-healthy">{story.eyebrow}</p><h3 className="mt-3 text-2xl font-medium md:text-3xl">{story.title}</h3><p className="mt-3 max-w-lg text-sm text-muted-foreground">{story.benefit}</p><Button onClick={() => openPanel(story.id)} variant="link" className="read-more mt-4 px-0">{ui.readMore}<ArrowRight /></Button></div>
+              {story.metric && <div className="border-l border-healthy/50 pl-6"><p className="text-6xl font-semibold text-healthy md:text-7xl">{story.metric}</p><p className="mt-2 max-w-xs text-sm">{story.metricLabel}</p><p className="mt-3 text-[10px] text-muted-foreground">{ui.attributed}</p></div>}
+            </article>
+            <div className="mt-4 flex items-center gap-3"><Button variant="ghost" size="icon" aria-label={ui.previous} onClick={() => setStoryIndex(i => (i + customerStories.length - 1) % customerStories.length)}><ArrowLeft /></Button><span className="font-mono text-xs text-muted-foreground">{storyIndex + 1} / {customerStories.length}</span><Button variant="ghost" size="icon" aria-label={ui.next} onClick={() => setStoryIndex(i => (i + 1) % customerStories.length)}><ArrowRight /></Button></div>
           </div>
-          <ul className="space-y-1 font-mono text-xs text-muted-foreground">
-            {elasticDemo.beforeLabels.map((l) => <li key={l}>· {l}</li>)}
-          </ul>
-        </div>
-        <div className="demo-panel edemo-with absolute right-4 top-20 w-[min(92vw,26rem)] rounded-xl border border-primary/40 bg-card/85 p-5 backdrop-blur md:right-16 md:top-auto md:bottom-24">
-          <p className="eyebrow mb-3 text-primary">{elasticDemo.withTag}</p>
-          <div className="rounded-md border bg-background/70 px-3 py-2 font-mono text-[11px] text-foreground/90">⌕ {elasticDemo.query}</div>
-          <ol className="mt-4 space-y-2">
-            {elasticDemo.steps.map((s, i) => (
-              <li key={s.k} className={`es-step es-step-${i} flex items-baseline gap-3`}>
-                <span className="w-16 shrink-0 font-mono text-[10px] tracking-widest text-primary">{s.k}</span>
-                <span className="text-sm">{s.v}</span>
-              </li>
-            ))}
-          </ol>
+          <div className="scene-el presentation-impact mt-8 grid max-w-5xl grid-cols-2 gap-8">{customerStories.slice(0,2).map(c => <article key={c.id} className="border-t border-healthy/50 pt-4"><p className="eyebrow">{c.name}</p><p className="mt-3 text-6xl text-healthy">{c.metric}</p><p className="mt-2 text-sm">{c.metricLabel}</p><p className="mt-3 text-[10px] text-muted-foreground">{ui.attributed}</p></article>)}</div>
         </div>
 
-        <ProductScene p={dynatrace} cls="scene-dyn" onMore={() => openPanel("dynatrace")} />
-
-        {/* 6. Dynatrace use case */}
-        <DemoText cls="scene-ddemo" eyebrow={dynatraceDemo.eyebrow} scenario={dynatraceDemo.scenario} value={dynatraceDemo.value} note={dynatraceDemo.note} />
-        <div className="demo-panel ddemo-before absolute right-4 top-20 w-[min(92vw,20rem)] rounded-xl border border-warn/40 bg-card/80 p-5 backdrop-blur md:right-16 md:top-24">
-          <p className="eyebrow mb-3 text-warn">{dynatraceDemo.beforeTag}</p>
-          <ul className="space-y-1.5 font-mono text-xs">
-            {dynatraceDemo.beforeLabels.map((l) => <li key={l} className="text-warn">⚠ {l}</li>)}
-          </ul>
-        </div>
-        <div className="demo-panel ddemo-with absolute right-4 top-20 w-[min(92vw,20rem)] rounded-xl border border-healthy/40 bg-card/80 p-5 backdrop-blur md:right-16 md:top-24">
-          <p className="eyebrow mb-3 text-healthy">{dynatraceDemo.withTag}</p>
-          <ol className="space-y-1.5">
-            {dynatraceDemo.steps.map((s, i) => (
-              <li key={s} className={`dt-step dt-step-${i} flex gap-3 text-sm`}>
-                <span className="font-mono text-[10px] text-healthy">0{i + 1}</span>
-                {s}
-              </li>
-            ))}
-          </ol>
-        </div>
-        <div className="ai-panel absolute bottom-8 right-4 w-[min(92vw,20rem)] rounded-xl border bg-card/90 p-5 backdrop-blur md:bottom-16 md:right-16">
-          <p className="eyebrow mb-3">{aiAnalysis.title.toUpperCase()}</p>
-          <p className="text-sm font-medium text-warn">{aiAnalysis.finding}</p>
-          <p className="mt-2 text-xs text-muted-foreground">{aiAnalysis.confidence}</p>
-          <p className="mt-2 font-mono text-[10px] text-muted-foreground">{aiAnalysis.next}</p>
+        <div className="scene-options story-full absolute inset-0 flex flex-col justify-center px-6 md:px-16">
+          <SceneHeading eyebrow={options.eyebrow} headline={options.headline} sub={options.sub} />
+          <div className="mt-7 grid max-w-5xl gap-6 md:grid-cols-2 md:gap-16">{options.platforms.map(o => <article key={o.id} className="scene-el border-t border-primary/50 pt-4"><h3 className="text-2xl font-medium">{o.name}</h3><p className="mt-3 max-w-md text-sm text-muted-foreground">{o.summary}</p><Button variant="link" onClick={() => openPanel(o.id)} className="read-more mt-3 px-0">{ui.technologyMore}<ArrowRight /></Button></article>)}</div>
+          <p className="scene-el mt-4 max-w-3xl text-sm text-foreground/80">{options.note}</p><p className="scene-el mt-5 font-mono text-sm text-accent">{ui.pricing}</p><p className="scene-el mt-2 max-w-3xl text-xs text-muted-foreground">{ui.optionScope}</p>
         </div>
 
-        {/* 7. Comparison */}
-        <div className="scene-cmp pointer-events-none absolute inset-0 flex flex-col items-center justify-center px-6">
-          <p className="scene-el head eyebrow mb-4">{comparison.eyebrow}</p>
-          <h2 className="scene-el head text-center text-3xl font-semibold tracking-tight md:text-5xl">{comparison.headline}</h2>
-          <div className="mt-10 grid w-full max-w-4xl grid-cols-2 gap-x-6 gap-y-4 md:gap-x-16">
-            <p className="scene-el head eyebrow text-warn">{comparison.withoutTag}</p>
-            <p className="scene-el head eyebrow text-primary">{comparison.withTag}</p>
-            {comparison.rows.map((r, i) => (
-              <div key={i} className="contents">
-                <p className={`cmp-without cmp-without-${i} border-l border-warn/40 pl-3 text-sm text-muted-foreground md:text-base`}>{r.without}</p>
-                <p className={`cmp-with cmp-with-${i} border-l-2 border-primary pl-3 text-sm md:text-base`}>{r.with}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* 8. Closing */}
-        <div className="scene-closing absolute inset-x-0 top-[9%] flex flex-col items-center px-6 text-center">
-          <h2 className="scene-el text-4xl font-semibold leading-[1] tracking-tight md:text-7xl">
-            {closing.headline[0]} <span className="text-signal">{closing.headline[1]}</span>
-          </h2>
-          <p className="scene-el mt-5 max-w-xl text-sm text-foreground/80 md:text-lg">{closing.sub}</p>
-          <div className="scene-el mt-8 grid w-full max-w-2xl grid-cols-2 gap-4 md:gap-10">
-            {closing.options.map((o) => (
-              <button
-                key={o.id}
-                onClick={() => openPanel(o.id)}
-                className={`read-more rounded-xl border bg-card/70 p-4 text-left backdrop-blur transition hover:bg-card focus-visible:outline-2 ${o.id === "elastic" ? "border-primary/50" : "border-healthy/50"}`}
-              >
-                <p className={`font-mono text-sm tracking-widest ${o.id === "elastic" ? "text-primary" : "text-healthy"}`}>{o.name.toUpperCase()} →</p>
-                <p className="mt-1 text-xs text-muted-foreground md:text-sm">{o.body}</p>
-              </button>
-            ))}
-          </div>
-          <div className="qr mt-8 flex flex-col items-center gap-2">
-            <QrBox />
-            <p className="text-sm font-medium">{qr.title}</p>
-            <p className="text-xs text-muted-foreground">{qr.sub}</p>
-          </div>
-        </div>
-
-        {/* Persistent QR for booth recording (Presentation Mode only) */}
-        <div className="present-qr absolute bottom-6 right-6 flex-col items-center gap-1">
-          <QrBox small />
-          <p className="font-mono text-[10px] tracking-widest text-muted-foreground">SCAN TO EXPLORE</p>
+        <div className="scene-closing story-full absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
+          <h2 className="scene-el max-w-5xl text-4xl font-semibold leading-tight md:text-6xl">{closing.headline[0]}<span className="block text-signal">{closing.headline[1]}</span></h2>
+          <p className="scene-el mt-6 max-w-xl text-sm text-foreground/80 md:text-lg">{closing.sub}</p>
+          <Button asChild size="lg" className="scene-el mt-8"><a href={closing.href} target="_blank" rel="noreferrer">{ui.explore}<ExternalLink /></a></Button>
         </div>
 
         {/* Chrome */}
-        <div className="chrome absolute left-6 top-6 eyebrow transition-opacity">STACKOPS</div>
+        <div className="chrome absolute left-6 top-6 eyebrow transition-opacity">{ui.brand}</div>
         <div className="chrome absolute right-6 top-5 flex items-center gap-2">
-          <SiteMap onJump={jumpTo} onOpen={openPanel} />
-          <button
+          <SiteMap onJump={jumpTo} />
+          <Button variant="outline"
             onClick={() => setPresenting((v) => !v)}
             className="rounded-full border px-4 py-2 font-mono text-xs tracking-widest text-foreground transition hover:border-primary hover:text-primary"
           >
-            ▶ PRESENTATION MODE
-          </button>
+            <Play /> <span className="hidden sm:inline">{ui.presentation}</span>
+          </Button>
         </div>
         <p className="absolute bottom-4 left-6 max-w-md pr-28 text-[10px] leading-snug text-muted-foreground/70">{disclaimer}</p>
       </section>
 
-      <ReadMorePanel product={panel} onClose={closePanel} />
+      <ReadMorePanel detail={panel} onClose={closePanel} onRestoreFocus={() => { window.scrollTo(0, savedY.current); triggerRef.current?.focus({ preventScroll: true }); }} />
     </div>
   );
 }
 
-function QrBox({ small }: { small?: boolean }) {
-  const size = small ? "h-20 w-20" : "h-28 w-28 md:h-32 md:w-32";
-  return (
-    <div className={`grid ${size} place-items-center rounded-xl border-2 border-dashed border-primary/60 bg-card/70`}>
-      <span className="eyebrow text-center text-[9px]">QR CODE<br />PLACEHOLDER</span>
-    </div>
-  );
-}
-
-function DemoText({ cls, eyebrow, scenario, value, valueSub, note }: { cls: string; eyebrow: string; scenario: string; value: string[]; valueSub?: string; note: string }) {
+function DemoText({ cls, eyebrow, scenario, value, valueSub, note, onMore }: { onMore: () => void; cls: string; eyebrow: string; scenario: string; value: string[]; valueSub?: string; note: string }) {
   return (
     <div className={`${cls} pointer-events-none absolute inset-y-0 left-0 flex w-full flex-col justify-end px-6 pb-20 md:w-[46%] md:justify-center md:px-16 md:pb-0`}>
       <p className="scene-el head eyebrow mb-4 text-primary">{eyebrow}</p>
@@ -594,6 +507,7 @@ function DemoText({ cls, eyebrow, scenario, value, valueSub, note }: { cls: stri
           {value.map((v, i) => <span key={v} className={i === value.length - 1 ? "block text-signal" : "block"}>{v}</span>)}
         </p>
         {valueSub && <p className="scene-el value mt-4 max-w-md text-sm text-foreground/80 md:text-base">{valueSub}</p>}
+        <Button onClick={onMore} variant="link" className="scene-el value read-more pointer-events-auto mt-3 px-0">{ui.readMore}<ArrowRight /></Button>
         <p className="scene-el value mt-4 font-mono text-[10px] tracking-widest text-muted-foreground">{note.toUpperCase()}</p>
       </div>
     </div>
@@ -623,12 +537,16 @@ function ProductScene({ p, cls, onMore }: { p: Product; cls: string; onMore: () 
           </li>
         ))}
       </ol>
-      <button
+      <Button
         onClick={onMore}
         className="scene-el p4 read-more pointer-events-auto mt-6 w-fit rounded-full bg-primary px-5 py-2.5 font-mono text-xs tracking-widest text-primary-foreground transition hover:opacity-90"
       >
-        READ MORE →
-      </button>
+        {ui.readMore}<ArrowRight />
+      </Button>
     </div>
   );
+}
+
+function SceneHeading({ cls = "", eyebrow, headline, sub }: { cls?: string; eyebrow: string; headline: string[]; sub: string }) {
+  return <><p className={`scene-el ${cls} eyebrow mb-4 text-primary`}>{eyebrow}</p><h2 className={`scene-el ${cls} max-w-4xl text-3xl font-semibold leading-tight md:text-5xl`}>{headline[0]}<span className="block text-signal">{headline[1]}</span></h2><p className={`scene-el ${cls} mt-4 max-w-2xl text-sm text-foreground/80 md:text-base`}>{sub}</p></>;
 }
