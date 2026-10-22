@@ -101,5 +101,41 @@
 @media (prefers-reduced-motion: reduce) {
   .signal { display: none; }
 }
-.present-qr { display: none; }
-.present-mode .present-qr { display: flex; }
+.presentation-impact { display: none; }
+.present-mode .interactive-stories { display: none; }
+.present-mode .presentation-impact { display: grid; }
+.detail-modal { max-height: calc(100dvh - 3rem); }
+.detail-scroll { max-height: calc(100dvh - 14rem); }
+.scene-el, .demo-panel { visibility: hidden; }
+.scene-opening .scene-el { visibility: visible; }
+.scene-el { pointer-events: auto; }
+.story-full { padding-top: 5rem; padding-bottom: 4rem; }
+@media (max-width: 767px) {
+  .story-full { padding-top: 5rem; padding-bottom: 4.5rem; }
+  .scene-opening h1 { font-size: 2.5rem; line-height: 1.05; }
+  .scene-opening p { margin-top: 1rem; }
+  .scene-opening .eyebrow { font-size: 0.6rem; }
+  .scene-challenge, .scene-capabilities { justify-content: center; padding-top: 5rem; padding-bottom: 4.5rem; }
+  .scene-action { justify-content: flex-end; padding-bottom: 4.5rem; }
+  .scene-action .value { font-size: 1rem; }
+  .scene-action .head { font-size: 1.5rem; }
+  .scene-action .eyebrow { font-size: 0.6rem; }
+  .scene-action .value + p { font-size: 0.75rem; }
+  .investigation-console { padding: 0.8rem; }
+  .investigation-console li { font-size: 0.75rem; }
+  .scene-tools h3 { font-size: 1.5rem; }
+  .scene-tools article > p { font-size: 0.75rem; }
+  .scene-tools ol { margin-top: 0.6rem; }
+  .scene-tools .read-more { margin-top: 0.25rem; }
+  .scene-tools > div { gap: 1rem; margin-top: 1rem; }
+  .scene-customers h3 { font-size: 1.25rem; }
+  .scene-customers article { gap: 0.75rem; }
+  .scene-customers article > div > p.text-6xl { font-size: 3rem; }
+  .scene-customers .interactive-stories { margin-top: 1rem; }
+  .scene-options > div { margin-top: 1rem; gap: 1rem; }
+  .scene-options article { padding-top: 0.5rem; }
+  .scene-options article p { margin-top: 0.5rem; }
+  .scene-options .read-more { margin-top: 0.25rem; }
+  .detail-modal { max-height: calc(100dvh - 2rem); }
+  .detail-scroll { max-height: calc(100dvh - 13rem); }
+}
