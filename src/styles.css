@@ -95,15 +95,9 @@
   color: var(--muted-foreground);
 }
 
-.present-mode .chrome { opacity: 0; pointer-events: none; }
-.present-mode .read-more { visibility: hidden; }
-
 @media (prefers-reduced-motion: reduce) {
   .signal { display: none; }
 }
-.presentation-impact { display: none; }
-.present-mode .interactive-stories { display: none; }
-.present-mode .presentation-impact { display: grid; }
 .detail-modal { max-height: calc(100dvh - 3rem); }
 .detail-scroll { max-height: calc(100dvh - 14rem); }
 .scene-el, .demo-panel { visibility: hidden; }

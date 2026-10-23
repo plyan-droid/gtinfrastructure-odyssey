@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { customerStories, modules, presentationStops, presentationSpeed } from "@/content/showcase";
+import { customerStories, modules } from "@/content/showcase";
 
 function evidence(id: string) {
   const story = customerStories.find(s => s.id === id);
