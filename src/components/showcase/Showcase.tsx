@@ -409,7 +409,6 @@ export function Showcase() {
             </article>
             <div className="mt-4 flex items-center gap-3"><Button variant="ghost" size="icon" aria-label={ui.previous} onClick={() => setStoryIndex(i => (i + customerStories.length - 1) % customerStories.length)}><ArrowLeft /></Button><span className="font-mono text-xs text-muted-foreground">{storyIndex + 1} / {customerStories.length}</span><Button variant="ghost" size="icon" aria-label={ui.next} onClick={() => setStoryIndex(i => (i + 1) % customerStories.length)}><ArrowRight /></Button></div>
           </div>
-          <div className="scene-el presentation-impact mt-8 grid max-w-5xl grid-cols-2 gap-8">{customerStories.slice(0,2).map(c => <article key={c.id} className="border-t border-healthy/50 pt-4"><p className="eyebrow">{c.name}</p><p className="mt-3 text-6xl text-healthy">{c.metric}</p><p className="mt-2 text-sm">{c.metricLabel}</p><p className="mt-3 text-[10px] text-muted-foreground">{ui.attributed}</p></article>)}</div>
         </div>
 
         <div className="scene-options story-full absolute inset-0 flex flex-col justify-center px-6 md:px-16">
@@ -428,12 +427,6 @@ export function Showcase() {
         <div className="chrome absolute left-6 top-6 eyebrow transition-opacity">{ui.brand}</div>
         <div className="chrome absolute right-6 top-5 flex items-center gap-2">
           <SiteMap onJump={jumpTo} />
-          <Button variant="outline"
-            onClick={() => setPresenting((v) => !v)}
-            className="rounded-full border px-4 py-2 font-mono text-xs tracking-widest text-foreground transition hover:border-primary hover:text-primary"
-          >
-            <Play /> <span className="hidden sm:inline">{ui.presentation}</span>
-          </Button>
         </div>
         <p className="absolute bottom-4 left-6 max-w-md pr-28 text-[10px] leading-snug text-muted-foreground/70">{disclaimer}</p>
       </section>
