@@ -129,6 +129,9 @@
   .scene-tools ol { margin-top: 0.6rem; }
   .scene-tools .read-more { margin-top: 0.25rem; }
   .scene-tools > div { gap: 1rem; margin-top: 1rem; }
+  .scene-tools { padding-bottom: 6rem; }
+  .scene-tools .tool-item { padding-top: 0.75rem; }
+  .scene-tools > p:last-child { margin-top: 0.75rem; }
   .scene-customers h3 { font-size: 1.25rem; }
   .scene-customers article { gap: 0.75rem; }
   .scene-customers article > div > p.text-6xl { font-size: 3rem; }
