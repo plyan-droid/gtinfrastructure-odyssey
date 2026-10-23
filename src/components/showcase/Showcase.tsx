@@ -180,64 +180,6 @@ export function Showcase() {
     };
   }, []);
 
-  // Presentation Mode: auto-drive the same scroll timeline; never opens panels; loops.
-  useEffect(() => {
-    if (new URL(window.location.href).searchParams.get("present") === "1") setPresenting(true);
-  }, []);
-
-  useEffect(() => {
-    document.documentElement.classList.toggle("present-mode", presenting);
-    if (!presenting) return;
-    setPanel(null);
-    setStoryIndex(0);
-    let raf = 0;
-    let last = performance.now();
-    let holdUntil = 0;
-    let next = 0;
-    window.scrollTo(0, 0);
-    const speed = presentationSpeed; // px per second between stops
-    const tick = (t: number) => {
-      const dt = Math.min(0.05, (t - last) / 1000);
-      last = t;
-      if (t >= holdUntil) {
-        const max = document.documentElement.scrollHeight - window.innerHeight;
-        const y = window.scrollY;
-        if (next >= presentationStops.length || y >= max - 2) {
-          window.scrollTo(0, 0);
-          next = 0;
-          holdUntil = t + 800;
-        } else {
-          const stop = presentationStops[next];
-          if (!stop) return;
-          const target = labelsRef.current[stop.label];
-          if (target === undefined) { raf = requestAnimationFrame(tick); return; }
-          let ny = y + speed * dt;
-          if (ny >= target) {
-            ny = target;
-            next++;
-            holdUntil = t + stop.hold;
-          }
-          window.scrollTo(0, ny);
-        }
-      }
-      raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    const stop = (e: Event) => {
-      if (e instanceof KeyboardEvent && e.key === "Tab") return;
-      setPresenting(false);
-    };
-    window.addEventListener("keydown", stop);
-    window.addEventListener("wheel", stop, { passive: true });
-    window.addEventListener("touchstart", stop, { passive: true });
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("keydown", stop);
-      window.removeEventListener("wheel", stop);
-      window.removeEventListener("touchstart", stop);
-    };
-  }, [presenting]);
-
   const hub = { x: 800, y: 430 };
   const mono = "var(--font-mono)";
   const story = customerStories[storyIndex] ?? customerStories[0];
