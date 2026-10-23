@@ -109,6 +109,7 @@
 .scene-el, .demo-panel { visibility: hidden; }
 .scene-opening .scene-el { visibility: visible; }
 .scene-el { pointer-events: auto; }
+.story-full, .scene-opening { pointer-events: none; }
 .story-full { padding-top: 5rem; padding-bottom: 4rem; }
 @media (max-width: 767px) {
   .story-full { padding-top: 5rem; padding-bottom: 4.5rem; }
