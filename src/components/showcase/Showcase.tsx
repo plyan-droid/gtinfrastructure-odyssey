@@ -164,10 +164,15 @@ export function Showcase() {
         const st = tl.scrollTrigger;
         if (!st) return;
         const total = tl.duration();
-        const map: Record<string, number> = {};
-        for (const [k, v] of Object.entries(tl.labels)) map[k] = st.start + (v / total) * (st.end - st.start);
-        map["opening"] = 0;
-        labelsRef.current = map;
+        const updateLabels = () => {
+          const map: Record<string, number> = {};
+          for (const [k, v] of Object.entries(tl.labels)) map[k] = st.start + (v / total) * (st.end - st.start);
+          map["opening"] = 0;
+          labelsRef.current = map;
+        };
+        st.vars.onRefresh = updateLabels;
+        st.refresh();
+        updateLabels();
       }, root);
     })();
     return () => {
