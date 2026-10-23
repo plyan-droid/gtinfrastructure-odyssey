@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   challenge, closing, disclaimer, capabilities, investigation, modules, tools, customerStories, customers, options,
-  opening, presentationStops, presentationSpeed, details, diagram, ui, type Detail, type Product,
+  opening, details, diagram, ui, type Detail, type Product,
 } from "@/content/showcase";
 import { alertNodes, byId, clusters, curve, ecoEdges, incidentId, latencyChain, mapEdges, nodes, tracePath } from "./network";
 import { ReadMorePanel } from "./ReadMorePanel";
 import { SiteMap } from "./SiteMap";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ArrowLeft, Play, ExternalLink } from "lucide-react";
+import { ArrowRight, ArrowLeft, ExternalLink } from "lucide-react";
 
 const SCROLL_LEN = 16000; // px of scroll mapped to the full story
 
@@ -34,18 +34,17 @@ const nd = (id: string) => {
 export function Showcase() {
   const root = useRef<HTMLDivElement>(null);
   const [panel, setPanel] = useState<Detail | null>(null);
-  const [presenting, setPresenting] = useState(false);
   const labelsRef = useRef<Record<string, number>>({});
   const savedY = useRef(0);
   const triggerRef = useRef<HTMLElement | null>(null);
   const [storyIndex, setStoryIndex] = useState(0);
 
   const openPanel = useCallback((id: string) => {
-    if (presenting || !details[id]) return;
+    if (!details[id]) return;
     savedY.current = window.scrollY;
     triggerRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     setPanel(details[id]);
-  }, [presenting]);
+  }, []);
   const closePanel = useCallback(() => {
     setPanel(null);
     window.scrollTo(0, savedY.current);
