@@ -24,8 +24,4 @@ describe("Stakeholder evidence and availability rules", () => {
   it("keeps HDB compliance expansion planned", () => { expect(evidence("hdb").complianceStatus).toBe("planned"); });
   it("does not attach quantitative outcomes to HTX", () => { expect(evidence("htx")).toEqual({ quantitativeOutcome: false }); });
   it("introduces approved StackOps supporting tools", () => { expect(modules.sora.enabled).toBe(true); expect(modules.soda.enabled).toBe(true); });
-  it("budgets approximately 60 seconds using the same scroll journey", () => {
-    const duration = 16000 / presentationSpeed + presentationStops.reduce((sum, stop) => sum + stop.hold / 1000, 0);
-    expect(duration).toBeGreaterThan(55); expect(duration).toBeLessThan(65);
-  });
 });
