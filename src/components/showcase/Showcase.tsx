@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   challenge, closing, disclaimer, capabilities, investigation, modules, tools, customerStories, customers, options,
-  opening, presentationStops, presentationSpeed, details, diagram, ui, type Detail, type Product,
+  opening, details, diagram, ui, type Detail, type Product,
 } from "@/content/showcase";
 import { alertNodes, byId, clusters, curve, ecoEdges, incidentId, latencyChain, mapEdges, nodes, tracePath } from "./network";
 import { ReadMorePanel } from "./ReadMorePanel";
 import { SiteMap } from "./SiteMap";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ArrowLeft, Play, ExternalLink } from "lucide-react";
+import { ArrowRight, ArrowLeft, ExternalLink } from "lucide-react";
 
 const SCROLL_LEN = 16000; // px of scroll mapped to the full story
 
@@ -34,18 +34,17 @@ const nd = (id: string) => {
 export function Showcase() {
   const root = useRef<HTMLDivElement>(null);
   const [panel, setPanel] = useState<Detail | null>(null);
-  const [presenting, setPresenting] = useState(false);
   const labelsRef = useRef<Record<string, number>>({});
   const savedY = useRef(0);
   const triggerRef = useRef<HTMLElement | null>(null);
   const [storyIndex, setStoryIndex] = useState(0);
 
   const openPanel = useCallback((id: string) => {
-    if (presenting || !details[id]) return;
+    if (!details[id]) return;
     savedY.current = window.scrollY;
     triggerRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     setPanel(details[id]);
-  }, [presenting]);
+  }, []);
   const closePanel = useCallback(() => {
     setPanel(null);
     window.scrollTo(0, savedY.current);
@@ -180,64 +179,6 @@ export function Showcase() {
       ctx?.revert();
     };
   }, []);
-
-  // Presentation Mode: auto-drive the same scroll timeline; never opens panels; loops.
-  useEffect(() => {
-    if (new URL(window.location.href).searchParams.get("present") === "1") setPresenting(true);
-  }, []);
-
-  useEffect(() => {
-    document.documentElement.classList.toggle("present-mode", presenting);
-    if (!presenting) return;
-    setPanel(null);
-    setStoryIndex(0);
-    let raf = 0;
-    let last = performance.now();
-    let holdUntil = 0;
-    let next = 0;
-    window.scrollTo(0, 0);
-    const speed = presentationSpeed; // px per second between stops
-    const tick = (t: number) => {
-      const dt = Math.min(0.05, (t - last) / 1000);
-      last = t;
-      if (t >= holdUntil) {
-        const max = document.documentElement.scrollHeight - window.innerHeight;
-        const y = window.scrollY;
-        if (next >= presentationStops.length || y >= max - 2) {
-          window.scrollTo(0, 0);
-          next = 0;
-          holdUntil = t + 800;
-        } else {
-          const stop = presentationStops[next];
-          if (!stop) return;
-          const target = labelsRef.current[stop.label];
-          if (target === undefined) { raf = requestAnimationFrame(tick); return; }
-          let ny = y + speed * dt;
-          if (ny >= target) {
-            ny = target;
-            next++;
-            holdUntil = t + stop.hold;
-          }
-          window.scrollTo(0, ny);
-        }
-      }
-      raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    const stop = (e: Event) => {
-      if (e instanceof KeyboardEvent && e.key === "Tab") return;
-      setPresenting(false);
-    };
-    window.addEventListener("keydown", stop);
-    window.addEventListener("wheel", stop, { passive: true });
-    window.addEventListener("touchstart", stop, { passive: true });
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("keydown", stop);
-      window.removeEventListener("wheel", stop);
-      window.removeEventListener("touchstart", stop);
-    };
-  }, [presenting]);
 
   const hub = { x: 800, y: 430 };
   const mono = "var(--font-mono)";
@@ -468,7 +409,6 @@ export function Showcase() {
             </article>
             <div className="mt-4 flex items-center gap-3"><Button variant="ghost" size="icon" aria-label={ui.previous} onClick={() => setStoryIndex(i => (i + customerStories.length - 1) % customerStories.length)}><ArrowLeft /></Button><span className="font-mono text-xs text-muted-foreground">{storyIndex + 1} / {customerStories.length}</span><Button variant="ghost" size="icon" aria-label={ui.next} onClick={() => setStoryIndex(i => (i + 1) % customerStories.length)}><ArrowRight /></Button></div>
           </div>
-          <div className="scene-el presentation-impact mt-8 grid max-w-5xl grid-cols-2 gap-8">{customerStories.slice(0,2).map(c => <article key={c.id} className="border-t border-healthy/50 pt-4"><p className="eyebrow">{c.name}</p><p className="mt-3 text-6xl text-healthy">{c.metric}</p><p className="mt-2 text-sm">{c.metricLabel}</p><p className="mt-3 text-[10px] text-muted-foreground">{ui.attributed}</p></article>)}</div>
         </div>
 
         <div className="scene-options story-full absolute inset-0 flex flex-col justify-center px-6 md:px-16">
@@ -487,12 +427,6 @@ export function Showcase() {
         <div className="chrome absolute left-6 top-6 eyebrow transition-opacity">{ui.brand}</div>
         <div className="chrome absolute right-6 top-5 flex items-center gap-2">
           <SiteMap onJump={jumpTo} />
-          <Button variant="outline"
-            onClick={() => setPresenting((v) => !v)}
-            className="rounded-full border px-4 py-2 font-mono text-xs tracking-widest text-foreground transition hover:border-primary hover:text-primary"
-          >
-            <Play /> <span className="hidden sm:inline">{ui.presentation}</span>
-          </Button>
         </div>
         <p className="absolute bottom-4 left-6 max-w-md pr-28 text-[10px] leading-snug text-muted-foreground/70">{disclaimer}</p>
       </section>

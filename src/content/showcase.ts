@@ -9,7 +9,7 @@ export const sources = {
   positioning: "https://govinsider.asia/intl-en/article/how-govtech-singapores-stackops-enhances-observability-in-public-sector-it",
 };
 export const ui = {
-  readMore: "Read more", siteMap: "Site Map", presentation: "Presentation Mode", start: "Scroll to begin", close: "Close",
+  readMore: "Read more", siteMap: "Site Map", start: "Scroll to begin", close: "Close",
   brand: "StackOps", pricing: "Pricing details to be confirmed", optionScope: "Capabilities, operating models and adoption details depend on the selected option and agency requirements. Confirm these with the StackOps team.",
   source: "Official customer story", attributed: "Reported in the official StackOps customer story", storySection: "Customer stories", storyNumber: "Story", previous: "Previous customer story", next: "Next customer story",
   technologyMore: "Technical details", toolsNote: "Scope, availability and supported technology options to be confirmed.", toolsBuilt: "Built by StackOps", explore: "Explore StackOps",
@@ -120,13 +120,6 @@ export const siteMap = [
   { name: "Overview", label: "opening" }, { name: "The Challenge", label: "challenge" }, { name: "StackOps Capabilities", label: "capabilities" }, { name: "From Visibility to Action", label: "action" },
   { name: "StackOps Tools", label: "tools" }, { name: "Customer Stories", label: "customers" }, { name: "Pricing & Technology Options", label: "options" }, { name: "Get Started", label: "closing" },
 ];
-// Travel time (~33s) plus these holds (~27s) gives an approximately one-minute loop.
-export const presentationSpeed = 480;
-export const presentationStops = [
-  { label: "opening", hold: 4000 }, { label: "challenge", hold: 2500 }, { label: "capabilities", hold: 3500 }, { label: "action", hold: 3500 },
-  { label: "tools", hold: 2500 }, { label: "customers", hold: 4500 }, { label: "options", hold: 2500 }, { label: "closing", hold: 4000 },
-];
-
 export const elastic: TechnologyOption = {
   id: "elastic",
   eyebrow: "PRODUCT 01 / ELASTIC",
