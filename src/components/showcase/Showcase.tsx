@@ -77,10 +77,10 @@ export function Showcase() {
 
         const tl = gsap.timeline({
           defaults: { ease: "power2.inOut" },
-          onUpdate() {
+          onUpdate(this: { time: () => number }) {
             const time = this.time();
             const scene = time >= 19.4 ? "closing" : time >= 17 ? "options" : time >= 14.4 ? "customers" : time >= 11.5 ? "tools" : time >= 7.4 ? "action" : time >= 4.6 ? "capabilities" : time >= 2.2 ? "challenge" : "opening";
-            if (root.current?.dataset.activeScene !== scene) root.current?.setAttribute("data-active-scene", scene);
+            if (root.current?.dataset["activeScene"] !== scene) root.current?.setAttribute("data-active-scene", scene);
           },
           scrollTrigger: {
             trigger: q(".stage")[0] as HTMLElement,
