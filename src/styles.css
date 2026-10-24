@@ -106,6 +106,25 @@
 .detail-scroll { max-height: calc(100dvh - 14rem); }
 .scene-el, .demo-panel { visibility: hidden; }
 .scene-opening .scene-el { visibility: visible; }
+/* Gate whole scenes independently of per-word animation styles. This also
+   preserves the current content when preview tools refresh inline styles. */
+[data-active-scene] :is(.scene-opening, .scene-challenge, .scene-capabilities, .scene-action, .scene-tools, .scene-customers, .scene-options, .scene-closing) { opacity: 0; pointer-events: none; }
+[data-active-scene="opening"] .scene-opening,
+[data-active-scene="challenge"] .scene-challenge,
+[data-active-scene="capabilities"] .scene-capabilities,
+[data-active-scene="action"] .scene-action,
+[data-active-scene="tools"] .scene-tools,
+[data-active-scene="customers"] .scene-customers,
+[data-active-scene="options"] .scene-options,
+[data-active-scene="closing"] .scene-closing { opacity: 1; }
+[data-active-scene="opening"] .scene-opening .scene-el,
+[data-active-scene="challenge"] .scene-challenge .scene-el,
+[data-active-scene="capabilities"] .scene-capabilities .scene-el,
+[data-active-scene="action"] .scene-action .scene-el,
+[data-active-scene="tools"] .scene-tools .scene-el,
+[data-active-scene="customers"] .scene-customers .scene-el,
+[data-active-scene="options"] .scene-options .scene-el,
+[data-active-scene="closing"] .scene-closing .scene-el { visibility: visible; }
 .opening-network { opacity: 0.22; }
 .node-label { visibility: hidden; }
 .opening-shield { background: var(--opening-readability); }

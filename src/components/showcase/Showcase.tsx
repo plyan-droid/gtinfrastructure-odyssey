@@ -77,6 +77,11 @@ export function Showcase() {
 
         const tl = gsap.timeline({
           defaults: { ease: "power2.inOut" },
+          onUpdate(this: { time: () => number }) {
+            const time = this.time();
+            const scene = time >= 19.4 ? "closing" : time >= 17 ? "options" : time >= 14.4 ? "customers" : time >= 11.5 ? "tools" : time >= 7.4 ? "action" : time >= 4.6 ? "capabilities" : time >= 2.2 ? "challenge" : "opening";
+            if (root.current?.dataset["activeScene"] !== scene) root.current?.setAttribute("data-active-scene", scene);
+          },
           scrollTrigger: {
             trigger: q(".stage")[0] as HTMLElement,
             start: "top top",
@@ -195,7 +200,7 @@ export function Showcase() {
   if (!story) return null;
 
   return (
-    <div ref={root}>
+    <div ref={root} data-active-scene="opening">
       <section className="stage relative h-screen w-full overflow-hidden bg-background">
         <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" className="absolute inset-0 h-full w-full" aria-hidden>
           <defs>
