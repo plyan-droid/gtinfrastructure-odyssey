@@ -71,6 +71,8 @@ export function Showcase() {
           { autoAlpha: 0 },
         );
         gsap.set(q(".scene-opening .scene-el"), { autoAlpha: 1 });
+        gsap.set(q(".net"), { opacity: 0.38 });
+        gsap.set(q(".node-label"), { autoAlpha: 0 });
 
         const tl = gsap.timeline({
           defaults: { ease: "power2.inOut" },
@@ -96,6 +98,9 @@ export function Showcase() {
         tl.addLabel("opening", 0.2);
         tl.to(cam, { scale: 1.08, x: -10, duration: 1 }, 0.3);
         exit(".scene-opening .scene-el", 1.8);
+        tl.to(q(".opening-shield"), { autoAlpha: 0, duration: 0.6 }, 1.8);
+        tl.to(q(".net"), { opacity: 1, duration: 0.8 }, 1.8);
+        show(".node-label", 2.2, 0.6);
         show(".inc-ring", 1.9);
         tl.to(q(".inc-edge"), { stroke: "var(--warn)", strokeOpacity: 0.9, strokeWidth: 2, duration: 0.6 }, 1.9);
         tl.to(cam, { scale: 1.25, x: 800 - inc.x * 1.25 + 200, y: 450 - inc.y * 1.25, duration: 1 }, 2);
@@ -201,7 +206,7 @@ export function Showcase() {
           </defs>
           <rect width="1600" height="900" fill="url(#grid)" />
           <g id="cam">
-            <g className="net">
+            <g className="net opening-network">
               {ecoEdges.map(([a, b]) => (
                 <path
                   key={edgeKey(a, b)}
@@ -316,7 +321,7 @@ export function Showcase() {
                     <circle cx={n.x} cy={n.y} r={n.kind === "app" ? 12 : 16} fill="var(--card)" stroke={kindColor[n.kind]} strokeWidth="1.5" />
                   )}
                   <circle cx={n.x} cy={n.y} r="3" fill={kindColor[n.kind]} />
-                  <text x={n.x} y={n.y + (n.kind === "cloud" ? 38 : 34)} textAnchor="middle" fontSize="12" fill="var(--muted-foreground)" fontFamily={mono}>{n.label}</text>
+                  <text className="node-label" x={n.x} y={n.y + (n.kind === "cloud" ? 38 : 34)} textAnchor="middle" fontSize="12" fill="var(--muted-foreground)" fontFamily={mono}>{n.label}</text>
                 </g>
               ))}
             </g>
@@ -336,6 +341,7 @@ export function Showcase() {
             </g>
           </g>
         </svg>
+        <div className="opening-shield pointer-events-none absolute inset-0" />
         <div className="stage-vignette pointer-events-none absolute inset-0" />
 
         {/* 1. Opening */}
