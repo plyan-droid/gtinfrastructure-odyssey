@@ -16,4 +16,4 @@
 - Supporting tools live in content with explicit enabled flags and scope caveats — keep approval and availability distinct, without implying universal technology support.
 - All detail types use the shared Radix-based centred ReadMorePanel modal with scroll isolation and trigger focus restoration — consistent accessible exploration without restarting the story.
 - Customer evidence is structured separately from synthetic infrastructure data in showcase content — attributed agency outcomes must never be presented as demo metrics or guarantees.
-- Opening readability uses a screen-space shield and timeline-controlled network/label fades, rather than changing shared node coordinates — keeps copy clear while preserving reversible scene continuity.
+- All story reading areas use screen-space shields (centred, left-column or wide) and timeline-controlled network/label fades, rather than changing shared node coordinates — keeps diagrams out of the words while preserving reversible scene continuity.

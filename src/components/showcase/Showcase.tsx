@@ -71,8 +71,9 @@ export function Showcase() {
           { autoAlpha: 0 },
         );
         gsap.set(q(".scene-opening .scene-el"), { autoAlpha: 1 });
-        gsap.set(q(".net"), { opacity: 0.38 });
+        gsap.set(q(".net"), { opacity: 0.22 });
         gsap.set(q(".node-label"), { autoAlpha: 0 });
+        gsap.set(q(".reading-shield-left, .reading-shield-wide"), { autoAlpha: 0 });
 
         const tl = gsap.timeline({
           defaults: { ease: "power2.inOut" },
@@ -99,8 +100,9 @@ export function Showcase() {
         tl.to(cam, { scale: 1.08, x: -10, duration: 1 }, 0.3);
         exit(".scene-opening .scene-el", 1.8);
         tl.to(q(".opening-shield"), { autoAlpha: 0, duration: 0.6 }, 1.8);
-        tl.to(q(".net"), { opacity: 1, duration: 0.8 }, 1.8);
-        show(".node-label", 2.2, 0.6);
+        show(".reading-shield-left", 1.8, 0.6);
+        tl.to(q(".net"), { opacity: 0.65, duration: 0.8 }, 1.8);
+        tl.to(q(".node-label"), { autoAlpha: 0.45, duration: 0.6 }, 2.2);
         show(".inc-ring", 1.9);
         tl.to(q(".inc-edge"), { stroke: "var(--warn)", strokeOpacity: 0.9, strokeWidth: 2, duration: 0.6 }, 1.9);
         tl.to(cam, { scale: 1.25, x: 800 - inc.x * 1.25 + 200, y: 450 - inc.y * 1.25, duration: 1 }, 2);
@@ -140,6 +142,8 @@ export function Showcase() {
         hide(".app-ring, .lat-ring, .db-ring", 11.2);
         tl.to(q(".dep-edge, .lat-edge, .inc-edge"), neutral, 11.2);
         tl.to(cam, { scale: 0.95, x: 0, y: -40, duration: 1 }, 11.2);
+        hide(".reading-shield-left", 11.2, 0.6);
+        show(".reading-shield-wide", 11.2, 0.6);
         enter(".scene-tools .head", 11.5);
         enter(".scene-tools .tool-item", 11.9);
         show(".tool-flow", 12);
@@ -148,7 +152,7 @@ export function Showcase() {
         exit(".scene-tools .scene-el", 14);
         hide(".tool-flow", 14);
         tl.to(cam, { scale: 0.86, x: 0, y: -70, duration: 1 }, 14);
-        tl.to(q(".net"), { opacity: 0.35, duration: 0.7 }, 14.2);
+        tl.to(q(".net"), { opacity: 0.22, duration: 0.7 }, 14.2);
         enter(".scene-customers .scene-el", 14.4);
         show(".customer-beacon", 14.7);
         tl.addLabel("customers", 16);
@@ -161,7 +165,7 @@ export function Showcase() {
         exit(".scene-options .scene-el", 19);
         hide(".paths", 19);
         enter(".scene-closing .scene-el", 19.4);
-        tl.to(q(".net"), { opacity: 0.5, duration: 0.8 }, 19.5);
+        tl.to(q(".net"), { opacity: 0.22, duration: 0.8 }, 19.5);
         tl.addLabel("closing", 20.7);
         tl.to({}, { duration: 0.6 });
 
@@ -343,6 +347,8 @@ export function Showcase() {
         </svg>
         <div className="opening-shield pointer-events-none absolute inset-0" />
         <div className="stage-vignette pointer-events-none absolute inset-0" />
+        <div className="reading-shield-left pointer-events-none absolute inset-0" />
+        <div className="reading-shield-wide pointer-events-none absolute inset-0" />
 
         {/* 1. Opening */}
         <div className="scene-opening absolute inset-0 flex flex-col items-center justify-center px-6 text-center">

@@ -62,7 +62,10 @@
   --input: oklch(1 0 0 / 14%);
   --ring: oklch(0.68 0.25 350);
   --gradient-signal: linear-gradient(100deg, var(--primary), var(--accent) 55%, var(--violet));
-  --opening-readability: radial-gradient(ellipse 46% 48% at 50% 50%, var(--background) 35%, color-mix(in oklab, var(--background) 94%, transparent) 60%, transparent 100%);
+  --opening-readability: radial-gradient(ellipse 68% 72% at 50% 50%, var(--background) 52%, color-mix(in oklab, var(--background) 98%, transparent) 72%, transparent 100%);
+  --reading-left: linear-gradient(90deg, var(--background) 0%, var(--background) 44%, color-mix(in oklab, var(--background) 96%, transparent) 51%, transparent 74%);
+  --reading-wide: linear-gradient(90deg, var(--background) 0%, color-mix(in oklab, var(--background) 97%, transparent) 72%, color-mix(in oklab, var(--background) 75%, transparent) 100%);
+  --reading-mobile: linear-gradient(180deg, color-mix(in oklab, var(--background) 85%, transparent), var(--background) 30%, var(--background) 88%, color-mix(in oklab, var(--background) 90%, transparent));
 }
 
 @layer base {
@@ -103,9 +106,11 @@
 .detail-scroll { max-height: calc(100dvh - 14rem); }
 .scene-el, .demo-panel { visibility: hidden; }
 .scene-opening .scene-el { visibility: visible; }
-.opening-network { opacity: 0.38; }
+.opening-network { opacity: 0.22; }
 .node-label { visibility: hidden; }
 .opening-shield { background: var(--opening-readability); }
+.reading-shield-left { background: var(--reading-left); visibility: hidden; }
+.reading-shield-wide { background: var(--reading-wide); visibility: hidden; }
 .scene-el { pointer-events: auto; }
 .story-full, .scene-opening { pointer-events: none; }
 .story-full { padding-top: 5rem; padding-bottom: 4rem; }
@@ -119,7 +124,7 @@
   .scene-capabilities .read-more { margin-top: 1rem; }
 }
 @media (max-width: 767px) {
-  .opening-shield { background: radial-gradient(ellipse 85% 46% at 50% 50%, var(--background) 35%, color-mix(in oklab, var(--background) 94%, transparent) 65%, transparent 100%); }
+  .opening-shield, .reading-shield-left, .reading-shield-wide { background: var(--reading-mobile); }
   .story-full { padding-top: 5rem; padding-bottom: 4.5rem; }
   .scene-opening h1 { font-size: 2.5rem; line-height: 1.05; }
   .scene-opening p { margin-top: 1rem; }
