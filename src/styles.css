@@ -194,12 +194,12 @@
 
 /* Stage-gated reading blocks share a stable footprint, independently of GSAP styles. */
 .reading-points { position: relative; min-height: 8rem; }
-.reading-point { position: absolute; inset: 0; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 240ms ease; }
+.reading-point { position: absolute; inset: 0; opacity: 0 !important; visibility: hidden !important; pointer-events: none; transition: opacity 240ms ease; }
 [data-active-point="0"] [data-point="0"],
 [data-active-point="1"] [data-point="1"],
 [data-active-point="2"] [data-point="2"],
 [data-active-point="3"] [data-point="3"],
-[data-active-point="4"] [data-point="4"] { opacity: 1; visibility: visible; }
+[data-active-point="4"] [data-point="4"] { opacity: 1 !important; visibility: visible !important; }
 .context-visual { right: 5%; top: 24%; width: 40%; max-width: 36rem; aspect-ratio: 520 / 310; }
 .visual-layer { visibility: hidden; opacity: 0; }
 [data-active-scene="opening"] .context-visual,
@@ -224,3 +224,5 @@
   .scene-capabilities .read-more { margin-top: 0.5rem; }
 }
 @media (prefers-reduced-motion: reduce) { .reading-point { transition: none; } }
+
+[data-active-scene="action"][data-active-point="-1"] .scene-action .value { visibility: hidden !important; }
