@@ -17,6 +17,7 @@ export const ui = {
 export const diagram = {
   analytics: "MONITORING INSIGHTS", telemetry: "logs · metrics · traces", latency: "latency ↑", response: "response time ↑", spans: "slow spans · trace 7c2e…", query: "query latency ↑",
   paths: ["VISIBILITY", "RELIABILITY"], fragmented: ["logs-view", "metrics-view", "trace-view"],
+  synthetic: "FICTIONAL RESOURCES · SYNTHETIC SIGNALS", event: "catalog-svc · request delayed", baseline: "Reusable baseline", access: "Scoped access · configuration review", approval: "Human approval required", approved: "Illustrative approved plan", gap: "Potential monitoring gap", utilisation: "Resource utilisation", storage: "Storage / index review", recommendation: "Recommendation for review", decision: "Engineer decides · no automatic changes", instrumented: "Instrumented components only", workflowCount: "1,500+ monitored workflows", potential: "Possible contributor · review required",
 };
 export const opening = {
   eyebrow: "STACKOPS / WHOLE-OF-GOVERNMENT OBSERVABILITY",
@@ -70,11 +71,11 @@ export const investigationDetails: Detail = {
   ] },
 };
 export const modules = {
-  sora: { enabled: true, id: "sora", name: "SORA", eyebrow: "STACKOPS-BUILT TOOL / SORA", headline: "Streamlining Observability Setup", summary: "Simplify observability setup and reduce manual configuration effort.", steps: ["Manual setup", "Clearer workflow", "Supported automation"], readMore: { title: "SORA — Streamlining Observability Setup", sections: [
+  sora: { enabled: true, id: "sora", name: "SORA", eyebrow: "STACKOPS-BUILT TOOL / SORA", headline: "Streamlining Observability Setup", summary: "Simplify observability setup and reduce manual configuration effort.", steps: ["DISCOVER", "REVIEW", "DEPLOY", "MONITOR"], readMore: { title: "SORA — Streamlining Observability Setup", sections: [
     { heading: "Built by StackOps", body: "SORA is a StackOps-built supporting tool that helps simplify or automate observability setup. It is not a product developed by an underlying technology vendor." },
     { heading: "Scope awaiting confirmation", body: "Supported environments, available automation, eligibility and underlying technology compatibility need confirmation. This showcase does not assume support across all StackOps technology options." },
   ] } },
-  soda: { enabled: true, id: "soda", name: "SODA", eyebrow: "STACKOPS-BUILT TOOL / SODA", headline: "Supporting Cost Visibility and Optimisation", summary: "Bring cost information into clearer view to support optimisation decisions.", steps: ["Fragmented costs", "Shared cost view", "Informed decisions"], readMore: { title: "SODA — Supporting Cost Visibility and Optimisation", sections: [
+  soda: { enabled: true, id: "soda", name: "SODA", eyebrow: "STACKOPS-BUILT TOOL / SODA", headline: "Supporting Cost Visibility and Optimisation", summary: "Bring cost information into clearer view to support optimisation decisions.", steps: ["UTILISATION", "STORAGE", "RECOMMENDATIONS", "DECISIONS"], readMore: { title: "SODA — Supporting Cost Visibility and Optimisation", sections: [
     { heading: "Built by StackOps", body: "SODA is a StackOps-built supporting tool that provides cost insights to support optimisation decisions. It is not a product developed by an underlying technology vendor." },
     { heading: "Insights, not guaranteed savings", body: "Cost information can inform a review of resource usage and configuration. The illustration makes no savings claim and uses no real agency cost data." },
     { heading: "Scope awaiting confirmation", body: "Availability, cost sources, supported underlying technologies and operating arrangements need confirmation. No separate charge or universal platform support is assumed." },
@@ -118,7 +119,7 @@ export const closing = { headline: ["Build More Resilient", "Digital Services wi
 export const disclaimer = "Illustrative infrastructure and synthetic monitoring data. Customer outcomes are attributed to official StackOps stories and are not guaranteed for other deployments.";
 export const siteMap = [
   { name: "Overview", label: "opening" }, { name: "The Challenge", label: "challenge" }, { name: "StackOps Capabilities", label: "capabilities" }, { name: "From Visibility to Action", label: "action" },
-  { name: "StackOps Tools", label: "tools" }, { name: "Customer Stories", label: "customers" }, { name: "Pricing & Technology Options", label: "options" }, { name: "Get Started", label: "closing" },
+  { name: "Government-Ready Foundations", label: "foundations" }, { name: "SORA — Monitoring Setup", label: "tools" }, { name: "Cross-Solution OpenTelemetry", label: "otel" }, { name: "SODA — Data Analysis", label: "soda" }, { name: "Customer Stories", label: "customers" }, { name: "Pricing & Technology Options", label: "options" }, { name: "Get Started", label: "closing" },
 ];
 export const elastic: TechnologyOption = {
   id: "elastic",
