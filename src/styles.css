@@ -108,20 +108,36 @@
 .scene-opening .scene-el { visibility: visible; }
 /* Gate whole scenes independently of per-word animation styles. This also
    preserves the current content when preview tools refresh inline styles. */
-[data-active-scene] :is(.scene-opening, .scene-challenge, .scene-capabilities, .scene-action, .scene-tools, .scene-customers, .scene-options, .scene-closing) { opacity: 0; pointer-events: none; }
+[data-active-scene] .scene-opening,
+[data-active-scene] .scene-challenge,
+[data-active-scene] .scene-foundations,
+[data-active-scene] .scene-capabilities,
+[data-active-scene] .scene-action,
+[data-active-scene] .scene-tools,
+[data-active-scene] .scene-otel,
+[data-active-scene] .scene-soda,
+[data-active-scene] .scene-customers,
+[data-active-scene] .scene-options,
+[data-active-scene] .scene-closing { opacity: 0; visibility: hidden; pointer-events: none; }
 [data-active-scene="opening"] .scene-opening,
 [data-active-scene="challenge"] .scene-challenge,
+[data-active-scene="foundations"] .scene-foundations,
 [data-active-scene="capabilities"] .scene-capabilities,
 [data-active-scene="action"] .scene-action,
 [data-active-scene="tools"] .scene-tools,
+[data-active-scene="otel"] .scene-otel,
+[data-active-scene="soda"] .scene-soda,
 [data-active-scene="customers"] .scene-customers,
 [data-active-scene="options"] .scene-options,
-[data-active-scene="closing"] .scene-closing { opacity: 1; }
+[data-active-scene="closing"] .scene-closing { opacity: 1; visibility: visible; }
 [data-active-scene="opening"] .scene-opening .scene-el,
 [data-active-scene="challenge"] .scene-challenge .scene-el,
+[data-active-scene="foundations"] .scene-foundations .scene-el,
 [data-active-scene="capabilities"] .scene-capabilities .scene-el,
 [data-active-scene="action"] .scene-action .scene-el,
 [data-active-scene="tools"] .scene-tools .scene-el,
+[data-active-scene="otel"] .scene-otel .scene-el,
+[data-active-scene="soda"] .scene-soda .scene-el,
 [data-active-scene="customers"] .scene-customers .scene-el,
 [data-active-scene="options"] .scene-options .scene-el,
 [data-active-scene="closing"] .scene-closing .scene-el { visibility: visible; }
@@ -175,3 +191,38 @@
   .detail-modal { max-height: calc(100dvh - 2rem); }
   .detail-scroll { max-height: calc(100dvh - 13rem); }
 }
+
+/* Stage-gated reading blocks share a stable footprint, independently of GSAP styles. */
+.reading-points { position: relative; min-height: 8rem; }
+.reading-point { position: absolute; inset: 0; opacity: 0 !important; visibility: hidden !important; pointer-events: none; transition: opacity 240ms ease; }
+[data-active-point="0"] [data-point="0"],
+[data-active-point="1"] [data-point="1"],
+[data-active-point="2"] [data-point="2"],
+[data-active-point="3"] [data-point="3"],
+[data-active-point="4"] [data-point="4"] { opacity: 1 !important; visibility: visible !important; }
+.context-visual { right: 5%; top: 24%; width: 40%; max-width: 36rem; aspect-ratio: 520 / 310; }
+.visual-layer { visibility: hidden; opacity: 0; }
+[data-active-scene="opening"] .context-visual,
+[data-active-scene="customers"] .context-visual,
+[data-active-scene="closing"] .context-visual { visibility: hidden; }
+[data-active-scene="action"][data-active-point="-1"] .scene-action .value { visibility: hidden; }
+[data-active-scene="action"] .scene-action .value { font-size: 1.3rem; }
+.context-section h2 { font-size: 2.5rem; }
+.context-section .reading-points { min-height: 9rem; }
+@media (max-width: 767px) {
+  .context-visual { top: 10%; right: 5%; width: 90%; max-height: 29dvh; }
+  .context-section, .scene-challenge, .scene-capabilities, .scene-action { justify-content: flex-end; padding-top: 34dvh; padding-bottom: 5rem; }
+  .context-section h2 { font-size: 1.5rem; }
+  .context-section > p { margin-top: 0.5rem; font-size: 0.75rem; }
+  .context-section .reading-points { margin-top: 0.75rem; min-height: 6.5rem; }
+  .context-section .reading-point h3 { font-size: 1rem; }
+  .reading-points { min-height: 5.5rem; margin-top: 1rem; }
+  .scene-action .reading-points { min-height: 3.5rem; }
+  .scene-action .value { font-size: 1rem; margin-top: 0.5rem; }
+  .scene-action .value + p { margin-top: 0.5rem; }
+  .scene-capabilities h2 { font-size: 2rem; }
+  .scene-capabilities .read-more { margin-top: 0.5rem; }
+}
+@media (prefers-reduced-motion: reduce) { .reading-point { transition: none; } }
+
+[data-active-scene="action"][data-active-point="-1"] .scene-action .value { visibility: hidden !important; }
