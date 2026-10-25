@@ -192,3 +192,51 @@ export const dynatrace: TechnologyOption = {
 
 
 export const details: Record<string, Detail> = Object.fromEntries([capabilities, investigationDetails, modules.sora, modules.soda, ...customerStories, elastic, dynatrace].map(d => [d.id, d]));
+
+// Reading blocks pair with the reversible visual stages; all demonstrations are illustrative.
+export const contextSections = {
+  foundations: { eyebrow: "GOVERNMENT-READY FOUNDATIONS", headline: ["Consistent Setup.", "Appropriate Access."], sub: "Illustrative monitoring foundations across supported fictional resources; not a compliance guarantee.", points: [
+    { n: "01", title: "Reusable monitoring standards", body: "Apply reviewed configuration baselines across supported resources." },
+    { n: "02", title: "Governance and access", body: "Review configurations and scope access to relevant monitoring information." },
+  ] },
+  tools: { eyebrow: modules.sora.eyebrow, headline: ["SORA", modules.sora.headline], sub: modules.sora.summary, detail: "sora", points: [
+    { n: "01", title: "DISCOVER", body: "Scan supported fictional cloud resources for potential monitoring gaps." },
+    { n: "02", title: "REVIEW", body: "Review a configuration plan with a human approval checkpoint." },
+    { n: "03", title: "DEPLOY", body: "Apply the approved illustrative monitoring configurations." },
+    { n: "04", title: "MONITOR", body: "Observe telemetry from the configured fictional resources." },
+  ] },
+  otel: { eyebrow: "CROSS-SOLUTION OPENTELEMETRY", headline: ["One Request.", "Connected Context."], sub: "Visibility depends on instrumentation, supported telemetry and the adopted configuration.", points: [
+    { n: "01", title: "Cross-system requests", body: "Follow a fictional transaction through connected services." },
+    { n: "02", title: "Instrumentation", body: "Identify the components configured to report telemetry." },
+    { n: "03", title: "Supported telemetry", body: "Bring related signals from instrumented components into view." },
+    { n: "04", title: "Service context", body: "Reveal the relevant service relationships, not unrelated agency systems." },
+  ] },
+  soda: { eyebrow: modules.soda.eyebrow, headline: ["SODA", modules.soda.headline], sub: modules.soda.summary, detail: "soda", points: [
+    { n: "01", title: "Resource utilisation", body: "Review synthetic utilisation indicators for fictional resources." },
+    { n: "02", title: "Storage and indexes", body: "Focus the analysis on storage and index-related components." },
+    { n: "03", title: "Recommendations", body: "Consider illustrative optimisation opportunities for review." },
+    { n: "04", title: "Informed decisions", body: "An engineer reviews recommendations; configurations do not change automatically." },
+  ] },
+};
+export const visualCopy: Record<string, { title: string; rows: string[] }> = {
+  fragmented: { title: "Separate monitoring views", rows: ["logs-view", "metrics-view", "trace-view"] },
+  dependencies: { title: "Service dependencies", rows: ["web-portal → edge-gateway", "catalog-svc → inventory-db"] },
+  context: { title: "Relevant service context", rows: ["mobile-api → edge-gateway", "catalog-svc → inventory-db"] },
+  baseline: { title: diagram.baseline, rows: ["gateway · configuration baseline", "catalog · configuration baseline", "inventory · configuration baseline"] },
+  access: { title: diagram.access, rows: ["Configuration: reviewed", "Monitoring access: scoped"] },
+  logs: { title: "LOGS", rows: ["14:02:01 · request received", "14:02:02 · database call delayed", diagram.event] },
+  metrics: { title: "METRICS", rows: ["Response time over time", "Synthetic performance trend"] },
+  trace: { title: "TRACES", rows: ["mobile-api → edge-gateway", "catalog-svc → inventory-db"] },
+  slowdown: { title: "Slower fictional service", rows: ["catalog-svc · response time ↑", "Investigation needed"] },
+  cause: { title: diagram.potential, rows: ["inventory-db · query latency ↑", "Not a confirmed root cause"] },
+  discover: { title: "DISCOVER", rows: ["Scan supported fictional resources", diagram.gap] },
+  approval: { title: "REVIEW", rows: ["Proposed configuration plan", diagram.approval] },
+  deploy: { title: "DEPLOY", rows: [diagram.approved, "Apply monitoring configurations"] },
+  telemetry: { title: "TELEMETRY", rows: ["Configured resources → related signals", diagram.instrumented] },
+  instrument: { title: "INSTRUMENTATION", rows: ["gateway · instrumented", "catalog · instrumented", "inventory · instrumented"] },
+  utilisation: { title: diagram.utilisation, rows: ["Fictional compute / storage", "Synthetic utilisation trend"] },
+  storage: { title: diagram.storage, rows: ["inventory-db · storage", "Index-related components"] },
+  recommendation: { title: diagram.recommendation, rows: ["Review index retention and resource usage", "Illustrative optimisation analysis"] },
+  decision: { title: diagram.decision, rows: ["Recommendation summary", "Await engineering review"] },
+  search: { title: "Elastic · search and analytics", rows: ["service.name: catalog-svc", "Related events · metrics · traces"] },
+};
