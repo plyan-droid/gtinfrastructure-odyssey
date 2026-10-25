@@ -17,4 +17,6 @@
 - All detail types use the shared Radix-based centred ReadMorePanel modal with scroll isolation and trigger focus restoration — consistent accessible exploration without restarting the story.
 - Customer evidence is structured separately from synthetic infrastructure data in showcase content — attributed agency outcomes must never be presented as demo metrics or guarantees.
 - All story reading areas use screen-space shields (centred, left-column or wide) and timeline-controlled network/label fades, rather than changing shared node coordinates — keeps diagrams out of the words while preserving reversible scene continuity.
-- Gate each complete text scene with a timeline-derived data-active-scene attribute in addition to per-element tweens — prevents stale opening text from covering later content when preview tools refresh inline styles.
+- Gate complete text scenes and individual reading points with timeline-derived data-active-scene and data-active-point attributes; stage timing and navigation labels live in story-stages.ts — keeps content and visual demonstrations on one reversible clock without stale opening text.
+- ContextVisual overlays illustrate the current reading stage while the persistent network dims unrelated components; never run unrelated ambient telemetry loops — each visual must reinforce its active message.
+- Freeze the scrub timeline and ScrollTrigger at the captured timeline time while Read More is open, then restore without resetting — preserves the exact reading and visual state.
