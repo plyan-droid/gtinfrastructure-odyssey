@@ -142,6 +142,7 @@ export function Showcase() {
           const drift = (center.x - 1000) * 0.05 * s;
           return { scale: s, x: left - 540 * s - drift, y: 450 - 452 * s - (center.y - 450) * 0.04 };
         };
+        if (storyStages[0]) gsap.set(cam, frame(storyStages[0]));
         storyStages.forEach((stage, index) => {
           const at = index * STAGE_DURATION;
           if (stage.label) tl.addLabel(stage.label, at + 0.75);
@@ -194,7 +195,7 @@ export function Showcase() {
           nodes.forEach((n) =>
             tl.to(
               q(`.node-${n.id}`),
-              { opacity: !focused.length ? 0.9 : focused.includes(n.id) ? 1 : 0.35, duration: 0.5 },
+              { opacity: !focused.length ? 0.9 : focused.includes(n.id) ? 1 : 0.5, duration: 0.5 },
               at,
             ),
           );

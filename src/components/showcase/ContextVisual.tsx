@@ -194,7 +194,7 @@ export function TopologyMap() {
             fill="var(--card)"
             fillOpacity="0.92"
             stroke={kindColor[s.kind]}
-            strokeOpacity="0.45"
+            strokeOpacity="0.75"
           />
           <circle className="status-dot" cx={s.x - CARD.w / 2 + 18} cy={s.y} r="4" fill={kindColor[s.kind]} />
           <text
