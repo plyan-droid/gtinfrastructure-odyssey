@@ -16,41 +16,17 @@ import {
   type Detail,
   type Product,
 } from "@/content/showcase";
-import {
-  alertNodes,
-  byId,
-  clusters,
-  curve,
-  ecoEdges,
-  incidentId,
-  latencyChain,
-  mapEdges,
-  nodes,
-  tracePath,
-} from "./network";
+import { byId, ecoEdges, nodes } from "./network";
 import { ReadMorePanel } from "./ReadMorePanel";
 import { SiteMap } from "./SiteMap";
 import { Button } from "@/components/ui/button";
-import { ContextVisual, NetworkVisuals } from "./ContextVisual";
+import { NetworkVisuals, TopologyMap } from "./ContextVisual";
 import { storyStages, STAGE_DURATION, stageAtTime, presentationStops } from "./story-stages";
 import { ArrowRight, ArrowLeft, ExternalLink, Play, Pause, X, QrCode } from "lucide-react";
 
 const SCROLL_LEN = 16000; // px of scroll mapped to the full story
 
-const kindColor: Record<string, string> = {
-  app: "var(--healthy)",
-  svc: "var(--foreground)",
-  db: "var(--violet)",
-  cloud: "var(--muted-foreground)",
-  queue: "var(--accent)",
-};
-
 const edgeKey = (a: string, b: string) => `${a}-${b}`;
-const inPath = (path: string[], a: string, b: string) => {
-  const i = path.indexOf(a);
-  return i >= 0 && path[i + 1] === b;
-};
-const touches = (id: string, a: string, b: string) => a === id || b === id;
 const nd = (id: string) => {
   const node = byId[id];
   if (!node) throw new Error(`Unknown network node: ${id}`);
@@ -111,14 +87,10 @@ export function Showcase() {
       ctx = gsap.context(() => {
         const q = gsap.utils.selector(root);
         gsap.set(q(".scene-el"), { autoAlpha: 1, y: 0 });
-        gsap.set(
-          q(
-            ".ring, .cluster, .cluster-link, .hub, .to-hub, .map-edge, .paths, .tool-flow, .customer-beacon, .demo-panel, .visual-layer",
-          ),
-          { autoAlpha: 0 },
-        );
-        gsap.set(q(".node-label"), { autoAlpha: 0 });
-        gsap.set(q(".net"), { opacity: 0.55 });
+        gsap.set(q(".ring, .demo-panel, .visual-layer, .network-layer, .obs-layer"), {
+          autoAlpha: 0,
+        });
+        gsap.set(q(".net"), { opacity: 0.7 });
         let frozen = false;
         const tl = gsap.timeline({
           defaults: { ease: "power2.inOut" },
@@ -142,22 +114,13 @@ export function Showcase() {
           },
         });
         const cam = q("#cam");
-        gsap.set(cam, { x: 0, y: 0 });
-        storyStages.forEach((stage, index) => {
-          const at = index * STAGE_DURATION;
-          if (stage.label) tl.addLabel(stage.label, at + 0.75);
+        gsap.set(cam, { x: 0, y: 0, svgOrigin: "0 0" });
+        // Visible world width for the 1600×900 "slice" viewBox at this viewport.
+        const visibleW = Math.min(1600, (900 * window.innerWidth) / window.innerHeight);
+        const visibleL = (1600 - visibleW) / 2;
+        const wide = ["opening", "customers", "closing"];
+        const frame = (stage: (typeof storyStages)[number]) => {
           const focused = stage.focus;
-          const zoom = mobile
-            ? 0.54
-            : stage.scene === "opening"
-              ? stage.key === "signal"
-                ? 1.65
-                : 0.94
-              : !focused.length
-                ? 0.94
-                : focused.length === 1
-                  ? 1.15
-                  : 0.92;
           const center = focused.length
             ? focused.reduce(
                 (sum, id) => ({
@@ -166,28 +129,42 @@ export function Showcase() {
                 }),
                 { x: 0, y: 0 },
               )
-            : { x: 800, y: 450 };
+            : { x: 880, y: 452 };
+          if (reduce) return { scale: 1, x: 0, y: 0 };
+          if (mobile) return { scale: 0.54, x: 800 - center.x * 0.54, y: 65 - center.y * 0.54 };
+          if (wide.includes(stage.scene)) {
+            const s = Math.min(1, (visibleW - 40) / 1400);
+            return { scale: s, x: 800 - 880 * s, y: 450 - 452 * s };
+          }
+          // Story frame: services + data tiers fill the visual area right of the reading column.
+          const left = visibleL + visibleW * 0.47;
+          const s = Math.min(0.95, (visibleL + visibleW - 60 - left) / 1040);
+          const drift = (center.x - 1000) * 0.05 * s;
+          return { scale: s, x: left - 540 * s - drift, y: 450 - 452 * s - (center.y - 450) * 0.04 };
+        };
+        if (storyStages[0]) gsap.set(cam, frame(storyStages[0]));
+        storyStages.forEach((stage, index) => {
+          const at = index * STAGE_DURATION;
+          if (stage.label) tl.addLabel(stage.label, at + 0.75);
+          const focused = stage.focus;
+          tl.to(cam, { ...frame(stage), duration: 0.65 }, at);
           tl.to(
-            cam,
+            q(".net"),
             {
-              scale: reduce ? 1 : zoom,
-              x: reduce
-                ? 0
-                : (mobile
-                    ? 800
-                    : stage.scene === "opening" || stage.scene === "closing"
-                      ? 800
-                      : 1120) -
-                  center.x * zoom,
-              y: reduce ? 0 : (mobile ? 65 : 390) - center.y * zoom,
-              duration: 0.65,
+              opacity: stage.scene === "customers" ? 0.32 : stage.scene === "closing" ? 0.6 : 0.95,
+              duration: 0.5,
             },
             at,
           );
           tl.to(
-            q(".net"),
+            q(".obs-layer"),
             {
-              opacity: ["opening", "customers", "closing"].includes(stage.scene) ? 0.7 : 0.9,
+              autoAlpha:
+                stage.scene === "opening" || stage.scene === "challenge"
+                  ? 0
+                  : stage.scene === "customers"
+                    ? 0.3
+                    : 1,
               duration: 0.5,
             },
             at,
@@ -218,7 +195,7 @@ export function Showcase() {
           nodes.forEach((n) =>
             tl.to(
               q(`.node-${n.id}`),
-              { opacity: !focused.length ? 0.9 : focused.includes(n.id) ? 1 : 0.35, duration: 0.5 },
+              { opacity: !focused.length ? 0.9 : focused.includes(n.id) ? 1 : 0.5, duration: 0.5 },
               at,
             ),
           );
@@ -255,14 +232,6 @@ export function Showcase() {
               at,
             );
           }
-          tl.to(
-            q(".node-label"),
-            {
-              autoAlpha: ["opening", "customers", "closing"].includes(stage.scene) ? 0 : 0.7,
-              duration: 0.3,
-            },
-            at,
-          );
           if (
             stage.visual !== "none" &&
             (index === 0 || storyStages[index - 1]?.visual !== stage.visual)
@@ -387,8 +356,6 @@ export function Showcase() {
     return () => window.removeEventListener("keydown", onKey);
   }, [presenting, exitPresentation]);
 
-  const hub = { x: 800, y: 430 };
-  const mono = "var(--font-mono)";
   const story = customerStories[storyIndex] ?? customerStories[0];
   if (!story) return null;
 
@@ -419,326 +386,8 @@ export function Showcase() {
           </defs>
           <rect width="1600" height="900" fill="url(#grid)" />
           <g id="cam">
-            <g className="net opening-network">
-              {ecoEdges.map(([a, b]) => (
-                <path
-                  key={edgeKey(a, b)}
-                  id={`e-${edgeKey(a, b)}`}
-                  d={curve(nd(a), nd(b))}
-                  className={`eco-edge ${inPath(tracePath, a, b) ? "trace-edge" : ""} ${touches(incidentId, a, b) ? "inc-edge" : ""}`}
-                  fill="none"
-                  stroke="var(--foreground)"
-                  strokeOpacity="0.22"
-                  strokeWidth="1.2"
-                />
-              ))}
-              {mapEdges.map(([a, b]) => {
-                const A = { x: nd(a).mx, y: nd(a).my };
-                const B = { x: nd(b).mx, y: nd(b).my };
-                const lat = inPath(latencyChain, a, b);
-                const dep = !lat && (touches("gateway", a, b) || touches("web", a, b));
-                return (
-                  <path
-                    key={`m${edgeKey(a, b)}`}
-                    d={`M${A.x},${A.y} C${(A.x + B.x) / 2},${A.y} ${(A.x + B.x) / 2},${B.y} ${B.x},${B.y}`}
-                    className={`map-edge ${lat ? "lat-edge" : ""} ${dep ? "dep-edge" : ""}`}
-                    fill="none"
-                    stroke="var(--foreground)"
-                    strokeOpacity="0.22"
-                    strokeWidth="1.2"
-                  />
-                );
-              })}
-
-              {/* Challenge: signal clusters */}
-              {clusters.map((c) =>
-                c.from.map((id) => (
-                  <path
-                    key={`cl-${c.key}-${id}`}
-                    className="cluster-link"
-                    d={`M${nd(id).x},${nd(id).y} L${c.x},${c.y}`}
-                    stroke="var(--accent)"
-                    strokeOpacity="0.4"
-                    strokeDasharray="3 6"
-                  />
-                )),
-              )}
-              {clusters.map((c, i) => (
-                <g
-                  key={c.key}
-                  className={`cluster cluster-${c.key}`}
-                  style={{ transformOrigin: `${c.x}px ${c.y}px` }}
-                >
-                  <rect
-                    x={c.x - 70}
-                    y={c.y - 26}
-                    width="140"
-                    height="52"
-                    rx="10"
-                    fill="var(--card)"
-                    stroke={["var(--accent)", "var(--healthy)", "var(--primary)"][i]}
-                    strokeOpacity="0.8"
-                  />
-                  <text
-                    x={c.x}
-                    y={c.y + 5}
-                    textAnchor="middle"
-                    fontSize="14"
-                    letterSpacing="3"
-                    fill="var(--foreground)"
-                    fontFamily={mono}
-                  >
-                    {c.key}
-                  </text>
-                </g>
-              ))}
-
-              {/* Elastic analytics hub */}
-              {nodes
-                .filter((n) => n.kind !== "cloud")
-                .map((n, i) => (
-                  <g key={`h${n.id}`} className="to-hub">
-                    <path
-                      id={`hub-${n.id}`}
-                      d={`M${n.x},${n.y} L${hub.x},${hub.y}`}
-                      stroke="var(--primary)"
-                      strokeOpacity="0.35"
-                      strokeDasharray={i % 3 === 0 ? "6 6" : i % 3 === 1 ? "1 7" : "14 4"}
-                    />
-                  </g>
-                ))}
-              <g className="hub">
-                <circle cx={hub.x} cy={hub.y} r="90" fill="url(#hubGrad)" />
-                <circle
-                  cx={hub.x}
-                  cy={hub.y}
-                  r="34"
-                  fill="var(--background)"
-                  stroke="var(--primary)"
-                  strokeWidth="1.5"
-                />
-                <text
-                  x={hub.x}
-                  y={hub.y + 4}
-                  textAnchor="middle"
-                  fontSize="11"
-                  fill="var(--foreground)"
-                  fontFamily={mono}
-                >
-                  {diagram.analytics}
-                </text>
-                <text
-                  x={hub.x}
-                  y={hub.y + 58}
-                  textAnchor="middle"
-                  fontSize="10"
-                  fill="var(--muted-foreground)"
-                  fontFamily={mono}
-                >
-                  {diagram.telemetry}
-                </text>
-              </g>
-
-              {nodes.map((n) => (
-                <g key={n.id} className={`node node-${n.id}`}>
-                  {n.id === incidentId && (
-                    <>
-                      <g className="ring inc-ring">
-                        <circle
-                          cx={n.x}
-                          cy={n.y}
-                          r="30"
-                          fill="none"
-                          stroke="var(--warn)"
-                          strokeWidth="2"
-                        />
-                        <text
-                          x={n.x + 36}
-                          y={n.y + 44}
-                          fontSize="12"
-                          fill="var(--warn)"
-                          fontFamily={mono}
-                        >
-                          {diagram.latency}
-                        </text>
-                      </g>
-                      <g className="ring lat-ring">
-                        <circle
-                          cx={n.x}
-                          cy={n.y}
-                          r="30"
-                          fill="none"
-                          stroke="var(--warn)"
-                          strokeWidth="2"
-                        />
-                        <text
-                          x={n.x + 36}
-                          y={n.y + 44}
-                          fontSize="12"
-                          fill="var(--warn)"
-                          fontFamily={mono}
-                        >
-                          {diagram.response}
-                        </text>
-                      </g>
-                    </>
-                  )}
-                  {n.id === "inventory" && (
-                    <>
-                      <g className="ring es-focus">
-                        <circle
-                          cx={n.x}
-                          cy={n.y}
-                          r="32"
-                          fill="none"
-                          stroke="var(--primary)"
-                          strokeWidth="2.5"
-                        />
-                        <text
-                          x={n.x - 40}
-                          y={n.y + 56}
-                          fontSize="12"
-                          fill="var(--primary)"
-                          fontFamily={mono}
-                        >
-                          {diagram.spans}
-                        </text>
-                      </g>
-                      <g className="ring db-ring">
-                        <circle
-                          cx={n.x}
-                          cy={n.y}
-                          r="32"
-                          fill="none"
-                          stroke="var(--error)"
-                          strokeWidth="2.5"
-                        />
-                        <text
-                          x={n.x + 38}
-                          y={n.y + 6}
-                          fontSize="12"
-                          fill="var(--error)"
-                          fontFamily={mono}
-                        >
-                          {diagram.query}
-                        </text>
-                      </g>
-                    </>
-                  )}
-                  {n.id === "web" && (
-                    <circle
-                      className="ring app-ring"
-                      cx={n.x}
-                      cy={n.y}
-                      r="28"
-                      fill="none"
-                      stroke="var(--healthy)"
-                      strokeWidth="2.5"
-                    />
-                  )}
-                  {alertNodes.includes(n.id) && (
-                    <g className="ring alert-ring">
-                      <circle
-                        cx={n.x}
-                        cy={n.y}
-                        r="24"
-                        fill="none"
-                        stroke="var(--warn)"
-                        strokeWidth="1.5"
-                        strokeDasharray="4 4"
-                      />
-                      <text
-                        x={n.x + 20}
-                        y={n.y - 20}
-                        fontSize="13"
-                        fill="var(--warn)"
-                        fontFamily={mono}
-                      >
-                        ⚠
-                      </text>
-                    </g>
-                  )}
-                  {n.kind === "cloud" ? (
-                    <rect
-                      x={n.x - 34}
-                      y={n.y - 20}
-                      width="68"
-                      height="40"
-                      rx="20"
-                      fill="var(--card)"
-                      stroke={kindColor[n.kind]}
-                      strokeOpacity="0.6"
-                    />
-                  ) : n.kind === "db" ? (
-                    <rect
-                      x={n.x - 16}
-                      y={n.y - 16}
-                      width="32"
-                      height="32"
-                      rx="6"
-                      fill="var(--card)"
-                      stroke={kindColor[n.kind]}
-                      strokeWidth="1.5"
-                    />
-                  ) : (
-                    <circle
-                      cx={n.x}
-                      cy={n.y}
-                      r={n.kind === "app" ? 12 : 16}
-                      fill="var(--card)"
-                      stroke={kindColor[n.kind]}
-                      strokeWidth="1.5"
-                    />
-                  )}
-                  <circle cx={n.x} cy={n.y} r="3" fill={kindColor[n.kind]} />
-                  <text
-                    className="node-label"
-                    x={n.x}
-                    y={n.y + (n.kind === "cloud" ? 38 : 34)}
-                    textAnchor="middle"
-                    fontSize="12"
-                    fill="var(--muted-foreground)"
-                    fontFamily={mono}
-                  >
-                    {n.label}
-                  </text>
-                </g>
-              ))}
-            </g>
-
+            <TopologyMap />
             <NetworkVisuals />
-            <g className="tool-flow" fill="none" stroke="var(--primary)" strokeWidth="2">
-              <path d="M250 280 C600 180 800 450 1300 280" strokeDasharray="180 12" />
-              <path
-                d="M250 650 C600 750 800 450 1300 650"
-                stroke="var(--healthy)"
-                strokeDasharray="180 12"
-              />
-            </g>
-            <g className="customer-beacon" fill="none" stroke="var(--healthy)" strokeWidth="1.5">
-              <circle cx="1120" cy="420" r="100" />
-              <circle cx="1120" cy="420" r="140" strokeOpacity="0.35" />
-            </g>
-            <g className="paths" fontFamily={mono}>
-              <path
-                d="M760,1050 C700,800 420,760 330,560"
-                fill="none"
-                stroke="var(--primary)"
-                strokeWidth="3"
-              />
-              <text x="250" y="530" fontSize="22" fill="var(--primary)">
-                {diagram.paths[0]}
-              </text>
-              <path
-                d="M840,1050 C900,800 1180,760 1270,560"
-                fill="none"
-                stroke="var(--healthy)"
-                strokeWidth="3"
-              />
-              <text x="1180" y="530" fontSize="22" fill="var(--healthy)">
-                {diagram.paths[1]}
-              </text>
-            </g>
           </g>
         </svg>
         <div className="opening-shield pointer-events-none absolute inset-0" />
@@ -873,7 +522,6 @@ export function Showcase() {
             )}
           </div>
         ))}
-        <ContextVisual />
 
         <div
           data-scene="customers"
