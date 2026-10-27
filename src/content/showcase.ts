@@ -417,6 +417,11 @@ export const diagram = {
   workflowCount: "1,500+ monitored workflows",
   potential: "Possible contributor · review required",
 };
+export const mapCopy = {
+  tiers: ["ACCESS", "APPLICATION & SERVICES", "DATA & CLOUD"],
+  layer: "STACKOPS OBSERVABILITY LAYER",
+  support: "Supporting resources",
+};
 export const serviceLabels = {
   web: "Citizen Portal",
   mobile: "Mobile Client",
