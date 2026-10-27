@@ -20,3 +20,6 @@
 - Gate complete text scenes and individual reading points with timeline-derived data-active-scene and data-active-point attributes; stage timing and navigation labels live in story-stages.ts — keeps content and visual demonstrations on one reversible clock without stale opening text.
 - ContextVisual overlays illustrate the current reading stage while the persistent network dims unrelated components; never run unrelated ambient telemetry loops — each visual must reinforce its active message.
 - Freeze the scrub timeline and ScrollTrigger at the captured timeline time while Read More is open, then restore without resetting — preserves the exact reading and visual state.
+- Presentation playback uses curated stops from story-stages.ts to drive the same timeline; availability and public-message approval are separate content flags — booth playback must not expose unapproved claims.
+- Contextual network marks share persistent SVG node coordinates; the screen-space caption contains only explanatory signal labels — avoids duplicate miniature architectures competing with the living map.
+- Whole-scene visibility belongs to data-scene gating and individual point visibility to scene-qualified data-point selectors; never put scene-el on reading-point elements — prevents inactive points escaping their hidden scenes.
