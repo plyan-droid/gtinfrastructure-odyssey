@@ -1,6 +1,20 @@
 import { intelligenceApproval } from "@/content/showcase";
-export type StoryStage = { scene: string; key: string; visual: string; focus: string[]; label?: string | undefined; point?: number | undefined };
-const stage = (scene: string, key: string, visual: string, focus: string[], point?: number, label?: string): StoryStage => ({ scene, key, visual, focus, point, label });
+export type StoryStage = {
+  scene: string;
+  key: string;
+  visual: string;
+  focus: string[];
+  label?: string | undefined;
+  point?: number | undefined;
+};
+const stage = (
+  scene: string,
+  key: string,
+  visual: string,
+  focus: string[],
+  point?: number,
+  label?: string,
+): StoryStage => ({ scene, key, visual, focus, point, label });
 export const storyStages: StoryStage[] = [
   stage("opening", "signal", "reveal", ["gateway"], undefined, "opening"),
   stage("opening", "ecosystem", "reveal", []),
@@ -8,7 +22,14 @@ export const storyStages: StoryStage[] = [
   stage("challenge", "complexity", "dependencies", ["web", "gateway", "catalog", "inventory"], 1),
   stage("challenge", "investigation", "slowdown", ["catalog", "inventory"], 2),
   stage("challenge", "rework", "repeated", ["catalog", "checkout", "inventory"], 3),
-  stage("foundations", "standards", "baseline", ["gateway", "catalog", "inventory"], 0, "foundations"),
+  stage(
+    "foundations",
+    "standards",
+    "baseline",
+    ["gateway", "catalog", "inventory"],
+    0,
+    "foundations",
+  ),
   stage("foundations", "automation", "automation", ["gateway", "catalog", "inventory"], 1),
   stage("foundations", "insights", "context", ["web", "gateway", "catalog", "inventory"], 2),
   stage("foundations", "improvement", "learning", ["catalog", "inventory"], 3),
@@ -31,7 +52,14 @@ export const storyStages: StoryStage[] = [
   stage("soda", "storage", "storage", ["inventory"], 1),
   stage("soda", "recommend", "recommendation", ["inventory"], 2),
   stage("soda", "decide", "decision", ["inventory"], 3),
-  stage("intelligence", "analyse", "analyse", ["gateway", "catalog", "inventory"], 0, "intelligence"),
+  stage(
+    "intelligence",
+    "analyse",
+    "analyse",
+    ["gateway", "catalog", "inventory"],
+    0,
+    "intelligence",
+  ),
   stage("intelligence", "benchmark", "benchmark", ["cloudA", "cloudB", "catalog", "inventory"], 1),
   stage("intelligence", "recommend", "guidance", ["catalog", "inventory"], 2),
   stage("intelligence", "improve", "improve", ["gateway", "catalog", "inventory"], 3),
@@ -41,15 +69,36 @@ export const storyStages: StoryStage[] = [
   stage("closing", "explore", "closing", [], undefined, "closing"),
 ];
 export const STAGE_DURATION = 2.4;
-export function stageAtTime(time: number) { return storyStages[Math.min(storyStages.length - 1, Math.max(0, Math.floor(time / STAGE_DURATION + 1e-9)))]; }
+export function stageAtTime(time: number) {
+  return storyStages[
+    Math.min(storyStages.length - 1, Math.max(0, Math.floor(time / STAGE_DURATION + 1e-9)))
+  ];
+}
 export type PresentationStop = { scene: string; key: string; seconds: number; customer?: number };
 export const presentationStops: PresentationStop[] = [
-  { scene: "opening", key: "signal", seconds: 3 }, { scene: "opening", key: "ecosystem", seconds: 4 },
-  { scene: "challenge", key: "fragmented", seconds: 3.5 }, { scene: "challenge", key: "complexity", seconds: 3.5 },
-  { scene: "foundations", key: "standards", seconds: 3 }, { scene: "foundations", key: "automation", seconds: 3 }, { scene: "foundations", key: "insights", seconds: 3 },
-  { scene: "capabilities", key: "logs", seconds: 2.5 }, { scene: "capabilities", key: "metrics", seconds: 2.5 }, { scene: "action", key: "follow", seconds: 2.5 }, { scene: "action", key: "investigate", seconds: 2.5 },
-  { scene: "tools", key: "discover", seconds: 2 }, { scene: "tools", key: "review", seconds: 2 }, { scene: "tools", key: "deploy", seconds: 2 }, { scene: "tools", key: "monitor", seconds: 2 },
-  { scene: "soda", key: "utilisation", seconds: 3.5 }, { scene: "soda", key: "decide", seconds: 3.5 },
-  ...(intelligenceApproval.publicPresentationApproved ? [{ scene: "intelligence", key: "analyse", seconds: 6 }] : [{ scene: "customers", key: "impact", seconds: 3, customer: 0 }, { scene: "customers", key: "impact", seconds: 3, customer: 1 }]),
-  { scene: "customers", key: "impact", seconds: 3, customer: 4 }, { scene: "closing", key: "explore", seconds: 3 },
+  { scene: "opening", key: "signal", seconds: 3 },
+  { scene: "opening", key: "ecosystem", seconds: 4 },
+  { scene: "challenge", key: "fragmented", seconds: 3.5 },
+  { scene: "challenge", key: "complexity", seconds: 3.5 },
+  { scene: "foundations", key: "standards", seconds: 3 },
+  { scene: "foundations", key: "automation", seconds: 3 },
+  { scene: "foundations", key: "insights", seconds: 3 },
+  { scene: "capabilities", key: "logs", seconds: 2.5 },
+  { scene: "capabilities", key: "metrics", seconds: 2.5 },
+  { scene: "action", key: "follow", seconds: 2.5 },
+  { scene: "action", key: "investigate", seconds: 2.5 },
+  { scene: "tools", key: "discover", seconds: 2 },
+  { scene: "tools", key: "review", seconds: 2 },
+  { scene: "tools", key: "deploy", seconds: 2 },
+  { scene: "tools", key: "monitor", seconds: 2 },
+  { scene: "soda", key: "utilisation", seconds: 3.5 },
+  { scene: "soda", key: "decide", seconds: 3.5 },
+  ...(intelligenceApproval.publicPresentationApproved
+    ? [{ scene: "intelligence", key: "analyse", seconds: 6 }]
+    : [
+        { scene: "customers", key: "impact", seconds: 3, customer: 0 },
+        { scene: "customers", key: "impact", seconds: 3, customer: 1 },
+      ]),
+  { scene: "customers", key: "impact", seconds: 3, customer: 4 },
+  { scene: "closing", key: "explore", seconds: 3 },
 ];

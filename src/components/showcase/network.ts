@@ -1,6 +1,14 @@
 import { serviceLabels } from "@/content/showcase";
 // Fictional ecosystem. (x,y) = ecosystem layout, (mx,my) = dependency-map layout.
-export type Node = { id: string; label: string; kind: "app" | "svc" | "db" | "cloud" | "queue"; x: number; y: number; mx: number; my: number };
+export type Node = {
+  id: string;
+  label: string;
+  kind: "app" | "svc" | "db" | "cloud" | "queue";
+  x: number;
+  y: number;
+  mx: number;
+  my: number;
+};
 
 export const nodes: Node[] = [
   { id: "web", label: serviceLabels.web, kind: "app", x: 260, y: 250, mx: 300, my: 300 },
@@ -8,9 +16,25 @@ export const nodes: Node[] = [
   { id: "gateway", label: serviceLabels.gateway, kind: "svc", x: 520, y: 410, mx: 560, my: 430 },
   { id: "checkout", label: serviceLabels.checkout, kind: "svc", x: 790, y: 230, mx: 820, my: 300 },
   { id: "catalog", label: serviceLabels.catalog, kind: "svc", x: 800, y: 620, mx: 820, my: 560 },
-  { id: "payments", label: serviceLabels.payments, kind: "svc", x: 1080, y: 170, mx: 1080, my: 220 },
+  {
+    id: "payments",
+    label: serviceLabels.payments,
+    kind: "svc",
+    x: 1080,
+    y: 170,
+    mx: 1080,
+    my: 220,
+  },
   { id: "orders", label: serviceLabels.orders, kind: "queue", x: 1090, y: 430, mx: 1080, my: 430 },
-  { id: "inventory", label: serviceLabels.inventory, kind: "db", x: 1100, y: 690, mx: 1080, my: 640 },
+  {
+    id: "inventory",
+    label: serviceLabels.inventory,
+    kind: "db",
+    x: 1100,
+    y: 690,
+    mx: 1080,
+    my: 640,
+  },
   { id: "cloudA", label: serviceLabels.cloudA, kind: "cloud", x: 1370, y: 290, mx: 1330, my: 320 },
   { id: "cloudB", label: serviceLabels.cloudB, kind: "cloud", x: 1370, y: 600, mx: 1330, my: 560 },
 ];
@@ -18,15 +42,31 @@ export const nodes: Node[] = [
 export const byId = Object.fromEntries(nodes.map((n) => [n.id, n])) as Record<string, Node>;
 
 export const ecoEdges: [string, string][] = [
-  ["web", "gateway"], ["mobile", "gateway"], ["gateway", "checkout"], ["gateway", "catalog"],
-  ["orders", "payments"], ["gateway", "checkout"], ["catalog", "inventory"], ["payments", "inventory"],
-  ["payments", "cloudA"], ["orders", "cloudA"], ["inventory", "cloudB"], ["catalog", "orders"],
+  ["web", "gateway"],
+  ["mobile", "gateway"],
+  ["gateway", "checkout"],
+  ["gateway", "catalog"],
+  ["orders", "payments"],
+  ["gateway", "checkout"],
+  ["catalog", "inventory"],
+  ["payments", "inventory"],
+  ["payments", "cloudA"],
+  ["orders", "cloudA"],
+  ["inventory", "cloudB"],
+  ["catalog", "orders"],
 ];
 
 export const mapEdges: [string, string][] = [
-  ["web", "gateway"], ["mobile", "gateway"], ["gateway", "checkout"], ["gateway", "catalog"],
-  ["orders", "payments"], ["gateway", "checkout"], ["catalog", "inventory"], ["catalog", "orders"],
-  ["payments", "cloudA"], ["inventory", "cloudB"],
+  ["web", "gateway"],
+  ["mobile", "gateway"],
+  ["gateway", "checkout"],
+  ["gateway", "catalog"],
+  ["orders", "payments"],
+  ["gateway", "checkout"],
+  ["catalog", "inventory"],
+  ["catalog", "orders"],
+  ["payments", "cloudA"],
+  ["inventory", "cloudB"],
 ];
 
 // The single fictional incident used across the whole story.
