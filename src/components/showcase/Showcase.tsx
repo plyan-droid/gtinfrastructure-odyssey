@@ -728,7 +728,11 @@ function ProductScene({ p, cls, onMore }: { p: Product; cls: string; onMore: () 
           </li>
         ))}
       </ol>
-      <Button onClick={onMore} className="scene-el read-more pointer-events-auto mt-4 w-fit">
+      <Button
+        onClick={onMore}
+        variant="link"
+        className="scene-el read-more pointer-events-auto mt-4 px-0"
+      >
         {ui.readMore}
         <ArrowRight />
       </Button>
