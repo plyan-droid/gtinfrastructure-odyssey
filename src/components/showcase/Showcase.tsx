@@ -9,6 +9,7 @@ import {
   customers,
   options,
   opening,
+  topology,
   details,
   diagram,
   ui,
@@ -169,7 +170,12 @@ export function Showcase() {
           tl.to(
             q(".opening-shield"),
             {
-              autoAlpha: stage.scene === "opening" || stage.scene === "closing" ? 1 : 0,
+              autoAlpha:
+                stage.key === "ecosystem"
+                  ? 0
+                  : stage.scene === "opening" || stage.scene === "closing"
+                    ? 1
+                    : 0,
               duration: 0.45,
             },
             at,
@@ -356,6 +362,7 @@ export function Showcase() {
           data-scene="opening"
           className="scene-opening absolute inset-0 flex flex-col items-center justify-center px-6 text-center"
         >
+          <div className="opening-copy flex flex-col items-center">
           <p className="scene-el eyebrow mb-6">{opening.eyebrow}</p>
           <h1 className="scene-el opening-title font-semibold leading-[1.05]">
             {opening.headline[0]}
@@ -370,12 +377,23 @@ export function Showcase() {
           </p>
           <button
             type="button"
-            className="scene-el eyebrow mt-10 flex flex-col items-start gap-2 text-muted-foreground transition-colors hover:text-foreground"
+            className="scene-el eyebrow mt-10 flex flex-col items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
             onClick={() => jumpTo("challenge")}
           >
             {ui.discover}
             <ChevronDown className="h-4 w-4 animate-bounce motion-reduce:animate-none" />
           </button>
+          </div>
+          <div className="topology-card absolute bottom-10 left-6 max-w-sm text-left md:bottom-14 md:left-16">
+            <p className="eyebrow mb-3 text-accent">{topology.eyebrow}</p>
+            <h2 className="text-2xl font-semibold tracking-tight md:text-4xl">{topology.headline}</h2>
+            <p className="mt-3 text-sm text-foreground/80 md:text-base">{topology.sub}</p>
+            <ul className="mt-4 flex flex-wrap gap-2 font-mono text-[11px] text-muted-foreground">
+              {topology.tiers.map((t) => (
+                <li key={t} className="rounded-full border border-border px-3 py-1">{t}</li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         {/* 2. Challenge */}
