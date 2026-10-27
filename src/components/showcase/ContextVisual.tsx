@@ -104,7 +104,7 @@ export function TopologyMap() {
             />
             <text
               x={c.x - CLOUD.w / 2 + 16}
-              y={c.y - CLOUD.h / 2 + 22}
+              y={c.id === "cloudA" ? c.y + CLOUD.h / 2 - 18 : c.y - CLOUD.h / 2 + 22}
               fontSize="11"
               letterSpacing="1.5"
               fill="var(--muted-foreground)"
@@ -214,9 +214,9 @@ export function TopologyMap() {
   );
 }
 
-type Slot = { x: number; y: number; from: [number, number]; to: [number, number] };
+type Slot = { x: number; y: number; from: [number, number]; to: [number, number]; via?: [number, number] };
 const slots: Record<string, Slot> = {
-  cat: { x: 830, y: 124, from: [960, 294], to: [900, 302] },
+  cat: { x: 830, y: 168, from: [960, 250], to: [900, 302] },
   inv: { x: 1010, y: 124, from: [1250, 244], to: [1400, 302] },
   low: { x: 880, y: 694, from: [1200, 720], to: [1290, 690] },
 };
@@ -330,7 +330,11 @@ export function NetworkVisuals() {
             {slot && (
               <>
                 <path
-                  d={`M${slot.from[0]} ${slot.from[1]}L${slot.to[0]} ${slot.to[1]}`}
+                  d={
+                    slot.via
+                      ? `M${slot.from[0]} ${slot.from[1]}L${slot.via[0]} ${slot.via[1]}L${slot.to[0]} ${slot.to[1]}`
+                      : `M${slot.from[0]} ${slot.from[1]}L${slot.to[0]} ${slot.to[1]}`
+                  }
                   stroke="var(--primary)"
                   strokeOpacity="0.6"
                 />
