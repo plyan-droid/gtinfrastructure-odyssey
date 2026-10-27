@@ -162,6 +162,11 @@ export function Showcase() {
             at,
           );
           tl.to(
+            q(".tier-bands"),
+            { autoAlpha: stage.scene === "closing" ? 0 : 1, duration: 0.45 },
+            at,
+          );
+          tl.to(
             q(".obs-layer"),
             {
               autoAlpha:
