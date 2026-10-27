@@ -129,6 +129,10 @@ export function Showcase() {
               )
             : { x: 880, y: 452 };
           if (reduce) return { scale: 1, x: 0, y: 0 };
+          if (mobile && stage.key === "ecosystem") {
+            const s = (visibleW - 20) / 1300;
+            return { scale: s, x: 800 - 880 * s, y: 330 - 452 * s };
+          }
           if (mobile) return { scale: 0.54, x: 800 - center.x * 0.54, y: 65 - center.y * 0.54 };
           if (wide.includes(stage.scene)) {
             const s = Math.min(1, (visibleW - 40) / 1400);
@@ -384,7 +388,7 @@ export function Showcase() {
             <ChevronDown className="h-4 w-4 animate-bounce motion-reduce:animate-none" />
           </button>
           </div>
-          <div className="topology-card absolute inset-x-0 bottom-16 mx-auto max-w-xl px-6 text-center md:bottom-14">
+          <div className="topology-card absolute inset-x-0 bottom-28 mx-auto max-w-xl px-6 text-center md:bottom-14">
             <p className="eyebrow mb-3 text-accent">{topology.eyebrow}</p>
             <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">{topology.headline}</h2>
             <p className="mt-2 text-sm text-foreground/80">{topology.sub}</p>
