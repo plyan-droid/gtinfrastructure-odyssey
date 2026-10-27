@@ -214,10 +214,10 @@ export function TopologyMap() {
   );
 }
 
-type Slot = { x: number; y: number; from: [number, number]; to: [number, number] };
+type Slot = { x: number; y: number; from: [number, number]; to: [number, number]; via?: [number, number] };
 const slots: Record<string, Slot> = {
   cat: { x: 830, y: 168, from: [960, 250], to: [900, 302] },
-  inv: { x: 1010, y: 124, from: [1250, 244], to: [1400, 302] },
+  inv: { x: 1010, y: 124, from: [1250, 244], via: [1250, 258], to: [1400, 302] },
   low: { x: 880, y: 694, from: [1200, 720], to: [1290, 690] },
 };
 const slotFor: Record<string, keyof typeof slots> = {
