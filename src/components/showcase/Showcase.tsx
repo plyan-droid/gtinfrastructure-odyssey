@@ -9,7 +9,6 @@ import {
   customers,
   options,
   opening,
-  topology,
   details,
   diagram,
   ui,
