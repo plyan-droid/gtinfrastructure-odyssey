@@ -441,20 +441,20 @@ export const opening = {
   secondary: "Observability. Reimagined.",
 };
 export const topology = {
-  eyebrow: "WHOLE-OF-GOVERNMENT LANDSCAPE",
-  headline: "Every tier, connected.",
-  sub: "From citizen touchpoints to services and cloud environments: one view of how a digital service fits together.",
+  eyebrow: "ILLUSTRATIVE SERVICE MAP",
+  headline: "BEHIND EVERY DIGITAL SERVICE.",
+  sub: "A request can pass through several applications and cloud components. Here's a simplified look at how they connect.",
   tiers: ["01 / Access", "02 / Services", "03 / Data & Cloud"],
 };
 export const challenge = {
   eyebrow: "THE CHALLENGE",
   headline: ["ONE DIGITAL SERVICE.", "MANY MOVING PARTS."],
-  sub: "Modern digital services depend on interconnected applications, infrastructure and teams. Understanding what happens across them can be challenging.",
+  sub: "One request may pass through several applications, APIs and cloud environments. When something slows down, figuring out where to look isn't always easy.",
   items: [
     {
       n: "01",
       title: "Fragmented Monitoring",
-      body: "Operational information may be spread across different systems and tools.",
+      body: "Logs, metrics and other monitoring data may sit in different tools, making it harder to see the whole picture.",
     },
     {
       n: "02",
@@ -464,7 +464,7 @@ export const challenge = {
     {
       n: "03",
       title: "Difficult Investigation",
-      body: "Engineers need to connect different signals to understand an issue.",
+      body: "When something goes wrong, engineers need to piece together the evidence from different systems.",
     },
     {
       n: "04",
@@ -481,7 +481,7 @@ export const capabilities: Product = {
   problemSub: "",
   headline: ["SEE THE", "BIGGER PICTURE."],
   description:
-    "Use operational signals and connected service context to better understand application and infrastructure behaviour.",
+    "Different signals tell different parts of the story. Together with service context, they help teams understand how applications and infrastructure behave.",
   points: [
     { n: "01", title: "LOGS", body: "What happened?" },
     { n: "02", title: "METRICS", body: "How is it performing?" },
@@ -734,22 +734,22 @@ export const contextSections = {
       {
         n: "01",
         title: "GOVERNMENT-READY FOUNDATIONS",
-        body: "Build on common monitoring standards and reusable configurations.",
+        body: "Start with shared monitoring standards and reusable configurations instead of building everything from scratch.",
       },
       {
         n: "02",
-        title: "AUTOMATION THAT REDUCES REWORK",
-        body: "Simplify repetitive monitoring activities with supported automation.",
+        title: "LESS REPEATED SETUP",
+        body: "Use supported automation to reduce the time spent on routine monitoring configuration.",
       },
       {
         n: "03",
-        title: "CONNECTED OPERATIONAL INSIGHTS",
-        body: "Bring relevant monitoring signals and system context into clearer view.",
+        title: "BETTER OPERATIONAL CONTEXT",
+        body: "Bring relevant monitoring signals and service relationships together when investigating issues.",
       },
       {
         n: "04",
-        title: "CONTINUOUS IMPROVEMENT",
-        body: "Use shared operational knowledge and analytical insights to guide improvement.",
+        title: "BUILD ON SHARED KNOWLEDGE",
+        body: "Use common practices and lessons learned to improve monitoring over time.",
       },
     ],
   },

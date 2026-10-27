@@ -397,6 +397,7 @@ export function Showcase() {
           </button>
           </div>
           <div className="topology-card pointer-events-none absolute bottom-6 right-6 max-w-sm text-right [text-shadow:0_2px_12px_var(--background)] md:bottom-8 md:right-10">
+            <p className="mb-2 font-mono text-[10px] tracking-[0.2em] text-primary md:text-xs">{topology.eyebrow}</p>
             <h2 className="text-xl font-semibold md:text-2xl">{topology.headline}</h2>
             <p className="mt-2 text-xs text-foreground/80 md:text-sm">{topology.sub}</p>
           </div>
