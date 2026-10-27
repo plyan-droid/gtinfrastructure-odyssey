@@ -239,7 +239,7 @@ const markNodes: Record<string, string[]> = {
 };
 const signalKeys = ["reveal", "trace", "dependencies", "telemetry", "context"];
 
-function Graphic({ kind, rows }: { kind?: string; rows: string[] }) {
+function Graphic({ kind, rows }: { kind: string | undefined; rows: string[] }) {
   if (kind === "spark" || kind === "warn")
     return (
       <svg viewBox="0 0 260 54" className="hud-chart">
