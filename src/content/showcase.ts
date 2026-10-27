@@ -380,7 +380,7 @@ export const ui = {
   toolsNote: "Scope, availability and supported technology options to be confirmed.",
   toolsBuilt: "Built by StackOps",
   explore: "Explore StackOps",
-  discover: "Discover the StackOps Advantage",
+  discover: "Scroll to explore",
   present: "Presentation Mode",
   exitPresentation: "Exit Presentation Mode",
   pause: "Pause presentation",
