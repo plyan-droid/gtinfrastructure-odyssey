@@ -187,7 +187,7 @@
 [data-active-scene="closing"][data-active-point="4"] [data-scene="closing"] [data-point="4"] { opacity: 1; visibility: visible; }
 
 .opening-network { opacity: 0.55; }
-.node-label, .visual-layer { visibility: hidden; }
+.visual-layer, .network-layer, .obs-layer, .ring { visibility: hidden; }
 .opening-shield { background: var(--opening-readability); }
 .reading-shield-left { background: var(--reading-left); visibility: hidden; }
 .reading-shield-wide { background: var(--reading-wide); visibility: hidden; }
@@ -196,14 +196,25 @@
 .narrative-scene h2 { font-size: 2.7rem; line-height: 1.08; }
 .narrative-scene .reading-point p { line-height: 1.5; }
 .opening-title { font-size: 4rem; max-width: 90%; }
-.context-visual { right: 4%; bottom: 14%; width: 44%; max-width: 36rem; aspect-ratio: 520 / 160; }
-[data-active-scene="opening"] .context-visual,
-[data-active-scene="customers"] .context-visual,
-[data-active-scene="options"] .context-visual,
-[data-active-scene="closing"] .context-visual { visibility: hidden; }
+.hud-panel { box-sizing: border-box; height: 100%; padding: 14px 18px; border-radius: 14px; border: 1px solid color-mix(in oklab, var(--primary) 35%, transparent); background: color-mix(in oklab, var(--card) 88%, transparent); box-shadow: 0 18px 40px -24px color-mix(in oklab, var(--primary) 45%, transparent); font-family: var(--font-mono); color: var(--foreground); overflow: hidden; }
+.hud-title { display: flex; align-items: center; gap: 8px; margin: 0 0 10px; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--healthy); }
+.hud-dot { width: 7px; height: 7px; border-radius: 999px; background: var(--healthy); box-shadow: 0 0 8px var(--healthy); }
+.hud-dot.warn { background: var(--warn); box-shadow: 0 0 8px var(--warn); }
+.hud-rows, .hud-log { margin: 0; padding: 0; list-style: none; font-size: 13px; line-height: 1.45; color: color-mix(in oklab, var(--foreground) 85%, transparent); }
+.hud-rows li { display: flex; align-items: flex-start; gap: 8px; }
+.hud-log li { padding-left: 10px; border-left: 2px solid color-mix(in oklab, var(--healthy) 55%, transparent); margin-bottom: 4px; }
+.hud-tick { flex: none; width: 10px; height: 10px; margin-top: 4px; border-radius: 3px; border: 1px solid var(--warn); }
+.hud-tick.done { border-color: var(--healthy); background: color-mix(in oklab, var(--healthy) 45%, transparent); }
+.hud-chart { display: block; width: 100%; height: 46px; overflow: visible; }
+.hud-caption { margin: 8px 0 0; font-size: 12px; color: var(--muted-foreground); }
+.hud-chip { font-family: var(--font-mono); font-size: 12px; text-align: center; padding: 6px 8px; border-radius: 8px; border: 1px dashed var(--accent); background: var(--card); color: var(--accent); }
+.hud-chip.chip-1 { border-color: var(--healthy); color: var(--healthy); }
+.hud-chip.chip-2 { border-color: var(--primary); color: var(--primary); }
+.flow-pulse { stroke-dasharray: 4 60; opacity: 0.55; animation: signal-flow 4s linear infinite; }
+.obs-pulse { stroke-dasharray: 40 400; opacity: 0.7; animation: signal-flow 6s linear infinite; }
 .eyebrow { letter-spacing: 0; }
 .network-signal { animation: signal-flow 3s linear infinite; }
-.scan-ring { transform-box: fill-box; transform-origin: center; animation: network-scan 12s linear infinite; }
+.scan-ring { animation: signal-flow 5s linear infinite; }
 .feedback-loop { animation: signal-flow 10s linear infinite; }
 @keyframes signal-flow { to { stroke-dashoffset: -116; } }
 @keyframes network-scan { to { transform: rotate(360deg); } }
@@ -245,7 +256,7 @@
  .narrative-scene .reading-point h3 { font-size: 1.05rem; }
  .narrative-scene .reading-point p { font-size: 0.8rem; }
  .narrative-scene .reading-point p.hidden { display: block; }
- .context-visual { top: 22%; bottom: auto; right: 5%; width: 90%; }
+ .hud-panel, .hud-chip { display: none; }
  .story-full { padding-top: 5rem; padding-bottom: 5.5rem; }
  .scene-customers h2, .scene-options h2 { font-size: 1.65rem; }
  .scene-customers > p, .scene-options > p { font-size: 0.75rem; margin-top: 0.5rem; }
@@ -276,5 +287,5 @@
  .detail-modal { max-height: calc(100dvh - 2rem); }
 }
 @media (prefers-reduced-motion: reduce) {
- .network-signal, .scan-ring, .feedback-loop { animation: none; }
+ .network-signal, .scan-ring, .feedback-loop, .flow-pulse, .obs-pulse { animation: none; }
 }
