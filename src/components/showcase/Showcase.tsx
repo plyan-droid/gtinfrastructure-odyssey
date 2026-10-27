@@ -25,6 +25,7 @@ import { NetworkVisuals, TopologyMap } from "./ContextVisual";
 import { storyStages, STAGE_DURATION, stageAtTime } from "./story-stages";
 import { ArrowRight, ArrowLeft, ExternalLink, ChevronDown, QrCode } from "lucide-react";
 
+const MOBILE_TOUR_SCALE = 0.6;
 const SCROLL_LEN = 16000; // px of scroll mapped to the full story
 
 const edgeKey = (a: string, b: string) => `${a}-${b}`;
