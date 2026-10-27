@@ -396,13 +396,13 @@ export function Showcase() {
             <ChevronDown className="h-4 w-4 animate-bounce motion-reduce:animate-none" />
           </button>
           </div>
-          <div className="topology-card absolute inset-x-0 bottom-28 mx-auto max-w-xl px-6 text-center md:bottom-14">
+          <div className="topology-card absolute inset-x-0 bottom-28 mx-auto max-w-xl px-6 text-center md:inset-x-auto md:bottom-10 md:right-8 md:mx-0 md:max-w-md md:rounded-2xl md:border md:border-border md:bg-card/90 md:p-6 md:text-left md:backdrop-blur">
             <p className="eyebrow mb-3 text-accent">{topology.eyebrow}</p>
             <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">{topology.headline}</h2>
             <p className="mt-2 text-sm text-foreground/80">{topology.sub}</p>
-            <ul className="mt-3 flex flex-wrap justify-center gap-2 font-mono text-[11px] text-muted-foreground">
+            <ul className="mt-3 flex flex-wrap justify-center gap-2 font-mono text-[11px] text-muted-foreground md:justify-start">
               {topology.tiers.map((t) => (
-                <li key={t} className="rounded-full border border-border px-3 py-1">{t}</li>
+                <li key={t} className="whitespace-nowrap rounded-full border border-border px-3 py-1">{t}</li>
               ))}
             </ul>
           </div>
