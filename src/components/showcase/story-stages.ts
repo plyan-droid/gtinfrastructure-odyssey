@@ -41,7 +41,7 @@ export const storyStages: StoryStage[] = [
   stage("closing", "explore", "closing", [], undefined, "closing"),
 ];
 export const STAGE_DURATION = 2.4;
-export function stageAtTime(time: number) { return storyStages[Math.min(storyStages.length - 1, Math.max(0, Math.floor(time / STAGE_DURATION)))]; }
+export function stageAtTime(time: number) { return storyStages[Math.min(storyStages.length - 1, Math.max(0, Math.floor(time / STAGE_DURATION + 1e-9)))]; }
 export type PresentationStop = { scene: string; key: string; seconds: number; customer?: number };
 export const presentationStops: PresentationStop[] = [
   { scene: "opening", key: "signal", seconds: 3 }, { scene: "opening", key: "ecosystem", seconds: 4 },
