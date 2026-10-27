@@ -187,7 +187,7 @@ export function Showcase() {
           tl.to(
             q(".net"),
             {
-              opacity: ["opening", "customers", "closing"].includes(stage.scene) ? 0.55 : 0.9,
+              opacity: ["opening", "customers", "closing"].includes(stage.scene) ? 0.7 : 0.9,
               duration: 0.5,
             },
             at,
