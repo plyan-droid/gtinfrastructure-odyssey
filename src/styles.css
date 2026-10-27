@@ -296,3 +296,7 @@
 [data-active-block="ecosystem"] .opening-copy { opacity: 0; visibility: hidden; }
 [data-active-block="ecosystem"] .topology-card { opacity: 1; visibility: visible; }
 [data-active-block="ecosystem"] .opening-network { opacity: 1; }
+@media (max-width: 767px) {
+ .chrome { z-index: 30; }
+ .chrome::before { content: ""; position: absolute; inset: -1rem -2rem; z-index: -1; background: radial-gradient(closest-side, var(--background), transparent); }
+}

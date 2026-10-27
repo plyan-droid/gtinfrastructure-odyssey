@@ -156,7 +156,7 @@ export function Showcase() {
           tl.to(
             q(".net"),
             {
-              opacity: stage.scene === "customers" ? 0.32 : stage.scene === "closing" ? 0.6 : 0.95,
+              opacity: stage.scene === "customers" ? 0.32 : stage.scene === "closing" ? 0.22 : 0.95,
               duration: 0.5,
             },
             at,
