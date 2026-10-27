@@ -132,15 +132,13 @@ export function Showcase() {
             : { x: 880, y: 452 };
           if (reduce) return { scale: 1, x: 0, y: 0 };
           if (mobile) return { scale: 0.54, x: 800 - center.x * 0.54, y: 65 - center.y * 0.54 };
-          if (stage.scene === "opening" && stage.key === "signal")
-            return { scale: 1.65, x: 800 - 640 * 1.65, y: 450 - 450 * 1.65 };
           if (wide.includes(stage.scene)) {
             const s = Math.min(1, (visibleW - 40) / 1400);
             return { scale: s, x: 800 - 880 * s, y: 450 - 452 * s };
           }
           // Story frame: services + data tiers fill the visual area right of the reading column.
           const left = visibleL + visibleW * 0.47;
-          const s = Math.min(0.95, (visibleL + visibleW - 24 - left) / 1010);
+          const s = Math.min(0.95, (visibleL + visibleW - 60 - left) / 1040);
           const drift = (center.x - 1000) * 0.05 * s;
           return { scale: s, x: left - 540 * s - drift, y: 450 - 452 * s - (center.y - 450) * 0.04 };
         };
