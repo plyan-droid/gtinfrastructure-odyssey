@@ -440,6 +440,12 @@ export const opening = {
   sub: "Gain operational visibility, simplify monitoring setup and support more reliable digital services with StackOps.",
   secondary: "Observability. Reimagined.",
 };
+export const topology = {
+  eyebrow: "WHOLE-OF-GOVERNMENT LANDSCAPE",
+  headline: "Every tier, connected.",
+  sub: "From citizen touchpoints to services and cloud environments — one view of how a digital service fits together.",
+  tiers: ["01 / Access", "02 / Services", "03 / Data & Cloud"],
+};
 export const challenge = {
   eyebrow: "THE CHALLENGE",
   headline: ["ONE DIGITAL SERVICE.", "MANY MOVING PARTS."],
