@@ -102,127 +102,182 @@
 @media (prefers-reduced-motion: reduce) {
   .signal { display: none; }
 }
-.detail-modal { max-height: calc(100dvh - 3rem); }
-.detail-scroll { max-height: calc(100dvh - 14rem); }
-.scene-el, .demo-panel { visibility: hidden; }
-.scene-opening .scene-el { visibility: visible; }
-/* Gate whole scenes independently of per-word animation styles. This also
-   preserves the current content when preview tools refresh inline styles. */
-[data-active-scene] .scene-opening,
-[data-active-scene] .scene-challenge,
-[data-active-scene] .scene-foundations,
-[data-active-scene] .scene-capabilities,
-[data-active-scene] .scene-action,
-[data-active-scene] .scene-tools,
-[data-active-scene] .scene-otel,
-[data-active-scene] .scene-soda,
-[data-active-scene] .scene-customers,
-[data-active-scene] .scene-options,
-[data-active-scene] .scene-closing { opacity: 0; visibility: hidden; pointer-events: none; }
-[data-active-scene="opening"] .scene-opening,
-[data-active-scene="challenge"] .scene-challenge,
-[data-active-scene="foundations"] .scene-foundations,
-[data-active-scene="capabilities"] .scene-capabilities,
-[data-active-scene="action"] .scene-action,
-[data-active-scene="tools"] .scene-tools,
-[data-active-scene="otel"] .scene-otel,
-[data-active-scene="soda"] .scene-soda,
-[data-active-scene="customers"] .scene-customers,
-[data-active-scene="options"] .scene-options,
-[data-active-scene="closing"] .scene-closing { opacity: 1; visibility: visible; }
-[data-active-scene="opening"] .scene-opening .scene-el,
-[data-active-scene="challenge"] .scene-challenge .scene-el,
-[data-active-scene="foundations"] .scene-foundations .scene-el,
-[data-active-scene="capabilities"] .scene-capabilities .scene-el,
-[data-active-scene="action"] .scene-action .scene-el,
-[data-active-scene="tools"] .scene-tools .scene-el,
-[data-active-scene="otel"] .scene-otel .scene-el,
-[data-active-scene="soda"] .scene-soda .scene-el,
-[data-active-scene="customers"] .scene-customers .scene-el,
-[data-active-scene="options"] .scene-options .scene-el,
-[data-active-scene="closing"] .scene-closing .scene-el { visibility: visible; }
+
+.detail-modal { display: flex; flex-direction: column; max-height: calc(100dvh - 3rem); }
+.detail-scroll { min-height: 0; overflow-y: auto; }
+/* One visibility owner per complete scene; inactive descendants cannot escape. */
+[data-scene] { opacity: 0; visibility: hidden; pointer-events: none; }
+[data-scene] .scene-el { visibility: inherit; }
+[data-active-scene="opening"] [data-scene="opening"] { opacity: 1; visibility: visible; }
+[data-active-scene="challenge"] [data-scene="challenge"] { opacity: 1; visibility: visible; }
+[data-active-scene="foundations"] [data-scene="foundations"] { opacity: 1; visibility: visible; }
+[data-active-scene="capabilities"] [data-scene="capabilities"] { opacity: 1; visibility: visible; }
+[data-active-scene="action"] [data-scene="action"] { opacity: 1; visibility: visible; }
+[data-active-scene="tools"] [data-scene="tools"] { opacity: 1; visibility: visible; }
+[data-active-scene="otel"] [data-scene="otel"] { opacity: 1; visibility: visible; }
+[data-active-scene="soda"] [data-scene="soda"] { opacity: 1; visibility: visible; }
+[data-active-scene="intelligence"] [data-scene="intelligence"] { opacity: 1; visibility: visible; }
+[data-active-scene="customers"] [data-scene="customers"] { opacity: 1; visibility: visible; }
+[data-active-scene="options"] [data-scene="options"] { opacity: 1; visibility: visible; }
+[data-active-scene="closing"] [data-scene="closing"] { opacity: 1; visibility: visible; }
+
+[data-scene] .scene-el { pointer-events: auto; }
+[data-scene]:not(:hover) { /* no mouse-dependent scene visibility */ }
+.reading-points { position: relative; height: 9rem; flex-shrink: 0; }
+.reading-point { position: absolute; inset: 0; opacity: 0; visibility: hidden; pointer-events: none; }
+[data-active-scene="opening"][data-active-point="0"] [data-scene="opening"] [data-point="0"] { opacity: 1; visibility: visible; }
+[data-active-scene="opening"][data-active-point="1"] [data-scene="opening"] [data-point="1"] { opacity: 1; visibility: visible; }
+[data-active-scene="opening"][data-active-point="2"] [data-scene="opening"] [data-point="2"] { opacity: 1; visibility: visible; }
+[data-active-scene="opening"][data-active-point="3"] [data-scene="opening"] [data-point="3"] { opacity: 1; visibility: visible; }
+[data-active-scene="opening"][data-active-point="4"] [data-scene="opening"] [data-point="4"] { opacity: 1; visibility: visible; }
+[data-active-scene="challenge"][data-active-point="0"] [data-scene="challenge"] [data-point="0"] { opacity: 1; visibility: visible; }
+[data-active-scene="challenge"][data-active-point="1"] [data-scene="challenge"] [data-point="1"] { opacity: 1; visibility: visible; }
+[data-active-scene="challenge"][data-active-point="2"] [data-scene="challenge"] [data-point="2"] { opacity: 1; visibility: visible; }
+[data-active-scene="challenge"][data-active-point="3"] [data-scene="challenge"] [data-point="3"] { opacity: 1; visibility: visible; }
+[data-active-scene="challenge"][data-active-point="4"] [data-scene="challenge"] [data-point="4"] { opacity: 1; visibility: visible; }
+[data-active-scene="foundations"][data-active-point="0"] [data-scene="foundations"] [data-point="0"] { opacity: 1; visibility: visible; }
+[data-active-scene="foundations"][data-active-point="1"] [data-scene="foundations"] [data-point="1"] { opacity: 1; visibility: visible; }
+[data-active-scene="foundations"][data-active-point="2"] [data-scene="foundations"] [data-point="2"] { opacity: 1; visibility: visible; }
+[data-active-scene="foundations"][data-active-point="3"] [data-scene="foundations"] [data-point="3"] { opacity: 1; visibility: visible; }
+[data-active-scene="foundations"][data-active-point="4"] [data-scene="foundations"] [data-point="4"] { opacity: 1; visibility: visible; }
+[data-active-scene="capabilities"][data-active-point="0"] [data-scene="capabilities"] [data-point="0"] { opacity: 1; visibility: visible; }
+[data-active-scene="capabilities"][data-active-point="1"] [data-scene="capabilities"] [data-point="1"] { opacity: 1; visibility: visible; }
+[data-active-scene="capabilities"][data-active-point="2"] [data-scene="capabilities"] [data-point="2"] { opacity: 1; visibility: visible; }
+[data-active-scene="capabilities"][data-active-point="3"] [data-scene="capabilities"] [data-point="3"] { opacity: 1; visibility: visible; }
+[data-active-scene="capabilities"][data-active-point="4"] [data-scene="capabilities"] [data-point="4"] { opacity: 1; visibility: visible; }
+[data-active-scene="action"][data-active-point="0"] [data-scene="action"] [data-point="0"] { opacity: 1; visibility: visible; }
+[data-active-scene="action"][data-active-point="1"] [data-scene="action"] [data-point="1"] { opacity: 1; visibility: visible; }
+[data-active-scene="action"][data-active-point="2"] [data-scene="action"] [data-point="2"] { opacity: 1; visibility: visible; }
+[data-active-scene="action"][data-active-point="3"] [data-scene="action"] [data-point="3"] { opacity: 1; visibility: visible; }
+[data-active-scene="action"][data-active-point="4"] [data-scene="action"] [data-point="4"] { opacity: 1; visibility: visible; }
+[data-active-scene="tools"][data-active-point="0"] [data-scene="tools"] [data-point="0"] { opacity: 1; visibility: visible; }
+[data-active-scene="tools"][data-active-point="1"] [data-scene="tools"] [data-point="1"] { opacity: 1; visibility: visible; }
+[data-active-scene="tools"][data-active-point="2"] [data-scene="tools"] [data-point="2"] { opacity: 1; visibility: visible; }
+[data-active-scene="tools"][data-active-point="3"] [data-scene="tools"] [data-point="3"] { opacity: 1; visibility: visible; }
+[data-active-scene="tools"][data-active-point="4"] [data-scene="tools"] [data-point="4"] { opacity: 1; visibility: visible; }
+[data-active-scene="otel"][data-active-point="0"] [data-scene="otel"] [data-point="0"] { opacity: 1; visibility: visible; }
+[data-active-scene="otel"][data-active-point="1"] [data-scene="otel"] [data-point="1"] { opacity: 1; visibility: visible; }
+[data-active-scene="otel"][data-active-point="2"] [data-scene="otel"] [data-point="2"] { opacity: 1; visibility: visible; }
+[data-active-scene="otel"][data-active-point="3"] [data-scene="otel"] [data-point="3"] { opacity: 1; visibility: visible; }
+[data-active-scene="otel"][data-active-point="4"] [data-scene="otel"] [data-point="4"] { opacity: 1; visibility: visible; }
+[data-active-scene="soda"][data-active-point="0"] [data-scene="soda"] [data-point="0"] { opacity: 1; visibility: visible; }
+[data-active-scene="soda"][data-active-point="1"] [data-scene="soda"] [data-point="1"] { opacity: 1; visibility: visible; }
+[data-active-scene="soda"][data-active-point="2"] [data-scene="soda"] [data-point="2"] { opacity: 1; visibility: visible; }
+[data-active-scene="soda"][data-active-point="3"] [data-scene="soda"] [data-point="3"] { opacity: 1; visibility: visible; }
+[data-active-scene="soda"][data-active-point="4"] [data-scene="soda"] [data-point="4"] { opacity: 1; visibility: visible; }
+[data-active-scene="intelligence"][data-active-point="0"] [data-scene="intelligence"] [data-point="0"] { opacity: 1; visibility: visible; }
+[data-active-scene="intelligence"][data-active-point="1"] [data-scene="intelligence"] [data-point="1"] { opacity: 1; visibility: visible; }
+[data-active-scene="intelligence"][data-active-point="2"] [data-scene="intelligence"] [data-point="2"] { opacity: 1; visibility: visible; }
+[data-active-scene="intelligence"][data-active-point="3"] [data-scene="intelligence"] [data-point="3"] { opacity: 1; visibility: visible; }
+[data-active-scene="intelligence"][data-active-point="4"] [data-scene="intelligence"] [data-point="4"] { opacity: 1; visibility: visible; }
+[data-active-scene="customers"][data-active-point="0"] [data-scene="customers"] [data-point="0"] { opacity: 1; visibility: visible; }
+[data-active-scene="customers"][data-active-point="1"] [data-scene="customers"] [data-point="1"] { opacity: 1; visibility: visible; }
+[data-active-scene="customers"][data-active-point="2"] [data-scene="customers"] [data-point="2"] { opacity: 1; visibility: visible; }
+[data-active-scene="customers"][data-active-point="3"] [data-scene="customers"] [data-point="3"] { opacity: 1; visibility: visible; }
+[data-active-scene="customers"][data-active-point="4"] [data-scene="customers"] [data-point="4"] { opacity: 1; visibility: visible; }
+[data-active-scene="options"][data-active-point="0"] [data-scene="options"] [data-point="0"] { opacity: 1; visibility: visible; }
+[data-active-scene="options"][data-active-point="1"] [data-scene="options"] [data-point="1"] { opacity: 1; visibility: visible; }
+[data-active-scene="options"][data-active-point="2"] [data-scene="options"] [data-point="2"] { opacity: 1; visibility: visible; }
+[data-active-scene="options"][data-active-point="3"] [data-scene="options"] [data-point="3"] { opacity: 1; visibility: visible; }
+[data-active-scene="options"][data-active-point="4"] [data-scene="options"] [data-point="4"] { opacity: 1; visibility: visible; }
+[data-active-scene="closing"][data-active-point="0"] [data-scene="closing"] [data-point="0"] { opacity: 1; visibility: visible; }
+[data-active-scene="closing"][data-active-point="1"] [data-scene="closing"] [data-point="1"] { opacity: 1; visibility: visible; }
+[data-active-scene="closing"][data-active-point="2"] [data-scene="closing"] [data-point="2"] { opacity: 1; visibility: visible; }
+[data-active-scene="closing"][data-active-point="3"] [data-scene="closing"] [data-point="3"] { opacity: 1; visibility: visible; }
+[data-active-scene="closing"][data-active-point="4"] [data-scene="closing"] [data-point="4"] { opacity: 1; visibility: visible; }
+
 .opening-network { opacity: 0.22; }
-.node-label { visibility: hidden; }
+.node-label, .network-layer, .visual-layer { visibility: hidden; }
 .opening-shield { background: var(--opening-readability); }
 .reading-shield-left { background: var(--reading-left); visibility: hidden; }
 .reading-shield-wide { background: var(--reading-wide); visibility: hidden; }
-.scene-el { pointer-events: auto; }
-.story-full, .scene-opening { pointer-events: none; }
-.story-full { padding-top: 5rem; padding-bottom: 4rem; }
-@media (min-width: 768px) and (max-height: 900px) {
-  .scene-capabilities { padding-top: 5rem; padding-bottom: 5rem; }
-  .scene-capabilities h2 { font-size: 2.75rem; }
-  .scene-capabilities .head:empty { display: none; }
-  .scene-capabilities ol { margin-top: 1rem; }
-  .scene-capabilities li { gap: 0.75rem; }
-  .scene-capabilities li p { font-size: 0.8rem; }
-  .scene-capabilities .read-more { margin-top: 1rem; }
-}
-@media (max-width: 767px) {
-  .opening-shield, .reading-shield-left, .reading-shield-wide { background: var(--reading-mobile); }
-  .story-full { padding-top: 5rem; padding-bottom: 4.5rem; }
-  .scene-opening h1 { font-size: 2.5rem; line-height: 1.05; }
-  .scene-opening p { margin-top: 1rem; }
-  .scene-opening .eyebrow { font-size: 0.6rem; }
-  .scene-challenge, .scene-capabilities { justify-content: center; padding-top: 5rem; padding-bottom: 4.5rem; }
-  .scene-action { justify-content: flex-end; padding-bottom: 4.5rem; }
-  .scene-action .value { font-size: 1rem; }
-  .scene-action .head { font-size: 1.5rem; }
-  .scene-action .eyebrow { font-size: 0.6rem; }
-  .scene-action .value + p { font-size: 0.75rem; }
-  .investigation-console { padding: 0.8rem; }
-  .investigation-console li { font-size: 0.75rem; }
-  .scene-tools h3 { font-size: 1.5rem; }
-  .scene-tools article > p { font-size: 0.75rem; }
-  .scene-tools ol { margin-top: 0.6rem; }
-  .scene-tools .read-more { margin-top: 0.25rem; }
-  .scene-tools > div { gap: 1rem; margin-top: 1rem; }
-  .scene-tools { padding-bottom: 6rem; }
-  .scene-tools .tool-item { padding-top: 0.75rem; }
-  .scene-tools > p:last-child { margin-top: 0.75rem; }
-  .scene-customers h3 { font-size: 1.25rem; }
-  .scene-customers article { gap: 0.75rem; }
-  .scene-customers article > div > p.text-6xl { font-size: 3rem; }
-  .scene-customers .interactive-stories { margin-top: 1rem; }
-  .scene-options > div { margin-top: 1rem; gap: 1rem; }
-  .scene-options article { padding-top: 0.5rem; }
-  .scene-options article p { margin-top: 0.5rem; }
-  .scene-options .read-more { margin-top: 0.25rem; }
-  .detail-modal { max-height: calc(100dvh - 2rem); }
-  .detail-scroll { max-height: calc(100dvh - 13rem); }
-}
-
-/* Stage-gated reading blocks share a stable footprint, independently of GSAP styles. */
-.reading-points { position: relative; min-height: 8rem; }
-.reading-point { position: absolute; inset: 0; opacity: 0 !important; visibility: hidden !important; pointer-events: none; transition: opacity 240ms ease; }
-[data-active-point="0"] [data-point="0"],
-[data-active-point="1"] [data-point="1"],
-[data-active-point="2"] [data-point="2"],
-[data-active-point="3"] [data-point="3"],
-[data-active-point="4"] [data-point="4"] { opacity: 1 !important; visibility: visible !important; }
-.context-visual { right: 5%; top: 24%; width: 40%; max-width: 36rem; aspect-ratio: 520 / 310; }
-.visual-layer { visibility: hidden; opacity: 0; }
+.story-full { padding-top: 5.5rem; padding-bottom: 5rem; pointer-events: none; }
+.narrative-scene { padding-top: 5.5rem; padding-bottom: 5rem; }
+.narrative-scene h2 { font-size: 2.7rem; line-height: 1.08; }
+.narrative-scene .reading-point p { line-height: 1.5; }
+.opening-title { font-size: 4rem; max-width: 90%; }
+.context-visual { right: 4%; bottom: 14%; width: 44%; max-width: 36rem; aspect-ratio: 520 / 160; }
 [data-active-scene="opening"] .context-visual,
 [data-active-scene="customers"] .context-visual,
+[data-active-scene="options"] .context-visual,
 [data-active-scene="closing"] .context-visual { visibility: hidden; }
-[data-active-scene="action"][data-active-point="-1"] .scene-action .value { visibility: hidden; }
-[data-active-scene="action"] .scene-action .value { font-size: 1.3rem; }
-.context-section h2 { font-size: 2.5rem; }
-.context-section .reading-points { min-height: 9rem; }
-@media (max-width: 767px) {
-  .context-visual { top: 10%; right: 5%; width: 90%; max-height: 29dvh; }
-  .context-section, .scene-challenge, .scene-capabilities, .scene-action { justify-content: flex-end; padding-top: 34dvh; padding-bottom: 5rem; }
-  .context-section h2 { font-size: 1.5rem; }
-  .context-section > p { margin-top: 0.5rem; font-size: 0.75rem; }
-  .context-section .reading-points { margin-top: 0.75rem; min-height: 6.5rem; }
-  .context-section .reading-point h3 { font-size: 1rem; }
-  .reading-points { min-height: 5.5rem; margin-top: 1rem; }
-  .scene-action .reading-points { min-height: 3.5rem; }
-  .scene-action .value { font-size: 1rem; margin-top: 0.5rem; }
-  .scene-action .value + p { margin-top: 0.5rem; }
-  .scene-capabilities h2 { font-size: 2rem; }
-  .scene-capabilities .read-more { margin-top: 0.5rem; }
+[data-active-scene="opening"] .network-layer,
+[data-active-scene="customers"] .network-layer,
+[data-active-scene="closing"] .network-layer { opacity: 0.2; }
+.eyebrow { letter-spacing: 0; }
+.network-signal { animation: signal-flow 3s linear infinite; }
+.scan-ring { transform-box: fill-box; transform-origin: center; animation: network-scan 12s linear infinite; }
+.feedback-loop { animation: signal-flow 10s linear infinite; }
+@keyframes signal-flow { to { stroke-dashoffset: -116; } }
+@keyframes network-scan { to { transform: rotate(360deg); } }
+[data-dialog-open="true"] * { animation-play-state: paused !important; }
+[data-presenting="true"] [data-scene] button,
+[data-presenting="true"] [data-scene] a { pointer-events: none; }
+@media (min-width: 1500px) {
+ .opening-title { font-size: 5.5rem; }
+ .narrative-scene h2 { font-size: 3.4rem; }
 }
-@media (prefers-reduced-motion: reduce) { .reading-point { transition: none; } }
-
-[data-active-scene="action"][data-active-point="-1"] .scene-action .value { visibility: hidden !important; }
+@media (min-width: 768px) and (max-height: 800px) {
+ .narrative-scene h2 { font-size: 2.15rem; }
+ .narrative-scene > p { font-size: 0.85rem; margin-top: 0.8rem; }
+ .narrative-scene .reading-points { height: 7.5rem; margin-top: 1.2rem; }
+ .narrative-scene .reading-point h3 { font-size: 1rem; }
+ .narrative-scene .reading-point p { font-size: 0.8rem; }
+ .scene-customers h2, .scene-options h2 { font-size: 2.5rem; }
+ .scene-customers .interactive-stories, .scene-options > div { margin-top: 1rem; }
+ .scene-customers article { gap: 1rem; margin-top: 0.8rem; }
+ .scene-customers article h3 { font-size: 1.3rem; }
+ .scene-options article { padding-top: 0.6rem; }
+ .scene-options article h3 { font-size: 1.4rem; }
+ .scene-options p { margin-top: 0.6rem; }
+ .scene-options .operating-models { margin-top: 0.6rem; }
+ .scene-closing h2 { font-size: 2.7rem; }
+}
+@media (max-width: 767px) {
+ .opening-shield { background: var(--reading-mobile); }
+ .reading-shield-left, .reading-shield-wide { background: var(--reading-mobile); }
+ .opening-title { font-size: 2rem; max-width: 100%; }
+ .scene-opening { padding-top: 5rem; padding-bottom: 4rem; }
+ .scene-opening p { margin-top: 1rem; font-size: 0.9rem; }
+ .scene-opening .eyebrow { font-size: 0.6rem; }
+ .narrative-scene { justify-content: flex-end; padding-top: 32dvh; padding-bottom: 5.5rem; }
+ .narrative-scene h2 { font-size: 1.65rem; }
+ .narrative-scene > p { font-size: 0.8rem; margin-top: 0.7rem; }
+ .narrative-scene > .eyebrow { font-size: 0.6rem; margin-bottom: 0.6rem; }
+ .narrative-scene .reading-points { height: 7.5rem; margin-top: 1rem; }
+ .narrative-scene .reading-point h3 { font-size: 1.05rem; }
+ .narrative-scene .reading-point p { font-size: 0.8rem; }
+ .narrative-scene .reading-point p.hidden { display: block; }
+ .context-visual { top: 10%; bottom: auto; right: 5%; width: 90%; }
+ .story-full { padding-top: 5rem; padding-bottom: 5.5rem; }
+ .scene-customers h2, .scene-options h2 { font-size: 1.65rem; }
+ .scene-customers > p, .scene-options > p { font-size: 0.75rem; margin-top: 0.5rem; }
+ .scene-customers .interactive-stories { margin-top: 0.8rem; }
+ .scene-customers [role="tab"] { padding-inline: 0.6rem; font-size: 0.7rem; height: 1.9rem; }
+ .scene-customers article { gap: 0.7rem; margin-top: 0.8rem; }
+ .scene-customers article h3 { font-size: 1.15rem; }
+ .scene-customers article p { font-size: 0.75rem; margin-top: 0.5rem; }
+ .scene-customers article p.text-6xl { font-size: 3rem; }
+ .scene-customers article p.text-2xl { font-size: 1rem; }
+ .scene-customers .read-more { margin-top: 0.3rem; }
+ .scene-options > div { gap: 0.7rem; margin-top: 0.7rem; }
+ .scene-options article { padding-top: 0.5rem; }
+ .scene-options article h3 { font-size: 1.2rem; }
+ .scene-options article p { margin-top: 0.3rem; font-size: 0.75rem; }
+ .scene-options article button { margin-top: 0; height: 1.6rem; }
+ .scene-options .operating-models { margin-top: 0.5rem; }
+ .scene-options .operating-models > div { gap: 0.4rem; }
+ .scene-options .operating-models p { font-size: 0.65rem; }
+ .scene-options .operating-models h4 { font-size: 0.75rem; }
+ .scene-options p { margin-top: 0.4rem; }
+ .scene-closing h2 { font-size: 1.7rem; }
+ .scene-closing .qr-placeholders { margin-top: 1rem; }
+ .chrome { top: 1rem; }
+ .chrome button { padding-inline: 0.6rem; font-size: 0.65rem; }
+ .chrome:first-of-type { font-size: 0.65rem; }
+ .story-disclaimer { max-width: calc(100% - 3rem); padding-right: 0; font-size: 9px; }
+ .detail-modal { max-height: calc(100dvh - 2rem); }
+}
+@media (prefers-reduced-motion: reduce) {
+ .network-signal, .scan-ring, .feedback-loop { animation: none; }
+}
