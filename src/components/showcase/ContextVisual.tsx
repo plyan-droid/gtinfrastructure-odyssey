@@ -216,7 +216,7 @@ export function TopologyMap() {
 
 type Slot = { x: number; y: number; from: [number, number]; to: [number, number] };
 const slots: Record<string, Slot> = {
-  cat: { x: 830, y: 124, from: [960, 294], to: [900, 302] },
+  cat: { x: 830, y: 168, from: [960, 250], to: [900, 302] },
   inv: { x: 1010, y: 124, from: [1250, 244], to: [1400, 302] },
   low: { x: 880, y: 694, from: [1200, 720], to: [1290, 690] },
 };
