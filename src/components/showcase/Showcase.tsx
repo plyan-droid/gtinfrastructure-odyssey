@@ -114,7 +114,7 @@ export function Showcase() {
           },
         });
         const cam = q("#cam");
-        gsap.set(cam, { x: 0, y: 0 });
+        gsap.set(cam, { x: 0, y: 0, svgOrigin: "0 0" });
         // Visible world width for the 1600×900 "slice" viewBox at this viewport.
         const visibleW = Math.min(1600, (900 * window.innerWidth) / window.innerHeight);
         const visibleL = (1600 - visibleW) / 2;
