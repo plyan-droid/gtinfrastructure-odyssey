@@ -136,14 +136,14 @@ export function Showcase() {
           }
           if (mobile) return { scale: 0.54, x: 800 - center.x * 0.54, y: 65 - center.y * 0.54 };
           if (wide.includes(stage.scene)) {
-            const s = Math.min(1, (visibleW - 40) / 1400);
+            const s = Math.min(1.15, (visibleW - 30) / 1300);
             return { scale: s, x: 800 - 880 * s, y: 450 - 452 * s };
           }
           // Story frame: services + data tiers fill the visual area right of the reading column.
-          const left = visibleL + visibleW * 0.47;
-          const s = Math.min(0.95, (visibleL + visibleW - 60 - left) / 1040);
-          const drift = (center.x - 1000) * 0.05 * s;
-          return { scale: s, x: left - 540 * s - drift, y: 450 - 452 * s - (center.y - 450) * 0.04 };
+          const left = visibleL + visibleW * 0.45;
+          const s = Math.min(1.25, (visibleL + visibleW - 30 - left) / 950);
+          const drift = (center.x - 1000) * 0.04 * s;
+          return { scale: s, x: left - 590 * s - drift, y: 450 - 452 * s - (center.y - 450) * 0.04 };
         };
         if (storyStages[0]) gsap.set(cam, frame(storyStages[0]));
         storyStages.forEach((stage, index) => {
