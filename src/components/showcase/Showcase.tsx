@@ -143,7 +143,7 @@ export function Showcase() {
           const left = visibleL + visibleW * 0.45;
           const s = Math.min(1.25, (visibleL + visibleW - 30 - left) / 950);
           const drift = (center.x - 1000) * 0.04 * s;
-          return { scale: s, x: left - 590 * s - drift, y: 450 - 452 * s - (center.y - 450) * 0.04 };
+          return { scale: s, x: left - 590 * s - drift, y: 480 - 452 * s - (center.y - 450) * 0.04 };
         };
         if (storyStages[0]) gsap.set(cam, frame(storyStages[0]));
         storyStages.forEach((stage, index) => {
