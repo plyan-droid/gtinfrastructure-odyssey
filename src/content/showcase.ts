@@ -46,6 +46,14 @@ const popupContent: Detail[] = [
           heading: "Actionable Insights",
           body: "Operational data and analytical capabilities help teams identify issues and improvement opportunities.\n\nWhy it matters: Agencies can explore observability through a government-focused offering rather than having to establish every supporting practice independently.",
         },
+        {
+          heading: "For leaders",
+          body: "Standards ship with the platform instead of living in documents: data lifecycle policies, detection rules, audit logging and security roles are applied from day one, which supports more consistent governance across teams.",
+        },
+        {
+          heading: "For engineering teams",
+          body: "Baseline configurations are delivered as deployable configuration-as-code through a pipeline when a project is onboarded — including ingest pipelines, data schemas, agent configuration and monitoring connectivity. Access uses TechPass, with SEED for secure device access.",
+        },
       ],
     },
   },
@@ -118,6 +126,20 @@ const popupContent: Detail[] = [
           body: "Collect relevant telemetry and review the resulting monitoring information.",
         },
         {
+          heading: "For leaders",
+          body: "Today, every team often builds monitoring from scratch — the same work repeated across teams and accounts, with gaps that go unnoticed and setups that are hard to audit or undo. SORA turns that into one repeatable, reviewable workflow.",
+        },
+        {
+          heading: "For engineering teams — manual vs with SORA",
+          body: "- Find gaps: audit each account by hand → automated discovery scan.\n\n- Ingestion: built separately by every team → one guided deploy.\n\n- Credentials: copied into every app → held in one place.\n\n- Private networking: wired per account → set up for you.\n\n- Clean-up: leftover resources → one-command teardown.\n\nRe-runs are designed to be safe and repeatable. Supported cloud environments to be confirmed with the StackOps team.",
+          links: [
+            {
+              label: "Explore SORA on GitLab (InnerSource)",
+              href: "https://sgts.gitlab-dedicated.com/innersource/sgts/stackops/automations/stackops-resiliency-accelerator",
+            },
+          ],
+        },
+        {
           heading: "Why it matters",
           body: "- Less repetitive manual setup.\n\n- More consistent monitoring configurations.\n\n- Improved awareness of monitoring gaps.\n\n- Reusable deployment practices.\n\n- Clearer configuration review and control.\n\nSpecific environments, integrations and deployment capabilities depend on the supported solution.",
         },
@@ -132,7 +154,15 @@ const popupContent: Detail[] = [
       sections: [
         {
           heading: "One Service Journey. Multiple Connected Systems.",
-          body: "A digital service may rely on applications and infrastructure spread across different environments.\n\nWithout connected operational context, engineers may need to investigate each component separately.\n\nOpenTelemetry provides open standards and tools for generating, collecting and exporting telemetry such as logs, metrics and traces.\n\nWith appropriate instrumentation and supported integrations, teams can:\n\n- Follow requests across instrumented services.\n\n- Understand relationships between components.\n\n- Investigate delays and errors.\n\n- Examine relevant operational signals together.\n\n- Support cross-team troubleshooting.\n\nCross-system visibility depends on instrumentation, system configuration and access permissions.\n\nIt is not automatically available across all agencies or environments.",
+          body: "A digital service may rely on applications and infrastructure spread across different environments.\n\nWithout connected operational context, engineers may need to investigate each component separately.\n\nOpenTelemetry provides open standards and tools for generating, collecting and exporting telemetry such as logs, metrics and traces.\n\nWith appropriate instrumentation and supported integrations, teams can:\n\n- Follow requests across instrumented services.\n\n- Understand relationships between components.\n\n- Investigate delays and errors.\n\n- Examine relevant operational signals together.\n\n- Support cross-team troubleshooting.",
+        },
+        {
+          heading: "For leaders — one citizen journey, not three tickets",
+          body: "A single citizen transaction may touch an application in one cloud, a data service in another and a shared identity gateway. Connected tracing helps teams treat it as one journey, so issues are not passed between separate teams before anyone sees the full picture.\n\nThis is an illustrative example, not a description of any specific agency's architecture.",
+        },
+        {
+          heading: "For engineering teams — how it is achieved",
+          body: "- Standardise on OpenTelemetry to collect logs, metrics and traces in a cloud-agnostic way.\n\n- Route telemetry into a supported observability platform as a common view.\n\n- Correlate dependencies so the request path can be followed across environments.\n\nCross-system visibility depends on instrumentation, system configuration and access permissions. It is not automatically available across all agencies or environments.",
         },
       ],
     },
@@ -162,6 +192,14 @@ const popupContent: Detail[] = [
         {
           heading: "Operational Recommendations",
           body: "Surface findings that may help teams prioritise improvement activities.",
+        },
+        {
+          heading: "For leaders",
+          body: "A clearer view of where observability capacity and storage are going, so improvement effort can be prioritised with evidence rather than guesswork.",
+        },
+        {
+          heading: "For engineering teams",
+          body: "Review how data is collected and stored, compare deployment sizing against actual utilisation, and work through recommendations one at a time.",
         },
         {
           heading: "Why it matters",
@@ -297,7 +335,15 @@ const popupContent: Detail[] = [
       sections: [
         {
           heading: "Dynatrace — Application and Infrastructure Observability",
-          body: "Dynatrace is an underlying observability technology option available through StackOps.\n\nRelevant capabilities include:\n\n- Application performance monitoring.\n\n- Infrastructure and cloud-native observability.\n\n- Service-dependency visibility.\n\n- Distributed tracing.\n\n- AI-assisted problem analysis.\n\n- Monitoring dashboards and operational insights.\n\nThe StackOps offering also describes centrally managed and agency self-managed operating approaches.\n\nThese differ in areas such as platform responsibilities, connectivity, administrative control, tenant arrangements and patching.\n\nConfirm technical requirements and subscription terms with the StackOps team.",
+          body: "Dynatrace is an underlying observability technology option available through StackOps.\n\nRelevant capabilities include:\n\n- Application performance monitoring.\n\n- Infrastructure and cloud-native observability.\n\n- Service-dependency visibility.\n\n- Distributed tracing.\n\n- AI-assisted problem analysis.\n\n- Monitoring dashboards and operational insights.",
+        },
+        {
+          heading: "For leaders — choosing an operating model",
+          body: "StackOps Centrally Managed: built and operated centrally by StackOps, so agencies carry less operational overhead.\n\nAgency Self-Managed: the agency retains full autonomy over its dedicated environment and its operational responsibilities.",
+        },
+        {
+          heading: "For engineering teams — what differs",
+          body: "- Connectivity (ActiveGate): provided and maintained by StackOps, or built and maintained by the agency.\n\n- Admin rights: vested with StackOps, or owned by the agency.\n\n- Environment: shared multi-tenant environment segregated by tagging, or a dedicated agency tenant.\n\n- Alerting: pre-configured anomaly detection, or agency-customised thresholds.\n\n- Agent patching: StackOps regulates releases while agencies own deployment timelines, or the agency owns full patch compliance.\n\nConfirm technical requirements and subscription terms with the StackOps team.",
         },
       ],
     },
