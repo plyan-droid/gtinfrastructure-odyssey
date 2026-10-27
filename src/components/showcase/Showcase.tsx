@@ -129,6 +129,22 @@ export function Showcase() {
                 { x: 0, y: 0 },
               )
             : { x: 880, y: 452 };
+          if (stage.key === "ecosystem" && !mobile) {
+            // Fit the complete observability frame between the header and plain-text caption.
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            const svgScale = Math.max(width / 1600, height / 900);
+            const cropX = (1600 - width / svgScale) / 2;
+            const cropY = (900 - height / svgScale) / 2;
+            const top = 72;
+            const bottom = height - 170;
+            const scale = Math.min((width - 64) / 1360, (bottom - top) / 816) / svgScale;
+            return {
+              scale,
+              x: cropX + width / (2 * svgScale) - 880 * scale,
+              y: cropY + (top + bottom) / (2 * svgScale) - 452 * scale,
+            };
+          }
           if (reduce) return { scale: 1, x: 0, y: 0 };
           if (mobile && stage.key === "ecosystem") {
             // Readable zoom on phones; the camera then pans across the tiers.
@@ -170,7 +186,7 @@ export function Showcase() {
             q(".obs-layer"),
             {
               autoAlpha:
-                stage.scene === "opening" || stage.scene === "challenge"
+                stage.scene === "opening" && stage.key !== "ecosystem"
                   ? 0
                   : stage.scene === "customers"
                     ? 0.3
@@ -396,7 +412,7 @@ export function Showcase() {
             <ChevronDown className="h-4 w-4 animate-bounce motion-reduce:animate-none" />
           </button>
           </div>
-          <div className="topology-card pointer-events-none absolute bottom-6 right-6 max-w-sm text-right [text-shadow:0_2px_12px_var(--background)] md:bottom-8 md:right-10">
+          <div className="topology-card pointer-events-none absolute bottom-14 right-6 max-w-sm text-right [text-shadow:0_2px_12px_var(--background)] md:bottom-6 md:right-10">
             <h2 className="text-xl font-semibold md:text-2xl">{topology.headline}</h2>
             <p className="mt-2 text-xs text-foreground/80 md:text-sm">{topology.sub}</p>
           </div>
