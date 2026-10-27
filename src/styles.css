@@ -196,7 +196,7 @@
 .narrative-scene h2 { font-size: 2.7rem; line-height: 1.08; }
 .narrative-scene .reading-point p { line-height: 1.5; }
 .opening-title { font-size: 4rem; max-width: 90%; }
-.hud-panel { box-sizing: border-box; height: 100%; padding: 14px 18px; border-radius: 14px; border: 1px solid color-mix(in oklab, var(--primary) 35%, transparent); background: color-mix(in oklab, var(--card) 88%, transparent); box-shadow: 0 18px 40px -24px color-mix(in oklab, var(--primary) 45%, transparent); font-family: var(--font-mono); color: var(--foreground); overflow: hidden; }
+.hud-panel { box-sizing: border-box; height: 100%; padding: 14px 18px; border-radius: 14px; border: 1px solid color-mix(in oklab, var(--primary) 35%, transparent); background: color-mix(in oklab, var(--card) 97%, transparent); box-shadow: 0 18px 40px -24px color-mix(in oklab, var(--primary) 45%, transparent); font-family: var(--font-mono); color: var(--foreground); overflow: hidden; height: auto; max-height: 100%; }
 .hud-title { display: flex; align-items: center; gap: 8px; margin: 0 0 10px; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--healthy); }
 .hud-dot { width: 7px; height: 7px; border-radius: 999px; background: var(--healthy); box-shadow: 0 0 8px var(--healthy); }
 .hud-dot.warn { background: var(--warn); box-shadow: 0 0 8px var(--warn); }

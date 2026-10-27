@@ -334,7 +334,7 @@ export function NetworkVisuals() {
                   strokeOpacity="0.6"
                 />
                 <circle cx={slot.to[0]} cy={slot.to[1]} r="3" fill="var(--primary)" />
-                <foreignObject x={slot.x} y={slot.y} width="320" height="120">
+                <foreignObject x={slot.x} y={slot.y} width="320" height="150">
                   <div className="hud-panel">
                     <p className="hud-title">
                       <span className={kind === "warn" ? "hud-dot warn" : "hud-dot"} />
