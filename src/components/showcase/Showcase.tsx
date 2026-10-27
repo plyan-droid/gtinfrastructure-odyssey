@@ -87,14 +87,10 @@ export function Showcase() {
       ctx = gsap.context(() => {
         const q = gsap.utils.selector(root);
         gsap.set(q(".scene-el"), { autoAlpha: 1, y: 0 });
-        gsap.set(
-          q(
-            ".ring, .cluster, .cluster-link, .hub, .to-hub, .map-edge, .paths, .tool-flow, .customer-beacon, .demo-panel, .visual-layer",
-          ),
-          { autoAlpha: 0 },
-        );
-        gsap.set(q(".node-label"), { autoAlpha: 0 });
-        gsap.set(q(".net"), { opacity: 0.55 });
+        gsap.set(q(".ring, .demo-panel, .visual-layer, .network-layer, .obs-layer"), {
+          autoAlpha: 0,
+        });
+        gsap.set(q(".net"), { opacity: 0.7 });
         let frozen = false;
         const tl = gsap.timeline({
           defaults: { ease: "power2.inOut" },
@@ -119,21 +115,12 @@ export function Showcase() {
         });
         const cam = q("#cam");
         gsap.set(cam, { x: 0, y: 0 });
-        storyStages.forEach((stage, index) => {
-          const at = index * STAGE_DURATION;
-          if (stage.label) tl.addLabel(stage.label, at + 0.75);
+        // Visible world width for the 1600×900 "slice" viewBox at this viewport.
+        const visibleW = Math.min(1600, (900 * window.innerWidth) / window.innerHeight);
+        const visibleL = (1600 - visibleW) / 2;
+        const wide = ["opening", "customers", "closing"];
+        const frame = (stage: (typeof storyStages)[number]) => {
           const focused = stage.focus;
-          const zoom = mobile
-            ? 0.54
-            : stage.scene === "opening"
-              ? stage.key === "signal"
-                ? 1.65
-                : 0.94
-              : !focused.length
-                ? 0.94
-                : focused.length === 1
-                  ? 1.15
-                  : 0.92;
           const center = focused.length
             ? focused.reduce(
                 (sum, id) => ({
@@ -142,28 +129,43 @@ export function Showcase() {
                 }),
                 { x: 0, y: 0 },
               )
-            : { x: 800, y: 450 };
+            : { x: 880, y: 452 };
+          if (reduce) return { scale: 1, x: 0, y: 0 };
+          if (mobile) return { scale: 0.54, x: 800 - center.x * 0.54, y: 65 - center.y * 0.54 };
+          if (stage.scene === "opening" && stage.key === "signal")
+            return { scale: 1.65, x: 800 - 640 * 1.65, y: 450 - 450 * 1.65 };
+          if (wide.includes(stage.scene)) {
+            const s = Math.min(1, (visibleW - 40) / 1400);
+            return { scale: s, x: 800 - 880 * s, y: 450 - 452 * s };
+          }
+          // Story frame: services + data tiers fill the visual area right of the reading column.
+          const left = visibleL + visibleW * 0.47;
+          const s = Math.min(0.95, (visibleL + visibleW - 24 - left) / 1010);
+          const drift = (center.x - 1000) * 0.05 * s;
+          return { scale: s, x: left - 540 * s - drift, y: 450 - 452 * s - (center.y - 450) * 0.04 };
+        };
+        storyStages.forEach((stage, index) => {
+          const at = index * STAGE_DURATION;
+          if (stage.label) tl.addLabel(stage.label, at + 0.75);
+          const focused = stage.focus;
+          tl.to(cam, { ...frame(stage), duration: 0.65 }, at);
           tl.to(
-            cam,
+            q(".net"),
             {
-              scale: reduce ? 1 : zoom,
-              x: reduce
-                ? 0
-                : (mobile
-                    ? 800
-                    : stage.scene === "opening" || stage.scene === "closing"
-                      ? 800
-                      : 1120) -
-                  center.x * zoom,
-              y: reduce ? 0 : (mobile ? 65 : 390) - center.y * zoom,
-              duration: 0.65,
+              opacity: stage.scene === "customers" ? 0.32 : stage.scene === "closing" ? 0.6 : 0.95,
+              duration: 0.5,
             },
             at,
           );
           tl.to(
-            q(".net"),
+            q(".obs-layer"),
             {
-              opacity: ["opening", "customers", "closing"].includes(stage.scene) ? 0.7 : 0.9,
+              autoAlpha:
+                stage.scene === "opening" || stage.scene === "challenge"
+                  ? 0
+                  : stage.scene === "customers"
+                    ? 0.3
+                    : 1,
               duration: 0.5,
             },
             at,
