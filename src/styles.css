@@ -289,3 +289,10 @@
 @media (prefers-reduced-motion: reduce) {
  .network-signal, .scan-ring, .feedback-loop, .flow-pulse, .obs-pulse { animation: none; }
 }
+
+/* Opening "ecosystem" beat: the full map gets its own moment. */
+.opening-copy, .topology-card { transition: opacity 0.5s ease, visibility 0.5s; }
+.topology-card { opacity: 0; visibility: hidden; }
+[data-active-block="ecosystem"] .opening-copy { opacity: 0; visibility: hidden; }
+[data-active-block="ecosystem"] .topology-card { opacity: 1; visibility: visible; }
+[data-active-block="ecosystem"] .opening-network { opacity: 1; }
