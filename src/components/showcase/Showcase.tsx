@@ -142,7 +142,7 @@ export function Showcase() {
           },
         });
         const cam = q("#cam");
-        gsap.set(cam, { x: mobile ? 0 : -170, y: mobile ? 0 : -10 });
+        gsap.set(cam, { x: 0, y: 0 });
         storyStages.forEach((stage, index) => {
           const at = index * STAGE_DURATION;
           if (stage.label) tl.addLabel(stage.label, at + 0.75);
