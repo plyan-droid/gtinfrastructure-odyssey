@@ -1,5 +1,5 @@
 import { intelligenceApproval } from "@/content/showcase";
-export type StoryStage = { scene: string; key: string; visual: string; focus: string[]; label?: string; point?: number };
+export type StoryStage = { scene: string; key: string; visual: string; focus: string[]; label?: string | undefined; point?: number | undefined };
 const stage = (scene: string, key: string, visual: string, focus: string[], point?: number, label?: string): StoryStage => ({ scene, key, visual, focus, point, label });
 export const storyStages: StoryStage[] = [
   stage("opening", "signal", "reveal", ["gateway"], undefined, "opening"),

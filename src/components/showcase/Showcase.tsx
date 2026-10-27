@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
-  challenge, closing, disclaimer, capabilities, investigation, modules, tools, customerStories, customers, options,
+  challenge, closing, disclaimer, capabilities, investigation, customerStories, customers, options,
   opening, details, diagram, ui, contextSections, type Detail, type Product,
 } from "@/content/showcase";
 import { alertNodes, byId, clusters, curve, ecoEdges, incidentId, latencyChain, mapEdges, nodes, tracePath } from "./network";
@@ -42,7 +42,8 @@ export function Showcase() {
   const [storyIndex, setStoryIndex] = useState(0);
   const [presenting, setPresenting] = useState(false);
   const [paused, setPaused] = useState(false);
-  const presentRef = useRef(false);
+  const pausedRef = useRef(false);
+  pausedRef.current = paused;
   const playbackRef = useRef<(time: number, exit?: boolean) => void>(() => {});
   const freezeRef = useRef<(frozen: boolean) => void>(() => {});
 
@@ -51,10 +52,12 @@ export function Showcase() {
     freezeRef.current(true);
     savedY.current = window.scrollY;
     triggerRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    if (root.current) root.current.dataset["dialogOpen"] = "true";
     setPanel(details[id]);
   }, []);
   const closePanel = useCallback(() => {
     setPanel(null);
+    if (root.current) root.current.dataset["dialogOpen"] = "false";
     window.scrollTo(0, savedY.current);
     freezeRef.current(false);
   }, []);
@@ -116,8 +119,7 @@ export function Showcase() {
           if (stage.visual !== "none") {
             tl.fromTo(q(`.visual-${stage.visual}, .network-${stage.visual}`), { autoAlpha: 0, y: reduce ? 0 : 12 }, { autoAlpha: 1, y: 0, duration: 0.5 }, at + 0.15);
             tl.fromTo(q(`.network-${stage.visual} .draw-line`), { strokeDasharray: 1, strokeDashoffset: reduce ? 0 : 1 }, { strokeDashoffset: 0, duration: 0.85 }, at + 0.2);
-            tl.fromTo(q(`.visual-${stage.visual} .request-dot`), { x: 0 }, { x: reduce ? 0 : 405, duration: 1.1, ease: "none" }, at + 0.3);
-            tl.fromTo(q(`.visual-${stage.visual} .scan-line`), { x: 0 }, { x: reduce ? 0 : 230, duration: 1 }, at + 0.3);
+
           }
         });
         tl.to({}, { duration: STAGE_DURATION }, (storyStages.length - 1) * STAGE_DURATION);
@@ -178,7 +180,7 @@ export function Showcase() {
     let frame = 0;
     const total = presentationStops.reduce((sum, stop) => sum + stop.seconds, 0);
     const tick = (now: number) => {
-      if (!paused) elapsed = (elapsed + (now - previous) / 1000) % total;
+      if (!pausedRef.current) elapsed = (elapsed + (now - previous) / 1000) % total;
       previous = now;
       let boundary = 0;
       const stop = presentationStops.find(stop => { boundary += stop.seconds; return elapsed < boundary; }) ?? presentationStops[0];
@@ -191,9 +193,9 @@ export function Showcase() {
     };
     frame = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frame);
-  }, [presenting, paused]);
+  }, [presenting]);
   const exitPresentation = useCallback(() => {
-    presentRef.current = false;
+    pausedRef.current = false;
     setPresenting(false);
     setPaused(false);
     playbackRef.current(0, true);
@@ -437,7 +439,7 @@ export function Showcase() {
         {/* Chrome */}
         <div className="chrome absolute left-6 top-6 eyebrow transition-opacity">{ui.brand}</div>
         <div className="chrome absolute right-6 top-5 flex items-center gap-2">
-          {presenting ? <><Button variant="outline" size="icon" aria-label={paused ? ui.resume : ui.pause} title={paused ? ui.resume : ui.pause} onClick={() => setPaused(value => !value)}>{paused ? <Play /> : <Pause />}</Button><Button variant="outline" size="icon" aria-label={ui.exitPresentation} title={ui.exitPresentation} onClick={exitPresentation}><X /></Button></> : <><Button variant="outline" className="font-mono text-xs" onClick={() => { savedY.current = window.scrollY; presentRef.current = true; setPresenting(true); }}><Play />{ui.present}</Button><SiteMap onJump={jumpTo} /></>}
+          {presenting ? <><Button variant="outline" size="icon" aria-label={paused ? ui.resume : ui.pause} title={paused ? ui.resume : ui.pause} onClick={() => setPaused(value => !value)}>{paused ? <Play /> : <Pause />}</Button><Button variant="outline" size="icon" aria-label={ui.exitPresentation} title={ui.exitPresentation} onClick={exitPresentation}><X /></Button></> : <><Button variant="outline" className="font-mono text-xs" onClick={() => { savedY.current = window.scrollY; pausedRef.current = false; setPresenting(true); }}><Play />{ui.present}</Button><SiteMap onJump={jumpTo} /></>}
         </div>
         <p className="story-disclaimer absolute bottom-4 left-6 max-w-md pr-28 text-[10px] leading-snug text-muted-foreground/70">{disclaimer}</p>
       </section>

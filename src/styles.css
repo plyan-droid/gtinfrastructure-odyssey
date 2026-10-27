@@ -107,7 +107,7 @@
 .detail-scroll { min-height: 0; overflow-y: auto; }
 /* One visibility owner per complete scene; inactive descendants cannot escape. */
 [data-scene] { opacity: 0; visibility: hidden; pointer-events: none; }
-[data-scene] .scene-el { visibility: inherit; }
+[data-scene] .scene-el { visibility: inherit !important; }
 [data-active-scene="opening"] [data-scene="opening"] { opacity: 1; visibility: visible; }
 [data-active-scene="challenge"] [data-scene="challenge"] { opacity: 1; visibility: visible; }
 [data-active-scene="foundations"] [data-scene="foundations"] { opacity: 1; visibility: visible; }
@@ -122,7 +122,7 @@
 [data-active-scene="closing"] [data-scene="closing"] { opacity: 1; visibility: visible; }
 
 [data-scene] .scene-el { pointer-events: auto; }
-[data-scene]:not(:hover) { /* no mouse-dependent scene visibility */ }
+
 .reading-points { position: relative; height: 9rem; flex-shrink: 0; }
 .reading-point { position: absolute; inset: 0; opacity: 0; visibility: hidden; pointer-events: none; }
 [data-active-scene="opening"][data-active-point="0"] [data-scene="opening"] [data-point="0"] { opacity: 1; visibility: visible; }
