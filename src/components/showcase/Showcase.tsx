@@ -9,6 +9,7 @@ import {
   customers,
   options,
   opening,
+  topology,
   details,
   diagram,
   ui,
@@ -394,6 +395,10 @@ export function Showcase() {
             {ui.discover}
             <ChevronDown className="h-4 w-4 animate-bounce motion-reduce:animate-none" />
           </button>
+          </div>
+          <div className="topology-card pointer-events-none absolute bottom-6 right-6 max-w-sm text-right [text-shadow:0_2px_12px_var(--background)] md:bottom-8 md:right-10">
+            <h2 className="text-xl font-semibold md:text-2xl">{topology.headline}</h2>
+            <p className="mt-2 text-xs text-foreground/80 md:text-sm">{topology.sub}</p>
           </div>
         </div>
 
