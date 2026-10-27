@@ -130,8 +130,8 @@ export function Showcase() {
             : { x: 880, y: 452 };
           if (reduce) return { scale: 1, x: 0, y: 0 };
           if (mobile && stage.key === "ecosystem") {
-            const s = (visibleW - 20) / 1300;
-            return { scale: s, x: 800 - 880 * s, y: 330 - 452 * s };
+            // Readable zoom on phones; the camera then pans across the tiers.
+            return { scale: MOBILE_TOUR_SCALE, x: 800 - 520 * MOBILE_TOUR_SCALE, y: 330 - 452 * MOBILE_TOUR_SCALE };
           }
           if (mobile) return { scale: 0.54, x: 800 - center.x * 0.54, y: 65 - center.y * 0.54 };
           if (wide.includes(stage.scene)) {
@@ -150,6 +150,8 @@ export function Showcase() {
           if (stage.label) tl.addLabel(stage.label, at + 0.75);
           const focused = stage.focus;
           tl.to(cam, { ...frame(stage), duration: 0.65 }, at);
+          if (mobile && !reduce && stage.key === "ecosystem")
+            tl.to(cam, { x: 800 - 1240 * MOBILE_TOUR_SCALE, duration: 1 }, at + 0.7);
           tl.to(
             q(".net"),
             {
