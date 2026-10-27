@@ -116,9 +116,9 @@ export function Showcase() {
             tl.to(q(`.visual-${storyStages[index-1]?.visual}, .network-${storyStages[index-1]?.visual}`), { autoAlpha: 0, duration: 0.15 }, at);
           }
           tl.to(q(".node-label"), { autoAlpha: ["opening", "customers", "closing"].includes(stage.scene) ? 0 : 0.7, duration: 0.3 }, at);
-          if (stage.visual !== "none") {
-            tl.fromTo(q(`.visual-${stage.visual}, .network-${stage.visual}`), { autoAlpha: 0, y: reduce ? 0 : 12 }, { autoAlpha: 1, y: 0, duration: 0.5 }, at + 0.15);
-            tl.fromTo(q(`.network-${stage.visual} .draw-line`), { strokeDasharray: 1, strokeDashoffset: reduce ? 0 : 1 }, { strokeDashoffset: 0, duration: 0.85 }, at + 0.2);
+          if (stage.visual !== "none" && (index === 0 || storyStages[index - 1]?.visual !== stage.visual)) {
+            tl.fromTo(q(`.visual-${stage.visual}, .network-${stage.visual}`), { autoAlpha: 0, y: reduce ? 0 : 12 }, { autoAlpha: 1, y: 0, duration: 0.5, immediateRender: false }, at + 0.15);
+            tl.fromTo(q(`.network-${stage.visual} .draw-line`), { strokeDasharray: 1, strokeDashoffset: reduce ? 0 : 1 }, { strokeDashoffset: 0, duration: 0.85, immediateRender: false }, at + 0.2);
 
           }
         });
