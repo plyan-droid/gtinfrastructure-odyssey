@@ -22,8 +22,8 @@ export function TopologyMap() {
         {mapCopy.tiers.map((t, i) => (
           <text
             key={t}
-            x={[330, 870, 1290][i]}
-            y="104"
+            x={[330, 870, 1400][i]}
+            y={i === 2 ? 196 : 104}
             textAnchor="middle"
             fontSize="13"
             letterSpacing="4"
@@ -61,10 +61,11 @@ export function TopologyMap() {
         <path className="obs-pulse" d="M240 840H1520" stroke="var(--primary)" strokeWidth="2" />
         <text
           x="880"
-          y="858"
+          y="822"
           textAnchor="middle"
-          fontSize="11"
-          letterSpacing="5"
+          fontSize="16"
+          fontWeight="600"
+          letterSpacing="6"
           fill="var(--primary)"
           fontFamily={mono}
         >
