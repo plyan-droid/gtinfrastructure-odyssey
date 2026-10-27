@@ -89,7 +89,7 @@
 @utility stage-vignette {
   background:
     radial-gradient(ellipse 60% 50% at 60% 45%, color-mix(in oklab, var(--violet) 14%, transparent), transparent 70%),
-    radial-gradient(ellipse 80% 70% at 50% 50%, transparent 40%, var(--background) 100%);
+    radial-gradient(ellipse 80% 70% at 50% 50%, transparent 45%, color-mix(in oklab, var(--background) 55%, transparent) 100%);
 }
 
 @utility eyebrow {
