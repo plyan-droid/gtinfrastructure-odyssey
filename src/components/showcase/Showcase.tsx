@@ -132,7 +132,7 @@ export function Showcase() {
           if (reduce) return { scale: 1, x: 0, y: 0 };
           if (mobile && stage.key === "ecosystem") {
             // Readable zoom on phones; the camera then pans across the tiers.
-            return { scale: MOBILE_TOUR_SCALE, x: 800 - 520 * MOBILE_TOUR_SCALE, y: 330 - 452 * MOBILE_TOUR_SCALE };
+            return { scale: MOBILE_TOUR_SCALE, x: 800 - 430 * MOBILE_TOUR_SCALE, y: 330 - 452 * MOBILE_TOUR_SCALE };
           }
           if (mobile) return { scale: 0.54, x: 800 - center.x * 0.54, y: 65 - center.y * 0.54 };
           if (wide.includes(stage.scene)) {
