@@ -330,7 +330,11 @@ export function NetworkVisuals() {
             {slot && (
               <>
                 <path
-                  d={`M${slot.from[0]} ${slot.from[1]}L${slot.to[0]} ${slot.to[1]}`}
+                  d={
+                    slot.via
+                      ? `M${slot.from[0]} ${slot.from[1]}L${slot.via[0]} ${slot.via[1]}L${slot.to[0]} ${slot.to[1]}`
+                      : `M${slot.from[0]} ${slot.from[1]}L${slot.to[0]} ${slot.to[1]}`
+                  }
                   stroke="var(--primary)"
                   strokeOpacity="0.6"
                 />
