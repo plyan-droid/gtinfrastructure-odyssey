@@ -105,13 +105,13 @@ export function Showcase() {
           const focused = stage.focus;
           const zoom = mobile ? 0.54 : stage.scene === "opening" ? (stage.key === "signal" ? 1.65 : 0.94) : !focused.length ? 0.94 : focused.length === 1 ? 1.15 : 0.92;
           const center = focused.length ? focused.reduce((sum, id) => ({ x: sum.x + nd(id).x / focused.length, y: sum.y + nd(id).y / focused.length }), { x: 0, y: 0 }) : { x: 800, y: 450 };
-          tl.to(cam, { scale: reduce ? 1 : zoom, x: reduce ? 0 : (mobile ? 800 : stage.scene === "opening" || stage.scene === "closing" ? 800 : 1120) - center.x * zoom, y: reduce ? 0 : (mobile ? 185 : 390) - center.y * zoom, duration: 0.65 }, at);
-          tl.to(q(".net"), { opacity: ["opening", "customers", "closing"].includes(stage.scene) ? 0.16 : 0.65, duration: 0.5 }, at);
+          tl.to(cam, { scale: reduce ? 1 : zoom, x: reduce ? 0 : (mobile ? 800 : stage.scene === "opening" || stage.scene === "closing" ? 800 : 1120) - center.x * zoom, y: reduce ? 0 : (mobile ? 65 : 390) - center.y * zoom, duration: 0.65 }, at);
+          tl.to(q(".net"), { opacity: ["opening", "customers", "closing"].includes(stage.scene) ? 0.3 : 0.65, duration: 0.5 }, at);
           tl.to(q(".opening-shield"), { autoAlpha: stage.scene === "opening" || stage.scene === "closing" ? 1 : 0, duration: 0.45 }, at);
           tl.to(q(".reading-shield-left"), { autoAlpha: ["opening", "customers", "options", "closing"].includes(stage.scene) ? 0 : 1, duration: 0.45 }, at);
           tl.to(q(".reading-shield-wide"), { autoAlpha: ["customers", "options"].includes(stage.scene) ? 1 : 0, duration: 0.45 }, at);
           nodes.forEach(n => tl.to(q(`.node-${n.id}`), { opacity: !focused.length ? 0.8 : focused.includes(n.id) ? 1 : 0.12, duration: 0.5 }, at));
-          ecoEdges.forEach(([a,b]) => tl.to(q(`#e-${edgeKey(a,b)}`), { stroke: ["slowdown", "cause"].includes(stage.visual) ? "var(--warn)" : "var(--healthy)", strokeOpacity: focused.includes(a) && focused.includes(b) ? 0.85 : 0.05, strokeWidth: focused.includes(a) && focused.includes(b) ? 2.5 : 1, duration: 0.55 }, at));
+          ecoEdges.forEach(([a,b]) => tl.to(q(`#e-${edgeKey(a,b)}`), { stroke: ["slowdown", "cause"].includes(stage.visual) ? "var(--warn)" : "var(--healthy)", strokeOpacity: !focused.length ? 0.35 : focused.includes(a) && focused.includes(b) ? 0.85 : 0.05, strokeWidth: focused.includes(a) && focused.includes(b) ? 2.5 : 1, duration: 0.55 }, at));
           tl.to(q(".inc-ring"), { autoAlpha: stage.visual === "slowdown" ? 1 : 0, duration: 0.4 }, at);
           tl.to(q(".db-ring"), { autoAlpha: stage.visual === "cause" ? 1 : 0, duration: 0.4 }, at);
           if (index > 0 && storyStages[index-1]?.visual !== stage.visual) {
