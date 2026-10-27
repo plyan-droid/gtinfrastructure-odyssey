@@ -65,7 +65,7 @@
   --opening-readability: radial-gradient(ellipse 68% 72% at 50% 50%, var(--background) 52%, color-mix(in oklab, var(--background) 98%, transparent) 72%, transparent 100%);
   --reading-left: linear-gradient(90deg, var(--background) 0%, var(--background) 44%, color-mix(in oklab, var(--background) 96%, transparent) 51%, transparent 74%);
   --reading-wide: linear-gradient(90deg, var(--background) 0%, color-mix(in oklab, var(--background) 97%, transparent) 72%, color-mix(in oklab, var(--background) 75%, transparent) 100%);
-  --reading-mobile: linear-gradient(180deg, color-mix(in oklab, var(--background) 85%, transparent), var(--background) 30%, var(--background) 88%, color-mix(in oklab, var(--background) 90%, transparent));
+  --reading-mobile: linear-gradient(180deg, color-mix(in oklab, var(--background) 25%, transparent), color-mix(in oklab, var(--background) 40%, transparent) 24%, var(--background) 34%, var(--background) 88%, color-mix(in oklab, var(--background) 90%, transparent));
 }
 
 @layer base {
@@ -248,7 +248,7 @@
  .narrative-scene .reading-point h3 { font-size: 1.05rem; }
  .narrative-scene .reading-point p { font-size: 0.8rem; }
  .narrative-scene .reading-point p.hidden { display: block; }
- .context-visual { top: 10%; bottom: auto; right: 5%; width: 90%; }
+ .context-visual { top: 22%; bottom: auto; right: 5%; width: 90%; }
  .story-full { padding-top: 5rem; padding-bottom: 5.5rem; }
  .scene-customers h2, .scene-options h2 { font-size: 1.65rem; }
  .scene-customers > p, .scene-options > p { font-size: 0.75rem; margin-top: 0.5rem; }

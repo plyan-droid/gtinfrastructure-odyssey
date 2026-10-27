@@ -74,6 +74,7 @@ export function Showcase() {
       const { ScrollTrigger } = await import("gsap/ScrollTrigger");
       if (cancelled || !root.current) return;
       gsap.registerPlugin(ScrollTrigger);
+      const mobile = window.matchMedia("(max-width: 767px)").matches;
       const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
       ctx = gsap.context(() => {
@@ -93,6 +94,7 @@ export function Showcase() {
             root.current.dataset["activeBlock"] = active.key;
             root.current.dataset["activePoint"] = String(active.point ?? -1);
             root.current.dataset["visual"] = active.visual;
+            root.current.querySelectorAll<HTMLElement>("[data-scene]").forEach(element => { element.inert = element.dataset["scene"] !== active.scene; });
           },
           scrollTrigger: { trigger: q(".stage")[0] as HTMLElement, start: "top top", end: `+=${SCROLL_LEN}`, pin: true, scrub: reduce ? true : 0.35 },
         });
@@ -101,9 +103,9 @@ export function Showcase() {
           const at = index * STAGE_DURATION;
           if (stage.label) tl.addLabel(stage.label, at + 0.75);
           const focused = stage.focus;
-          const zoom = stage.scene === "opening" ? (stage.key === "signal" ? 1.65 : 0.94) : !focused.length ? 0.94 : focused.length === 1 ? 1.15 : 0.92;
+          const zoom = mobile ? 0.54 : stage.scene === "opening" ? (stage.key === "signal" ? 1.65 : 0.94) : !focused.length ? 0.94 : focused.length === 1 ? 1.15 : 0.92;
           const center = focused.length ? focused.reduce((sum, id) => ({ x: sum.x + nd(id).x / focused.length, y: sum.y + nd(id).y / focused.length }), { x: 0, y: 0 }) : { x: 800, y: 450 };
-          tl.to(cam, { scale: reduce ? 1 : zoom, x: reduce ? 0 : (stage.scene === "opening" || stage.scene === "closing" ? 800 : 1120) - center.x * zoom, y: reduce ? 0 : 390 - center.y * zoom, duration: 0.65 }, at);
+          tl.to(cam, { scale: reduce ? 1 : zoom, x: reduce ? 0 : (mobile ? 800 : stage.scene === "opening" || stage.scene === "closing" ? 800 : 1120) - center.x * zoom, y: reduce ? 0 : (mobile ? 185 : 390) - center.y * zoom, duration: 0.65 }, at);
           tl.to(q(".net"), { opacity: ["opening", "customers", "closing"].includes(stage.scene) ? 0.16 : 0.65, duration: 0.5 }, at);
           tl.to(q(".opening-shield"), { autoAlpha: stage.scene === "opening" || stage.scene === "closing" ? 1 : 0, duration: 0.45 }, at);
           tl.to(q(".reading-shield-left"), { autoAlpha: ["opening", "customers", "options", "closing"].includes(stage.scene) ? 0 : 1, duration: 0.45 }, at);
@@ -124,8 +126,12 @@ export function Showcase() {
         });
         tl.to({}, { duration: STAGE_DURATION }, (storyStages.length - 1) * STAGE_DURATION);
         let savedTime = 0;
+        let lastPlaybackTime = -1;
+        let playbackTween: { kill: () => void } | undefined;
         playbackRef.current = (time, exit) => {
           if (exit) {
+            playbackTween?.kill();
+            lastPlaybackTime = -1;
             tl.scrollTrigger?.enable(false, false);
             window.scrollTo(0, savedY.current);
             tl.scrollTrigger?.update();
@@ -133,7 +139,11 @@ export function Showcase() {
           }
           tl.scrollTrigger?.getTween()?.pause();
           tl.scrollTrigger?.disable(false);
-          tl.time(time, false);
+          if (lastPlaybackTime !== time) {
+            playbackTween?.kill();
+            lastPlaybackTime = time;
+            playbackTween = gsap.to(tl, { time, duration: reduce ? 0 : 0.65, ease: "power2.inOut" });
+          }
         };
         freezeRef.current = (freeze) => {
           const trigger = tl.scrollTrigger;
