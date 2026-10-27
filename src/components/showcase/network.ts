@@ -10,7 +10,7 @@ export type Node = {
   y: number;
 };
 
-export const CARD = { w: 168, h: 56 };
+export const CARD = { w: 184, h: 56 };
 export const CLOUD = { w: 260, h: 200 };
 
 export const nodes: Node[] = [

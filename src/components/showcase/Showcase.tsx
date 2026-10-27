@@ -233,14 +233,6 @@ export function Showcase() {
               at,
             );
           }
-          tl.to(
-            q(".node-label"),
-            {
-              autoAlpha: ["opening", "customers", "closing"].includes(stage.scene) ? 0 : 0.7,
-              duration: 0.3,
-            },
-            at,
-          );
           if (
             stage.visual !== "none" &&
             (index === 0 || storyStages[index - 1]?.visual !== stage.visual)
@@ -365,8 +357,6 @@ export function Showcase() {
     return () => window.removeEventListener("keydown", onKey);
   }, [presenting, exitPresentation]);
 
-  const hub = { x: 800, y: 430 };
-  const mono = "var(--font-mono)";
   const story = customerStories[storyIndex] ?? customerStories[0];
   if (!story) return null;
 
@@ -533,7 +523,6 @@ export function Showcase() {
             )}
           </div>
         ))}
-        <ContextVisual />
 
         <div
           data-scene="customers"

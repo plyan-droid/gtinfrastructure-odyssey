@@ -23,9 +23,9 @@ export function TopologyMap() {
           <text
             key={t}
             x={[330, 870, 1400][i]}
-            y="118"
+            y="76"
             textAnchor="middle"
-            fontSize="12"
+            fontSize="13"
             letterSpacing="4"
             fill="var(--muted-foreground)"
           >
@@ -35,7 +35,7 @@ export function TopologyMap() {
         {[490, 1232].map((x) => (
           <path
             key={x}
-            d={`M${x} 140V760`}
+            d={`M${x} 96V820`}
             stroke="var(--foreground)"
             strokeOpacity="0.07"
             strokeDasharray="2 8"
@@ -47,9 +47,9 @@ export function TopologyMap() {
       <g className="obs-layer">
         <rect
           x="200"
-          y="88"
+          y="44"
           width="1360"
-          height="740"
+          height="816"
           rx="28"
           fill="none"
           stroke="var(--primary)"
@@ -57,11 +57,11 @@ export function TopologyMap() {
           strokeDasharray="1 7"
           strokeLinecap="round"
         />
-        <path d="M240 800H1520" stroke="var(--primary)" strokeOpacity="0.45" />
-        <path className="obs-pulse" d="M240 800H1520" stroke="var(--primary)" strokeWidth="2" />
+        <path d="M240 840H1520" stroke="var(--primary)" strokeOpacity="0.45" />
+        <path className="obs-pulse" d="M240 840H1520" stroke="var(--primary)" strokeWidth="2" />
         <text
           x="880"
-          y="822"
+          y="858"
           textAnchor="middle"
           fontSize="11"
           letterSpacing="5"
@@ -73,13 +73,13 @@ export function TopologyMap() {
         {services.map((s) => (
           <g key={s.id} className={`obs-sensor sensor-${s.id}`}>
             <path
-              d={`M${s.x} ${s.y + CARD.h / 2 + 4}V800`}
+              d={`M${s.x} ${s.y + CARD.h / 2 + 4}V840`}
               stroke="var(--primary)"
               strokeOpacity="0.18"
               strokeDasharray="2 5"
             />
             <circle cx={s.x} cy={s.y + CARD.h / 2 + 4} r="3" fill="var(--primary)" />
-            <circle cx={s.x} cy="800" r="2.5" fill="var(--primary)" />
+            <circle cx={s.x} cy="840" r="2.5" fill="var(--primary)" />
           </g>
         ))}
       </g>
@@ -201,7 +201,7 @@ export function TopologyMap() {
             className="node-name"
             x={s.x - CARD.w / 2 + 32}
             y={s.y + 4}
-            fontSize="13"
+            fontSize="14"
             fill="var(--foreground)"
             fontFamily={mono}
           >
@@ -215,9 +215,9 @@ export function TopologyMap() {
 
 type Slot = { x: number; y: number; from: [number, number]; to: [number, number] };
 const slots: Record<string, Slot> = {
-  cat: { x: 690, y: 140, from: [880, 262], to: [900, 302] },
-  inv: { x: 960, y: 140, from: [1270, 230], to: [1316, 312] },
-  low: { x: 900, y: 696, from: [1210, 720], to: [1290, 690] },
+  cat: { x: 670, y: 96, from: [860, 216], to: [900, 302] },
+  inv: { x: 1010, y: 96, from: [1250, 216], to: [1400, 302] },
+  low: { x: 880, y: 694, from: [1200, 720], to: [1290, 690] },
 };
 const slotFor: Record<string, keyof typeof slots> = {
   dependencies: "cat", slowdown: "cat", repeated: "cat", baseline: "cat", automation: "cat",
@@ -334,7 +334,7 @@ export function NetworkVisuals() {
                   strokeOpacity="0.6"
                 />
                 <circle cx={slot.to[0]} cy={slot.to[1]} r="3" fill="var(--primary)" />
-                <foreignObject x={slot.x} y={slot.y} width="310" height="124">
+                <foreignObject x={slot.x} y={slot.y} width="320" height="120">
                   <div className="hud-panel">
                     <p className="hud-title">
                       <span className={kind === "warn" ? "hud-dot warn" : "hud-dot"} />
