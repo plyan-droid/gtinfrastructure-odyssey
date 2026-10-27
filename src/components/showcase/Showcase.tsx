@@ -21,7 +21,7 @@ import { ReadMorePanel } from "./ReadMorePanel";
 import { SiteMap } from "./SiteMap";
 import { Button } from "@/components/ui/button";
 import { NetworkVisuals, TopologyMap } from "./ContextVisual";
-import { storyStages, STAGE_DURATION, stageAtTime, presentationStops } from "./story-stages";
+import { storyStages, STAGE_DURATION, stageAtTime } from "./story-stages";
 import { ArrowRight, ArrowLeft, ExternalLink, ChevronDown, QrCode } from "lucide-react";
 
 const SCROLL_LEN = 16000; // px of scroll mapped to the full story
