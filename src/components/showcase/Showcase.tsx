@@ -117,9 +117,8 @@ export function Showcase() {
           ),
           { autoAlpha: 0 },
         );
-        gsap.set(q(".network-layer"), { autoAlpha: 0 });
         gsap.set(q(".node-label"), { autoAlpha: 0 });
-        gsap.set(q(".net"), { opacity: 0.22 });
+        gsap.set(q(".net"), { opacity: 0.55 });
         let frozen = false;
         const tl = gsap.timeline({
           defaults: { ease: "power2.inOut" },
@@ -187,7 +186,7 @@ export function Showcase() {
           tl.to(
             q(".net"),
             {
-              opacity: ["opening", "customers", "closing"].includes(stage.scene) ? 0.3 : 0.65,
+              opacity: ["opening", "customers", "closing"].includes(stage.scene) ? 0.55 : 0.9,
               duration: 0.5,
             },
             at,
@@ -218,7 +217,7 @@ export function Showcase() {
           nodes.forEach((n) =>
             tl.to(
               q(`.node-${n.id}`),
-              { opacity: !focused.length ? 0.8 : focused.includes(n.id) ? 1 : 0.12, duration: 0.5 },
+              { opacity: !focused.length ? 0.9 : focused.includes(n.id) ? 1 : 0.35, duration: 0.5 },
               at,
             ),
           );
@@ -230,10 +229,10 @@ export function Showcase() {
                   ? "var(--warn)"
                   : "var(--healthy)",
                 strokeOpacity: !focused.length
-                  ? 0.35
+                  ? 0.5
                   : focused.includes(a) && focused.includes(b)
-                    ? 0.85
-                    : 0.05,
+                    ? 0.9
+                    : 0.18,
                 strokeWidth: focused.includes(a) && focused.includes(b) ? 2.5 : 1,
                 duration: 0.55,
               },

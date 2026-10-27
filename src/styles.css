@@ -186,8 +186,8 @@
 [data-active-scene="closing"][data-active-point="3"] [data-scene="closing"] [data-point="3"] { opacity: 1; visibility: visible; }
 [data-active-scene="closing"][data-active-point="4"] [data-scene="closing"] [data-point="4"] { opacity: 1; visibility: visible; }
 
-.opening-network { opacity: 0.22; }
-.node-label, .network-layer, .visual-layer { visibility: hidden; }
+.opening-network { opacity: 0.55; }
+.node-label, .visual-layer { visibility: hidden; }
 .opening-shield { background: var(--opening-readability); }
 .reading-shield-left { background: var(--reading-left); visibility: hidden; }
 .reading-shield-wide { background: var(--reading-wide); visibility: hidden; }
@@ -201,9 +201,6 @@
 [data-active-scene="customers"] .context-visual,
 [data-active-scene="options"] .context-visual,
 [data-active-scene="closing"] .context-visual { visibility: hidden; }
-[data-active-scene="opening"] .network-layer,
-[data-active-scene="customers"] .network-layer,
-[data-active-scene="closing"] .network-layer { opacity: 0.2; }
 .eyebrow { letter-spacing: 0; }
 .network-signal { animation: signal-flow 3s linear infinite; }
 .scan-ring { transform-box: fill-box; transform-origin: center; animation: network-scan 12s linear infinite; }
