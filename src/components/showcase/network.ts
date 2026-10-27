@@ -1,91 +1,68 @@
 import { serviceLabels } from "@/content/showcase";
-// Fictional ecosystem. (x,y) = ecosystem layout, (mx,my) = dependency-map layout.
+// Fictional three-tier ecosystem (1600×900 world). Never a depiction of real agency architecture.
+export type Tier = "access" | "services" | "data";
 export type Node = {
   id: string;
   label: string;
   kind: "app" | "svc" | "db" | "cloud" | "queue";
+  tier: Tier;
   x: number;
   y: number;
-  mx: number;
-  my: number;
 };
 
+export const CARD = { w: 168, h: 56 };
+export const CLOUD = { w: 260, h: 200 };
+
 export const nodes: Node[] = [
-  { id: "web", label: serviceLabels.web, kind: "app", x: 260, y: 250, mx: 300, my: 300 },
-  { id: "mobile", label: serviceLabels.mobile, kind: "app", x: 230, y: 580, mx: 300, my: 560 },
-  { id: "gateway", label: serviceLabels.gateway, kind: "svc", x: 520, y: 410, mx: 560, my: 430 },
-  { id: "checkout", label: serviceLabels.checkout, kind: "svc", x: 790, y: 230, mx: 820, my: 300 },
-  { id: "catalog", label: serviceLabels.catalog, kind: "svc", x: 800, y: 620, mx: 820, my: 560 },
-  {
-    id: "payments",
-    label: serviceLabels.payments,
-    kind: "svc",
-    x: 1080,
-    y: 170,
-    mx: 1080,
-    my: 220,
-  },
-  { id: "orders", label: serviceLabels.orders, kind: "queue", x: 1090, y: 430, mx: 1080, my: 430 },
-  {
-    id: "inventory",
-    label: serviceLabels.inventory,
-    kind: "db",
-    x: 1100,
-    y: 690,
-    mx: 1080,
-    my: 640,
-  },
-  { id: "cloudA", label: serviceLabels.cloudA, kind: "cloud", x: 1370, y: 290, mx: 1330, my: 320 },
-  { id: "cloudB", label: serviceLabels.cloudB, kind: "cloud", x: 1370, y: 600, mx: 1330, my: 560 },
+  { id: "web", label: serviceLabels.web, kind: "app", tier: "access", x: 330, y: 250 },
+  { id: "mobile", label: serviceLabels.mobile, kind: "app", tier: "access", x: 330, y: 450 },
+  { id: "checkout", label: serviceLabels.checkout, kind: "svc", tier: "access", x: 330, y: 650 },
+  { id: "gateway", label: serviceLabels.gateway, kind: "svc", tier: "services", x: 640, y: 450 },
+  { id: "catalog", label: serviceLabels.catalog, kind: "svc", tier: "services", x: 900, y: 330 },
+  { id: "orders", label: serviceLabels.orders, kind: "queue", tier: "services", x: 900, y: 570 },
+  { id: "payments", label: serviceLabels.payments, kind: "svc", tier: "services", x: 1100, y: 640 },
+  { id: "inventory", label: serviceLabels.inventory, kind: "db", tier: "data", x: 1400, y: 330 },
+  { id: "cloudA", label: serviceLabels.cloudA, kind: "cloud", tier: "data", x: 1400, y: 320 },
+  { id: "cloudB", label: serviceLabels.cloudB, kind: "cloud", tier: "data", x: 1400, y: 590 },
 ];
 
 export const byId = Object.fromEntries(nodes.map((n) => [n.id, n])) as Record<string, Node>;
 
+// Plausible request and data flows between the tiers.
 export const ecoEdges: [string, string][] = [
   ["web", "gateway"],
   ["mobile", "gateway"],
-  ["gateway", "checkout"],
+  ["checkout", "gateway"],
   ["gateway", "catalog"],
-  ["orders", "payments"],
-  ["gateway", "checkout"],
-  ["catalog", "inventory"],
-  ["payments", "inventory"],
-  ["payments", "cloudA"],
-  ["orders", "cloudA"],
-  ["inventory", "cloudB"],
   ["catalog", "orders"],
+  ["orders", "payments"],
+  ["catalog", "inventory"],
+  ["payments", "cloudB"],
 ];
 
-export const mapEdges: [string, string][] = [
-  ["web", "gateway"],
-  ["mobile", "gateway"],
-  ["gateway", "checkout"],
-  ["gateway", "catalog"],
-  ["orders", "payments"],
-  ["gateway", "checkout"],
-  ["catalog", "inventory"],
-  ["catalog", "orders"],
-  ["payments", "cloudA"],
-  ["inventory", "cloudB"],
-];
-
-// The single fictional incident used across the whole story.
 export const incidentId = "catalog";
-// Elastic demo: trace followed through the ecosystem layout.
 export const tracePath = ["web", "gateway", "catalog", "inventory"];
-// Dynatrace demo: latency chain in the dependency-map layout.
-export const latencyChain = ["gateway", "catalog", "inventory"];
-// Nodes that raise warnings in the Dynatrace "before" view.
-export const alertNodes = ["web", "gateway", "checkout", "catalog", "orders"];
-// Challenge scene: where each signal type clusters (SVG coords).
-export const clusters = [
-  { key: "LOGS", x: 330, y: 200, from: ["web", "mobile", "gateway"] },
-  { key: "METRICS", x: 1240, y: 200, from: ["payments", "checkout", "cloudA"] },
-  { key: "TRACES", x: 1000, y: 780, from: ["catalog", "inventory", "orders"] },
-];
 
-export function curve(a: { x: number; y: number }, b: { x: number; y: number }) {
-  const mx = (a.x + b.x) / 2;
-  const my = (a.y + b.y) / 2 - (b.x - a.x) * 0.12;
-  return `M${a.x},${a.y} Q${mx},${my} ${b.x},${b.y}`;
+type P = { x: number; y: number };
+function half(n: Node) {
+  return n.kind === "cloud" ? { w: CLOUD.w / 2, h: CLOUD.h / 2 } : { w: CARD.w / 2, h: CARD.h / 2 };
+}
+/** Smooth orthogonal link from card edge to card edge, so lines never run under labels. */
+export function link(a: Node, b: Node) {
+  const ha = half(a);
+  const hb = half(b);
+  const vertical = Math.abs(a.x - b.x) < 40;
+  let s: P, e: P;
+  if (vertical) {
+    const dir = b.y > a.y ? 1 : -1;
+    s = { x: a.x, y: a.y + dir * ha.h };
+    e = { x: b.x, y: b.y - dir * hb.h };
+    const my = (s.y + e.y) / 2;
+    return `M${s.x},${s.y} C${s.x},${my} ${e.x},${my} ${e.x},${e.y}`;
+  }
+  const dir = b.x > a.x ? 1 : -1;
+  s = { x: a.x + dir * ha.w, y: a.y };
+  e = { x: b.x - dir * hb.w, y: b.y };
+  const mx = (s.x + e.x) / 2;
+  return `M${s.x},${s.y} C${mx},${s.y} ${mx},${e.y} ${e.x},${e.y}`;
 }
