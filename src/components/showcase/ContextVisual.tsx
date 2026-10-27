@@ -23,7 +23,7 @@ export function TopologyMap() {
           <text
             key={t}
             x={[330, 870, 1400][i]}
-            y={i === 2 ? 196 : 104}
+            y={196}
             textAnchor="middle"
             fontSize="13"
             letterSpacing="4"
