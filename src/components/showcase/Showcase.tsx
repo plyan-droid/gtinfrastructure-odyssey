@@ -9,7 +9,6 @@ import {
   customers,
   options,
   opening,
-  topology,
   details,
   diagram,
   ui,
@@ -395,15 +394,6 @@ export function Showcase() {
             {ui.discover}
             <ChevronDown className="h-4 w-4 animate-bounce motion-reduce:animate-none" />
           </button>
-          </div>
-          <div className="topology-card absolute inset-x-0 bottom-28 mx-auto max-w-xl px-6 text-center md:inset-x-auto md:bottom-8 md:left-1/2 md:mx-0 md:max-w-lg md:-translate-x-1/2 md:rounded-2xl md:border md:border-border md:bg-card/90 md:p-4 md:backdrop-blur">
-            <h2 className="text-xl font-semibold tracking-tight md:text-2xl">{topology.headline}</h2>
-            <p className="mt-1 text-xs text-foreground/80 md:text-sm">{topology.sub}</p>
-            <ul className="mt-2 flex flex-wrap justify-center gap-2 font-mono text-[11px] text-muted-foreground">
-              {topology.tiers.map((t) => (
-                <li key={t} className="whitespace-nowrap rounded-full border border-border px-3 py-1">{t}</li>
-              ))}
-            </ul>
           </div>
         </div>
 
