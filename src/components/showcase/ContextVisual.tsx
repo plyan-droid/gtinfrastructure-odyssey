@@ -22,7 +22,7 @@ export function TopologyMap() {
         {mapCopy.tiers.map((t, i) => (
           <text
             key={t}
-            x={[330, 870, 1400][i]}
+            x={[330, 870, 1355][i]}
             y="104"
             textAnchor="middle"
             fontSize="13"
