@@ -52,7 +52,7 @@ const popupContent: Detail[] = [
         },
         {
           heading: "For engineering teams",
-          body: "Baseline configurations are delivered as deployable configuration-as-code through a pipeline when a project is onboarded — including ingest pipelines, data schemas, agent configuration and monitoring connectivity. Access uses TechPass, with SEED for secure device access.",
+          body: "Baseline configurations are delivered as deployable configuration-as-code through a pipeline when a project is onboarded, including ingest pipelines, data schemas, agent configuration and monitoring connectivity. Access uses TechPass, with SEED for secure device access.",
         },
       ],
     },
@@ -68,19 +68,19 @@ const popupContent: Detail[] = [
           body: "Modern digital services generate different types of operational information.",
         },
         {
-          heading: "Logs — What happened?",
+          heading: "Logs: What happened?",
           body: "Event records help engineers examine system activities and errors.",
         },
         {
-          heading: "Metrics — How is it performing?",
+          heading: "Metrics: How is it performing?",
           body: "Measurements such as response time, error rate and resource utilisation help teams assess system health.",
         },
         {
-          heading: "Traces — Where did the request go?",
+          heading: "Traces: Where did the request go?",
           body: "Distributed traces help engineers follow requests across appropriately instrumented services.",
         },
         {
-          heading: "Connected Context — How are systems related?",
+          heading: "Connected Context: How are systems related?",
           body: "Relevant dependency information helps teams understand how different components interact.\n\nTogether, these signals can provide a more complete view of complex digital services and support incident investigation.\n\nThe available features depend on the observability technology and configuration.",
         },
       ],
@@ -103,10 +103,10 @@ const popupContent: Detail[] = [
     id: "sora",
     eyebrow: "SORA",
     readMore: {
-      title: "SORA — From Guidance to Running Configuration.",
+      title: "SORA: From Guidance to Running Configuration.",
       sections: [
         {
-          heading: "SORA — From Guidance to Running Configuration.",
+          heading: "SORA: From Guidance to Running Configuration.",
           body: "StackOps Resiliency Accelerator helps streamline monitoring setup through structured, reusable workflows.",
         },
         {
@@ -127,10 +127,10 @@ const popupContent: Detail[] = [
         },
         {
           heading: "For leaders",
-          body: "Today, every team often builds monitoring from scratch — the same work repeated across teams and accounts, with gaps that go unnoticed and setups that are hard to audit or undo. SORA turns that into one repeatable, reviewable workflow.",
+          body: "Today, every team often builds monitoring from scratch, the same work repeated across teams and accounts, with gaps that go unnoticed and setups that are hard to audit or undo. SORA turns that into one repeatable, reviewable workflow.",
         },
         {
-          heading: "For engineering teams — manual vs with SORA",
+          heading: "For engineering teams: manual vs with SORA",
           body: "- Find gaps: audit each account by hand → automated discovery scan.\n\n- Ingestion: built separately by every team → one guided deploy.\n\n- Credentials: copied into every app → held in one place.\n\n- Private networking: wired per account → set up for you.\n\n- Clean-up: leftover resources → one-command teardown.\n\nRe-runs are designed to be safe and repeatable. Supported cloud environments to be confirmed with the StackOps team.",
           links: [
             {
@@ -157,11 +157,11 @@ const popupContent: Detail[] = [
           body: "A digital service may rely on applications and infrastructure spread across different environments.\n\nWithout connected operational context, engineers may need to investigate each component separately.\n\nOpenTelemetry provides open standards and tools for generating, collecting and exporting telemetry such as logs, metrics and traces.\n\nWith appropriate instrumentation and supported integrations, teams can:\n\n- Follow requests across instrumented services.\n\n- Understand relationships between components.\n\n- Investigate delays and errors.\n\n- Examine relevant operational signals together.\n\n- Support cross-team troubleshooting.",
         },
         {
-          heading: "For leaders — one citizen journey, not three tickets",
+          heading: "For leaders: one citizen journey, not three tickets",
           body: "A single citizen transaction may touch an application in one cloud, a data service in another and a shared identity gateway. Connected tracing helps teams treat it as one journey, so issues are not passed between separate teams before anyone sees the full picture.\n\nThis is an illustrative example, not a description of any specific agency's architecture.",
         },
         {
-          heading: "For engineering teams — how it is achieved",
+          heading: "For engineering teams: how it is achieved",
           body: "- Standardise on OpenTelemetry to collect logs, metrics and traces in a cloud-agnostic way.\n\n- Route telemetry into a supported observability platform as a common view.\n\n- Correlate dependencies so the request path can be followed across environments.\n\nCross-system visibility depends on instrumentation, system configuration and access permissions. It is not automatically available across all agencies or environments.",
         },
       ],
@@ -171,10 +171,10 @@ const popupContent: Detail[] = [
     id: "soda",
     eyebrow: "SODA",
     readMore: {
-      title: "SODA — Turn Data Into Optimisation Insights.",
+      title: "SODA: Turn Data Into Optimisation Insights.",
       sections: [
         {
-          heading: "SODA — Turn Data Into Optimisation Insights.",
+          heading: "SODA: Turn Data Into Optimisation Insights.",
           body: "StackOps Data Analysis helps teams examine supported deployment, utilisation and cost-related information.",
         },
         {
@@ -241,10 +241,10 @@ const popupContent: Detail[] = [
     id: "cft",
     eyebrow: "CFT",
     readMore: {
-      title: "Cloud File Transfer — From Reactive to Proactive Operations",
+      title: "Cloud File Transfer: From Reactive to Proactive Operations",
       sections: [
         {
-          heading: "Cloud File Transfer — From Reactive to Proactive Operations",
+          heading: "Cloud File Transfer: From Reactive to Proactive Operations",
           body: "Cloud File Transfer supports secure file exchanges between government agencies.\n\nPreviously, fragmented monitoring tools and manual investigation limited visibility across workflows.\n\nStackOps helped the CFT team establish more comprehensive monitoring.",
         },
         {
@@ -258,10 +258,10 @@ const popupContent: Detail[] = [
     id: "ship-hats",
     eyebrow: "SHIP-HATS",
     readMore: {
-      title: "SHIP-HATS — Faster Detection and Recovery",
+      title: "SHIP-HATS: Faster Detection and Recovery",
       sections: [
         {
-          heading: "SHIP-HATS — Faster Detection and Recovery",
+          heading: "SHIP-HATS: Faster Detection and Recovery",
           body: "SHIP-HATS implemented Service Level Objective monitoring with StackOps to strengthen incident detection and response.\n\nProactive alerts helped the team recognise disruptions earlier.",
         },
         {
@@ -275,10 +275,10 @@ const popupContent: Detail[] = [
     id: "hdb",
     eyebrow: "HDB",
     readMore: {
-      title: "HDB — Visibility Across Distributed Cloud Systems",
+      title: "HDB: Visibility Across Distributed Cloud Systems",
       sections: [
         {
-          heading: "HDB — Visibility Across Distributed Cloud Systems",
+          heading: "HDB: Visibility Across Distributed Cloud Systems",
           body: "HDB uses distributed cloud architecture to support flexibility, risk isolation and digital-service development.\n\nIndependently managed workloads can make organisation-wide monitoring more complex.\n\nStackOps helps HDB gain visibility into application health and performance across distributed workloads.\n\nThe implementation supports greater operational understanding and more consistent monitoring.\n\nHDB also plans to extend StackOps' capabilities for centralised monitoring of compliance with organisational standards and security requirements.\n\nThis is a planned expansion, not a completed outcome.\n\nSource: GovTech StackOps Customer Stories.",
         },
       ],
@@ -288,10 +288,10 @@ const popupContent: Detail[] = [
     id: "htx",
     eyebrow: "HTX",
     readMore: {
-      title: "HTX — Supporting Cloud-Native Transformation",
+      title: "HTX: Supporting Cloud-Native Transformation",
       sections: [
         {
-          heading: "HTX — Supporting Cloud-Native Transformation",
+          heading: "HTX: Supporting Cloud-Native Transformation",
           body: "HTX has been progressing from infrastructure migration towards broader cloud-native adoption.\n\nThis evolution creates growing requirements for operational visibility and developer enablement.\n\nStackOps has worked with HTX to support unified observability across MHA systems hosted in the Government Commercial Cloud.\n\nThe collaboration supports efforts to improve operational visibility and strengthen cloud operations.\n\nSource: GovTech StackOps Customer Stories.",
         },
       ],
@@ -301,10 +301,10 @@ const popupContent: Detail[] = [
     id: "apex",
     eyebrow: "APEX",
     readMore: {
-      title: "APEX — Greater Visibility Across API Operations",
+      title: "APEX: Greater Visibility Across API Operations",
       sections: [
         {
-          heading: "APEX — Greater Visibility Across API Operations",
+          heading: "APEX: Greater Visibility Across API Operations",
           body: "APEX supports API-based connectivity across Singapore's digital government ecosystem.\n\nStackOps supports operational analysis and troubleshooting through monitoring information, dashboards and insights into platform activity.",
         },
         {
@@ -318,10 +318,10 @@ const popupContent: Detail[] = [
     id: "elastic",
     eyebrow: "ELASTIC",
     readMore: {
-      title: "Elastic — Operational Data Analysis and Observability",
+      title: "Elastic: Operational Data Analysis and Observability",
       sections: [
         {
-          heading: "Elastic — Operational Data Analysis and Observability",
+          heading: "Elastic: Operational Data Analysis and Observability",
           body: "Elastic is an underlying observability technology option available through StackOps.\n\nRelevant capabilities include:\n\n- Log collection and analytics.\n\n- Search and investigation.\n\n- Metrics monitoring.\n\n- Distributed tracing.\n\n- Dashboards and visualisations.\n\n- Alerting and monitoring workflows.\n\nStackOps provides relevant supporting standards, configurations and tools around the available observability offering.\n\nSpecific capabilities and deployment arrangements depend on the selected implementation.",
         },
       ],
@@ -331,18 +331,18 @@ const popupContent: Detail[] = [
     id: "dynatrace",
     eyebrow: "DYNATRACE",
     readMore: {
-      title: "Dynatrace — Application and Infrastructure Observability",
+      title: "Dynatrace: Application and Infrastructure Observability",
       sections: [
         {
-          heading: "Dynatrace — Application and Infrastructure Observability",
+          heading: "Dynatrace: Application and Infrastructure Observability",
           body: "Dynatrace is an underlying observability technology option available through StackOps.\n\nRelevant capabilities include:\n\n- Application performance monitoring.\n\n- Infrastructure and cloud-native observability.\n\n- Service-dependency visibility.\n\n- Distributed tracing.\n\n- AI-assisted problem analysis.\n\n- Monitoring dashboards and operational insights.",
         },
         {
-          heading: "For leaders — choosing an operating model",
+          heading: "For leaders: choosing an operating model",
           body: "StackOps Centrally Managed: built and operated centrally by StackOps, so agencies carry less operational overhead.\n\nAgency Self-Managed: the agency retains full autonomy over its dedicated environment and its operational responsibilities.",
         },
         {
-          heading: "For engineering teams — what differs",
+          heading: "For engineering teams: what differs",
           body: "- Connectivity (ActiveGate): provided and maintained by StackOps, or built and maintained by the agency.\n\n- Admin rights: vested with StackOps, or owned by the agency.\n\n- Environment: shared multi-tenant environment segregated by tagging, or a dedicated agency tenant.\n\n- Alerting: pre-configured anomaly detection, or agency-customised thresholds.\n\n- Agent patching: StackOps regulates releases while agencies own deployment timelines, or the agency owns full patch compliance.\n\nConfirm technical requirements and subscription terms with the StackOps team.",
         },
       ],
@@ -443,7 +443,7 @@ export const opening = {
 export const topology = {
   eyebrow: "WHOLE-OF-GOVERNMENT LANDSCAPE",
   headline: "Every tier, connected.",
-  sub: "From citizen touchpoints to services and cloud environments — one view of how a digital service fits together.",
+  sub: "From citizen touchpoints to services and cloud environments: one view of how a digital service fits together.",
   tiers: ["01 / Access", "02 / Services", "03 / Data & Cloud"],
 };
 export const challenge = {
@@ -549,7 +549,7 @@ export const customerStories: CustomerStory[] = [
     metricLabel: "improvement in incident-handling efficiency",
     evidence: { workflows: 1500, improvementPercent: 75, baselineHours: [2, 3], afterMinutes: 30 },
     readMore: {
-      title: "CFT — From Reactive to Proactive Operations",
+      title: "CFT: From Reactive to Proactive Operations",
       sections: [
         {
           heading: "The challenge",
@@ -577,7 +577,7 @@ export const customerStories: CustomerStory[] = [
     metricLabel: "reduction in service recovery time",
     evidence: { improvementPercent: 75, baselineHours: [2], underMinutes: 30 },
     readMore: {
-      title: "SHIP-HATS — Faster Detection. Faster Recovery.",
+      title: "SHIP-HATS: Faster Detection. Faster Recovery.",
       sections: [
         {
           heading: "The challenge",
@@ -603,7 +603,7 @@ export const customerStories: CustomerStory[] = [
       "A clearer view of application health and performance across independently managed cloud workloads.",
     evidence: { complianceStatus: "planned", quantitativeOutcome: false },
     readMore: {
-      title: "HDB — Visibility Across Distributed Cloud Systems",
+      title: "HDB: Visibility Across Distributed Cloud Systems",
       sections: [
         {
           heading: "The challenge",
@@ -629,7 +629,7 @@ export const customerStories: CustomerStory[] = [
       "Unified observability and developer enablement support increasingly complex cloud-native systems.",
     evidence: { quantitativeOutcome: false },
     readMore: {
-      title: "HTX — Supporting Cloud-Native Transformation",
+      title: "HTX: Supporting Cloud-Native Transformation",
       sections: [
         {
           heading: "The challenge",
@@ -657,7 +657,7 @@ export const customerStories: CustomerStory[] = [
     metricLabel: "API transaction logs processed monthly",
     evidence: { logsPerMonth: 90000000 },
     readMore: {
-      title: "APEX — Greater Visibility Across API Operations",
+      title: "APEX: Greater Visibility Across API Operations",
       sections: [
         {
           heading: "The operational context",
@@ -756,7 +756,7 @@ export const contextSections = {
   tools: {
     eyebrow: "STACKOPS-BUILT AUTOMATION",
     headline: ["LESS MANUAL SETUP.", "MORE REPEATABLE MONITORING."],
-    sub: "SORA — StackOps Resiliency Accelerator helps streamline monitoring setup through resource discovery, configuration review and supported automation.",
+    sub: "SORA (StackOps Resiliency Accelerator) helps streamline monitoring setup through resource discovery, configuration review and supported automation.",
     detail: "sora",
     note: "Specific environments, integrations and deployment capabilities depend on the supported solution.",
     points: [
@@ -801,7 +801,7 @@ export const contextSections = {
   soda: {
     eyebrow: "STACKOPS-BUILT ANALYSIS",
     headline: ["FROM DATA TO", "ACTIONABLE INSIGHTS."],
-    sub: "SODA — StackOps Data Analysis helps teams examine deployment, utilisation and cost-related information to identify optimisation opportunities.",
+    sub: "SODA (StackOps Data Analysis) helps teams examine deployment, utilisation and cost-related information to identify optimisation opportunities.",
     detail: "soda",
     note: "Synthetic data only. Recommendations support human decisions, not guaranteed savings.",
     points: [
