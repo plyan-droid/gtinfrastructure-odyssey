@@ -390,38 +390,6 @@ export const subscriptionDraft = {
     ];
   }
 }
-popupCharts["gcc"] = [
-  { id: "gcc-challenges", title: "Cloud Success Depends on What Happens Before and After Deployment", kind: "cards", tone: "problem", items: [
-    { title: "Late discovery", body: "Security, compliance and integration issues can surface late, when development happens far from the GCC operating environment." },
-    { title: "Fragmented visibility", body: "Cloud spend data is spread across providers, accounts and manual workflows." },
-    { title: "Unrealised value", body: "Cost drivers and savings opportunities are harder to act on without a common view." },
-  ] },
-  { id: "gcc-journey", title: "One Journey: Build, Operate and Optimise", kind: "journey", steps: [
-    { title: "Build", body: "Build closer to GCC" },
-    { title: "Deploy", body: "Move with confidence" },
-    { title: "Operate", body: "Run workloads" },
-    { title: "Understand", body: "See consumption" },
-    { title: "Optimise", body: "Take action" },
-  ], center: { title: "GCC: Government on Commercial Cloud", body: "Build with confidence, operate with visibility, optimise with insight" } },
-  { id: "gccaas-onboarding", title: "GCCaaS Onboarding Journey, Starting Q3 2026", kind: "pipeline", steps: [
-    { title: "Development environment", body: "You need a GCC development environment." },
-    { title: "Express interest", body: "Indicate your interest today." },
-    { title: "Review and approval", body: "Onboarding request review and approval." },
-    { title: "Service agreement", body: "Sign the customer service agreement." },
-    { title: "Cloud configuration", body: "Configure cloud settings once onboarding is complete." },
-  ] },
-  { id: "gcc-pulse", title: "GCC PULSE: View, Understand, Optimise", kind: "pipeline", steps: [
-    { title: "Monitor", body: "Unified view of cloud spend" },
-    { title: "Diagnose", body: "Identify cost drivers" },
-    { title: "Optimise", body: "Take action" },
-    { title: "Track", body: "Realised savings" },
-  ] },
-  { id: "gcc-story", title: "Not Separate Products: One GCC Platform Story", kind: "cards", items: [
-    { title: "GCCaaS: build with confidence", body: "Start aligned with GCC and reduce late-stage delivery friction for agency partners." },
-    { title: "GCC Platform Journey", body: "Build, deploy, operate, understand and optimise as one integrated experience." },
-    { title: "GCC PULSE: optimise with insight", body: "Turn cloud consumption into measurable action and savings." },
-  ] },
-];
 const popupContent: Detail[] = [
   {
     id: "foundations",
@@ -774,11 +742,6 @@ const popupContent: Detail[] = [
         { heading: "COST: Health and cost checks with SODA", body: "Regular reports grade your setup and recommend where to save or improve." },
       ],
     },
-  },
-  {
-    id: "gcc",
-    eyebrow: "GOVERNMENT ON COMMERCIAL CLOUD",
-    readMore: { title: "From Build to Better Cloud Outcomes", sections: [{ heading: "One government cloud journey", body: "Government on Commercial Cloud (GCC) gives agencies and partners a common foundation with the guardrails and capabilities needed to build, deploy, operate and optimise securely. StackOps helps teams operate with visibility along that journey." }] },
   },
 ];
 for (const detail of popupContent) {
@@ -1161,7 +1124,6 @@ export const closing = {
   headline: ["ACCELERATE OBSERVABILITY", "FOR YOUR AGENCY"],
   sub: "Explore a government-focused approach to observability, monitoring automation and operational insight.",
   href: "https://www.developer.tech.gov.sg/products/categories/devops/stackops/customer-stories",
-  gccMore: "Part of the GCC journey",
   stepsHeading: "How to get started",
   steps: [
     { k: "01", v: "Contact the StackOps team to share your agency's workloads and monitoring requirements" },

@@ -681,10 +681,6 @@ export function Showcase() {
               {ui.discussion}
               <ArrowRight />
             </Button>
-            <Button variant="outline" size="lg" onClick={() => openPanel("gcc")}>
-              {closing.gccMore}
-              <ArrowRight />
-            </Button>
           </div>
           <p className="scene-el mt-3 text-xs text-muted-foreground">{ui.discussionPending}</p>
           <div className="scene-el qr-placeholders mt-6 flex gap-8">
