@@ -498,7 +498,7 @@ const popupContent: Detail[] = [
       sections: [
         {
           heading: "SORA: Automated Monitoring Setup for AWS and Azure",
-          body: "StackOps Resiliency Accelerator helps streamline monitoring setup through structured, reusable workflows.",
+          body: "StackOps Resiliency Accelerator helps streamline monitoring setup through structured, reusable workflows.\n\nSet up ingestion pipelines in hours instead of weeks.\nActual setup time varies by environment and requirements.",
         },
         {
           heading: "Discover",
