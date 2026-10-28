@@ -75,3 +75,13 @@ These slides are title cards, the Thank-you slide, QR codes, the slide 22 screen
   - Agent Patching: Elastic Agent / OpenTelemetry collectors, kept up to date with SORA baselines
 - All drafts are kept together in one place in the copy file, so they are easy to edit.
 - On phones the table stacks into cards, one per row.
+
+## Upgrade existing charts that are only text lists
+Some charts on the site are just numbered lists right now. Each one gets rebuilt as a real diagram:
+- **SODA Cost Optimisation Engine (slide 26):** five check tiles across the top (Node Sizing, Storage Efficiency, Index Lifecycle, Performance, Synthetics). An arrow leads into three outputs (Optimisation Grade 0 to 100, Recommendations, Cost Calculator), and a coloured grade scale sits underneath: S 85+ Optimised, A 65 to 84 Stable, B 40 to 64 Moderate, C 0 to 39 Wastage. It uses site colours, no emoji icons, and the tiles stack on phones.
+- **SODA collection (slide 25):** four sources flowing into StackOps Central, with the six data types as a grid below.
+- **SODA impact on tenants (slide 24):** Before and After columns side by side, instead of a plain table.
+- **Unified tracing pillars (slide 17):** four quadrants around a central "Whole-of-Government APM value" core.
+- **Intelligence flywheel (slide 8):** a real circle (Adopt, Analyse, Recommend, Improve) with arrows, instead of a list.
+- **SORA Discover, Review, Implement (slide 7):** three connected boxes with an arrow loop for "re-run, safe and idempotent".
+- **Onboarding (slide 6):** a four-step horizontal pipeline, with "what gets applied automatically" beneath it.
