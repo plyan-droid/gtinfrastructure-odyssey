@@ -391,7 +391,12 @@ export function Showcase() {
           className="scene-opening absolute inset-0 flex flex-col items-center justify-center px-6 text-center"
         >
           <div className="opening-copy flex flex-col items-center">
-          <h1 className="scene-el eyebrow mb-6">{opening.eyebrow}</h1>
+          <p className="scene-el eyebrow mb-6">{opening.eyebrow}</p>
+          <h1 className="scene-el opening-title font-semibold leading-[1.05]">
+            {opening.headline[0]}
+            <br />
+            <span className="text-signal">{opening.headline[1]}</span>
+          </h1>
           <p className="scene-el mt-8 max-w-2xl text-base text-foreground/85 md:text-xl">
             {opening.sub}
           </p>
@@ -423,7 +428,11 @@ export function Showcase() {
           className="scene-challenge narrative-scene pointer-events-none absolute inset-y-0 left-0 flex w-full flex-col justify-end px-6 pb-20 md:w-[48%] md:justify-center md:px-16 md:pb-0"
         >
           <p className="scene-el head eyebrow mb-5 text-accent">{challenge.eyebrow}</p>
-          <p className="scene-el head mt-4 max-w-md text-sm text-foreground/80 md:text-lg">
+          <h2 className="scene-el head text-3xl font-semibold leading-[1] tracking-tight md:text-6xl">
+            {challenge.headline[0]}
+            <span className="block text-signal">{challenge.headline[1]}</span>
+          </h2>
+          <p className="scene-el head mt-5 max-w-md text-sm text-foreground/80 md:text-lg">
             {challenge.sub}
           </p>
           <ol className="reading-points mt-6 space-y-3 md:mt-10 md:space-y-5">
@@ -455,6 +464,7 @@ export function Showcase() {
         >
           <SceneHeading
             eyebrow={investigation.eyebrow}
+            headline={["FASTER INCIDENT DIAGNOSIS", "AND RESOLUTION."]}
             sub={investigation.sub}
           />
           <ol className="reading-points mt-6">
@@ -481,7 +491,7 @@ export function Showcase() {
             data-scene={scene}
             className={`scene-${scene} narrative-scene context-section pointer-events-none absolute inset-y-0 left-0 flex w-full flex-col justify-center px-6 md:w-[48%] md:px-16`}
           >
-            <SceneHeading eyebrow={section.eyebrow} sub={section.sub} />
+            <SceneHeading eyebrow={section.eyebrow} headline={section.headline} sub={section.sub} />
             <ol className="reading-points mt-7 space-y-4">
               {section.points.map((pt, i) => (
                 <li
@@ -517,6 +527,7 @@ export function Showcase() {
         >
           <SceneHeading
             eyebrow={customers.eyebrow}
+            headline={customers.headline}
             sub={customers.sub}
           />
           <div className="scene-el interactive-stories mt-7 max-w-5xl">
@@ -599,7 +610,7 @@ export function Showcase() {
           data-scene="options"
           className="scene-options story-full absolute inset-0 flex flex-col justify-center px-6 md:px-16"
         >
-          <SceneHeading eyebrow={options.eyebrow} sub={options.sub} />
+          <SceneHeading eyebrow={options.eyebrow} headline={options.headline} sub={options.sub} />
           <div className="mt-7 grid max-w-5xl gap-6 md:grid-cols-2 md:gap-16">
             {options.platforms.map((o) => (
               <article key={o.id} className="scene-el border-t border-primary/50 pt-4">
@@ -641,7 +652,11 @@ export function Showcase() {
           className="scene-closing story-full absolute inset-0 flex flex-col items-center justify-center px-6 text-center"
         >
           <p className="scene-el eyebrow mb-5">{closing.eyebrow}</p>
-          <p className="scene-el mt-4 max-w-xl text-sm text-foreground/80 md:text-lg">
+          <h2 className="scene-el closing-title max-w-5xl text-4xl font-semibold leading-tight md:text-6xl">
+            {closing.headline[0]}
+            <span className="block text-signal">{closing.headline[1]}</span>
+          </h2>
+          <p className="scene-el mt-6 max-w-xl text-sm text-foreground/80 md:text-lg">
             {closing.sub}
           </p>
           <div className="scene-el mt-6 w-full max-w-4xl">
@@ -715,7 +730,14 @@ function ProductScene({ p, cls, onMore }: { p: Product; cls: string; onMore: () 
       <p className="scene-el head mb-5 hidden max-w-md text-sm text-muted-foreground md:block">
         {p.problemSub}
       </p>
-      <p className="scene-el head max-w-md text-sm text-foreground/80 md:text-base">
+      <h2 className="scene-el head text-4xl font-semibold leading-[0.95] tracking-tight md:text-6xl">
+        {p.headline.map((l, i) => (
+          <span key={l} className={i === p.headline.length - 1 ? "block text-signal" : "block"}>
+            {l}
+          </span>
+        ))}
+      </h2>
+      <p className="scene-el head mt-4 max-w-md text-sm text-foreground/80 md:text-base">
         {p.description}
       </p>
       <ol className="reading-points mt-5 space-y-2 md:mt-7 md:space-y-3">
@@ -744,16 +766,22 @@ function ProductScene({ p, cls, onMore }: { p: Product; cls: string; onMore: () 
 function SceneHeading({
   cls = "",
   eyebrow,
+  headline,
   sub,
 }: {
   cls?: string;
   eyebrow: string;
+  headline: string[];
   sub: string;
 }) {
   return (
     <>
-      <p className={`scene-el ${cls} eyebrow mb-2 text-primary`}>{eyebrow}</p>
-      <p className={`scene-el ${cls} max-w-2xl text-sm text-foreground/80 md:text-base`}>
+      <p className={`scene-el ${cls} eyebrow mb-4 text-primary`}>{eyebrow}</p>
+      <h2 className={`scene-el ${cls} max-w-4xl text-3xl font-semibold leading-tight md:text-5xl`}>
+        {headline[0]}
+        <span className="block text-signal">{headline[1]}</span>
+      </h2>
+      <p className={`scene-el ${cls} mt-4 max-w-2xl text-sm text-foreground/80 md:text-base`}>
         {sub}
       </p>
     </>
