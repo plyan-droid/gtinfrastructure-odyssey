@@ -444,5 +444,5 @@
   .quadrant-chart { gap: 1.5rem 1rem; }
   .quad-0, .quad-2 { padding-right: 6rem; }.quad-1, .quad-3 { padding-left: 6rem; }
   .quad-core { width: 8.5rem; height: 8.5rem; }
-  .stage-strip h4 { font-size: 0.7rem; letter-spacing: 0.02em; overflow-wrap: anywhere; }
+  .stage-strip h4 { font-size: 0.8rem; text-transform: none; letter-spacing: 0; }
 }
