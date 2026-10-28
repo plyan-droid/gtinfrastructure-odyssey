@@ -758,7 +758,7 @@ const popupContent: Detail[] = [
     eyebrow: "SUBSCRIPTION MODELS",
     readMore: { title: "Subscription Models Compared", sections: [
       { heading: "Choosing a model", body: "Confirm technical requirements and subscription terms with the StackOps team." },
-      { heading: "Funding and sign-up", body: "StackOps is offered as a shared government service, so agencies subscribe to an existing platform rather than procuring and running their own. The StackOps team will confirm how charges apply to your project and how to sign up." },
+      { heading: "Pricing and onboarding", body: "StackOps is provided as a shared government service. Subscription pricing and model options depend on your agency's telemetry volume, chosen platform and operating model. Contact the StackOps team to discuss your project requirements, receive current pricing schedules and begin onboarding." },
     ] },
   },
   {
@@ -1164,9 +1164,9 @@ export const closing = {
   gccMore: "Part of the GCC journey",
   stepsHeading: "How to get started",
   steps: [
-    { k: "01", v: "Talk to the StackOps team about your services and monitoring needs" },
-    { k: "02", v: "Choose Elastic or Dynatrace and a subscription model" },
-    { k: "03", v: "Onboard your cloud accounts with SORA and start monitoring" },
+    { k: "01", v: "Contact the StackOps team to share your agency's workloads and monitoring requirements" },
+    { k: "02", v: "Review subscription options, platform fit (Elastic or Dynatrace) and pricing for your project" },
+    { k: "03", v: "Work with the StackOps team to onboard your cloud accounts and deploy initial baselines with SORA" },
   ],
 };
 export const disclaimer =
