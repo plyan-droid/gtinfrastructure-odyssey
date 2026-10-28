@@ -460,7 +460,7 @@ export function Showcase() {
         >
           <SceneHeading
             eyebrow={investigation.eyebrow}
-            headline={["FOLLOW THE EVIDENCE.", "UNDERSTAND THE ISSUE."]}
+            headline={["FASTER INCIDENT DIAGNOSIS", "AND RESOLUTION."]}
             sub={investigation.sub}
           />
           <ol className="reading-points mt-6">
