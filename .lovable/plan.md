@@ -39,8 +39,19 @@ I compared all 48 slides with the site. The popups have 15 charts now. About 20 
 - Slides 45 to 47: GCC PULSE Monitor, Diagnose, Optimise, Track, and the "one platform story" with three columns (GCCaaS, Platform Journey, PULSE).
 - QR codes and booth calls to action are left out unless you want them.
 
-## Booth FAQ
-I will use it as background only, to check that the wording is accurate. This covers Jira Service Management alert routing, Elastic vs Kibana, serverless and data tiers, buffering and no data loss, RBAC, and the 7% discount with indicative-only savings. Pricing and cost-saving claims stay hedged the same way the FAQ hedges them. Nothing from the FAQ is added as new on-screen content unless you ask.
+## What I would use from the booth FAQ (please confirm)
+I would add these as short, plain lines inside the matching popups. Nothing goes on the main map.
+
+1. **Alerts to resolution (Why StackOps popup):** issues raise alerts in Jira Service Management. That pages the right team and tracks each step until it is fixed, so recovery is faster.
+2. **Elastic in one line (Elastic popup):** "Elastic is the engine, Kibana is the cockpit." Elastic stores and searches logs, metrics and traces, and Kibana is the set of dashboards and alerts.
+3. **Serverless Elastic (Elastic popup):** no cluster sizing, and you pay for what you use. It comes in three project types (Search, Observability, Security). Savings are indicative and depend on each agency's usage. The FAQ's 7% discount line is included only if you approve it.
+4. **Data tiers (SODA popup):** hot, warm, cold and frozen storage, which explains where cost savings come from.
+5. **No code changes for infra (SORA popup):** SORA collects cloud logs and metrics automatically. App tracing uses an OpenTelemetry auto-instrumentation agent, often with no code change. AWS and Azure feed into one view.
+6. **No data loss on short outages (OpenTelemetry popup):** agents buffer data locally, so delivery is delayed rather than lost.
+7. **Security basics (Foundations popup):** data is encrypted at rest and in transit, with role-based access down to field level. ISO 27001, SOC 2 and CSA STAR are named only if you confirm they can be shown publicly.
+8. **Fewer noisy alerts (Capabilities popup):** anomaly detection instead of fixed limits, with only urgent alerts paging on-call.
+
+Not used: pricing links, cost estimator, Kibana query tips, Slack/PagerDuty connector lists, and the per-video FAQ list.
 
 ## Skipped on purpose
 These slides are title cards, the Thank-you slide, QR codes, the slide 22 screen recording, and the raw dashboard photos. The photos are replaced by the redrawn sample report card.
