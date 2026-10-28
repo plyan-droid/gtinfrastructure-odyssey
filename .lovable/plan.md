@@ -61,3 +61,17 @@ These slides are title cards, the Thank-you slide, QR codes, the slide 22 screen
 - Add the chart data to the matching modals in showcase.ts. Add a new GCC modal linked from the existing GCC section's Read More.
 - Extend `src/test/showcase-charts.test.ts`: each new chart is attached to its intended popup, the SODA report is marked synthetic, and no chart contains "Source:" notes.
 - Check every popup with Playwright at 1203x845 and on a phone, and confirm the pinned map is unchanged.
+
+## Subscription table: add an Elastic column (slide 40)
+- Rename the table "StackOps Subscription Model Offerings". It moves out of the Dynatrace popup into a shared place, the technology options area, so it covers both tools.
+- The columns become: StackOps Dynatrace Central Managed, Agency Dynatrace Self-Managed, and a new **StackOps Elastic** column.
+- The Elastic cells are drafts written from the FAQ for you to edit later. Rows like ActiveGate are Dynatrace-only, so those cells read "Not applicable". Drafts:
+  - Primary Value: Managed Elastic Cloud (hosted or serverless) provided through StackOps
+  - Operating Model: StackOps provisions; agency uses its own deployment
+  - ActiveGate & Connectivity: Not applicable; SORA sets up private networking and a secure gateway
+  - Admin Rights: Agency manages its own spaces, with role-based access
+  - Environment Setup: Agency deployment or serverless project
+  - Alerting & Thresholds: Kibana alerting with optional anomaly detection
+  - Agent Patching: Elastic Agent / OpenTelemetry collectors, kept up to date with SORA baselines
+- All drafts are kept together in one place in the copy file, so they are easy to edit.
+- On phones the table stacks into cards, one per row.
