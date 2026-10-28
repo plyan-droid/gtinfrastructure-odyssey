@@ -140,7 +140,7 @@ function Body({ chart }: { chart: DetailChart }) {
     case "pipeline": return <Pipeline chart={chart} />;
     case "journey": return <Journey chart={chart} />;
     case "stages": return <Stages chart={chart} />;
-    case "engine": return <><Engine chart={chart} /><Pipeline chart={{ ...chart, items: undefined }} /></>;
+    case "engine": return <><Engine chart={chart} /><Pipeline chart={{ id: chart.id, title: chart.title, steps: chart.steps ?? [] }} /></>;
     case "beforeafter": return <BeforeAfter chart={chart} />;
     case "quadrant": return <Quadrant chart={chart} />;
     case "report": return <Report chart={chart} />;
