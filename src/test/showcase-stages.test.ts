@@ -91,7 +91,7 @@ describe("Content-aware reversible story", () => {
     expect(presentationStops.reduce((total, stop) => total + stop.seconds, 0)).toBe(60);
     expect(presentationStops.at(-1)?.scene).toBe("closing");
   });
-  it("retains all supplied detailed stories plus subscription and GCC popups", () => {
+  it("retains all supplied detailed stories plus the subscription popup", () => {
     expect(Object.keys(details).sort()).toEqual(
       [
         "foundations",
@@ -109,7 +109,6 @@ describe("Content-aware reversible story", () => {
         "elastic",
         "dynatrace",
         "subscriptions",
-        "gcc",
         "glance",
       ].sort(),
     );

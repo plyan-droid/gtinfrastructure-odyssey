@@ -15,7 +15,7 @@ describe("Chart workflow approval boundaries", () => {
 describe("Slide-derived popup charts", () => {
   const find = (popup: string, id: string) => popupCharts[popup]?.find(c => c.id === id);
   it("places each new chart in its intended popup", () => {
-    const expected: [string, string][] = [["foundations", "stackops-hub"], ["sora", "sora-how"], ["otel", "otel-problem"], ["soda", "soda-report"], ["dynatrace", "dt-stages"], ["gcc", "gccaas-onboarding"], ["subscriptions", "subscription-models"]];
+    const expected: [string, string][] = [["foundations", "stackops-hub"], ["sora", "sora-how"], ["otel", "otel-problem"], ["soda", "soda-report"], ["dynatrace", "dt-stages"], ["subscriptions", "subscription-models"]];
     for (const [popup, id] of expected) expect(find(popup, id)).toBeDefined();
   });
   it("keeps the 4 Golden Signals in the Capabilities popup", () => {
