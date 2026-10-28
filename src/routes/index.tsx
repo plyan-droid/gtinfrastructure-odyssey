@@ -4,7 +4,7 @@ import { Showcase } from "@/components/showcase/Showcase";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "StackOps: Full-Stack Observability for Government Digital Services" },
+      { title: "StackOps: Full-Stack Observability for Whole of Government" },
       {
         name: "description",
         content:
