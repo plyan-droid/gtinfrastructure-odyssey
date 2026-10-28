@@ -70,7 +70,7 @@ export const popupCharts: Record<string, DetailChart[]> = {
     ] },
   ],
   capabilities: [
-    { id: "collection-outcomes", title: "From Collected Signals to Operational Context", kind: "collection", groups: [
+    { id: "collection-outcomes", title: "What Is Collected and What It Supports", kind: "collection", groups: [
       { title: "Collect", labels: ["Traces", "Metrics", "Logs", "Topology", "Behavior", "Code", "Metadata", "Network", "Problems", "Business Events", "Threats", "Vulnerabilities"] },
       { title: "Solve", labels: ["Observability", "Security", "Business", "Custom apps"] },
     ], footer: [
@@ -83,14 +83,6 @@ export const popupCharts: Record<string, DetailChart[]> = {
       ["Investigation", "Track response time, errors and established thresholds", "Explore signals and dependencies across instrumented components"],
     ] },
   ],
-  investigation: [
-    { id: "tracing-impact", title: "Why Connected Tracing Matters", kind: "quadrant", center: { title: "Whole-of-Government APM value", body: "Unified tracing across agencies" }, items: [
-      { title: "Citizen experience", body: "Investigate bottlenecks along a digital-service journey." },
-      { title: "Cross-team alignment", body: "Give participating teams shared evidence rather than separate tickets." },
-      { title: "Operational efficiency", body: "Identify duplicated monitoring effort and improvement opportunities." },
-      { title: "Planning insights", body: "Use permitted service context to inform infrastructure decisions." },
-    ] },
-  ],
   sora: [
     { id: "sora-workflow", title: "Discover, Review, Implement", kind: "pipeline", loop: "Re-run any time: safe and idempotent", steps: [
       { title: "Discover", body: "Scan supported resources and identify existing monitoring or gaps." },
@@ -98,7 +90,7 @@ export const popupCharts: Record<string, DetailChart[]> = {
       { title: "Implement", body: "Deploy approved configurations through supported infrastructure-as-code." },
       { title: "Monitor", body: "Check telemetry and review the resulting monitoring setup." },
     ] },
-    { id: "sora-comparison", title: "Less Repeated Manual Setup", kind: "table", columns: ["Activity", "Manual approach", "Supported SORA workflow"], rows: [
+    { id: "sora-comparison", title: "Manual Setup vs SORA", kind: "table", columns: ["Activity", "Manual approach", "Supported SORA workflow"], rows: [
       ["Find gaps", "Audit each account by hand", "Discovery scan identifies potential gaps"],
       ["Set up ingestion", "Each team builds its own setup", "Reviewable, guided deployment"],
       ["Credentials", "Configure separately in applications", "Supported central handling"],
@@ -119,13 +111,13 @@ export const popupCharts: Record<string, DetailChart[]> = {
     ] },
   ],
   soda: [
-    { id: "soda-impact", title: "From Manual Review to Informed Decisions", kind: "beforeafter", columns: ["Review area", "Without structured analysis", "With supported SODA analysis"], rows: [
+    { id: "soda-impact", title: "Before and After SODA", kind: "beforeafter", columns: ["Review area", "Without structured analysis", "With supported SODA analysis"], rows: [
       ["Cost visibility", "One monthly billing total", "Review supported tier and index breakdowns"],
       ["Review effort", "Repeated manual checks", "Reports bring relevant findings together"],
       ["Recommendations", "Generic best practices", "Data-informed opportunities for review"],
       ["Governance", "React after usage has grown", "Identify potential waste earlier"],
     ] },
-    { id: "soda-pipeline", title: "How Data Reaches the Analysis", kind: "pipeline", itemsHeading: "What we collect", steps: [
+    { id: "soda-pipeline", title: "How SODA Collects Data", kind: "pipeline", itemsHeading: "What we collect", steps: [
       { title: "Supported deployments", body: "Hosted deployments and serverless projects within the supported scope" },
       { title: "Collection pipeline", body: "Scheduled collection of permitted deployment information" },
       { title: "StackOps central analysis", body: "Bring supported data together for review" },
@@ -159,7 +151,7 @@ export const popupCharts: Record<string, DetailChart[]> = {
     ] },
   ],
   intelligence: [
-    { id: "intelligence-flywheel", title: "A Continuous Improvement Direction", cyclic: true, steps: [
+    { id: "intelligence-flywheel", title: "Adopt, Analyse, Recommend, Improve", cyclic: true, steps: [
       { title: "Adopt", body: "Establish supported monitoring foundations" },
       { title: "Analyse", body: "Explore patterns and appropriate benchmarking" },
       { title: "Recommend", body: "Develop contextual guidance for review" },
@@ -167,7 +159,7 @@ export const popupCharts: Record<string, DetailChart[]> = {
     ] },
   ],
   dynatrace: [
-    { id: "platform-lifecycle", title: "From Data to Outcomes", kind: "lifecycle", note: "Dynatrace platform capabilities depend on the selected offering and configuration.", footer: [
+    { id: "platform-lifecycle", title: "Dynatrace Platform Components", kind: "lifecycle", note: "Dynatrace platform capabilities depend on the selected offering and configuration.", footer: [
       { title: "Observability, security, and business data", body: "Collect deep, context-rich, and full stack data" },
       { title: "Scalable data capture from any source", body: "Capture data in context automatically" },
       { title: "High-performance data ingest and enrichment", body: "Protect data, reduce cost, and gain context at any scale" },
@@ -204,7 +196,7 @@ const slideCharts: Record<string, ChartPlacement> = {
         { title: "Ease of use", body: "Visualisation and dashboard templates, SORA, engineering enablement and Whole-of-Government integration." },
         { title: "Alerts to resolution", body: "Alerts flow into Jira Service Management, paging the right team and tracking every step to recovery." },
       ] },
-      { id: "more-than-monitoring", title: "More Than a Monitoring Tool", kind: "cards", items: [
+      { id: "more-than-monitoring", title: "What StackOps Provides Beyond Tooling", kind: "cards", items: [
         { title: "Standards built in", body: "Whole-of-Government compliance, security and best practices ship with the platform, supported by a shared knowledge base." },
         { title: "Tooling to support users", body: "Automation such as SORA streamlines onboarding, and data insights feed improvements back to every team." },
         { title: "Intelligence layered on", body: "AI-assisted analysis and consultancy recommendations lift maturity continuously." },
@@ -219,20 +211,26 @@ const slideCharts: Record<string, ChartPlacement> = {
         { title: "Bridges the gap", body: "Developers, operations and business teams share the same real-time data." },
         { title: "Fewer noisy alerts", body: "Anomaly detection adapts to each baseline, so only urgent issues page on-call." },
       ] },
+      { id: "golden-signals", title: "The 4 Golden Signals", kind: "cards", items: [
+        { title: "Latency", body: "How long requests take to respond." },
+        { title: "Traffic", body: "How much demand is on the system, such as requests per second." },
+        { title: "Errors", body: "Rate of failed requests, such as 500-level errors." },
+        { title: "Saturation", body: "How full the infrastructure is, such as CPU and memory usage." },
+      ] },
     ],
   },
   investigation: {
     before: [
-      { id: "cross-agency-journey", title: "One Citizen Journey, One Trace", intro: "A single transaction, such as a housing benefit application, can pass through several agencies. Unified tracing treats it as one journey, not three tickets.", kind: "journey", steps: [
+      { id: "cross-agency-journey", title: "Tracing a Transaction Across Agencies", intro: "A single transaction, such as a housing benefit application, can pass through several agencies. Unified tracing treats it as one journey, not three tickets.", kind: "journey", steps: [
         { title: "Agency A", body: "Application on AWS" },
         { title: "Agency B", body: "Database on Azure" },
         { title: "Agency C", body: "Identity gateway" },
-      ], center: { title: "One shared trace", body: "Every hop is visible in a single view" } },
+      ], center: { title: "Single trace view", body: "Each agency hop appears in the same trace" } },
     ],
   },
   sora: {
     before: [
-      { id: "sora-problem", title: "Every Team Builds Monitoring From Scratch", kind: "cards", tone: "problem", items: [
+      { id: "sora-problem", title: "The Problem: Each Team Sets Up Monitoring Separately", kind: "cards", tone: "problem", items: [
         { title: "Repeated work", body: "The same setup is rebuilt across every team and account." },
         { title: "Credentials everywhere", body: "Secrets copied into every app create security risk." },
         { title: "Unnoticed gaps", body: "Unmonitored resources and no shared standard." },
@@ -287,7 +285,7 @@ const slideCharts: Record<string, ChartPlacement> = {
         barsTitle: "Deployment sizing and utilisation", bars: [{ label: "Hot tier CPU", value: 22 }, { label: "Hot tier memory", value: 81 }, { label: "Warm tier storage", value: 46 }, { label: "Frozen tier storage", value: 12 }],
         recsTitle: "Recommendations", recs: ["Right-size hot tier nodes to match observed CPU", "Move indices older than 30 days to a cooler tier", "Remove empty indices and idle data streams", "Reduce synthetic monitor frequency where not needed"],
       } },
-      { id: "soda-tiers", title: "Where Savings Come From", kind: "pipeline", steps: [
+      { id: "soda-tiers", title: "Elastic Data Tiers", kind: "pipeline", steps: [
         { title: "Hot", body: "Recent and frequently queried. Fastest, highest cost." },
         { title: "Warm", body: "Less frequent queries at lower cost." },
         { title: "Cold", body: "Longer retention, cheaper storage." },
@@ -297,13 +295,13 @@ const slideCharts: Record<string, ChartPlacement> = {
   },
   intelligence: {
     after: [
-      { id: "fragmented-connected", title: "From Fragmented Data to Connected Understanding", kind: "cards", items: [
+      { id: "fragmented-connected", title: "Connecting Data From Separate Tools", kind: "cards", items: [
         { title: "Integrated platform", body: "One place for observability, security and business data." },
         { title: "Unified data", body: "Signals stored together, in context." },
         { title: "Real-time context", body: "Dependencies and topology updated as systems change." },
         { title: "Answers, not guesses", body: "Root cause based on evidence rather than intuition." },
       ] },
-      { id: "answers-flow", title: "Action Based on Answers, Not Guesses", kind: "journey", steps: [
+      { id: "answers-flow", title: "From Dependency Data to Action", kind: "journey", steps: [
         { title: "Unified AI lakehouse", body: "All telemetry stored in context" },
         { title: "Real-time dependency graph", body: "How every component connects" },
         { title: "Agentic operations", body: "Intelligence that acts on answers" },
@@ -312,7 +310,7 @@ const slideCharts: Record<string, ChartPlacement> = {
   },
   dynatrace: {
     before: [
-      { id: "differentiator", title: "The Differentiator", kind: "journey", steps: [
+      { id: "differentiator", title: "How Dynatrace Differs", kind: "journey", steps: [
         { title: "Understand", body: "Your data in context" },
         { title: "Leverage", body: "The power of AI" },
         { title: "Empower", body: "Teams to automate" },
@@ -332,7 +330,7 @@ const slideCharts: Record<string, ChartPlacement> = {
         { title: "Automate", labels: ["Workflows", "AppEngine"] },
         { title: "Solve", labels: ["Observability", "Security", "Business"] },
       ] },
-      { id: "visibility-action", title: "From Visibility to Answers to Action", kind: "cards", items: [
+      { id: "visibility-action", title: "Root Cause, Validation and Prioritisation", kind: "cards", items: [
         { title: "Determine root cause", body: "Instantly, with logs, traces, metrics and events in context." },
         { title: "Validate behaviour", body: "Across services and dependencies, continuously." },
         { title: "Prioritise by impact", body: "Resolve issues based on real business impact." },
@@ -372,7 +370,18 @@ export const subscriptionDraft = {
   const models = dt.find(c => c.id === "operating-models");
   if (models?.rows) {
     popupCharts["dynatrace"] = dt.filter(c => c !== models);
-    popupCharts["subscriptions"] = [{ id: "subscription-models", title: subscriptionDraft.title, kind: "table", columns: subscriptionDraft.columns, rows: models.rows.map((r, i) => [...r, subscriptionDraft.elastic[i] ?? ""]) }];
+    popupCharts["subscriptions"] = [{ id: "subscription-models", title: subscriptionDraft.title, kind: "table", columns: subscriptionDraft.columns, rows: models.rows.map((r, i) => [...r, subscriptionDraft.elastic[i] ?? ""]) }, 
+      { id: "central-managed", title: "Central Managed: Key Characteristics", kind: "cards", items: [
+        { title: "Centralised maintenance", body: "The central team owns the ActiveGate and manages all underlying resource maintenance and stability." },
+        { title: "Standardised thresholds", body: "Alerts and thresholds are pre-configured with Dynatrace Intelligence anomaly detection for consistent, high-quality monitoring." },
+        { title: "Agent distribution", body: "OneAgent binaries are provisioned from a central S3 repository, aligned to GovTech-validated versions." },
+      ] },
+      { id: "self-managed", title: "Agency Self-Managed: Full Autonomy and Ownership", kind: "cards", items: [
+        { title: "Dedicated tenant", body: "A new environment is created for the agency." },
+        { title: "Agency-owned infrastructure", body: "The agency builds and maintains the ActiveGate and supporting infrastructure." },
+        { title: "Full admin rights", body: "The agency has full configuration flexibility." },
+      ] },
+    ];
   }
 }
 popupCharts["gcc"] = [
@@ -412,10 +421,10 @@ const popupContent: Detail[] = [
     id: "foundations",
     eyebrow: "WHY STACKOPS",
     readMore: {
-      title: "Observability Engineered for Government",
+      title: "Why Agencies Use StackOps",
       sections: [
         {
-          heading: "Observability Engineered for Government",
+          heading: "Why Agencies Use StackOps",
           body: "Observability technology is one part of maintaining dependable digital services.\n\nStackOps brings together monitoring capabilities, shared standards, reusable configurations and supporting tools designed for government operational environments.",
         },
         {
@@ -479,7 +488,7 @@ const popupContent: Detail[] = [
     id: "investigation",
     eyebrow: "INVESTIGATION",
     readMore: {
-      title: "Follow the Evidence, Not Just the Alert.",
+      title: "How Engineers Investigate an Incident",
       cards: {
         variant: "timeline",
         intro: "An alert tells you something needs attention, but not always where the problem started. Here's how engineers might investigate a slow response in a digital service.",
@@ -499,10 +508,10 @@ const popupContent: Detail[] = [
     id: "sora",
     eyebrow: "SORA",
     readMore: {
-      title: "SORA: From Guidance to Running Configuration.",
+      title: "SORA: Automated Monitoring Setup for AWS and Azure",
       sections: [
         {
-          heading: "SORA: From Guidance to Running Configuration.",
+          heading: "SORA: Automated Monitoring Setup for AWS and Azure",
           body: "StackOps Resiliency Accelerator helps streamline monitoring setup through structured, reusable workflows.",
         },
         {
@@ -540,14 +549,14 @@ const popupContent: Detail[] = [
     id: "otel",
     eyebrow: "OTEL",
     readMore: {
-      title: "One Service Journey. Multiple Connected Systems.",
+      title: "Cross-Cloud Tracing with OpenTelemetry",
       sections: [
         {
-          heading: "One Service Journey. Multiple Connected Systems.",
+          heading: "Cross-Cloud Tracing with OpenTelemetry",
           body: "A digital service may rely on applications and infrastructure spread across different environments.\n\nWithout connected operational context, engineers may need to investigate each component separately.\n\nOpenTelemetry provides open standards and tools for generating, collecting and exporting telemetry such as logs, metrics and traces.\n\nWith appropriate instrumentation and supported integrations, teams can:\n\n- Follow requests across instrumented services.\n\n- Understand relationships between components.\n\n- Investigate delays and errors.\n\n- Examine relevant operational signals together.\n\n- Support cross-team troubleshooting.",
         },
         {
-          heading: "For leaders: one citizen journey, not three tickets",
+          heading: "For leaders: tracing across agencies",
           body: "A single citizen transaction may touch an application in one cloud, a data service in another and a shared identity gateway. Connected tracing helps teams treat it as one journey, so issues are not passed between separate teams before anyone sees the full picture.\n\nThis is an illustrative example, not a description of any specific agency's architecture.",
         },
         {
@@ -561,10 +570,10 @@ const popupContent: Detail[] = [
     id: "soda",
     eyebrow: "SODA",
     readMore: {
-      title: "SODA: Turn Data Into Optimisation Insights.",
+      title: "SODA: Cost and Health Analysis for Elastic",
       sections: [
         {
-          heading: "SODA: Turn Data Into Optimisation Insights.",
+          heading: "SODA: Cost and Health Analysis for Elastic",
           body: "StackOps Data Analysis helps teams examine supported deployment, utilisation and cost-related information.",
         },
         {
@@ -602,10 +611,10 @@ const popupContent: Detail[] = [
     id: "intelligence",
     eyebrow: "INTELLIGENCE",
     readMore: {
-      title: "Intelligence That Compounds",
+      title: "How Recommendations Improve Over Time",
       sections: [
         {
-          heading: "Intelligence That Compounds",
+          heading: "How Recommendations Improve Over Time",
           body: "StackOps' broader intelligence proposition explores how shared operational knowledge, AI-assisted analysis and appropriate benchmarking can support continuous improvement.",
         },
         {
@@ -631,10 +640,10 @@ const popupContent: Detail[] = [
     id: "cft",
     eyebrow: "CFT",
     readMore: {
-      title: "Cloud File Transfer: From Reactive to Proactive Operations",
+      title: "Cloud File Transfer: Earlier Issue Detection",
       sections: [
         {
-          heading: "Cloud File Transfer: From Reactive to Proactive Operations",
+          heading: "Cloud File Transfer: Earlier Issue Detection",
           body: "Cloud File Transfer supports secure file exchanges between government agencies.\n\nPreviously, fragmented monitoring tools and manual investigation limited visibility across workflows.\n\nStackOps helped the CFT team establish more comprehensive monitoring.",
         },
         {
@@ -741,7 +750,7 @@ const popupContent: Detail[] = [
   {
     id: "subscriptions",
     eyebrow: "STACKOPS SUBSCRIPTIONS",
-    readMore: { title: "How Does the Platform Differ?", sections: [{ heading: "Choosing a model", body: "Confirm technical requirements and subscription terms with the StackOps team." }] },
+    readMore: { title: "Subscription Models Compared", sections: [{ heading: "Choosing a model", body: "Confirm technical requirements and subscription terms with the StackOps team." }] },
   },
   {
     id: "gcc",
@@ -848,7 +857,7 @@ export const opening = {
 };
 export const topology = {
   eyebrow: "ILLUSTRATIVE SERVICE MAP",
-  headline: "END-TO-END REQUEST FLOWS.",
+  headline: "END-TO-END REQUEST FLOWS",
   sub: "A request can pass through several applications and cloud components. Here's a simplified look at how they connect.",
   tiers: ["01 / Access", "02 / Services", "03 / Data & Cloud"],
 };
@@ -955,7 +964,7 @@ export const customerStories: CustomerStory[] = [
     metricLabel: "improvement in incident-handling efficiency",
     evidence: { workflows: 1500, improvementPercent: 75, baselineHours: [2, 3], afterMinutes: 30 },
     readMore: {
-      title: "CFT: From Reactive to Proactive Operations",
+      title: "CFT: Earlier Issue Detection",
       sections: [
         {
           heading: "The challenge",
@@ -983,7 +992,7 @@ export const customerStories: CustomerStory[] = [
     metricLabel: "reduction in service recovery time",
     evidence: { improvementPercent: 75, baselineHours: [2], underMinutes: 30 },
     readMore: {
-      title: "SHIP-HATS: Faster Detection. Faster Recovery.",
+      title: "SHIP-HATS: Faster Detection and Recovery",
       sections: [
         {
           heading: "The challenge",
@@ -1274,7 +1283,7 @@ export const siteMap = [
   { name: "SORA", label: "tools" },
   { name: "Cross-System Observability", label: "otel" },
   { name: "SODA", label: "soda" },
-  { name: "Intelligence That Compounds", label: "intelligence" },
+  { name: "How Recommendations Improve Over Time", label: "intelligence" },
   { name: "Customer Stories", label: "customers" },
   { name: "Technology & Operating Options", label: "options" },
   { name: "Get Started", label: "closing" },
