@@ -12,3 +12,26 @@ describe("Chart workflow approval boundaries", () => {
     expect(chart?.steps?.at(-1)?.requiresApproval).toBe(true);
   });
 });
+describe("Slide-derived popup charts", () => {
+  const find = (popup: string, id: string) => popupCharts[popup]?.find(c => c.id === id);
+  it("places each new chart in its intended popup", () => {
+    const expected: [string, string][] = [["foundations", "stackops-hub"], ["sora", "sora-how"], ["otel", "otel-problem"], ["soda", "soda-report"], ["dynatrace", "dt-stages"], ["gcc", "gccaas-onboarding"], ["subscriptions", "subscription-models"]];
+    for (const [popup, id] of expected) expect(find(popup, id)).toBeDefined();
+  });
+  it("marks the SODA report as illustrative sample data", () => {
+    expect(find("soda", "soda-report")?.report?.synthetic).toBe(true);
+  });
+  it("uses the S/A/B/C grade scale with the slide thresholds", () => {
+    expect(find("soda", "soda-engine")?.grades?.map(g => `${g.grade} ${g.range}`)).toEqual(["S 85+", "A 65 to 84", "B 40 to 64", "C 0 to 39"]);
+  });
+  it("adds an Elastic column to every subscription row", () => {
+    const t = find("subscriptions", "subscription-models");
+    expect(t?.columns).toHaveLength(4);
+    expect(t?.rows?.every(r => r.length === 4 && r[3])).toBe(true);
+  });
+  it("never mentions the 7% discount or source notes", () => {
+    const text = JSON.stringify(popupCharts);
+    expect(text).not.toMatch(/7%/);
+    expect(text).not.toMatch(/Source:/);
+  });
+});
