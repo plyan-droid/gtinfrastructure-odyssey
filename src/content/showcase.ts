@@ -425,7 +425,7 @@ popupCharts["gcc"] = [
 const popupContent: Detail[] = [
   {
     id: "foundations",
-    eyebrow: "WHY STACKOPS",
+    eyebrow: "PLATFORM OVERVIEW",
     readMore: {
       title: "Why Agencies Use StackOps",
       sections: [
@@ -462,7 +462,7 @@ const popupContent: Detail[] = [
   },
   {
     id: "capabilities",
-    eyebrow: "CAPABILITIES",
+    eyebrow: "TELEMETRY SIGNALS",
     readMore: {
       title: "What Logs, Metrics and Traces Tell You",
       cards: {
@@ -512,7 +512,7 @@ const popupContent: Detail[] = [
   },
   {
     id: "sora",
-    eyebrow: "SORA",
+    eyebrow: "AUTOMATED ONBOARDING (SORA)",
     readMore: {
       title: "SORA: Automated Monitoring Setup for AWS and Azure",
       sections: [
@@ -553,7 +553,7 @@ const popupContent: Detail[] = [
   },
   {
     id: "otel",
-    eyebrow: "OTEL",
+    eyebrow: "CROSS-CLOUD TRACING (OPENTELEMETRY)",
     readMore: {
       title: "Cross-Cloud Tracing with OpenTelemetry",
       sections: [
@@ -574,7 +574,7 @@ const popupContent: Detail[] = [
   },
   {
     id: "soda",
-    eyebrow: "SODA",
+    eyebrow: "COST AND HEALTH OPTIMISATION (SODA)",
     readMore: {
       title: "SODA: Cost and Health Analysis for Elastic",
       sections: [
@@ -615,7 +615,7 @@ const popupContent: Detail[] = [
   },
   {
     id: "intelligence",
-    eyebrow: "INTELLIGENCE",
+    eyebrow: "RECOMMENDATIONS",
     readMore: {
       title: "How Recommendations Improve Over Time",
       sections: [
@@ -644,7 +644,7 @@ const popupContent: Detail[] = [
   },
   {
     id: "cft",
-    eyebrow: "CFT",
+    eyebrow: "CUSTOMER STORY: CLOUD FILE TRANSFER",
     readMore: {
       title: "Cloud File Transfer: Earlier Issue Detection",
       sections: [
@@ -661,7 +661,7 @@ const popupContent: Detail[] = [
   },
   {
     id: "ship-hats",
-    eyebrow: "SHIP-HATS",
+    eyebrow: "CUSTOMER STORY: SHIP-HATS",
     readMore: {
       title: "SHIP-HATS: Faster Detection and Recovery",
       sections: [
@@ -678,7 +678,7 @@ const popupContent: Detail[] = [
   },
   {
     id: "hdb",
-    eyebrow: "HDB",
+    eyebrow: "CUSTOMER STORY: HDB",
     readMore: {
       title: "HDB: Visibility Across Distributed Cloud Systems",
       sections: [
@@ -691,7 +691,7 @@ const popupContent: Detail[] = [
   },
   {
     id: "htx",
-    eyebrow: "HTX",
+    eyebrow: "CUSTOMER STORY: HTX",
     readMore: {
       title: "HTX: Supporting Cloud-Native Transformation",
       sections: [
@@ -704,7 +704,7 @@ const popupContent: Detail[] = [
   },
   {
     id: "apex",
-    eyebrow: "APEX",
+    eyebrow: "CUSTOMER STORY: API EXCHANGE (APEX)",
     readMore: {
       title: "APEX: Greater Visibility Across API Operations",
       sections: [
@@ -721,7 +721,7 @@ const popupContent: Detail[] = [
   },
   {
     id: "elastic",
-    eyebrow: "ELASTIC",
+    eyebrow: "TECHNOLOGY OPTION: ELASTIC",
     readMore: {
       title: "Elastic: Operational Data Analysis and Observability",
       sections: [
@@ -734,7 +734,7 @@ const popupContent: Detail[] = [
   },
   {
     id: "dynatrace",
-    eyebrow: "DYNATRACE",
+    eyebrow: "TECHNOLOGY OPTION: DYNATRACE",
     readMore: {
       title: "Dynatrace: Application and Infrastructure Observability",
       sections: [
@@ -755,12 +755,29 @@ const popupContent: Detail[] = [
   },
   {
     id: "subscriptions",
-    eyebrow: "STACKOPS SUBSCRIPTIONS",
-    readMore: { title: "Subscription Models Compared", sections: [{ heading: "Choosing a model", body: "Confirm technical requirements and subscription terms with the StackOps team." }] },
+    eyebrow: "SUBSCRIPTION MODELS",
+    readMore: { title: "Subscription Models Compared", sections: [
+      { heading: "Choosing a model", body: "Confirm technical requirements and subscription terms with the StackOps team." },
+      { heading: "Funding and sign-up", body: "StackOps is offered as a shared government service, so agencies subscribe to an existing platform rather than procuring and running their own. The StackOps team will confirm how charges apply to your project and how to sign up." },
+    ] },
+  },
+  {
+    id: "glance",
+    eyebrow: "STACKOPS AT A GLANCE",
+    readMore: {
+      title: "What StackOps Gives Your Agency",
+      cards: { intro: "The four things agencies get from StackOps, in brief.", closing: "Scroll through the story for detail on each, or jump ahead using the Site Map.", note: "Capabilities depend on the selected technology and subscription model." },
+      sections: [
+        { heading: "SHARED SERVICE: One platform, centrally run", body: "Use a government observability platform that is already set up and maintained, instead of building your own." },
+        { heading: "ONBOARDING: Faster setup with SORA", body: "Automated monitoring setup for AWS and Azure accounts, reviewed before it is applied." },
+        { heading: "TRACING: Follow requests across clouds", body: "OpenTelemetry tracing connects a transaction across services and cloud providers." },
+        { heading: "COST: Health and cost checks with SODA", body: "Regular reports grade your setup and recommend where to save or improve." },
+      ],
+    },
   },
   {
     id: "gcc",
-    eyebrow: "PART OF THE GCC JOURNEY",
+    eyebrow: "GOVERNMENT ON COMMERCIAL CLOUD",
     readMore: { title: "From Build to Better Cloud Outcomes", sections: [{ heading: "One government cloud journey", body: "Government on Commercial Cloud (GCC) gives agencies and partners a common foundation with the guardrails and capabilities needed to build, deploy, operate and optimise securely. StackOps helps teams operate with visibility along that journey." }] },
   },
 ];
@@ -786,6 +803,7 @@ export const ui = {
   collapseChart: "Fit chart",
   siteMap: "Site Map",
   start: "Scroll to begin",
+  glance: "StackOps at a glance",
   close: "Close",
   brand: "StackOps",
   pricing: "Pricing information pending confirmation",
@@ -1144,6 +1162,12 @@ export const closing = {
   sub: "Explore a government-focused approach to observability, monitoring automation and operational insight.",
   href: "https://www.developer.tech.gov.sg/products/categories/devops/stackops/customer-stories",
   gccMore: "Part of the GCC journey",
+  stepsHeading: "How to get started",
+  steps: [
+    { k: "01", v: "Talk to the StackOps team about your services and monitoring needs" },
+    { k: "02", v: "Choose Elastic or Dynatrace and a subscription model" },
+    { k: "03", v: "Onboard your cloud accounts with SORA and start monitoring" },
+  ],
 };
 export const disclaimer =
   "Illustrative infrastructure and synthetic monitoring data. Customer outcomes are attributed to official StackOps stories and are not guaranteed for other deployments.";
