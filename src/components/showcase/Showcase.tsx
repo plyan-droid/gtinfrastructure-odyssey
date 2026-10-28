@@ -24,6 +24,7 @@ import { Button } from "@/components/ui/button";
 import { NetworkVisuals, TopologyMap } from "./ContextVisual";
 import { storyStages, STAGE_DURATION, stageAtTime } from "./story-stages";
 import { ArrowRight, ArrowLeft, ExternalLink, ChevronDown, QrCode } from "lucide-react";
+import stackopsLogo from "@/assets/stackops-logo.png.asset.json";
 
 const MOBILE_TOUR_SCALE = 0.6;
 const SCROLL_LEN = 16000; // px of scroll mapped to the full story
@@ -694,7 +695,9 @@ export function Showcase() {
         </div>
 
         {/* Chrome */}
-        <div className="chrome absolute left-6 top-6 eyebrow transition-opacity">{ui.brand}</div>
+        <div className="chrome absolute left-6 top-6 transition-opacity">
+          <img src={stackopsLogo.url} alt={ui.brand} className="h-8 w-auto md:h-9" />
+        </div>
         <div className="chrome absolute right-6 top-5 flex items-center gap-2">
           <SiteMap onJump={jumpTo} />
         </div>
