@@ -875,7 +875,7 @@ export const serviceLabels = {
 };
 export const opening = {
   eyebrow: "STACKOPS / WHOLE-OF-GOVERNMENT OBSERVABILITY",
-  headline: ["FULL-STACK OBSERVABILITY", "FOR GOVERNMENT DIGITAL SERVICES"],
+  headline: ["FULL-STACK OBSERVABILITY", "WHOLE OF GOVERNMENT"],
   sub: "Gain operational visibility, simplify monitoring setup and support more reliable digital services with StackOps.",
   secondary: "Streamline telemetry onboarding, correlate operational data across clouds and reduce incident resolution time.",
 };
