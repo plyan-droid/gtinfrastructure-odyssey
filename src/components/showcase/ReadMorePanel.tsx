@@ -1,6 +1,6 @@
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { Activity, FileText, Network, Route } from "lucide-react";
-import { customerStories, disclaimer, sources, ui, type Detail } from "@/content/showcase";
+import { customerStories, sources, ui, type Detail } from "@/content/showcase";
 
 export function ReadMorePanel({
   detail,
@@ -41,6 +41,25 @@ export function ReadMorePanel({
                   <p className="text-sm leading-relaxed text-foreground/85 md:text-base">
                     {detail.readMore.cards.intro}
                   </p>
+                  {detail.readMore.cards.variant === "timeline" ? (
+                  <ol className="relative mt-6 grid gap-3 md:grid-cols-5">
+                    <span aria-hidden className="absolute left-[1.1rem] top-4 bottom-4 w-px bg-primary/30 md:left-4 md:right-4 md:top-[1.1rem] md:bottom-auto md:h-px md:w-auto" />
+                    {detail.readMore.sections.map((section) => {
+                      const [num, title] = section.heading.split(": ");
+                      return (
+                        <li key={section.heading} className="relative flex gap-4 md:flex-col md:gap-3">
+                          <span className="relative z-10 grid size-9 shrink-0 place-items-center rounded-full border border-primary/50 bg-popover font-mono text-xs text-primary">
+                            {num}
+                          </span>
+                          <div>
+                            <h3 className="text-base font-semibold">{title}</h3>
+                            <p className="mt-1 text-sm leading-relaxed text-foreground/75">{section.body}</p>
+                          </div>
+                        </li>
+                      );
+                    })}
+                  </ol>
+                  ) : (
                   <div className="mt-6 grid gap-4 md:grid-cols-2">
                     {detail.readMore.sections.map((section, i) => {
                       const Icon = [FileText, Activity, Route, Network][i % 4] ?? FileText;
@@ -61,6 +80,7 @@ export function ReadMorePanel({
                       );
                     })}
                   </div>
+                  )}
                   <p className="mt-6 text-sm leading-relaxed text-foreground/85 md:text-base">
                     {detail.readMore.cards.closing}
                   </p>
@@ -72,8 +92,10 @@ export function ReadMorePanel({
               <div className="space-y-7">
                 {detail.readMore.sections.map((section) => (
                   <section key={section.heading}>
-                    <h3 className="text-lg font-medium">{section.heading}</h3>
-                    <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-muted-foreground md:text-base">
+                    {section.heading !== detail.readMore.title && (
+                      <h3 className="text-lg font-medium">{section.heading}</h3>
+                    )}
+                    <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-foreground/75 md:text-base">
                       {section.body}
                     </p>
                     {section.links && (
@@ -106,11 +128,7 @@ export function ReadMorePanel({
                   {ui.source} ↗
                 </a>
               )}
-              {!detail.readMore.cards && (
-                <p className="mt-8 border-t pt-5 text-xs leading-relaxed text-muted-foreground">
-                  {disclaimer}
-                </p>
-              )}
+
             </div>
           </>
         )}
