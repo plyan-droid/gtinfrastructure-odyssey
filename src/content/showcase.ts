@@ -138,7 +138,7 @@ const popupContent: Detail[] = [
         {
           heading: "For engineering teams: manual vs with SORA",
           body: "- Find gaps: audit each account by hand → automated discovery scan.\n\n- Ingestion: built separately by every team → one guided deploy.\n\n- Credentials: copied into every app → held in one place.\n\n- Private networking: wired per account → set up for you.\n\n- Clean-up: leftover resources → one-command teardown.\n\nRe-runs are designed to be safe and repeatable. Supported cloud environments to be confirmed with the StackOps team.",
-},
+        },
         {
           heading: "Why it matters",
           body: "- Less repetitive manual setup.\n\n- More consistent monitoring configurations.\n\n- Improved awareness of monitoring gaps.\n\n- Reusable deployment practices.\n\n- Clearer configuration review and control.\n\nSpecific environments, integrations and deployment capabilities depend on the supported solution.",
