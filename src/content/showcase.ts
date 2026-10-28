@@ -3,12 +3,20 @@ export type DetailChart = {
   id: string;
   title: string;
   note?: string;
-  kind?: "architecture" | "collection" | "tracing" | "lifecycle";
+  kind?: "architecture" | "collection" | "tracing" | "lifecycle" | "hub" | "cards" | "pipeline" | "journey" | "stages" | "engine" | "beforeafter" | "quadrant" | "report" | "table";
+  intro?: string;
+  center?: { title: string; body: string };
+  tone?: "problem";
+  loop?: string;
+  itemsHeading?: string;
+  grades?: { grade: string; range: string; label: string }[];
+  /** Illustrative sample only: never real tenant data. */
+  report?: { synthetic: true; sampleLabel: string; grade: string; gradeLabel: string; metrics: { value: string; label: string }[]; barsTitle: string; bars: { label: string; value: number }[]; recsTitle: string; recs: string[] };
   groups?: { title: string; labels: string[] }[];
   footer?: { title: string; body: string }[];
   steps?: { title: string; body: string; requiresApproval?: boolean }[];
-  columns?: [string, string, string];
-  rows?: [string, string, string][];
+  columns?: string[];
+  rows?: string[][];
   items?: { title: string; body: string }[];
   cyclic?: boolean;
 };
@@ -51,7 +59,7 @@ export const popupCharts: Record<string, DetailChart[]> = {
       { title: "Agency applications", labels: ["TradeNet", "WINS", "Parents Gateway"] },
       { title: "GovTech applications", labels: ["DIYGowhere", "AIBots"] },
     ] },
-    { id: "onboarding", title: "Standards Out of the Box", steps: [
+    { id: "onboarding", title: "Standards Out of the Box", kind: "pipeline", itemsHeading: "What gets applied automatically", steps: [
       { title: "Tenant onboards", body: "Console portal" },
       { title: "StackOps orchestrator", body: "Provisions the project" },
       { title: "Baseline pipeline", body: "Applies configurations as code" },
@@ -69,14 +77,14 @@ export const popupCharts: Record<string, DetailChart[]> = {
       { title: "Observability, security, and business data", body: "Collect deep, context-rich, and full stack data" },
       { title: "Unified observability and security", body: "Power automation, orchestration, prevention, and protection" },
     ] },
-    { id: "apm-observability", title: "APM and Observability", columns: ["Focus", "Application performance monitoring", "Broader observability"], rows: [
+    { id: "apm-observability", title: "APM and Observability", kind: "table", columns: ["Focus", "Application performance monitoring", "Broader observability"], rows: [
       ["Questions", "How is the application performing?", "What explains this behaviour in context?"],
       ["Evidence", "Performance metrics, transactions and application traces", "Logs, metrics, traces and service relationships"],
       ["Investigation", "Track response time, errors and established thresholds", "Explore signals and dependencies across instrumented components"],
     ] },
   ],
   investigation: [
-    { id: "tracing-impact", title: "Why Connected Tracing Matters", items: [
+    { id: "tracing-impact", title: "Why Connected Tracing Matters", kind: "quadrant", center: { title: "Whole-of-Government APM value", body: "Unified tracing across agencies" }, items: [
       { title: "Citizen experience", body: "Investigate bottlenecks along a digital-service journey." },
       { title: "Cross-team alignment", body: "Give participating teams shared evidence rather than separate tickets." },
       { title: "Operational efficiency", body: "Identify duplicated monitoring effort and improvement opportunities." },
@@ -84,13 +92,13 @@ export const popupCharts: Record<string, DetailChart[]> = {
     ] },
   ],
   sora: [
-    { id: "sora-workflow", title: "Discover, Review, Implement", steps: [
+    { id: "sora-workflow", title: "Discover, Review, Implement", kind: "pipeline", loop: "Re-run any time: safe and idempotent", steps: [
       { title: "Discover", body: "Scan supported resources and identify existing monitoring or gaps." },
       { title: "Review", body: "Inspect the generated configuration plan. Human approval is required.", requiresApproval: true },
       { title: "Implement", body: "Deploy approved configurations through supported infrastructure-as-code." },
       { title: "Monitor", body: "Check telemetry and review the resulting monitoring setup." },
     ] },
-    { id: "sora-comparison", title: "Less Repeated Manual Setup", columns: ["Activity", "Manual approach", "Supported SORA workflow"], rows: [
+    { id: "sora-comparison", title: "Less Repeated Manual Setup", kind: "table", columns: ["Activity", "Manual approach", "Supported SORA workflow"], rows: [
       ["Find gaps", "Audit each account by hand", "Discovery scan identifies potential gaps"],
       ["Set up ingestion", "Each team builds its own setup", "Reviewable, guided deployment"],
       ["Credentials", "Configure separately in applications", "Supported central handling"],
@@ -111,13 +119,13 @@ export const popupCharts: Record<string, DetailChart[]> = {
     ] },
   ],
   soda: [
-    { id: "soda-impact", title: "From Manual Review to Informed Decisions", columns: ["Review area", "Without structured analysis", "With supported SODA analysis"], rows: [
+    { id: "soda-impact", title: "From Manual Review to Informed Decisions", kind: "beforeafter", columns: ["Review area", "Without structured analysis", "With supported SODA analysis"], rows: [
       ["Cost visibility", "One monthly billing total", "Review supported tier and index breakdowns"],
       ["Review effort", "Repeated manual checks", "Reports bring relevant findings together"],
       ["Recommendations", "Generic best practices", "Data-informed opportunities for review"],
       ["Governance", "React after usage has grown", "Identify potential waste earlier"],
     ] },
-    { id: "soda-pipeline", title: "How Data Reaches the Analysis", steps: [
+    { id: "soda-pipeline", title: "How Data Reaches the Analysis", kind: "pipeline", itemsHeading: "What we collect", steps: [
       { title: "Supported deployments", body: "Hosted deployments and serverless projects within the supported scope" },
       { title: "Collection pipeline", body: "Scheduled collection of permitted deployment information" },
       { title: "StackOps central analysis", body: "Bring supported data together for review" },
@@ -129,12 +137,21 @@ export const popupCharts: Record<string, DetailChart[]> = {
       { title: "Synthetics & monitoring", body: "Monitor locations and frequency" },
       { title: "Alerting & security rules", body: "Supported rule configurations" },
     ] },
-    { id: "soda-engine", title: "Cost Optimisation Analysis", items: [
-      { title: "Node sizing", body: "Compare utilisation with capacity" },
-      { title: "Storage efficiency", body: "Review idle data and empty indices" },
-      { title: "Index lifecycle", body: "Review retention and tiering" },
-      { title: "Performance", body: "Examine relevant configuration patterns" },
-      { title: "Synthetics", body: "Review monitor type, location and frequency" },
+    { id: "soda-engine", title: "Cost Optimisation Engine", kind: "engine", items: [
+      { title: "Node Sizing", body: "CPU and JVM utilisation vs capacity" },
+      { title: "Storage Efficiency", body: "Idle data, empty indices" },
+      { title: "Index Lifecycle", body: "Lifecycle gaps, tier migration" },
+      { title: "Performance", body: "Alerting frequency, compression" },
+      { title: "Synthetics", body: "Monitor type, location, frequency" },
+    ], footer: [
+      { title: "Optimisation Grade", body: "Score 0 to 100 across all dimensions" },
+      { title: "Recommendations", body: "Actionable steps with indicative savings" },
+      { title: "Cost Calculator", body: "Interactive what-if scenarios" },
+    ], grades: [
+      { grade: "S", range: "85+", label: "Optimised" },
+      { grade: "A", range: "65 to 84", label: "Stable" },
+      { grade: "B", range: "40 to 64", label: "Moderate" },
+      { grade: "C", range: "0 to 39", label: "Wastage" },
     ], steps: [
       { title: "Analyse", body: "Assess supported configuration and utilisation data" },
       { title: "Recommend", body: "Surface opportunities and potential trade-offs" },
@@ -159,7 +176,7 @@ export const popupCharts: Record<string, DetailChart[]> = {
       { title: "Answer-driven automation", body: "Leverage data for post-processing automation" },
       { title: "Unified observability and security", body: "Power automation, orchestration, prevention, and protection" },
     ] },
-    { id: "operating-models", title: "Dynatrace Operating Models", columns: ["Responsibility", "StackOps centrally managed", "Agency self-managed"], rows: [
+    { id: "operating-models", title: "Dynatrace Operating Models", kind: "table", columns: ["Responsibility", "StackOps centrally managed", "Agency self-managed"], rows: [
       ["Primary value", "Built and operated centrally by StackOps", "Agency retains autonomy"],
       ["Operating model", "Controlled and operated by StackOps", "Operated by the individual agency"],
       ["ActiveGate & connectivity", "Provided and maintained by StackOps", "Agency builds and maintains"],
