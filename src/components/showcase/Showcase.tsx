@@ -652,10 +652,6 @@ export function Showcase() {
           className="scene-closing story-full absolute inset-0 flex flex-col items-center justify-center px-6 text-center"
         >
           <p className="scene-el eyebrow mb-5">{closing.eyebrow}</p>
-          <h2 className="scene-el closing-title max-w-5xl text-4xl font-semibold leading-tight md:text-6xl">
-            {closing.headline[0]}
-            <span className="block text-signal">{closing.headline[1]}</span>
-          </h2>
           <p className="scene-el mt-6 max-w-xl text-sm text-foreground/80 md:text-lg">
             {closing.sub}
           </p>
