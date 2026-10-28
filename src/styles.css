@@ -123,8 +123,8 @@
 
 [data-scene] .scene-el { pointer-events: auto; }
 
-.reading-points { position: relative; height: 9rem; flex-shrink: 0; }
-.reading-point { position: absolute; inset: 0; opacity: 0; visibility: hidden; pointer-events: none; }
+.reading-points { position: relative; display: grid; flex-shrink: 0; }
+.reading-point { grid-area: 1 / 1; opacity: 0; visibility: hidden; pointer-events: none; }
 [data-active-scene="opening"][data-active-point="0"] [data-scene="opening"] [data-point="0"] { opacity: 1; visibility: visible; }
 [data-active-scene="opening"][data-active-point="1"] [data-scene="opening"] [data-point="1"] { opacity: 1; visibility: visible; }
 [data-active-scene="opening"][data-active-point="2"] [data-scene="opening"] [data-point="2"] { opacity: 1; visibility: visible; }
@@ -228,7 +228,7 @@
 @media (min-width: 768px) and (max-height: 800px) {
  .narrative-scene h2 { font-size: 2.15rem; }
  .narrative-scene > p { font-size: 0.85rem; margin-top: 0.8rem; }
- .narrative-scene .reading-points { height: 7.5rem; margin-top: 1.2rem; }
+ .narrative-scene .reading-points { margin-top: 1.2rem; }
  .narrative-scene .reading-point h3 { font-size: 1rem; }
  .narrative-scene .reading-point p { font-size: 0.8rem; }
  .scene-customers h2, .scene-options h2 { font-size: 2.5rem; }
@@ -252,7 +252,7 @@
  .narrative-scene h2 { font-size: 1.65rem; }
  .narrative-scene > p { font-size: 0.8rem; margin-top: 0.7rem; }
  .narrative-scene > .eyebrow { font-size: 0.6rem; margin-bottom: 0.6rem; }
- .narrative-scene .reading-points { height: 7.5rem; margin-top: 1rem; }
+ .narrative-scene .reading-points { margin-top: 1rem; }
  .narrative-scene .reading-point h3 { font-size: 1.05rem; }
  .narrative-scene .reading-point p { font-size: 0.8rem; }
  .narrative-scene .reading-point p.hidden { display: block; }
