@@ -398,10 +398,10 @@ export function Showcase() {
             <br />
             <span className="text-signal">{opening.headline[1]}</span>
           </h1>
-          <p className="scene-el mt-8 max-w-2xl text-base text-foreground/85 md:text-xl">
+          <p className="scene-el mt-8 max-w-2xl text-lg text-foreground/85 md:text-2xl">
             {opening.sub}
           </p>
-          <p className="scene-el mt-4 max-w-xl text-sm text-muted-foreground md:text-base">
+          <p className="scene-el mt-4 max-w-xl text-base text-muted-foreground md:text-lg">
             {opening.secondary}
           </p>
           <Button variant="link" className="scene-el pointer-events-auto mt-4 text-primary" onClick={() => openPanel("glance")}>
@@ -419,7 +419,7 @@ export function Showcase() {
           </div>
           <div className="topology-card pointer-events-none absolute bottom-14 right-6 max-w-sm text-right [text-shadow:0_2px_12px_var(--background)] md:bottom-6 md:right-10">
             <h2 className="text-xl font-semibold md:text-2xl">{topology.headline}</h2>
-            <p className="mt-2 text-xs text-foreground/80 md:text-sm">{topology.sub}</p>
+            <p className="mt-2 text-sm text-foreground/80 md:text-base">{topology.sub}</p>
           </div>
         </div>
 
@@ -433,7 +433,7 @@ export function Showcase() {
             {challenge.headline[0]}
             <span className="block text-signal">{challenge.headline[1]}</span>
           </h2>
-          <p className="scene-el head mt-5 max-w-md text-sm text-foreground/80 md:text-lg">
+          <p className="scene-el head mt-5 max-w-md text-base text-foreground/80 md:text-xl">
             {challenge.sub}
           </p>
           <ol className="reading-points mt-6 space-y-3 md:mt-10 md:space-y-5">
@@ -443,10 +443,10 @@ export function Showcase() {
                 data-point={i}
                 className={`reading-point c${i} flex gap-4 border-l border-accent/50 pl-4`}
               >
-                <span className="font-mono text-xs text-accent">{c.n}</span>
+                <span className="font-mono text-sm text-accent">{c.n}</span>
                 <div>
-                  <p className="text-sm font-medium md:text-lg">{c.title}</p>
-                  <p className="hidden text-sm text-muted-foreground md:block">{c.body}</p>
+                  <p className="text-base font-medium md:text-xl">{c.title}</p>
+                  <p className="hidden text-base text-muted-foreground md:block">{c.body}</p>
                 </div>
               </li>
             ))}
@@ -484,7 +484,7 @@ export function Showcase() {
               </li>
             ))}
           </ol>
-          <p className="scene-el mt-3 text-xs text-muted-foreground">{investigation.note}</p>
+          <p className="scene-el mt-3 text-sm text-muted-foreground">{investigation.note}</p>
         </div>
         {Object.entries(contextSections).map(([scene, section]) => (
           <div
@@ -500,9 +500,9 @@ export function Showcase() {
                   data-point={i}
                   className="reading-point border-l border-primary/50 pl-4"
                 >
-                  <p className="font-mono text-xs text-primary">{pt.n}</p>
+                  <p className="font-mono text-sm text-primary">{pt.n}</p>
                   <h3 className="mt-2 text-xl font-medium">{pt.title}</h3>
-                  <p className="mt-3 text-sm text-muted-foreground">{pt.body}</p>
+                  <p className="mt-3 text-base text-muted-foreground">{pt.body}</p>
                   {"detail" in section && (
                     <Button variant="link" className="read-more pointer-events-auto mt-2 h-auto w-fit px-0 py-1" onClick={() => openPanel(section.detail)}>
                   {ui.readMore}
@@ -514,7 +514,7 @@ export function Showcase() {
             </ol>
             {"detail" in section && (
               <>
-                <p className="scene-el mt-3 text-xs text-muted-foreground">
+                <p className="scene-el mt-3 text-sm text-muted-foreground">
                   {"note" in section ? section.note : ""}
                 </p>
               </>
@@ -560,7 +560,7 @@ export function Showcase() {
               <div>
                 <p className="eyebrow text-healthy">{story.eyebrow}</p>
                 <h3 className="mt-3 text-2xl font-medium md:text-3xl">{story.title}</h3>
-                <p className="mt-3 max-w-lg text-sm text-muted-foreground">{story.benefit}</p>
+                <p className="mt-3 max-w-lg text-base text-muted-foreground">{story.benefit}</p>
                 {story.id === "cft" && (
                   <p className="mt-4 text-2xl text-healthy">{diagram.workflowCount}</p>
                 )}
@@ -576,7 +576,7 @@ export function Showcase() {
               {story.metric && (
                 <div className="border-l border-healthy/50 pl-6">
                   <p className="text-6xl font-semibold text-healthy md:text-7xl">{story.metric}</p>
-                  <p className="mt-2 max-w-xs text-sm">{story.metricLabel}</p>
+                  <p className="mt-2 max-w-xs text-base">{story.metricLabel}</p>
                   <p className="mt-3 text-[10px] text-muted-foreground">{ui.attributed}</p>
                 </div>
               )}
@@ -592,7 +592,7 @@ export function Showcase() {
               >
                 <ArrowLeft />
               </Button>
-              <span className="font-mono text-xs text-muted-foreground">
+              <span className="font-mono text-sm text-muted-foreground">
                 {storyIndex + 1} / {customerStories.length}
               </span>
               <Button
@@ -616,7 +616,7 @@ export function Showcase() {
             {options.platforms.map((o) => (
               <article key={o.id} className="scene-el border-t border-primary/50 pt-4">
                 <h3 className="text-2xl font-medium">{o.name}</h3>
-                <p className="mt-3 max-w-md text-sm text-muted-foreground">{o.summary}</p>
+                <p className="mt-3 max-w-md text-base text-muted-foreground">{o.summary}</p>
                 <Button
                   variant="link"
                   onClick={() => openPanel(o.id)}
@@ -634,8 +634,8 @@ export function Showcase() {
             <div className="mt-2 grid gap-3 md:grid-cols-2">
               {options.models.map((model) => (
                 <div key={model.title}>
-                  <h4 className="text-sm text-healthy">{model.title}</h4>
-                  <p className="mt-1 text-xs text-muted-foreground">{model.body}</p>
+                  <h4 className="text-base text-healthy">{model.title}</h4>
+                  <p className="mt-1 text-sm text-muted-foreground">{model.body}</p>
                 </div>
               ))}
             </div>
@@ -645,7 +645,7 @@ export function Showcase() {
             </Button>
           </div>
           <p className="scene-el mt-5 font-mono text-sm text-accent">{ui.pricing}</p>
-          <p className="scene-el mt-2 max-w-3xl text-xs text-muted-foreground">{ui.optionScope}</p>
+          <p className="scene-el mt-2 max-w-3xl text-sm text-muted-foreground">{ui.optionScope}</p>
         </div>
 
         <div
@@ -657,7 +657,7 @@ export function Showcase() {
             {closing.headline[0]}
             <span className="block text-signal">{closing.headline[1]}</span>
           </h2>
-          <p className="scene-el mt-6 max-w-xl text-sm text-foreground/80 md:text-lg">
+          <p className="scene-el mt-6 max-w-xl text-base text-foreground/80 md:text-xl">
             {closing.sub}
           </p>
           <div className="scene-el mt-6 w-full max-w-4xl">
@@ -665,8 +665,8 @@ export function Showcase() {
             <ol className="mt-3 grid gap-3 text-left md:grid-cols-3">
               {closing.steps.map((step) => (
                 <li key={step.k} className="border-l border-primary/50 pl-4">
-                  <span className="font-mono text-xs text-primary">{step.k}</span>
-                  <p className="mt-1 text-sm text-foreground/85">{step.v}</p>
+                  <span className="font-mono text-sm text-primary">{step.k}</span>
+                  <p className="mt-1 text-base text-foreground/85">{step.v}</p>
                 </li>
               ))}
             </ol>
@@ -683,12 +683,12 @@ export function Showcase() {
               <ArrowRight />
             </Button>
           </div>
-          <p className="scene-el mt-3 text-xs text-muted-foreground">{ui.discussionPending}</p>
+          <p className="scene-el mt-3 text-sm text-muted-foreground">{ui.discussionPending}</p>
           <div className="scene-el qr-placeholders mt-6 flex gap-8">
             {[ui.websiteQr, ui.discussionQr].map((label) => (
               <div key={label} className="flex max-w-40 flex-col items-center gap-2">
                 <QrCode className="h-12 w-12 text-muted-foreground/40" />
-                <p className="text-[10px] text-muted-foreground">{label}</p>
+                <p className="text-xs text-muted-foreground">{label}</p>
               </div>
             ))}
           </div>
@@ -701,7 +701,7 @@ export function Showcase() {
         <div className="chrome absolute right-6 top-5 flex items-center gap-2">
           <SiteMap onJump={jumpTo} />
         </div>
-        <p className="story-disclaimer absolute bottom-4 left-6 max-w-md pr-28 text-[10px] leading-snug text-muted-foreground/70">
+        <p className="story-disclaimer absolute bottom-4 left-6 max-w-md pr-28 text-xs leading-snug text-muted-foreground/70">
           {disclaimer}
         </p>
       </section>
@@ -725,8 +725,8 @@ function ProductScene({ p, cls, onMore }: { p: Product; cls: string; onMore: () 
       className={`${cls} narrative-scene pointer-events-none absolute inset-y-0 left-0 flex w-full flex-col justify-end px-6 pb-16 md:w-[48%] md:justify-center md:px-16 md:pb-0`}
     >
       <p className="scene-el head eyebrow mb-3 text-primary">{p.eyebrow}</p>
-      <p className="scene-el head text-sm font-medium text-foreground/80 md:text-lg">{p.problem}</p>
-      <p className="scene-el head mb-5 hidden max-w-md text-sm text-muted-foreground md:block">
+      <p className="scene-el head text-base font-medium text-foreground/80 md:text-xl">{p.problem}</p>
+      <p className="scene-el head mb-5 hidden max-w-md text-base text-muted-foreground md:block">
         {p.problemSub}
       </p>
       <h2 className="scene-el head text-4xl font-semibold leading-[0.95] tracking-tight md:text-6xl">
@@ -736,7 +736,7 @@ function ProductScene({ p, cls, onMore }: { p: Product; cls: string; onMore: () 
           </span>
         ))}
       </h2>
-      <p className="scene-el head mt-4 max-w-md text-sm text-foreground/80 md:text-base">
+      <p className="scene-el head mt-4 max-w-md text-base text-foreground/80 md:text-lg">
         {p.description}
       </p>
       <ol className="reading-points mt-5 space-y-2 md:mt-7 md:space-y-3">
@@ -746,10 +746,10 @@ function ProductScene({ p, cls, onMore }: { p: Product; cls: string; onMore: () 
             data-point={i}
             className={`reading-point p${i} flex gap-4 border-l border-primary/40 pl-4`}
           >
-            <span className="font-mono text-xs text-primary">{pt.n}</span>
+            <span className="font-mono text-sm text-primary">{pt.n}</span>
             <div>
-              <p className="text-sm font-medium md:text-base">{pt.title}</p>
-              <p className="hidden text-sm text-muted-foreground md:block">{pt.body}</p>
+              <p className="text-base font-medium md:text-lg">{pt.title}</p>
+              <p className="hidden text-base text-muted-foreground md:block">{pt.body}</p>
               <Button variant="link" className="read-more pointer-events-auto mt-2 h-auto w-fit px-0 py-1" onClick={onMore}>
                   {ui.readMore}
                   <ArrowRight />
