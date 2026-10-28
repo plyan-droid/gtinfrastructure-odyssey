@@ -4,13 +4,13 @@ import { Showcase } from "@/components/showcase/Showcase";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "StackOps: Full-Stack Observability for Government Digital Services" },
+      { title: "StackOps: Full-Stack Observability for Whole of Government" },
       {
         name: "description",
         content:
           "Explore government-ready monitoring foundations, supported automation, operational insights and verified agency outcomes with StackOps.",
       },
-      { property: "og:title", content: "StackOps: Full-Stack Observability for Government Digital Services" },
+      { property: "og:title", content: "StackOps: Full-Stack Observability for Whole of Government" },
       {
         property: "og:description",
         content:
