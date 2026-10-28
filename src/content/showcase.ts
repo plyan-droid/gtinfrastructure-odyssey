@@ -113,13 +113,6 @@ const popupContent: Detail[] = [
     },
   },
   {
-          heading: "Follow the Evidence, Not Just the Alert.",
-          body: "An alert may indicate that an application is experiencing unusual behaviour. Understanding the cause requires investigating the available operational evidence.\n\nConsider a fictional digital service experiencing slower response times.\n\nDetect: Performance metrics indicate unusual latency.\n\nExamine: Engineers review relevant logs, metrics and events.\n\nTrace: Available request traces help reveal the services involved.\n\nInvestigate: Service relationships and monitoring evidence help narrow down possible contributing components.\n\nRespond: Engineers determine the appropriate course of action.\n\nStackOps provides observability capabilities that support investigation and troubleshooting.\n\nThis is an illustrative scenario using synthetic data, not a guarantee of automatic diagnosis or resolution.",
-        },
-      ],
-    },
-  },
-  {
     id: "sora",
     eyebrow: "SORA",
     readMore: {
