@@ -4,7 +4,12 @@ export type Section = { heading: string; body: string; links?: { label: string; 
 export type Detail = {
   id: string;
   eyebrow: string;
-  readMore: { title: string; sections: Section[] };
+  readMore: {
+    title: string;
+    sections: Section[];
+    /** Scannable card layout: intro on top, sections as icon cards, closing + note below. */
+    cards?: { intro: string; closing: string; note: string };
+  };
 };
 export type Product = Detail & {
   problem: string;
@@ -61,27 +66,28 @@ const popupContent: Detail[] = [
     id: "capabilities",
     eyebrow: "CAPABILITIES",
     readMore: {
-      title: "Understand Your Systems Beyond Individual Dashboards.",
+      title: "What Logs, Metrics and Traces Tell You",
+      cards: {
+        intro: "Logs, metrics and traces help teams investigate different parts of a system. Here's what each one tells you.",
+        closing: "Together, these signals help teams build a clearer picture of what's happening across their applications and infrastructure.",
+        note: "Available capabilities depend on the selected observability technology, instrumentation and configuration.",
+      },
       sections: [
         {
-          heading: "Understand Your Systems Beyond Individual Dashboards.",
-          body: "Modern digital services generate different types of operational information.",
+          heading: "LOGS: What happened?",
+          body: "Event records help engineers examine system activity, errors and what happened around the time of an issue.",
         },
         {
-          heading: "Logs: What happened?",
-          body: "Event records help engineers examine system activities and errors.",
+          heading: "METRICS: How is it performing?",
+          body: "Measurements such as response time, error rate and resource usage help teams track system performance.",
         },
         {
-          heading: "Metrics: How is it performing?",
-          body: "Measurements such as response time, error rate and resource utilisation help teams assess system health.",
+          heading: "TRACES: Where did the request go?",
+          body: "Distributed traces help engineers follow requests across instrumented services and identify where delays may occur.",
         },
         {
-          heading: "Traces: Where did the request go?",
-          body: "Distributed traces help engineers follow requests across appropriately instrumented services.",
-        },
-        {
-          heading: "Connected Context: How are systems related?",
-          body: "Relevant dependency information helps teams understand how different components interact.\n\nTogether, these signals can provide a more complete view of complex digital services and support incident investigation.\n\nThe available features depend on the observability technology and configuration.",
+          heading: "SERVICE CONTEXT: How are the systems connected?",
+          body: "Service relationships help engineers understand dependencies and investigate how an issue in one component may affect others.",
         },
       ],
     },
@@ -132,12 +138,6 @@ const popupContent: Detail[] = [
         {
           heading: "For engineering teams: manual vs with SORA",
           body: "- Find gaps: audit each account by hand → automated discovery scan.\n\n- Ingestion: built separately by every team → one guided deploy.\n\n- Credentials: copied into every app → held in one place.\n\n- Private networking: wired per account → set up for you.\n\n- Clean-up: leftover resources → one-command teardown.\n\nRe-runs are designed to be safe and repeatable. Supported cloud environments to be confirmed with the StackOps team.",
-          links: [
-            {
-              label: "Explore SORA on GitLab (InnerSource)",
-              href: "https://sgts.gitlab-dedicated.com/innersource/sgts/stackops/automations/stackops-resiliency-accelerator",
-            },
-          ],
         },
         {
           heading: "Why it matters",
