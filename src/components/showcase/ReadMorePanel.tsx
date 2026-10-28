@@ -43,7 +43,7 @@ export function ReadMorePanel({
                   </p>
                   <div className="mt-6 grid gap-4 md:grid-cols-2">
                     {detail.readMore.sections.map((section, i) => {
-                      const Icon = [FileText, Activity, Route, Network][i % 4];
+                      const Icon = [FileText, Activity, Route, Network][i % 4] ?? FileText;
                       const [label, question] = section.heading.split(": ");
                       return (
                         <section key={section.heading} className="rounded-lg border bg-card p-5">
