@@ -875,7 +875,7 @@ export const serviceLabels = {
 };
 export const opening = {
   eyebrow: "STACKOPS / WHOLE-OF-GOVERNMENT OBSERVABILITY",
-  headline: ["FULL-STACK OBSERVABILITY", "FOR GOVERNMENT DIGITAL SERVICES."],
+  headline: ["FULL-STACK OBSERVABILITY", "FOR GOVERNMENT DIGITAL SERVICES"],
   sub: "Gain operational visibility, simplify monitoring setup and support more reliable digital services with StackOps.",
   secondary: "Streamline telemetry onboarding, correlate operational data across clouds and reduce incident resolution time.",
 };
@@ -887,7 +887,7 @@ export const topology = {
 };
 export const challenge = {
   eyebrow: "THE CHALLENGE",
-  headline: ["WHEN INCIDENTS SPAN", "MULTIPLE CLOUD ENVIRONMENTS."],
+  headline: ["WHEN INCIDENTS SPAN", "MULTIPLE CLOUD ENVIRONMENTS"],
   sub: "One request may pass through several applications, APIs and cloud environments. When something slows down, figuring out where to look isn't always easy.",
   items: [
     {
@@ -918,7 +918,7 @@ export const capabilities: Product = {
   eyebrow: "STACKOPS CAPABILITIES",
   problem: "",
   problemSub: "",
-  headline: ["COMPLETE TELEMETRY IN", "ONE UNIFIED CONTEXT."],
+  headline: ["COMPLETE TELEMETRY IN", "ONE UNIFIED CONTEXT"],
   description:
     "Different signals tell different parts of the story. Together with service context, they help teams understand how applications and infrastructure behave.",
   points: [
@@ -931,7 +931,7 @@ export const capabilities: Product = {
 };
 export const investigation = {
   eyebrow: "FROM VISIBILITY TO ACTION",
-  scenario: "FASTER INCIDENT DIAGNOSIS AND RESOLUTION.",
+  scenario: "FASTER INCIDENT DIAGNOSIS AND RESOLUTION",
   sub: "Relevant monitoring signals and service context help engineers investigate operational issues more effectively.",
   steps: [
     { k: "01", v: "Detect unusual behaviour" },
@@ -1121,12 +1121,12 @@ customerStories.forEach((story) => {
 });
 export const customers = {
   eyebrow: "PROVEN GOVERNMENT USE CASES",
-  headline: ["RESULTS FROM", "AGENCY DEPLOYMENTS."],
+  headline: ["RESULTS FROM", "AGENCY DEPLOYMENTS"],
   sub: "Discover how government teams have used StackOps to improve visibility, strengthen operations and support digital-service reliability.",
 };
 export const options = {
   eyebrow: "STACKOPS TECHNOLOGY OPTIONS",
-  headline: ["CHOOSE THE RIGHT", "OBSERVABILITY PLATFORM."],
+  headline: ["CHOOSE THE RIGHT", "OBSERVABILITY PLATFORM"],
   sub: "Explore the underlying observability technologies and operating approaches available through StackOps.",
   platforms: [
     {
@@ -1158,7 +1158,7 @@ export const options = {
 };
 export const closing = {
   eyebrow: "GET STARTED WITH STACKOPS",
-  headline: ["ACCELERATE OBSERVABILITY", "FOR YOUR AGENCY."],
+  headline: ["ACCELERATE OBSERVABILITY", "FOR YOUR AGENCY"],
   sub: "Explore a government-focused approach to observability, monitoring automation and operational insight.",
   href: "https://www.developer.tech.gov.sg/products/categories/devops/stackops/customer-stories",
   gccMore: "Part of the GCC journey",
@@ -1174,7 +1174,7 @@ export const disclaimer =
 export const contextSections = {
   foundations: {
     eyebrow: "THE STACKOPS ADVANTAGE",
-    headline: ["ENGINEERED FOR THE", "SINGAPORE GOVERNMENT TECH STACK."],
+    headline: ["ENGINEERED FOR THE", "SINGAPORE GOVERNMENT TECH STACK"],
     sub: "StackOps combines observability capabilities with shared standards, automation and engineering practices designed for government operations.",
     detail: "foundations",
     points: [
@@ -1202,7 +1202,7 @@ export const contextSections = {
   },
   tools: {
     eyebrow: "STACKOPS-BUILT AUTOMATION",
-    headline: ["AUTOMATED ONBOARDING", "WITH SORA."],
+    headline: ["AUTOMATED ONBOARDING", "WITH SORA"],
     sub: "SORA (StackOps Resiliency Accelerator) helps streamline monitoring setup through resource discovery, configuration review and supported automation.",
     detail: "sora",
     note: "Specific environments, integrations and deployment capabilities depend on the supported solution.",
@@ -1231,7 +1231,7 @@ export const contextSections = {
   },
   otel: {
     eyebrow: "CONNECTED SERVICE VISIBILITY",
-    headline: ["TRACING REQUESTS", "ACROSS CLOUD PROVIDERS."],
+    headline: ["TRACING REQUESTS", "ACROSS CLOUD PROVIDERS"],
     sub: "Standardised telemetry helps teams investigate how appropriately instrumented services behave across connected environments.",
     detail: "otel",
     note: "Visibility depends on instrumentation, configuration, supported integrations and access permissions.",
@@ -1247,7 +1247,7 @@ export const contextSections = {
   },
   soda: {
     eyebrow: "STACKOPS-BUILT ANALYSIS",
-    headline: ["COST AND HEALTH", "OPTIMISATION WITH SODA."],
+    headline: ["COST AND HEALTH", "OPTIMISATION WITH SODA"],
     sub: "SODA (StackOps Data Analysis) helps teams examine deployment, utilisation and cost-related information to identify optimisation opportunities.",
     detail: "soda",
     note: "Synthetic data only. Recommendations support human decisions, not guaranteed savings.",
@@ -1276,7 +1276,7 @@ export const contextSections = {
   },
   intelligence: {
     eyebrow: "THE EVOLUTION OF STACKOPS",
-    headline: ["RECOMMENDATIONS THAT IMPROVE", "WITH EVERY TENANT."],
+    headline: ["RECOMMENDATIONS THAT IMPROVE", "WITH EVERY TENANT"],
     sub: "Explore how AI-assisted analysis, shared benchmarks and operational knowledge can inform continuous improvement across government organisations.",
     detail: "intelligence",
     note: "Future direction · availability, scope and data governance pending product-owner validation.",
