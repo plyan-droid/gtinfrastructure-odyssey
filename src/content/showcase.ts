@@ -47,7 +47,7 @@ export const sources = {
     "https://govinsider.asia/intl-en/article/how-govtech-singapores-stackops-enhances-observability-in-public-sector-it",
 };
 export const chartCopy = {
-  platforms: "GovTech Platforms", applications: "Applications", sgts: "Singapore Government Technology Stack", stackops: "StackOps", resiliency: "Observability and Operational Excellence", maturity: "Improve Maturity Across Organisations",
+  platforms: "GovTech Platforms", applications: "Applications", sgts: "Singapore Government Technology Stack (SGTS)", stackops: "StackOps", resiliency: "Observability and Operational Excellence", maturity: "Improve Maturity Across Organisations",
   request: "Request context · trace ID + baggage", central: "Central Observability", centralBody: "Connected telemetry from instrumented services", cycle: "Continuous improvement", concept: "Technology-specific capabilities",
 };
 export const popupCharts: Record<string, DetailChart[]> = {
