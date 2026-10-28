@@ -1,4 +1,9 @@
 # StackOps stakeholder update
+## Slide chart additions
+- [x] Add suitable screenshot charts and readable adaptations inside matching Read More popups, without changing the story map.
+- [x] Remove the crossed-out middle columns from the collection-to-outcomes chart.
+- [x] Verify chart expansion, popup scrolling and story restoration on desktop and phone.
+
 - [x] Reposition the eight-scene story while preserving the existing network and motion.
 - [x] Add qualified StackOps tools, five official customer stories, options and official CTA.
 - [x] Replace all Read More drawers with accessible centred modals.

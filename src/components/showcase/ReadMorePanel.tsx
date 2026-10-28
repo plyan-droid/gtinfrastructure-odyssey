@@ -1,6 +1,7 @@
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { Activity, FileText, Network, Route } from "lucide-react";
 import { customerStories, sources, ui, type Detail } from "@/content/showcase";
+import { DetailCharts } from "./DetailCharts";
 
 export function ReadMorePanel({
   detail,
@@ -36,6 +37,7 @@ export function ReadMorePanel({
               <DialogDescription className="sr-only">{detail.eyebrow}</DialogDescription>
             </header>
             <div className="detail-scroll overflow-y-auto overscroll-contain px-6 py-7 md:px-10">
+              {detail.readMore.charts && <DetailCharts charts={detail.readMore.charts} />}
               {detail.readMore.cards ? (
                 <div>
                   <p className="text-sm leading-relaxed text-foreground/85 md:text-base">
