@@ -22,7 +22,7 @@ describe("Slide-derived popup charts", () => {
     expect(find("capabilities", "golden-signals")?.items?.map(i => i.title)).toEqual(["Latency", "Traffic", "Errors", "Saturation"]);
   });
   it("keeps the unified tracing pillars in the Investigation popup", () => {
-    expect(find("incident", "tracing-pillars")?.center?.title).toContain("Whole-of-Government");
+    expect(find("investigation", "tracing-pillars")?.center?.title).toContain("Whole-of-Government");
   });
   it("marks the SODA report as illustrative sample data", () => {
     expect(find("soda", "soda-report")?.report?.synthetic).toBe(true);
