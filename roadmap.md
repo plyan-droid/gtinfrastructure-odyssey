@@ -1,9 +1,9 @@
 # StackOps stakeholder update
 ## Slide chart additions
 ## Chart redesign correction
-- [ ] Replace slide images with native, readable architecture and flow diagrams and refine all chart treatments.
-- [ ] Remove slide-source commentary and retain the requested seven bottom descriptions without competing icons.
-- [ ] Verify desktop and phone charts, scrolling and popup restoration.
+- [x] Replace slide images with native, readable architecture and flow diagrams and refine all chart treatments.
+- [x] Remove slide-source commentary and retain the requested seven bottom descriptions without competing icons.
+- [x] Verify desktop and phone charts, scrolling and popup restoration.
 
 - [x] Add suitable screenshot charts and readable adaptations inside matching Read More popups, without changing the story map.
 - [x] Remove the crossed-out middle columns from the collection-to-outcomes chart.
