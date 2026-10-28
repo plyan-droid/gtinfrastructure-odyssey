@@ -730,14 +730,7 @@ function ProductScene({ p, cls, onMore }: { p: Product; cls: string; onMore: () 
       <p className="scene-el head mb-5 hidden max-w-md text-sm text-muted-foreground md:block">
         {p.problemSub}
       </p>
-      <h2 className="scene-el head text-4xl font-semibold leading-[0.95] tracking-tight md:text-6xl">
-        {p.headline.map((l, i) => (
-          <span key={l} className={i === p.headline.length - 1 ? "block text-signal" : "block"}>
-            {l}
-          </span>
-        ))}
-      </h2>
-      <p className="scene-el head mt-4 max-w-md text-sm text-foreground/80 md:text-base">
+      <p className="scene-el head max-w-md text-sm text-foreground/80 md:text-base">
         {p.description}
       </p>
       <ol className="reading-points mt-5 space-y-2 md:mt-7 md:space-y-3">
@@ -766,22 +759,16 @@ function ProductScene({ p, cls, onMore }: { p: Product; cls: string; onMore: () 
 function SceneHeading({
   cls = "",
   eyebrow,
-  headline,
   sub,
 }: {
   cls?: string;
   eyebrow: string;
-  headline: string[];
   sub: string;
 }) {
   return (
     <>
-      <p className={`scene-el ${cls} eyebrow mb-4 text-primary`}>{eyebrow}</p>
-      <h2 className={`scene-el ${cls} max-w-4xl text-3xl font-semibold leading-tight md:text-5xl`}>
-        {headline[0]}
-        <span className="block text-signal">{headline[1]}</span>
-      </h2>
-      <p className={`scene-el ${cls} mt-4 max-w-2xl text-sm text-foreground/80 md:text-base`}>
+      <p className={`scene-el ${cls} eyebrow mb-2 text-primary`}>{eyebrow}</p>
+      <p className={`scene-el ${cls} max-w-2xl text-sm text-foreground/80 md:text-base`}>
         {sub}
       </p>
     </>
