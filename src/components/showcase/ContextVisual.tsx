@@ -23,7 +23,7 @@ export function TopologyMap() {
           <text
             key={t}
             x={[330, 870, 1400][i]}
-            y={196}
+            y={150}
             textAnchor="middle"
             fontSize="13"
             letterSpacing="4"
@@ -49,7 +49,7 @@ export function TopologyMap() {
           x="200"
           y="44"
           width="1360"
-          height="816"
+          height="788"
           rx="28"
           fill="none"
           stroke="var(--primary)"
@@ -57,11 +57,11 @@ export function TopologyMap() {
           strokeDasharray="1 7"
           strokeLinecap="round"
         />
-        <path d="M240 840H1520" stroke="var(--primary)" strokeOpacity="0.45" />
-        <path className="obs-pulse" d="M240 840H1520" stroke="var(--primary)" strokeWidth="2" />
+        <path d="M240 816H1520" stroke="var(--primary)" strokeOpacity="0.45" />
+        <path className="obs-pulse" d="M240 816H1520" stroke="var(--primary)" strokeWidth="2" />
         <text
           x="880"
-          y="822"
+          y="798"
           textAnchor="middle"
           fontSize="16"
           fontWeight="600"
@@ -74,13 +74,13 @@ export function TopologyMap() {
         {services.map((s) => (
           <g key={s.id} className={`obs-sensor sensor-${s.id}`}>
             <path
-              d={`M${s.x} ${s.y + CARD.h / 2 + 4}V840`}
+              d={`M${s.x} ${s.y + CARD.h / 2 + 4}V816`}
               stroke="var(--primary)"
               strokeOpacity="0.18"
               strokeDasharray="2 5"
             />
             <circle cx={s.x} cy={s.y + CARD.h / 2 + 4} r="3" fill="var(--primary)" />
-            <circle cx={s.x} cy="840" r="2.5" fill="var(--primary)" />
+            <circle cx={s.x} cy="816" r="2.5" fill="var(--primary)" />
           </g>
         ))}
       </g>
