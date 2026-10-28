@@ -492,7 +492,7 @@ const popupContent: Detail[] = [
   },
   {
     id: "investigation",
-    eyebrow: "INVESTIGATION",
+    eyebrow: "INCIDENT INVESTIGATION",
     readMore: {
       title: "How Engineers Investigate an Incident",
       cards: {
