@@ -10,7 +10,7 @@
 <!-- LOVABLE:END -->
 
 ## Project rules
-- Popup charts are content-defined in showcase.ts and rendered by DetailCharts inside the existing modal; uploaded architecture assets can enlarge inline, while dense comparisons use phone-friendly text layouts, keeping diagrams off the pinned story map.
+- Popup charts use live content-defined labels and native architecture, flow, comparison and cycle layouts in DetailCharts, never slide screenshots; technology-specific lifecycle claims stay in the matching option popup and all diagrams remain off the pinned story map.
 - Showcase copy lives only in src/content/showcase.ts — keeps text editable without touching animation code.
 - The story is one GSAP ScrollTrigger pinned, scrubbed timeline over a single persistent SVG network (src/components/showcase) — continuity between scenes; GSAP is dynamically imported in an effect for SSR safety.
 - Site Map navigates via named GSAP timeline labels mapped to scroll positions — one source of truth for story positions.
