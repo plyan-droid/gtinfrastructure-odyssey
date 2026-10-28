@@ -1,4 +1,19 @@
+import sgtsAsset from "@/assets/sgts-architecture.png.asset.json";
+import tracingAsset from "@/assets/cross-cloud-tracing.png.asset.json";
+import collectionOutcomes from "@/assets/collection-outcomes.jpg";
+
 // Visitor-facing story copy and attributed evidence. All network demonstrations are fictional.
+export type DetailChart = {
+  id: string;
+  title: string;
+  note: string;
+  image?: { src: string; alt: string };
+  steps?: { title: string; body: string; requiresApproval?: boolean }[];
+  columns?: [string, string, string];
+  rows?: [string, string, string][];
+  items?: { title: string; body: string }[];
+  cyclic?: boolean;
+};
 export type Point = { n: string; title: string; body: string };
 export type Section = { heading: string; body: string; links?: { label: string; href: string }[] };
 export type Detail = {
@@ -9,6 +24,7 @@ export type Detail = {
     sections: Section[];
     /** Scannable card layout: intro on top, sections as icon cards, closing + note below. */
     cards?: { variant?: "grid" | "timeline"; intro: string; closing: string; note: string };
+    charts?: DetailChart[];
   };
 };
 export type Product = Detail & {
@@ -23,6 +39,109 @@ export const sources = {
   stories: "https://www.developer.tech.gov.sg/products/categories/devops/stackops/customer-stories",
   positioning:
     "https://govinsider.asia/intl-en/article/how-govtech-singapores-stackops-enhances-observability-in-public-sector-it",
+};
+export const popupCharts: Record<string, DetailChart[]> = {
+  foundations: [
+    { id: "sgts", title: "Where StackOps Fits in SGTS", image: { src: sgtsAsset.url, alt: "SGTS architecture: Foundation, Utility and Infrastructure platforms alongside Agency and GovTech applications. StackOps supports Resiliency in Infrastructure." }, note: "Source: supplied Stack26 slides. StackOps sits within the Infrastructure / Resiliency area. This is the platform-level view, not the fictional service map or a live agency architecture." },
+    { id: "onboarding", title: "Standards Out of the Box", steps: [
+      { title: "Tenant onboards", body: "Console portal" },
+      { title: "StackOps orchestrator", body: "Provisions the project" },
+      { title: "Baseline pipeline", body: "Applies configurations as code" },
+      { title: "Project ready", body: "Supported standards in place" },
+    ], items: [
+      { title: "Data & monitoring", body: "Data lifecycle policies, ingest pipelines, schemas, detection rules and monitoring connectivity." },
+      { title: "Security & access", body: "Security roles, audit logging, network controls and supported TechPass / SEED access." },
+    ], note: "Adapted from the supplied onboarding slide. Baselines and controls depend on the selected implementation and supported onboarding scope." },
+  ],
+  capabilities: [
+    { id: "collection-outcomes", title: "From Collected Signals to Operational Context", image: { src: collectionOutcomes, alt: "Collected traces, metrics, logs, topology and other context connect to observability, security, business and custom-app use cases. The five central product columns have been removed." }, note: "Adapted from the supplied slide, with the crossed-out middle removed. The outcome categories are illustrative, not a promise of automatic resolution or universal security, business or application capabilities." },
+    { id: "apm-observability", title: "APM and Observability", columns: ["Focus", "Application performance monitoring", "Broader observability"], rows: [
+      ["Questions", "How is the application performing?", "What explains this behaviour in context?"],
+      ["Evidence", "Performance metrics, transactions and application traces", "Logs, metrics, traces and service relationships"],
+      ["Investigation", "Track response time, errors and established thresholds", "Explore signals and dependencies across instrumented components"],
+    ], note: "Adapted from the APM comparison slide. These capabilities overlap: APM can be part of observability. Coverage depends on instrumentation and configuration, not a strict old-versus-new divide." },
+  ],
+  investigation: [
+    { id: "tracing-impact", title: "Why Connected Tracing Matters", items: [
+      { title: "Citizen experience", body: "Investigate bottlenecks along a digital-service journey." },
+      { title: "Cross-team alignment", body: "Give participating teams shared evidence rather than separate tickets." },
+      { title: "Operational efficiency", body: "Identify duplicated monitoring effort and improvement opportunities." },
+      { title: "Planning insights", body: "Use permitted service context to inform infrastructure decisions." },
+    ], note: "Adapted from the Whole-of-Government tracing slide. These are potential benefits, not guaranteed trust, precise diagnosis, cost savings or cross-agency access." },
+  ],
+  sora: [
+    { id: "sora-workflow", title: "Discover, Review, Implement", steps: [
+      { title: "Discover", body: "Scan supported resources and identify existing monitoring or gaps." },
+      { title: "Review", body: "Inspect the generated configuration plan. Human approval is required.", requiresApproval: true },
+      { title: "Implement", body: "Deploy approved configurations through supported infrastructure-as-code." },
+      { title: "Monitor", body: "Check telemetry and review the resulting monitoring setup." },
+    ], note: "Adapted from the SORA workflow slide. Deployment follows human review and approval. Integrations, re-run behaviour and teardown support must be confirmed for the selected environment." },
+    { id: "sora-comparison", title: "Less Repeated Manual Setup", columns: ["Activity", "Manual approach", "Supported SORA workflow"], rows: [
+      ["Find gaps", "Audit each account by hand", "Discovery scan identifies potential gaps"],
+      ["Set up ingestion", "Each team builds its own setup", "Reviewable, guided deployment"],
+      ["Credentials", "Configure separately in applications", "Supported central handling"],
+      ["Private networking", "Wire connections per account", "Reusable configuration where supported"],
+      ["Multiple clouds", "Different tools and workflows", "Common workflow for supported environments"],
+      ["Clean-up", "Find leftover resources manually", "Supported teardown workflow"],
+      ["Logging baseline", "Review configurations manually", "Identify gaps and review proposed fixes"],
+    ], note: "Adapted from the supplied comparison. This does not confirm universal AWS/Azure coverage, automatic credential migration or one-command teardown for every deployment." },
+  ],
+  otel: [
+    { id: "cross-cloud", title: "Cross-Cloud Tracing Architecture", image: { src: tracingAsset.url, alt: "AWS application services and X-Ray, Azure application services and Application Insights, and another provider with an OpenTelemetry collector connect to a central observability view. Trace ID and baggage maintain request context." }, items: [
+      { title: "Propagate context", body: "Instrumented services carry trace IDs and appropriate baggage along supported request paths." },
+      { title: "Connect telemetry", body: "Provider-specific tooling or an OpenTelemetry collector can feed a supported common view." },
+    ], note: "Source: supplied cross-cloud architecture slide. This is a reference pattern, not a universally supported StackOps integration or real agency deployment. Instrumentation, permitted collection paths and access controls are required." },
+  ],
+  soda: [
+    { id: "soda-impact", title: "From Manual Review to Informed Decisions", columns: ["Review area", "Without structured analysis", "With supported SODA analysis"], rows: [
+      ["Cost visibility", "One monthly billing total", "Review supported tier and index breakdowns"],
+      ["Review effort", "Repeated manual checks", "Reports bring relevant findings together"],
+      ["Recommendations", "Generic best practices", "Data-informed opportunities for review"],
+      ["Governance", "React after usage has grown", "Identify potential waste earlier"],
+    ], note: "Adapted from the tenant-impact slide. No guaranteed review time, exact savings, automatic changes or fleet-wide coverage is implied." },
+    { id: "soda-pipeline", title: "How Data Reaches the Analysis", steps: [
+      { title: "Supported deployments", body: "Hosted deployments and serverless projects within the supported scope" },
+      { title: "Collection pipeline", body: "Scheduled collection of permitted deployment information" },
+      { title: "StackOps central analysis", body: "Bring supported data together for review" },
+    ], items: [
+      { title: "Billing & cost data", body: "Tier costs and component charges" },
+      { title: "Deployment configurations", body: "Node sizing and hardware profiles" },
+      { title: "Index & storage data", body: "Lifecycle policies, document counts and storage" },
+      { title: "Fleet & agent data", body: "Integrations and agent policies" },
+      { title: "Synthetics & monitoring", body: "Monitor locations and frequency" },
+      { title: "Alerting & security rules", body: "Supported rule configurations" },
+    ], note: "Adapted from the supplied collection diagram. Its implementation-specific products, deployment count and daily cadence are not general promises. Data collection requires supported configurations and permitted access." },
+    { id: "soda-engine", title: "Cost Optimisation Analysis", items: [
+      { title: "Node sizing", body: "Compare utilisation with capacity" },
+      { title: "Storage efficiency", body: "Review idle data and empty indices" },
+      { title: "Index lifecycle", body: "Review retention and tiering" },
+      { title: "Performance", body: "Examine relevant configuration patterns" },
+      { title: "Synthetics", body: "Review monitor type, location and frequency" },
+    ], steps: [
+      { title: "Analyse", body: "Assess supported configuration and utilisation data" },
+      { title: "Recommend", body: "Surface opportunities and potential trade-offs" },
+      { title: "Human decision", body: "Engineers review findings and decide whether to act", requiresApproval: true },
+    ], note: "Adapted from the optimisation-engine slide. Grading thresholds and a cost calculator remain subject to validation. Recommendations do not guarantee savings and do not change deployments automatically." },
+  ],
+  intelligence: [
+    { id: "intelligence-flywheel", title: "A Continuous Improvement Direction", cyclic: true, steps: [
+      { title: "Adopt", body: "Establish supported monitoring foundations" },
+      { title: "Analyse", body: "Explore patterns and appropriate benchmarking" },
+      { title: "Recommend", body: "Develop contextual guidance for review" },
+      { title: "Improve", body: "Apply approved changes and share permitted learning" },
+    ], note: "Adapted from the intelligence flywheel. AI assistance, cross-organisation benchmarking, availability and governance remain pending product-owner validation. This is a direction, not a live AI lakehouse or autonomous remediation claim." },
+  ],
+  dynatrace: [
+    { id: "operating-models", title: "Dynatrace Operating Models", columns: ["Responsibility", "StackOps centrally managed", "Agency self-managed"], rows: [
+      ["Primary value", "Built and operated centrally by StackOps", "Agency retains autonomy"],
+      ["Operating model", "Controlled and operated by StackOps", "Operated by the individual agency"],
+      ["ActiveGate & connectivity", "Provided and maintained by StackOps", "Agency builds and maintains"],
+      ["Admin rights", "Vested with StackOps", "Agency owns feature controls"],
+      ["Environment", "Shared multi-tenant environment, segregated by tagging", "Dedicated agency environment / tenant"],
+      ["Alerting", "Pre-configured anomaly detection", "Agency can customise thresholds"],
+      ["Agent patching", "StackOps regulates releases; agencies own deployment timelines", "Agency owns patch compliance"],
+    ], note: "Adapted from the supplied subscription-model slide, scoped to Dynatrace. Tagging describes the slide's arrangement, not a guarantee of security isolation. Confirm current tenant controls, responsibilities and terms with StackOps. Pricing remains unconfirmed." },
+  ],
 };
 const popupContent: Detail[] = [
   {
@@ -356,6 +475,7 @@ const popupContent: Detail[] = [
     },
   },
 ];
+for (const detail of popupContent) detail.readMore.charts = popupCharts[detail.id];
 function requiredDetail(id: string): Detail {
   const detail = popupContent.find((d) => d.id === id);
   if (!detail) throw new Error(`Missing detail: ${id}`);
@@ -370,6 +490,8 @@ export const intelligenceApproval = {
 } as const;
 export const ui = {
   readMore: "Read More",
+  expandChart: "Enlarge chart",
+  collapseChart: "Fit chart",
   siteMap: "Site Map",
   start: "Scroll to begin",
   close: "Close",
