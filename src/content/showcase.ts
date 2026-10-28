@@ -475,7 +475,10 @@ const popupContent: Detail[] = [
     },
   },
 ];
-for (const detail of popupContent) detail.readMore.charts = popupCharts[detail.id];
+for (const detail of popupContent) {
+  const charts = popupCharts[detail.id];
+  if (charts) detail.readMore.charts = charts;
+}
 function requiredDetail(id: string): Detail {
   const detail = popupContent.find((d) => d.id === id);
   if (!detail) throw new Error(`Missing detail: ${id}`);
