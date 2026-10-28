@@ -56,8 +56,8 @@ export const popupCharts: Record<string, DetailChart[]> = {
       { title: "Foundation", labels: ["Grants", "Info Services", "Professional Registration"] },
       { title: "Utility", labels: ["AI", "Data", "Identity", "Payments"] },
       { title: "Infrastructure", labels: ["Cloud", "Resiliency", "Developer Productivity", "Developer Services"] },
-      { title: "Agency applications", labels: ["TradeNet", "WINS", "Parents Gateway"] },
-      { title: "GovTech applications", labels: ["DIYGowhere", "AIBots"] },
+      { title: "Agency", labels: ["TradeNet", "WINS", "Parents Gateway"] },
+      { title: "GovTech", labels: ["DIYGowhere", "AIBots"] },
     ] },
     { id: "onboarding", title: "Standards Out of the Box", kind: "pipeline", itemsHeading: "What gets applied automatically", steps: [
       { title: "Tenant onboards", body: "Console portal" },

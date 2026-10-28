@@ -308,20 +308,28 @@
 .chart-title { font-size: 1.25rem; font-weight: 500; margin-bottom: 1.5rem; }
 .chart-kicker, .chart-number { font: 0.7rem var(--font-mono); color: var(--healthy); }
 .chart-column-title { display: flex; align-items: center; gap: 1rem; font-size: 1rem; font-weight: 600; margin-bottom: 1rem; }
-.architecture-diagram { border-top: 2px solid var(--healthy); padding-top: 1rem; }
-.architecture-columns { display: grid; grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr); gap: 1.5rem; margin-top: 1.5rem; }
-.architecture-tier { margin-top: 0.75rem; padding: 1rem; background: var(--secondary); border-left: 2px solid var(--healthy); }
-.architecture-tier h5 { font-size: 0.85rem; color: var(--healthy); margin-bottom: 0.8rem; }
-.architecture-labels { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 0.7rem; font-size: 0.8rem; }
-.architecture-labels span { padding: 0.5rem 0; border-top: 1px solid var(--border); }
-.architecture-labels .resiliency-label { color: var(--primary); border-color: var(--primary); font-weight: 600; }
-.application-tier { border-color: var(--primary); }
-.application-tier h5 { color: var(--primary); }
-.application-tier li { border-top: 1px solid var(--border); padding: 0.65rem 0; font-size: 0.85rem; }
-.stackops-anchor { position: relative; margin-top: 1.6rem; padding: 1rem; border: 1px solid var(--primary); border-radius: 6px; }
-.stackops-anchor strong { color: var(--primary); font-size: 1.25rem; }
-.stackops-anchor p { margin-top: 0.35rem; font-size: 0.8rem; color: var(--foreground); }
-.stackops-connector { position: absolute; height: 1.6rem; width: 1px; left: 50%; bottom: 100%; background: var(--primary); }
+.architecture-diagram { padding-top: 0.5rem; }
+.architecture-diagram > .chart-kicker { text-align: center; font-size: 0.85rem; }
+.architecture-columns { display: grid; grid-template-columns: minmax(0, 1.9fr) minmax(0, 1fr); gap: 1rem; margin-top: 1rem; align-items: start; }
+.architecture-group { border: 1px dashed color-mix(in oklab, var(--healthy) 60%, transparent); border-radius: 10px; padding: 0.9rem; }
+.architecture-group.apps { border-color: color-mix(in oklab, var(--primary) 60%, transparent); }
+.architecture-group > .chart-column-title { text-align: center; color: var(--healthy); margin-bottom: 0.2rem; }
+.architecture-group.apps > .chart-column-title { color: var(--primary); }
+.architecture-tier { margin-top: 0.7rem; padding: 0.85rem 0.85rem 0.6rem; border: 1px solid color-mix(in oklab, var(--healthy) 45%, transparent); border-radius: 8px; background: color-mix(in oklab, var(--healthy) 7%, var(--secondary)); }
+.architecture-tier h5 { font-size: 0.9rem; font-weight: 600; color: var(--healthy); margin-top: 0.7rem; text-align: center; }
+.architecture-labels { display: flex; flex-wrap: wrap; gap: 0.45rem; align-items: center; font-size: 0.8rem; }
+.architecture-labels span { padding: 0.45rem 0.7rem; border-radius: 6px; background: var(--foreground); color: var(--background); font-weight: 600; }
+.architecture-labels .more { background: none; color: var(--muted-foreground); padding: 0 0.3rem; letter-spacing: 0.2em; }
+.architecture-labels .resiliency-label { background: var(--primary); color: var(--primary-foreground); }
+.application-tier { border-color: color-mix(in oklab, var(--primary) 45%, transparent); background: color-mix(in oklab, var(--primary) 8%, var(--secondary)); }
+.application-tier h5 { color: var(--foreground); margin: 0 0 0.6rem; }
+.application-tier ul { display: grid; gap: 0.4rem; }
+.application-tier li { padding: 0.45rem 0.6rem; border-radius: 6px; background: var(--foreground); color: var(--background); font-weight: 600; font-size: 0.8rem; text-align: center; }
+.application-tier li.more { background: none; color: var(--muted-foreground); padding: 0; }
+.stackops-anchor { position: relative; margin-top: 1.4rem; padding: 0.8rem 1rem; border: 1px solid var(--primary); border-radius: 8px; background: var(--card); }
+.stackops-anchor strong { color: var(--primary); font-size: 1.15rem; }
+.stackops-anchor p { margin-top: 0.25rem; font-size: 0.8rem; color: var(--foreground); }
+.stackops-connector { position: absolute; height: 1.4rem; width: 1px; left: 30%; bottom: 100%; background: var(--primary); }
 .collection-flow { display: grid; grid-template-columns: minmax(0,1fr) 3rem minmax(0,1fr); gap: 1rem; }
 .collection-0 { grid-column: 1; }.collection-1 { grid-column: 3; }
 .collection-column { border-top: 2px solid var(--healthy); padding-top: 1rem; }

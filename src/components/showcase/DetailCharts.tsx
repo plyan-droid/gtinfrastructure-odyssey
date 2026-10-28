@@ -7,13 +7,16 @@ function Architecture({ chart }: { chart: DetailChart }) {
   return <div className="architecture-diagram">
     <p className="chart-kicker">{chartCopy.sgts}</p>
     <div className="architecture-columns">
-      <div><h4 className="chart-column-title">{chartCopy.platforms}</h4>
-        {chart.groups?.slice(0, 3).map(group => <div className="architecture-tier" key={group.title}>
-          <h5>{group.title}</h5><div className="architecture-labels">{group.labels.map(label => <span className={label === "Resiliency" ? "resiliency-label" : ""} key={label}>{label}</span>)}</div>
-          {group.title === "Infrastructure" && <div className="stackops-anchor"><span className="stackops-connector" aria-hidden /><strong>{chartCopy.stackops}</strong><p>{chartCopy.resiliency}</p><p>{chartCopy.maturity}</p></div>}
-        </div>)}
+      <div>
+        <div className="architecture-group"><h4 className="chart-column-title">{chartCopy.platforms}</h4>
+          {chart.groups?.slice(0, 3).map(group => <div className="architecture-tier" key={group.title}>
+            <div className="architecture-labels">{group.labels.map(label => <span className={label === "Resiliency" ? "resiliency-label" : ""} key={label}>{label}</span>)}<span className="more" aria-hidden>...</span></div>
+            <h5>{group.title}</h5>
+          </div>)}
+        </div>
+        <div className="stackops-anchor"><span className="stackops-connector" aria-hidden /><strong>{chartCopy.stackops}</strong><p>{chartCopy.resiliency}</p><p>{chartCopy.maturity}</p></div>
       </div>
-      <div><h4 className="chart-column-title">{chartCopy.applications}</h4>{chart.groups?.slice(3).map(group => <div className="architecture-tier application-tier" key={group.title}><h5>{group.title}</h5><ul>{group.labels.map(label => <li key={label}>{label}</li>)}</ul></div>)}</div>
+      <div className="architecture-group apps"><h4 className="chart-column-title">{chartCopy.applications}</h4>{chart.groups?.slice(3).map(group => <div className="architecture-tier application-tier" key={group.title}><h5>{group.title}</h5><ul>{group.labels.map(label => <li key={label}>{label}</li>)}<li className="more" aria-hidden>⋮</li></ul></div>)}</div>
     </div>
   </div>;
 }
