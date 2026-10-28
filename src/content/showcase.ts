@@ -21,7 +21,7 @@ export type DetailChart = {
   cyclic?: boolean;
 };
 export type Point = { n: string; title: string; body: string };
-export type Section = { heading: string; body: string; links?: { label: string; href: string }[] };
+export type Section = { heading: string; body: string; links?: { label: string; href: string }[]; /** Chart ids rendered directly after this section. */ chart?: string | string[] };
 export type Detail = {
   id: string;
   eyebrow: string;
@@ -399,31 +399,43 @@ const popupContent: Detail[] = [
       sections: [
         {
           heading: "Why Agencies Use StackOps",
-          body: "Observability technology is one part of maintaining dependable digital services.\n\nStackOps brings together monitoring capabilities, shared standards, reusable configurations and supporting tools designed for government operational environments.",
-        },
-        {
-          heading: "Government-Ready Foundations",
-          body: "Common logging practices, configuration baselines and relevant security controls help teams establish more consistent monitoring.",
-        },
-        {
-          heading: "Less Repetitive Engineering Work",
-          body: "Structured deployment workflows and reusable automation help simplify supported monitoring-setup activities.",
-        },
-        {
-          heading: "Shared Operational Knowledge",
-          body: "Common practices, reusable rules and engineering knowledge support collaboration and continuous improvement.",
-        },
-        {
-          heading: "Actionable Insights",
-          body: "Operational data and analytical capabilities help teams identify issues and improvement opportunities.\n\nWhy it matters: Agencies can explore observability through a government-focused offering rather than having to establish every supporting practice independently.",
+          body: "Agencies get monitoring with government standards already set up, instead of building it themselves.\n\nStackOps brings together monitoring capabilities, shared standards, reusable configurations and supporting tools designed for government operational environments.",
+          chart: "sgts",
         },
         {
           heading: "For leaders",
           body: "Standards ship with the platform instead of living in documents: data lifecycle policies, detection rules, audit logging and security roles are applied from day one, which supports more consistent governance across teams.",
         },
         {
+          heading: "Government-Ready Foundations",
+          body: "Common logging practices, configuration baselines and relevant security controls come set up with the platform, so teams start from consistent monitoring rather than assembling it themselves.",
+        },
+        {
+          heading: "Less Repetitive Engineering Work",
+          body: "Structured deployment workflows and reusable automation take care of supported monitoring-setup activities that agencies would otherwise repeat by hand.",
+        },
+        {
+          heading: "Shared Operational Knowledge",
+          body: "Common practices, reusable rules and engineering knowledge are shared across agencies, so teams do not each have to work out the same problems.",
+        },
+        {
+          heading: "Actionable Insights",
+          body: "Operational data and analytical capabilities help teams identify issues and improvement opportunities.",
+        },
+        {
+          heading: "Documented customer results",
+          body: "Cloud File Transfer reduced incident-handling time from approximately 2 to 3 hours to 30 minutes, and SHIP-HATS cut service recovery time by 75%. These are agency-specific reported results, not guaranteed outcomes for other agencies.",
+          links: [{ label: "StackOps customer stories", href: sources.stories }],
+        },
+        {
           heading: "For engineering teams",
           body: "Baseline configurations are delivered as deployable configuration-as-code through a pipeline when a project is onboarded, including ingest pipelines, data schemas, agent configuration and monitoring connectivity. Access uses TechPass, with SEED for secure device access.",
+          chart: "onboarding",
+        },
+        {
+          heading: "Why it matters",
+          body: "Agencies can explore observability through a government-focused offering rather than having to establish every supporting practice independently.",
+          chart: ["more-than-monitoring", "stackops-hub"],
         },
       ],
     },

@@ -1,7 +1,9 @@
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { Activity, FileText, Network, Route } from "lucide-react";
-import { customerStories, sources, ui, type Detail } from "@/content/showcase";
+import { customerStories, sources, ui, type Detail, type DetailChart, type Section } from "@/content/showcase";
 import { DetailCharts } from "./DetailCharts";
+
+const chartIds = (section: Section): string[] => (Array.isArray(section.chart) ? section.chart : section.chart ? [section.chart] : []);
 
 export function ReadMorePanel({
   detail,
@@ -13,6 +15,13 @@ export function ReadMorePanel({
   onRestoreFocus: () => void;
 }) {
   const customer = customerStories.some((s) => s.id === detail?.id);
+  const charts = detail?.readMore.charts ?? [];
+  const attachedIds = new Set((detail?.readMore.sections ?? []).flatMap(chartIds));
+  const topCharts = charts.filter((chart) => !attachedIds.has(chart.id));
+  const chartsAfter = (section: Section): DetailChart[] =>
+    chartIds(section)
+      .map((id) => charts.find((chart) => chart.id === id))
+      .filter((chart): chart is DetailChart => Boolean(chart));
   return (
     <Dialog
       open={Boolean(detail)}
@@ -37,7 +46,7 @@ export function ReadMorePanel({
               <DialogDescription className="sr-only">{detail.eyebrow}</DialogDescription>
             </header>
             <div className="detail-scroll overflow-y-auto overscroll-contain px-6 py-7 md:px-10">
-              {detail.readMore.charts && <DetailCharts charts={detail.readMore.charts} />}
+              {topCharts.length > 0 && <DetailCharts charts={topCharts} />}
               {detail.readMore.cards ? (
                 <div>
                   <p className="text-sm leading-relaxed text-foreground/85 md:text-base">
@@ -92,32 +101,38 @@ export function ReadMorePanel({
                 </div>
               ) : (
               <div className="space-y-7">
-                {detail.readMore.sections.map((section) => (
-                  <section key={section.heading}>
-                    {section.heading !== detail.readMore.title && (
-                      <h3 className="text-lg font-medium">{section.heading}</h3>
-                    )}
-                    <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-foreground/75 md:text-base">
-                      {section.body}
-                    </p>
-                    {section.links && (
-                      <ul className="mt-3 space-y-2">
-                        {section.links.map((link) => (
-                          <li key={link.href}>
-                            <a
-                              href={link.href}
-                              target="_blank"
-                              rel="noreferrer"
-                              className="text-sm text-primary underline underline-offset-4"
-                            >
-                              {link.label} ↗
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </section>
-                ))}
+                {detail.readMore.sections.map((section) => {
+                  const attached = chartsAfter(section);
+                  return (
+                    <div key={section.heading}>
+                      <section>
+                        {section.heading !== detail.readMore.title && (
+                          <h3 className="text-lg font-medium">{section.heading}</h3>
+                        )}
+                        <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-foreground/75 md:text-base">
+                          {section.body}
+                        </p>
+                        {section.links && (
+                          <ul className="mt-3 space-y-2">
+                            {section.links.map((link) => (
+                              <li key={link.href}>
+                                <a
+                                  href={link.href}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="text-sm text-primary underline underline-offset-4"
+                                >
+                                  {link.label} ↗
+                                </a>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </section>
+                      {attached.length > 0 && <DetailCharts charts={attached} />}
+                    </div>
+                  );
+                })}
               </div>
               )}
               {customer && (
