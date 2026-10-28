@@ -1,4 +1,5 @@
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
+import { Activity, FileText, Network, Route } from "lucide-react";
 import { customerStories, disclaimer, sources, ui, type Detail } from "@/content/showcase";
 
 export function ReadMorePanel({
@@ -35,6 +36,39 @@ export function ReadMorePanel({
               <DialogDescription className="sr-only">{detail.eyebrow}</DialogDescription>
             </header>
             <div className="detail-scroll overflow-y-auto overscroll-contain px-6 py-7 md:px-10">
+              {detail.readMore.cards ? (
+                <div>
+                  <p className="text-sm leading-relaxed text-foreground/85 md:text-base">
+                    {detail.readMore.cards.intro}
+                  </p>
+                  <div className="mt-6 grid gap-4 md:grid-cols-2">
+                    {detail.readMore.sections.map((section, i) => {
+                      const Icon = [FileText, Activity, Route, Network][i % 4];
+                      const [label, question] = section.heading.split(": ");
+                      return (
+                        <section key={section.heading} className="rounded-lg border bg-card p-5">
+                          <div className="flex items-center gap-3">
+                            <span className="grid size-9 place-items-center rounded-md border border-primary/30 bg-primary/10 text-primary">
+                              <Icon className="size-4" />
+                            </span>
+                            <div>
+                              <p className="font-mono text-xs tracking-widest text-primary">{label}</p>
+                              <h3 className="text-base font-medium">{question}</h3>
+                            </div>
+                          </div>
+                          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{section.body}</p>
+                        </section>
+                      );
+                    })}
+                  </div>
+                  <p className="mt-6 text-sm leading-relaxed text-foreground/85 md:text-base">
+                    {detail.readMore.cards.closing}
+                  </p>
+                  <p className="mt-5 border-t pt-4 text-xs leading-relaxed text-muted-foreground">
+                    {detail.readMore.cards.note}
+                  </p>
+                </div>
+              ) : (
               <div className="space-y-7">
                 {detail.readMore.sections.map((section) => (
                   <section key={section.heading}>
@@ -61,6 +95,7 @@ export function ReadMorePanel({
                   </section>
                 ))}
               </div>
+              )}
               {customer && (
                 <a
                   href={sources.stories}
@@ -71,9 +106,11 @@ export function ReadMorePanel({
                   {ui.source} ↗
                 </a>
               )}
-              <p className="mt-8 border-t pt-5 text-xs leading-relaxed text-muted-foreground">
-                {disclaimer}
-              </p>
+              {!detail.readMore.cards && (
+                <p className="mt-8 border-t pt-5 text-xs leading-relaxed text-muted-foreground">
+                  {disclaimer}
+                </p>
+              )}
             </div>
           </>
         )}
