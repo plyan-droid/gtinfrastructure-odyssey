@@ -440,3 +440,9 @@
   .cycle-ring ol { grid-template-columns: 1fr; gap: 0.75rem; }.cycle-ring .ring-2, .cycle-ring .ring-3 { grid-column: 1; grid-row: auto; }.ring-core { position: static; transform: none; width: auto; height: auto; margin-top: 0.75rem; padding: 0.6rem; border-radius: 8px; }
   .report-bar { grid-template-columns: 6.5rem 1fr 2.5rem; }
 }
+@media (min-width: 768px) {
+  .quadrant-chart { gap: 1.5rem 1rem; }
+  .quad-0, .quad-2 { padding-right: 6rem; }.quad-1, .quad-3 { padding-left: 6rem; }
+  .quad-core { width: 8.5rem; height: 8.5rem; }
+  .stage-strip h4 { font-size: 0.7rem; letter-spacing: 0.02em; overflow-wrap: anywhere; }
+}
