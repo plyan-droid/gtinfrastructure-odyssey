@@ -472,17 +472,13 @@ export function Showcase() {
               >
                 <p className="font-mono text-xs text-primary">{step.k}</p>
                 <h3 className="mt-2 text-lg">{step.v}</h3>
+                <Button variant="link" className="read-more pointer-events-auto mt-2 h-auto w-fit px-0 py-1" onClick={() => openPanel("investigation")}>
+                  {ui.readMore}
+                  <ArrowRight />
+                </Button>
               </li>
             ))}
           </ol>
-          <Button
-            variant="link"
-            className="scene-el w-fit px-0"
-            onClick={() => openPanel("investigation")}
-          >
-            {ui.readMore}
-            <ArrowRight />
-          </Button>
           <p className="scene-el mt-3 text-xs text-muted-foreground">{investigation.note}</p>
         </div>
         {Object.entries(contextSections).map(([scene, section]) => (
@@ -502,19 +498,17 @@ export function Showcase() {
                   <p className="font-mono text-xs text-primary">{pt.n}</p>
                   <h3 className="mt-2 text-xl font-medium">{pt.title}</h3>
                   <p className="mt-3 text-sm text-muted-foreground">{pt.body}</p>
+                  {"detail" in section && (
+                    <Button variant="link" className="read-more pointer-events-auto mt-2 h-auto w-fit px-0 py-1" onClick={() => openPanel(section.detail)}>
+                  {ui.readMore}
+                  <ArrowRight />
+                </Button>
+                  )}
                 </li>
               ))}
             </ol>
             {"detail" in section && (
               <>
-                <Button
-                  variant="link"
-                  className="scene-el mt-5 w-fit px-0"
-                  onClick={() => openPanel(section.detail)}
-                >
-                  {ui.readMore}
-                  <ArrowRight />
-                </Button>
                 <p className="scene-el mt-3 text-xs text-muted-foreground">
                   {"note" in section ? section.note : ""}
                 </p>
@@ -734,18 +728,14 @@ function ProductScene({ p, cls, onMore }: { p: Product; cls: string; onMore: () 
             <div>
               <p className="text-sm font-medium md:text-base">{pt.title}</p>
               <p className="hidden text-sm text-muted-foreground md:block">{pt.body}</p>
+              <Button variant="link" className="read-more pointer-events-auto mt-2 h-auto w-fit px-0 py-1" onClick={onMore}>
+                  {ui.readMore}
+                  <ArrowRight />
+                </Button>
             </div>
           </li>
         ))}
       </ol>
-      <Button
-        onClick={onMore}
-        variant="link"
-        className="scene-el read-more pointer-events-auto mt-4 px-0"
-      >
-        {ui.readMore}
-        <ArrowRight />
-      </Button>
     </div>
   );
 }

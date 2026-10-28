@@ -300,3 +300,4 @@
  .chrome { z-index: 30; }
  .chrome::before { content: ""; position: absolute; inset: -1rem -2rem; z-index: -1; background: radial-gradient(closest-side, var(--background), transparent); }
 }
+.reading-point .read-more { visibility: inherit; pointer-events: auto; }
