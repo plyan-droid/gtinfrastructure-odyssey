@@ -238,7 +238,7 @@ const slideCharts: Record<string, ChartPlacement> = {
     before: [
       { id: "sora-problem", title: "The Problem: Each Team Sets Up Monitoring Separately", kind: "cards", tone: "problem", items: [
         { title: "Repeated work", body: "The same setup is rebuilt across every team and account." },
-        { title: "Credentials everywhere", body: "Secrets copied into every app create security risk." },
+        { title: "Credentials everywhere", body: "Credentials configured separately for every app create security risk." },
         { title: "Unnoticed gaps", body: "Unmonitored resources and no shared standard." },
         { title: "Hard to audit", body: "Hard to review, and hard to undo." },
       ] },
@@ -254,7 +254,7 @@ const slideCharts: Record<string, ChartPlacement> = {
         { title: "Gap discovery", body: "Scans AWS and Azure and flags what is missing." },
         { title: "Pre-flight checks", body: "Validates credentials and connectivity before anything deploys." },
         { title: "Private networking", body: "Keeps data off the public internet, set up with one command." },
-        { title: "Secure gateway", body: "One credential per account, not one per app." },
+        { title: "Secure gateway", body: "Runs using the supplied identity and does not retain secrets after the run." },
         { title: "Logging baseline", body: "Monitoring status report with ready-made fix configs." },
         { title: "Synthetic monitoring", body: "Checks your sites and APIs like a real user." },
       ] },
@@ -285,8 +285,8 @@ const slideCharts: Record<string, ChartPlacement> = {
   },
   soda: {
     after: [
-      { id: "soda-report", title: "What a SODA Report Looks Like", kind: "report", report: {
-        synthetic: true, sampleLabel: "Illustrative sample data, not a real tenant", grade: "B", gradeLabel: "Moderate",
+      { id: "soda-report", title: "Illustrative Sample Report", kind: "report", report: {
+        synthetic: true, sampleLabel: "Sample figures only. Not actual agency data.", grade: "B", gradeLabel: "Moderate",
         metrics: [{ value: "58", label: "Optimisation score" }, { value: "1.4 TB", label: "Storage reviewed" }, { value: "12", label: "Findings" }],
         barsTitle: "Deployment sizing and utilisation", bars: [{ label: "Hot tier CPU", value: 22 }, { label: "Hot tier memory", value: 81 }, { label: "Warm tier storage", value: 46 }, { label: "Frozen tier storage", value: 12 }],
         recsTitle: "Recommendations", recs: ["Right-size hot tier nodes to match observed CPU", "Move indices older than 30 days to a cooler tier", "Remove empty indices and idle data streams", "Reduce synthetic monitor frequency where not needed"],
@@ -468,7 +468,7 @@ const popupContent: Detail[] = [
       cards: {
         intro: "Logs, metrics and traces help teams investigate different parts of a system. Here's what each one tells you.",
         closing: "Together, these signals help teams build a clearer picture of what's happening across their applications and infrastructure.",
-        note: "Available capabilities depend on the selected observability technology, instrumentation and configuration.",
+        note: "Available telemetry depends on the selected platform, instrumentation and configuration.",
       },
       sections: [
         {
@@ -502,11 +502,11 @@ const popupContent: Detail[] = [
         note: "Illustrative scenario using synthetic data. Actual capabilities depend on the configured monitoring tools. Diagnosis and resolution are not guaranteed.",
       },
       sections: [
-        { heading: "01: Detect", body: "A response-time metric shows higher-than-usual latency." },
-        { heading: "02: Examine", body: "Check logs, metrics and events for clues." },
-        { heading: "03: Trace", body: "Follow the request across services where tracing is available." },
-        { heading: "04: Investigate", body: "Use service dependencies and monitoring evidence to narrow down possible causes." },
-        { heading: "05: Respond", body: "Review the evidence and decide what action to take." },
+        { heading: "01: Map dependencies", body: "See how the service's components connect." },
+        { heading: "02: Detect anomalies", body: "A response-time metric shows higher-than-usual latency." },
+        { heading: "03: Trace the request", body: "Follow the request across services where tracing is available." },
+        { heading: "04: Investigate the cause", body: "Use service dependencies and monitoring evidence to narrow down possible causes." },
+        { heading: "05: Respond", body: "Engineers review the evidence and decide how to respond." },
       ],
     },
   },
@@ -542,7 +542,7 @@ const popupContent: Detail[] = [
         },
         {
           heading: "For engineering teams: manual vs with SORA",
-          body: "- Find gaps: audit each account by hand → automated discovery scan.\n\n- Ingestion: built separately by every team → one guided deploy.\n\n- Credentials: copied into every app → held in one place.\n\n- Private networking: wired per account → set up for you.\n\n- Clean-up: leftover resources → one-command teardown.\n\nRe-runs are designed to be safe and repeatable. Supported cloud environments to be confirmed with the StackOps team.",
+          body: "- Find gaps: audit each account by hand → automated discovery scan.\n\n- Ingestion: built separately by every team → one guided deploy.\n\n- Credentials: configured separately → runs using the supplied identity and does not retain secrets after the run.\n\n- Private networking: wired per account → set up for you.\n\n- Clean-up: leftover resources → one-command teardown.\n\nRe-runs are designed to be safe and repeatable. Supported cloud environments to be confirmed with the StackOps team.",
         },
         {
           heading: "Why it matters",
@@ -559,7 +559,7 @@ const popupContent: Detail[] = [
       sections: [
         {
           heading: "Cross-Cloud Tracing with OpenTelemetry",
-          body: "A digital service may rely on applications and infrastructure spread across different environments.\n\nWithout connected operational context, engineers may need to investigate each component separately.\n\nOpenTelemetry provides open standards and tools for generating, collecting and exporting telemetry such as logs, metrics and traces.\n\nWith appropriate instrumentation and supported integrations, teams can:\n\n- Follow requests across instrumented services.\n\n- Understand relationships between components.\n\n- Investigate delays and errors.\n\n- Examine relevant operational signals together.\n\n- Support cross-team troubleshooting.",
+          body: "A digital service may rely on applications and infrastructure spread across different environments.\n\nWithout connected operational context, engineers may need to investigate each component separately.\n\nBring logs, metrics and traces together across cloud environments using OpenTelemetry. Cross-agency visibility depends on the systems connected and the access available.\n\nOpenTelemetry provides open standards and tools for generating, collecting and exporting telemetry such as logs, metrics and traces.\n\nWith appropriate instrumentation and supported integrations, teams can:\n\n- Follow requests across instrumented services.\n\n- Understand relationships between components.\n\n- Investigate delays and errors.\n\n- Examine relevant operational signals together.\n\n- Support cross-team troubleshooting.",
         },
         {
           heading: "For leaders: tracing across agencies",
@@ -621,7 +621,7 @@ const popupContent: Detail[] = [
       sections: [
         {
           heading: "How Recommendations Improve Over Time",
-          body: "StackOps' broader intelligence proposition explores how shared operational knowledge, AI-assisted analysis and appropriate benchmarking can support continuous improvement.",
+          body: "AI-assisted analysis can help surface patterns and monitoring gaps. Shared benchmarks and tailored recommendations are part of StackOps' longer-term direction.",
         },
         {
           heading: "Cross-Organisation Benchmarking",
@@ -637,7 +637,7 @@ const popupContent: Detail[] = [
         },
         {
           heading: "Growing Knowledge Base",
-          body: "Accumulated knowledge and shared practices can contribute to more consistent standards over time.\n\nThe longer-term direction: Moving beyond individual monitoring views towards more informed, repeatable operational improvement.\n\nContent validation required: The availability and scope of these capabilities must be confirmed with the StackOps product team. Until then, this copy describes a direction, not a generally available feature guarantee.",
+          body: "Shared findings can help identify recurring gaps and improve future recommendations.\n\nThe longer-term direction: Moving beyond individual monitoring views towards more informed, repeatable operational improvement.\n\nContent validation required: The availability and scope of these capabilities must be confirmed with the StackOps product team. Until then, this copy describes a direction, not a generally available feature guarantee.",
         },
       ],
     },
@@ -934,10 +934,10 @@ export const investigation = {
   scenario: "FASTER INCIDENT DIAGNOSIS AND RESOLUTION",
   sub: "Relevant monitoring signals and service context help engineers investigate operational issues more effectively.",
   steps: [
-    { k: "01", v: "Detect unusual behaviour" },
-    { k: "02", v: "Examine operational signals" },
-    { k: "03", v: "Follow service dependencies" },
-    { k: "04", v: "Investigate possible causes" },
+    { k: "01", v: "Map service dependencies" },
+    { k: "02", v: "Detect anomalies" },
+    { k: "03", v: "Trace the request" },
+    { k: "04", v: "Investigate the cause" },
   ],
   value: ["Follow the evidence.", "Understand the issue."],
   valueSub:
@@ -1166,7 +1166,7 @@ export const closing = {
   steps: [
     { k: "01", v: "Contact the StackOps team to share your agency's workloads and monitoring requirements" },
     { k: "02", v: "Review subscription options, platform fit (Elastic or Dynatrace) and pricing for your project" },
-    { k: "03", v: "Work with the StackOps team to onboard your cloud accounts and deploy initial baselines with SORA" },
+    { k: "03", v: "Use SORA to onboard supported cloud environments and start monitoring" },
   ],
 };
 export const disclaimer =
