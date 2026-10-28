@@ -8,7 +8,7 @@ export type Detail = {
     title: string;
     sections: Section[];
     /** Scannable card layout: intro on top, sections as icon cards, closing + note below. */
-    cards?: { intro: string; closing: string; note: string };
+    cards?: { variant?: "grid" | "timeline"; intro: string; closing: string; note: string };
   };
 };
 export type Product = Detail & {
@@ -97,11 +97,18 @@ const popupContent: Detail[] = [
     eyebrow: "INVESTIGATION",
     readMore: {
       title: "Follow the Evidence, Not Just the Alert.",
+      cards: {
+        variant: "timeline",
+        intro: "An alert tells you something needs attention, but not always where the problem started. Here's how engineers might investigate a slow response in a digital service.",
+        closing: "With the available monitoring data and service context, engineers can work through the issue step by step.",
+        note: "Illustrative scenario using synthetic data. Actual capabilities depend on the configured monitoring tools. Diagnosis and resolution are not guaranteed.",
+      },
       sections: [
-        {
-          heading: "Follow the Evidence, Not Just the Alert.",
-          body: "An alert may indicate that an application is experiencing unusual behaviour. Understanding the cause requires investigating the available operational evidence.\n\nConsider a fictional digital service experiencing slower response times.\n\nDetect: Performance metrics indicate unusual latency.\n\nExamine: Engineers review relevant logs, metrics and events.\n\nTrace: Available request traces help reveal the services involved.\n\nInvestigate: Service relationships and monitoring evidence help narrow down possible contributing components.\n\nRespond: Engineers determine the appropriate course of action.\n\nStackOps provides observability capabilities that support investigation and troubleshooting.\n\nThis is an illustrative scenario using synthetic data, not a guarantee of automatic diagnosis or resolution.",
-        },
+        { heading: "01: Detect", body: "A response-time metric shows higher-than-usual latency." },
+        { heading: "02: Examine", body: "Check logs, metrics and events for clues." },
+        { heading: "03: Trace", body: "Follow the request across services where tracing is available." },
+        { heading: "04: Investigate", body: "Use service dependencies and monitoring evidence to narrow down possible causes." },
+        { heading: "05: Respond", body: "Review the evidence and decide what action to take." },
       ],
     },
   },
