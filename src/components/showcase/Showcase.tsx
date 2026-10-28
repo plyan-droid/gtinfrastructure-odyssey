@@ -634,6 +634,10 @@ export function Showcase() {
                 </div>
               ))}
             </div>
+            <Button variant="link" className="read-more pointer-events-auto mt-2 h-auto w-fit px-0 py-1" onClick={() => openPanel("subscriptions")}>
+              {options.modelsMore}
+              <ArrowRight />
+            </Button>
           </div>
           <p className="scene-el mt-5 font-mono text-sm text-accent">{ui.pricing}</p>
           <p className="scene-el mt-2 max-w-3xl text-xs text-muted-foreground">{ui.optionScope}</p>
@@ -660,6 +664,10 @@ export function Showcase() {
             </Button>
             <Button variant="outline" size="lg" disabled title={ui.discussionPending}>
               {ui.discussion}
+              <ArrowRight />
+            </Button>
+            <Button variant="outline" size="lg" onClick={() => openPanel("gcc")}>
+              {closing.gccMore}
               <ArrowRight />
             </Button>
           </div>
