@@ -226,6 +226,12 @@ const slideCharts: Record<string, ChartPlacement> = {
         { title: "Agency B", body: "Database on Azure" },
         { title: "Agency C", body: "Identity gateway" },
       ], center: { title: "Single trace view", body: "Each agency hop appears in the same trace" } },
+      { id: "tracing-pillars", title: "Unified Tracing: Key Pillars of Impact", intro: "When agencies share one trace, the value reaches beyond any single team.", kind: "quadrant", items: [
+        { title: "Protects citizen trust", body: "Catch bottlenecks before they turn into public frustration." },
+        { title: "Ends cross-agency finger-pointing", body: "Pinpoint the precise root cause across agencies, with shared evidence instead of blame." },
+        { title: "Cuts operational costs", body: "Consolidate monitoring platforms and licences across agencies." },
+        { title: "Informs policy insights", body: "A macro-level data flow map supports infrastructure planning." },
+      ], center: { title: "Whole-of-Government APM value", body: "Unified tracing across agencies" } },
     ],
   },
   sora: {
