@@ -18,6 +18,12 @@ describe("Slide-derived popup charts", () => {
     const expected: [string, string][] = [["foundations", "stackops-hub"], ["sora", "sora-how"], ["otel", "otel-problem"], ["soda", "soda-report"], ["dynatrace", "dt-stages"], ["gcc", "gccaas-onboarding"], ["subscriptions", "subscription-models"]];
     for (const [popup, id] of expected) expect(find(popup, id)).toBeDefined();
   });
+  it("keeps the 4 Golden Signals in the Capabilities popup", () => {
+    expect(find("capabilities", "golden-signals")?.items?.map(i => i.title)).toEqual(["Latency", "Traffic", "Errors", "Saturation"]);
+  });
+  it("keeps the unified tracing pillars in the Investigation popup", () => {
+    expect(find("incident", "tracing-pillars")?.center?.title).toContain("Whole-of-Government");
+  });
   it("marks the SODA report as illustrative sample data", () => {
     expect(find("soda", "soda-report")?.report?.synthetic).toBe(true);
   });
