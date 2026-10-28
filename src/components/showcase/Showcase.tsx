@@ -138,7 +138,7 @@ export function Showcase() {
             const cropY = (900 - height / svgScale) / 2;
             const top = 72;
             const bottom = height - 170;
-            const scale = Math.min((width - 64) / 1360, (bottom - top) / 816) / svgScale;
+            const scale = Math.min((width - 64) / 1360, (bottom - top) / 788) / svgScale;
             return {
               scale,
               x: cropX + width / (2 * svgScale) - 880 * scale,
