@@ -475,8 +475,8 @@ export function Showcase() {
                 data-point={i}
                 className="reading-point border-l border-primary/50 pl-4"
               >
-                <p className="font-mono text-xs text-primary">{step.k}</p>
-                <h3 className="mt-2 text-lg">{step.v}</h3>
+                <p className="font-mono text-sm text-primary">{step.k}</p>
+                <h3 className="mt-2 text-xl">{step.v}</h3>
                 <Button variant="link" className="read-more pointer-events-auto mt-2 h-auto w-fit px-0 py-1" onClick={() => openPanel("investigation")}>
                   {ui.readMore}
                   <ArrowRight />
