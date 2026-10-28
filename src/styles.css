@@ -94,7 +94,7 @@
 
 @utility eyebrow {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   letter-spacing: 0.24em;
   color: var(--muted-foreground);
 }
@@ -227,10 +227,10 @@
 }
 @media (min-width: 768px) and (max-height: 800px) {
  .narrative-scene h2 { font-size: 2.15rem; }
- .narrative-scene > p { font-size: 0.85rem; margin-top: 0.8rem; }
+ .narrative-scene > p { font-size: 0.95rem; margin-top: 0.8rem; }
  .narrative-scene .reading-points { margin-top: 1.2rem; }
- .narrative-scene .reading-point h3 { font-size: 1rem; }
- .narrative-scene .reading-point p { font-size: 0.8rem; }
+ .narrative-scene .reading-point h3 { font-size: 1.05rem; }
+ .narrative-scene .reading-point p { font-size: 0.9rem; }
  .scene-customers h2, .scene-options h2 { font-size: 2.5rem; }
  .scene-customers .interactive-stories, .scene-options > div { margin-top: 1rem; }
  .scene-customers article { gap: 1rem; margin-top: 0.8rem; }
@@ -246,44 +246,44 @@
  .reading-shield-left, .reading-shield-wide { background: var(--reading-mobile); }
  .opening-title { font-size: 2rem; max-width: 100%; }
  .scene-opening { padding-top: 5rem; padding-bottom: 4rem; }
- .scene-opening p { margin-top: 1rem; font-size: 0.9rem; }
- .scene-opening .eyebrow { font-size: 0.6rem; }
+ .scene-opening p { margin-top: 1rem; font-size: 1rem; }
+ .scene-opening .eyebrow { font-size: 0.65rem; }
  .narrative-scene { justify-content: flex-end; padding-top: 32dvh; padding-bottom: 5.5rem; }
  .narrative-scene h2 { font-size: 1.65rem; }
- .narrative-scene > p { font-size: 0.8rem; margin-top: 0.7rem; }
- .narrative-scene > .eyebrow { font-size: 0.6rem; margin-bottom: 0.6rem; }
+ .narrative-scene > p { font-size: 0.9rem; margin-top: 0.7rem; }
+ .narrative-scene > .eyebrow { font-size: 0.65rem; margin-bottom: 0.6rem; }
  .narrative-scene .reading-points { margin-top: 1rem; }
  .narrative-scene .reading-point h3 { font-size: 1.05rem; }
- .narrative-scene .reading-point p { font-size: 0.8rem; }
+ .narrative-scene .reading-point p { font-size: 0.9rem; }
  .narrative-scene .reading-point p.hidden { display: block; }
  .hud-panel, .hud-chip { display: none; }
  .story-full { padding-top: 5rem; padding-bottom: 5.5rem; }
  .scene-customers h2, .scene-options h2 { font-size: 1.65rem; }
- .scene-customers > p, .scene-options > p { font-size: 0.75rem; margin-top: 0.5rem; }
+ .scene-customers > p, .scene-options > p { font-size: 0.85rem; margin-top: 0.5rem; }
  .scene-customers .interactive-stories { margin-top: 0.8rem; }
  .scene-customers [role="tab"] { padding-inline: 0.6rem; font-size: 0.7rem; height: 1.9rem; }
  .scene-customers article { gap: 0.7rem; margin-top: 0.8rem; }
  .scene-customers article h3 { font-size: 1.15rem; }
- .scene-customers article p { font-size: 0.75rem; margin-top: 0.5rem; }
+ .scene-customers article p { font-size: 0.85rem; margin-top: 0.5rem; }
  .scene-customers article p.text-6xl { font-size: 3rem; }
  .scene-customers article p.text-2xl { font-size: 1rem; }
  .scene-customers .read-more { margin-top: 0.3rem; }
  .scene-options > div { gap: 0.7rem; margin-top: 0.7rem; }
  .scene-options article { padding-top: 0.5rem; }
  .scene-options article h3 { font-size: 1.2rem; }
- .scene-options article p { margin-top: 0.3rem; font-size: 0.75rem; }
+ .scene-options article p { margin-top: 0.3rem; font-size: 0.85rem; }
  .scene-options article button { margin-top: 0; height: 1.6rem; }
  .scene-options .operating-models { margin-top: 0.5rem; }
  .scene-options .operating-models > div { gap: 0.4rem; }
- .scene-options .operating-models p { font-size: 0.65rem; }
- .scene-options .operating-models h4 { font-size: 0.75rem; }
+ .scene-options .operating-models p { font-size: 0.75rem; }
+ .scene-options .operating-models h4 { font-size: 0.85rem; }
  .scene-options p { margin-top: 0.4rem; }
  .scene-closing h2 { font-size: 1.7rem; }
  .scene-closing .qr-placeholders { margin-top: 1rem; }
  .chrome { top: 1rem; }
  .chrome button { padding-inline: 0.6rem; font-size: 0.65rem; }
  .chrome:first-of-type { font-size: 0.65rem; }
- .story-disclaimer { max-width: calc(100% - 3rem); padding-right: 0; font-size: 9px; }
+ .story-disclaimer { max-width: calc(100% - 3rem); padding-right: 0; font-size: 10px; }
  .detail-modal { max-height: calc(100dvh - 2rem); }
 }
 @media (prefers-reduced-motion: reduce) {
