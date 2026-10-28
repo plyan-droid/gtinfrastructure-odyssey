@@ -10,7 +10,7 @@ export const Route = createFileRoute("/")({
         content:
           "Explore government-ready monitoring foundations, supported automation, operational insights and verified agency outcomes with StackOps.",
       },
-      { property: "og:title", content: "StackOps: Full-Stack Observability for Government Digital Services" },
+      { property: "og:title", content: "StackOps: Full-Stack Observability for Whole of Government" },
       {
         property: "og:description",
         content:
