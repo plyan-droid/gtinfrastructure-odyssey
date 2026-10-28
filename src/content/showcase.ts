@@ -3,12 +3,20 @@ export type DetailChart = {
   id: string;
   title: string;
   note?: string;
-  kind?: "architecture" | "collection" | "tracing" | "lifecycle";
+  kind?: "architecture" | "collection" | "tracing" | "lifecycle" | "hub" | "cards" | "pipeline" | "journey" | "stages" | "engine" | "beforeafter" | "quadrant" | "report" | "table";
+  intro?: string;
+  center?: { title: string; body: string };
+  tone?: "problem";
+  loop?: string;
+  itemsHeading?: string;
+  grades?: { grade: string; range: string; label: string }[];
+  /** Illustrative sample only: never real tenant data. */
+  report?: { synthetic: true; sampleLabel: string; grade: string; gradeLabel: string; metrics: { value: string; label: string }[]; barsTitle: string; bars: { label: string; value: number }[]; recsTitle: string; recs: string[] };
   groups?: { title: string; labels: string[] }[];
   footer?: { title: string; body: string }[];
   steps?: { title: string; body: string; requiresApproval?: boolean }[];
-  columns?: [string, string, string];
-  rows?: [string, string, string][];
+  columns?: string[];
+  rows?: string[][];
   items?: { title: string; body: string }[];
   cyclic?: boolean;
 };
@@ -51,7 +59,7 @@ export const popupCharts: Record<string, DetailChart[]> = {
       { title: "Agency applications", labels: ["TradeNet", "WINS", "Parents Gateway"] },
       { title: "GovTech applications", labels: ["DIYGowhere", "AIBots"] },
     ] },
-    { id: "onboarding", title: "Standards Out of the Box", steps: [
+    { id: "onboarding", title: "Standards Out of the Box", kind: "pipeline", itemsHeading: "What gets applied automatically", steps: [
       { title: "Tenant onboards", body: "Console portal" },
       { title: "StackOps orchestrator", body: "Provisions the project" },
       { title: "Baseline pipeline", body: "Applies configurations as code" },
@@ -69,14 +77,14 @@ export const popupCharts: Record<string, DetailChart[]> = {
       { title: "Observability, security, and business data", body: "Collect deep, context-rich, and full stack data" },
       { title: "Unified observability and security", body: "Power automation, orchestration, prevention, and protection" },
     ] },
-    { id: "apm-observability", title: "APM and Observability", columns: ["Focus", "Application performance monitoring", "Broader observability"], rows: [
+    { id: "apm-observability", title: "APM and Observability", kind: "table", columns: ["Focus", "Application performance monitoring", "Broader observability"], rows: [
       ["Questions", "How is the application performing?", "What explains this behaviour in context?"],
       ["Evidence", "Performance metrics, transactions and application traces", "Logs, metrics, traces and service relationships"],
       ["Investigation", "Track response time, errors and established thresholds", "Explore signals and dependencies across instrumented components"],
     ] },
   ],
   investigation: [
-    { id: "tracing-impact", title: "Why Connected Tracing Matters", items: [
+    { id: "tracing-impact", title: "Why Connected Tracing Matters", kind: "quadrant", center: { title: "Whole-of-Government APM value", body: "Unified tracing across agencies" }, items: [
       { title: "Citizen experience", body: "Investigate bottlenecks along a digital-service journey." },
       { title: "Cross-team alignment", body: "Give participating teams shared evidence rather than separate tickets." },
       { title: "Operational efficiency", body: "Identify duplicated monitoring effort and improvement opportunities." },
@@ -84,13 +92,13 @@ export const popupCharts: Record<string, DetailChart[]> = {
     ] },
   ],
   sora: [
-    { id: "sora-workflow", title: "Discover, Review, Implement", steps: [
+    { id: "sora-workflow", title: "Discover, Review, Implement", kind: "pipeline", loop: "Re-run any time: safe and idempotent", steps: [
       { title: "Discover", body: "Scan supported resources and identify existing monitoring or gaps." },
       { title: "Review", body: "Inspect the generated configuration plan. Human approval is required.", requiresApproval: true },
       { title: "Implement", body: "Deploy approved configurations through supported infrastructure-as-code." },
       { title: "Monitor", body: "Check telemetry and review the resulting monitoring setup." },
     ] },
-    { id: "sora-comparison", title: "Less Repeated Manual Setup", columns: ["Activity", "Manual approach", "Supported SORA workflow"], rows: [
+    { id: "sora-comparison", title: "Less Repeated Manual Setup", kind: "table", columns: ["Activity", "Manual approach", "Supported SORA workflow"], rows: [
       ["Find gaps", "Audit each account by hand", "Discovery scan identifies potential gaps"],
       ["Set up ingestion", "Each team builds its own setup", "Reviewable, guided deployment"],
       ["Credentials", "Configure separately in applications", "Supported central handling"],
@@ -111,13 +119,13 @@ export const popupCharts: Record<string, DetailChart[]> = {
     ] },
   ],
   soda: [
-    { id: "soda-impact", title: "From Manual Review to Informed Decisions", columns: ["Review area", "Without structured analysis", "With supported SODA analysis"], rows: [
+    { id: "soda-impact", title: "From Manual Review to Informed Decisions", kind: "beforeafter", columns: ["Review area", "Without structured analysis", "With supported SODA analysis"], rows: [
       ["Cost visibility", "One monthly billing total", "Review supported tier and index breakdowns"],
       ["Review effort", "Repeated manual checks", "Reports bring relevant findings together"],
       ["Recommendations", "Generic best practices", "Data-informed opportunities for review"],
       ["Governance", "React after usage has grown", "Identify potential waste earlier"],
     ] },
-    { id: "soda-pipeline", title: "How Data Reaches the Analysis", steps: [
+    { id: "soda-pipeline", title: "How Data Reaches the Analysis", kind: "pipeline", itemsHeading: "What we collect", steps: [
       { title: "Supported deployments", body: "Hosted deployments and serverless projects within the supported scope" },
       { title: "Collection pipeline", body: "Scheduled collection of permitted deployment information" },
       { title: "StackOps central analysis", body: "Bring supported data together for review" },
@@ -129,12 +137,21 @@ export const popupCharts: Record<string, DetailChart[]> = {
       { title: "Synthetics & monitoring", body: "Monitor locations and frequency" },
       { title: "Alerting & security rules", body: "Supported rule configurations" },
     ] },
-    { id: "soda-engine", title: "Cost Optimisation Analysis", items: [
-      { title: "Node sizing", body: "Compare utilisation with capacity" },
-      { title: "Storage efficiency", body: "Review idle data and empty indices" },
-      { title: "Index lifecycle", body: "Review retention and tiering" },
-      { title: "Performance", body: "Examine relevant configuration patterns" },
-      { title: "Synthetics", body: "Review monitor type, location and frequency" },
+    { id: "soda-engine", title: "Cost Optimisation Engine", kind: "engine", items: [
+      { title: "Node Sizing", body: "CPU and JVM utilisation vs capacity" },
+      { title: "Storage Efficiency", body: "Idle data, empty indices" },
+      { title: "Index Lifecycle", body: "Lifecycle gaps, tier migration" },
+      { title: "Performance", body: "Alerting frequency, compression" },
+      { title: "Synthetics", body: "Monitor type, location, frequency" },
+    ], footer: [
+      { title: "Optimisation Grade", body: "Score 0 to 100 across all dimensions" },
+      { title: "Recommendations", body: "Actionable steps with indicative savings" },
+      { title: "Cost Calculator", body: "Interactive what-if scenarios" },
+    ], grades: [
+      { grade: "S", range: "85+", label: "Optimised" },
+      { grade: "A", range: "65 to 84", label: "Stable" },
+      { grade: "B", range: "40 to 64", label: "Moderate" },
+      { grade: "C", range: "0 to 39", label: "Wastage" },
     ], steps: [
       { title: "Analyse", body: "Assess supported configuration and utilisation data" },
       { title: "Recommend", body: "Surface opportunities and potential trade-offs" },
@@ -159,7 +176,7 @@ export const popupCharts: Record<string, DetailChart[]> = {
       { title: "Answer-driven automation", body: "Leverage data for post-processing automation" },
       { title: "Unified observability and security", body: "Power automation, orchestration, prevention, and protection" },
     ] },
-    { id: "operating-models", title: "Dynatrace Operating Models", columns: ["Responsibility", "StackOps centrally managed", "Agency self-managed"], rows: [
+    { id: "operating-models", title: "Dynatrace Operating Models", kind: "table", columns: ["Responsibility", "StackOps centrally managed", "Agency self-managed"], rows: [
       ["Primary value", "Built and operated centrally by StackOps", "Agency retains autonomy"],
       ["Operating model", "Controlled and operated by StackOps", "Operated by the individual agency"],
       ["ActiveGate & connectivity", "Provided and maintained by StackOps", "Agency builds and maintains"],
@@ -170,6 +187,226 @@ export const popupCharts: Record<string, DetailChart[]> = {
     ] },
   ],
 };
+
+type ChartPlacement = { before?: DetailChart[]; after?: DetailChart[] };
+const slideCharts: Record<string, ChartPlacement> = {
+  foundations: {
+    before: [
+      { id: "stackops-hub", title: "StackOps: SGTS Observability Solution", kind: "hub", groups: [
+        { title: "Sources", labels: ["Applications", "Cloud infrastructure"] },
+        { title: "Signals", labels: ["Logs", "Metrics", "Traces"] },
+      ], center: { title: "StackOps", body: "Generally available since August 2025" }, items: [
+        { title: "Goal", body: "Help agencies improve system and site resiliency and quality through IM-compliant monitoring." },
+        { title: "Purpose", body: "A common monitoring platform for collaboration on monitoring data and shared knowledge." },
+      ], footer: [
+        { title: "Security", body: "Authentication through TechPass, secure device access through SEED, encryption at rest and in transit, and role-based access down to field level." },
+        { title: "Observability and collaboration", body: "Shared data schemas and common logging practices and standards across agencies." },
+        { title: "Ease of use", body: "Visualisation and dashboard templates, SORA, engineering enablement and Whole-of-Government integration." },
+        { title: "Alerts to resolution", body: "Alerts flow into Jira Service Management, paging the right team and tracking every step to recovery." },
+      ] },
+      { id: "more-than-monitoring", title: "More Than a Monitoring Tool", kind: "cards", items: [
+        { title: "Standards built in", body: "Whole-of-Government compliance, security and best practices ship with the platform, supported by a shared knowledge base." },
+        { title: "Tooling to support users", body: "Automation such as SORA streamlines onboarding, and data insights feed improvements back to every team." },
+        { title: "Intelligence layered on", body: "AI-assisted analysis and consultancy recommendations lift maturity continuously." },
+      ] },
+    ],
+  },
+  capabilities: {
+    after: [
+      { id: "why-apm", title: "Why APM Matters for Agencies", kind: "cards", items: [
+        { title: "Protects the service", body: "A slowdown of a single second can lose a transaction or a citizen's trust." },
+        { title: "Faster resolution", body: "Teams move from digging through logs to proactive, automated alerts." },
+        { title: "Bridges the gap", body: "Developers, operations and business teams share the same real-time data." },
+        { title: "Fewer noisy alerts", body: "Anomaly detection adapts to each baseline, so only urgent issues page on-call." },
+      ] },
+    ],
+  },
+  investigation: {
+    before: [
+      { id: "cross-agency-journey", title: "One Citizen Journey, One Trace", intro: "A single transaction, such as a housing benefit application, can pass through several agencies. Unified tracing treats it as one journey, not three tickets.", kind: "journey", steps: [
+        { title: "Agency A", body: "Application on AWS" },
+        { title: "Agency B", body: "Database on Azure" },
+        { title: "Agency C", body: "Identity gateway" },
+      ], center: { title: "One shared trace", body: "Every hop is visible in a single view" } },
+    ],
+  },
+  sora: {
+    before: [
+      { id: "sora-problem", title: "Every Team Builds Monitoring From Scratch", kind: "cards", tone: "problem", items: [
+        { title: "Repeated work", body: "The same setup is rebuilt across every team and account." },
+        { title: "Credentials everywhere", body: "Secrets copied into every app create security risk." },
+        { title: "Unnoticed gaps", body: "Unmonitored resources and no shared standard." },
+        { title: "Hard to audit", body: "Hard to review, and hard to undo." },
+      ] },
+      { id: "sora-how", title: "How SORA Works", intro: "From scan to live monitoring in four steps.", kind: "pipeline", loop: "Done with it? One command removes everything SORA created.", steps: [
+        { title: "Discover", body: "Scans your cloud and finds what is not being monitored." },
+        { title: "Review", body: "You review the generated config. Nothing changes yet.", requiresApproval: true },
+        { title: "Deploy", body: "Preview, then spin up agents and connections." },
+        { title: "Monitor", body: "Logs and metrics flow into your dashboard." },
+      ] },
+    ],
+    after: [
+      { id: "sora-get", title: "What You Will Get", kind: "cards", items: [
+        { title: "Gap discovery", body: "Scans AWS and Azure and flags what is missing." },
+        { title: "Pre-flight checks", body: "Validates credentials and connectivity before anything deploys." },
+        { title: "Private networking", body: "Keeps data off the public internet, set up with one command." },
+        { title: "Secure gateway", body: "One credential per account, not one per app." },
+        { title: "Logging baseline", body: "Monitoring status report with ready-made fix configs." },
+        { title: "Synthetic monitoring", body: "Checks your sites and APIs like a real user." },
+      ] },
+      { id: "sora-code", title: "Do Developers Need to Change Code?", kind: "cards", items: [
+        { title: "Infrastructure", body: "No. SORA collects cloud logs and metrics at the cloud level." },
+        { title: "Application tracing", body: "Add an OpenTelemetry SDK, or use an auto-instrumentation agent that often needs no code change." },
+        { title: "AWS and Azure together", body: "Both clouds feed the same deployment for one unified view." },
+      ] },
+    ],
+  },
+  otel: {
+    before: [
+      { id: "otel-problem", title: "Why It Is Needed", kind: "cards", tone: "problem", items: [
+        { title: "Siloed visibility", body: "Native cloud tools only see their own environment, creating blind spots." },
+        { title: "Broken traces", body: "A transaction crossing clouds loses its trail mid-flight." },
+        { title: "High recovery time", body: "Engineers switch between consoles to troubleshoot a single issue." },
+      ] },
+    ],
+    after: [
+      { id: "otel-how", title: "How It Is Achieved", kind: "pipeline", steps: [
+        { title: "Standardise on OpenTelemetry", body: "One open-source, cloud-agnostic framework to collect logs, metrics and traces." },
+        { title: "Deploy an observability platform", body: "Route telemetry from each cloud to a single source of truth." },
+        { title: "Map correlated dependencies", body: "Bind multi-cloud data to see the full application map." },
+      ], items: [
+        { title: "No data loss on short outages", body: "Agents and collectors buffer locally, so delivery is delayed rather than lost." },
+      ] },
+    ],
+  },
+  soda: {
+    after: [
+      { id: "soda-report", title: "What a SODA Report Looks Like", kind: "report", report: {
+        synthetic: true, sampleLabel: "Illustrative sample data, not a real tenant", grade: "B", gradeLabel: "Moderate",
+        metrics: [{ value: "58", label: "Optimisation score" }, { value: "1.4 TB", label: "Storage reviewed" }, { value: "12", label: "Findings" }],
+        barsTitle: "Deployment sizing and utilisation", bars: [{ label: "Hot tier CPU", value: 22 }, { label: "Hot tier memory", value: 81 }, { label: "Warm tier storage", value: 46 }, { label: "Frozen tier storage", value: 12 }],
+        recsTitle: "Recommendations", recs: ["Right-size hot tier nodes to match observed CPU", "Move indices older than 30 days to a cooler tier", "Remove empty indices and idle data streams", "Reduce synthetic monitor frequency where not needed"],
+      } },
+      { id: "soda-tiers", title: "Where Savings Come From", kind: "pipeline", steps: [
+        { title: "Hot", body: "Recent and frequently queried. Fastest, highest cost." },
+        { title: "Warm", body: "Less frequent queries at lower cost." },
+        { title: "Cold", body: "Longer retention, cheaper storage." },
+        { title: "Frozen", body: "Cheapest, slower to query, still accessible." },
+      ] },
+    ],
+  },
+  intelligence: {
+    after: [
+      { id: "fragmented-connected", title: "From Fragmented Data to Connected Understanding", kind: "cards", items: [
+        { title: "Integrated platform", body: "One place for observability, security and business data." },
+        { title: "Unified data", body: "Signals stored together, in context." },
+        { title: "Real-time context", body: "Dependencies and topology updated as systems change." },
+        { title: "Answers, not guesses", body: "Root cause based on evidence rather than intuition." },
+      ] },
+      { id: "answers-flow", title: "Action Based on Answers, Not Guesses", kind: "journey", steps: [
+        { title: "Unified AI lakehouse", body: "All telemetry stored in context" },
+        { title: "Real-time dependency graph", body: "How every component connects" },
+        { title: "Agentic operations", body: "Intelligence that acts on answers" },
+      ] },
+    ],
+  },
+  dynatrace: {
+    before: [
+      { id: "differentiator", title: "The Differentiator", kind: "journey", steps: [
+        { title: "Understand", body: "Your data in context" },
+        { title: "Leverage", body: "The power of AI" },
+        { title: "Empower", body: "Teams to automate" },
+        { title: "Drive", body: "Your outcomes forward" },
+      ] },
+      { id: "dt-benefits", title: "What Teams Get", kind: "cards", items: [
+        { title: "Unified visibility across cloud and AI workloads", body: "Distributed tracing exposes latency and failing hops across services, with auto-discovery of containers and serverless workloads." },
+        { title: "Automatic root cause, not just alerts", body: "Fault-tree analysis pinpoints the true root cause and correlates metrics, logs and traces with shared context." },
+        { title: "Faster remediation with cloud context", body: "Surfaces upstream cloud failures such as DNS and storage in the tools teams already use." },
+      ] },
+      { id: "dt-stages", title: "From Collection to Solution", kind: "stages", groups: [
+        { title: "Collect", labels: ["Traces", "Metrics", "Logs", "Topology"] },
+        { title: "Capture", labels: ["OneAgent", "OpenTelemetry"] },
+        { title: "Contextualise", labels: ["Semantic dictionary"] },
+        { title: "Process", labels: ["Graph-powered lakehouse"] },
+        { title: "Analyse", labels: ["Causal, predictive, generative AI"] },
+        { title: "Automate", labels: ["Workflows", "AppEngine"] },
+        { title: "Solve", labels: ["Observability", "Security", "Business"] },
+      ] },
+      { id: "visibility-action", title: "From Visibility to Answers to Action", kind: "cards", items: [
+        { title: "Determine root cause", body: "Instantly, with logs, traces, metrics and events in context." },
+        { title: "Validate behaviour", body: "Across services and dependencies, continuously." },
+        { title: "Prioritise by impact", body: "Resolve issues based on real business impact." },
+        { title: "Prevent", body: "Enable proactive and preventive operations with AI." },
+      ] },
+    ],
+  },
+  elastic: {
+    before: [
+      { id: "elastic-basics", title: "Elastic in One Line", kind: "cards", items: [
+        { title: "Elastic is the engine", body: "Stores, indexes and searches logs, metrics and traces in real time." },
+        { title: "Kibana is the cockpit", body: "The dashboards, alerts and visualisations you work in." },
+        { title: "Serverless option", body: "No cluster sizing. Capacity scales with usage across Search, Observability and Security projects. Any savings are indicative and depend on usage." },
+      ] },
+    ],
+  },
+};
+for (const [id, place] of Object.entries(slideCharts)) {
+  popupCharts[id] = [...(place.before ?? []), ...(popupCharts[id] ?? []), ...(place.after ?? [])];
+}
+export const subscriptionDraft = {
+  title: "StackOps Subscription Model Offerings",
+  columns: ["", "StackOps Dynatrace Central Managed", "Agency Dynatrace Self-Managed", "StackOps Elastic"],
+  /** Elastic column is a draft pending StackOps team review. */
+  elastic: [
+    "Managed Elastic Cloud (hosted or serverless) provided through StackOps",
+    "StackOps provisions; agency uses its own deployment",
+    "Not applicable; SORA sets up private networking and a secure gateway",
+    "Agency manages its own spaces, with role-based access",
+    "Agency deployment or serverless project",
+    "Kibana alerting with optional anomaly detection",
+    "Elastic Agent and OpenTelemetry collectors, kept current with SORA baselines",
+  ],
+};
+{
+  const dt = popupCharts["dynatrace"] ?? [];
+  const models = dt.find(c => c.id === "operating-models");
+  if (models?.rows) {
+    popupCharts["dynatrace"] = dt.filter(c => c !== models);
+    popupCharts["subscriptions"] = [{ id: "subscription-models", title: subscriptionDraft.title, kind: "table", columns: subscriptionDraft.columns, rows: models.rows.map((r, i) => [...r, subscriptionDraft.elastic[i] ?? ""]) }];
+  }
+}
+popupCharts["gcc"] = [
+  { id: "gcc-challenges", title: "Cloud Success Depends on What Happens Before and After Deployment", kind: "cards", tone: "problem", items: [
+    { title: "Late discovery", body: "Security, compliance and integration issues can surface late, when development happens far from the GCC operating environment." },
+    { title: "Fragmented visibility", body: "Cloud spend data is spread across providers, accounts and manual workflows." },
+    { title: "Unrealised value", body: "Cost drivers and savings opportunities are harder to act on without a common view." },
+  ] },
+  { id: "gcc-journey", title: "One Journey: Build, Operate and Optimise", kind: "journey", steps: [
+    { title: "Build", body: "Build closer to GCC" },
+    { title: "Deploy", body: "Move with confidence" },
+    { title: "Operate", body: "Run workloads" },
+    { title: "Understand", body: "See consumption" },
+    { title: "Optimise", body: "Take action" },
+  ], center: { title: "GCC: Government on Commercial Cloud", body: "Build with confidence, operate with visibility, optimise with insight" } },
+  { id: "gccaas-onboarding", title: "GCCaaS Onboarding Journey, Starting Q3 2026", kind: "pipeline", steps: [
+    { title: "Development environment", body: "You need a GCC development environment." },
+    { title: "Express interest", body: "Indicate your interest today." },
+    { title: "Review and approval", body: "Onboarding request review and approval." },
+    { title: "Service agreement", body: "Sign the customer service agreement." },
+    { title: "Cloud configuration", body: "Configure cloud settings once onboarding is complete." },
+  ] },
+  { id: "gcc-pulse", title: "GCC PULSE: View, Understand, Optimise", kind: "pipeline", steps: [
+    { title: "Monitor", body: "Unified view of cloud spend" },
+    { title: "Diagnose", body: "Identify cost drivers" },
+    { title: "Optimise", body: "Take action" },
+    { title: "Track", body: "Realised savings" },
+  ] },
+  { id: "gcc-story", title: "Not Separate Products: One GCC Platform Story", kind: "cards", items: [
+    { title: "GCCaaS: build with confidence", body: "Start aligned with GCC and reduce late-stage delivery friction for agency partners." },
+    { title: "GCC Platform Journey", body: "Build, deploy, operate, understand and optimise as one integrated experience." },
+    { title: "GCC PULSE: optimise with insight", body: "Turn cloud consumption into measurable action and savings." },
+  ] },
+];
 const popupContent: Detail[] = [
   {
     id: "foundations",
@@ -500,6 +737,16 @@ const popupContent: Detail[] = [
         },
       ],
     },
+  },
+  {
+    id: "subscriptions",
+    eyebrow: "STACKOPS SUBSCRIPTIONS",
+    readMore: { title: "How Does the Platform Differ?", sections: [{ heading: "Choosing a model", body: "Confirm technical requirements and subscription terms with the StackOps team." }] },
+  },
+  {
+    id: "gcc",
+    eyebrow: "PART OF THE GCC JOURNEY",
+    readMore: { title: "From Build to Better Cloud Outcomes", sections: [{ heading: "One government cloud journey", body: "Government on Commercial Cloud (GCC) gives agencies and partners a common foundation with the guardrails and capabilities needed to build, deploy, operate and optimise securely. StackOps helps teams operate with visibility along that journey." }] },
   },
 ];
 for (const detail of popupContent) {
@@ -864,6 +1111,7 @@ export const options = {
   ],
   note: "Both provide observability capabilities. They are not mutually exclusive and are not necessarily deployed together.",
   modelsHeading: "Dynatrace operating models",
+  modelsMore: "Compare subscription models",
   models: [
     {
       title: "StackOps Centrally Managed",
@@ -880,6 +1128,7 @@ export const closing = {
   headline: ["SEE WHAT STACKOPS CAN DO", "FOR YOUR AGENCY."],
   sub: "Explore a government-focused approach to observability, monitoring automation and operational insight.",
   href: "https://www.developer.tech.gov.sg/products/categories/devops/stackops/customer-stories",
+  gccMore: "Part of the GCC journey",
 };
 export const disclaimer =
   "Illustrative infrastructure and synthetic monitoring data. Customer outcomes are attributed to official StackOps stories and are not guaranteed for other deployments.";
