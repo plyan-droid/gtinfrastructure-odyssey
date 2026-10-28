@@ -110,6 +110,7 @@ describe("Content-aware reversible story", () => {
         "dynatrace",
         "subscriptions",
         "gcc",
+        "glance",
       ].sort(),
     );
   });

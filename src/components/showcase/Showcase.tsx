@@ -403,6 +403,10 @@ export function Showcase() {
           <p className="scene-el mt-4 max-w-xl text-sm text-muted-foreground md:text-base">
             {opening.secondary}
           </p>
+          <Button variant="link" className="scene-el pointer-events-auto mt-4 text-primary" onClick={() => openPanel("glance")}>
+            {ui.glance}
+            <ArrowRight />
+          </Button>
           <button
             type="button"
             className="scene-el eyebrow mt-10 flex flex-col items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
@@ -655,6 +659,17 @@ export function Showcase() {
           <p className="scene-el mt-6 max-w-xl text-sm text-foreground/80 md:text-lg">
             {closing.sub}
           </p>
+          <div className="scene-el mt-6 w-full max-w-4xl">
+            <p className="eyebrow text-primary">{closing.stepsHeading}</p>
+            <ol className="mt-3 grid gap-3 text-left md:grid-cols-3">
+              {closing.steps.map((step) => (
+                <li key={step.k} className="border-l border-primary/50 pl-4">
+                  <span className="font-mono text-xs text-primary">{step.k}</span>
+                  <p className="mt-1 text-sm text-foreground/85">{step.v}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
           <div className="scene-el mt-6 flex flex-wrap justify-center gap-3">
             <Button asChild size="lg">
               <a href={closing.href} target="_blank" rel="noreferrer">
