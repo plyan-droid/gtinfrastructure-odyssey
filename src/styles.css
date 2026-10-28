@@ -301,3 +301,50 @@
  .chrome::before { content: ""; position: absolute; inset: -1rem -2rem; z-index: -1; background: radial-gradient(closest-side, var(--background), transparent); }
 }
 .reading-point .read-more { visibility: inherit; pointer-events: auto; }
+
+/* Native editorial diagrams: text is always live, never baked into a slide. */
+.detail-charts { margin-bottom: 2.5rem; }
+.detail-chart { padding: 0 0 2.5rem; margin: 0 0 2.5rem; border-bottom: 1px solid var(--border); }
+.chart-title { font-size: 1.25rem; font-weight: 500; margin-bottom: 1.5rem; }
+.chart-kicker, .chart-number { font: 0.7rem var(--font-mono); color: var(--healthy); }
+.chart-column-title { display: flex; align-items: center; gap: 1rem; font-size: 1rem; font-weight: 600; margin-bottom: 1rem; }
+.architecture-diagram { border-top: 2px solid var(--healthy); padding-top: 1rem; }
+.architecture-columns { display: grid; grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr); gap: 1.5rem; margin-top: 1.5rem; }
+.architecture-tier { margin-top: 0.75rem; padding: 1rem; background: var(--secondary); border-left: 2px solid var(--healthy); }
+.architecture-tier h5 { font-size: 0.85rem; color: var(--healthy); margin-bottom: 0.8rem; }
+.architecture-labels { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 0.7rem; font-size: 0.8rem; }
+.architecture-labels span { padding: 0.5rem 0; border-top: 1px solid var(--border); }
+.architecture-labels .resiliency-label { color: var(--primary); border-color: var(--primary); font-weight: 600; }
+.application-tier { border-color: var(--primary); }
+.application-tier h5 { color: var(--primary); }
+.application-tier li { border-top: 1px solid var(--border); padding: 0.65rem 0; font-size: 0.85rem; }
+.stackops-anchor { position: relative; margin-top: 1.6rem; padding: 1rem; border: 1px solid var(--primary); border-radius: 6px; }
+.stackops-anchor strong { color: var(--primary); font-size: 1.25rem; }
+.stackops-anchor p { margin-top: 0.35rem; font-size: 0.8rem; color: var(--foreground); }
+.stackops-connector { position: absolute; height: 1.6rem; width: 1px; left: 50%; bottom: 100%; background: var(--primary); }
+.collection-flow { display: grid; grid-template-columns: minmax(0,1fr) 3rem minmax(0,1fr); gap: 1rem; }
+.collection-0 { grid-column: 1; }.collection-1 { grid-column: 3; }
+.collection-column { border-top: 2px solid var(--healthy); padding-top: 1rem; }
+.collection-1 { border-color: var(--primary); }
+.collection-labels { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); min-height: 15rem; align-content: start; gap: 0; }
+.collection-labels li { padding: 0.8rem 0; font-size: 0.85rem; border-bottom: 1px solid var(--border); }
+.collection-1 .collection-labels { grid-template-columns: 1fr; }
+.collection-arrow { grid-column: 2; grid-row: 1; align-self: center; color: var(--primary); }.collection-arrow svg { width: 100%; }.collection-arrow svg:last-child { display: none; }
+.collection-footer { margin-top: 1.2rem; }.collection-footer h5 { color: var(--accent); font-size: 1rem; font-weight: 500; }.collection-footer p { margin-top: 0.7rem; font-size: 0.85rem; line-height: 1.6; color: var(--foreground); }
+.tracing-providers { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1rem; }
+.trace-context { text-align: center; padding: 0.75rem; border-block: 1px solid var(--primary); color: var(--primary); font: 0.75rem var(--font-mono); margin-bottom: 1.25rem; }
+.tracing-provider { padding: 1rem; border: 1px solid var(--healthy); border-radius: 6px; text-align: center; }.tracing-provider h4 { color: var(--healthy); font-size: 0.9rem; }.trace-app { font-size: 0.85rem; margin-top: 1rem; }.tracing-provider svg { margin: 0.75rem auto; width: 1rem; color: var(--healthy); }.trace-tool { padding: 0.65rem; font-size: 0.8rem; background: var(--secondary); }
+.trace-bus { height: 2rem; width: 67%; margin: 0 auto; border: 1px solid var(--healthy); border-top: 0; position: relative; }.trace-bus::after { content: ''; position: absolute; top: 100%; left: 50%; height: 1.5rem; border-left: 1px solid var(--healthy); }
+.trace-destination { margin: 1.5rem auto 0; text-align: center; padding: 1.2rem; border-block: 1px solid var(--primary); }.trace-destination h4 { font-size: 1.3rem; margin: 0.5rem 0; }.trace-destination > p:last-child { font-size: 0.85rem; color: var(--muted-foreground); }
+.chart-flow ol { display: grid; gap: 0; }.chart-flow li { position: relative; display: grid; grid-template-columns: 2rem minmax(0,1fr); gap: 1rem; padding: 1.2rem 0 1.6rem; border-top: 1px solid var(--border); }.chart-flow li .chart-number { border-left: 2px solid var(--healthy); padding-left: 0.5rem; }.chart-flow h4, .chart-cycle h4 { font-size: 1rem; font-weight: 500; }.chart-flow p, .chart-cycle p { font-size: 0.85rem; color: var(--muted-foreground); line-height: 1.6; margin-top: 0.5rem; }.step-arrow { position: absolute; bottom: 0; left: 0.35rem; width: 1rem; color: var(--healthy); }.chart-flow .approval-step .chart-number { color: var(--warn); border-color: var(--warn); }
+.chart-cycle { position: relative; }.chart-cycle ol { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 3rem 5rem; padding: 1.5rem; border: 1px solid var(--primary); border-radius: 8px; }.chart-cycle li { padding: 1rem; border-top: 2px solid var(--healthy); }.chart-cycle li:nth-child(3) { grid-column: 2; grid-row: 2; }.chart-cycle li:nth-child(4) { grid-column: 1; grid-row: 2; }.chart-cycle h4 { margin-top: 0.5rem; }.cycle-center { display: flex; justify-content: center; gap: 0.5rem; margin-top: 1rem; font-size: 0.8rem; color: var(--primary); }.cycle-center svg { width: 1rem; }
+.chart-insights { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1.5rem; margin-top: 1.5rem; }.chart-insights > div { padding-top: 0.8rem; border-top: 1px solid var(--healthy); }.chart-insights dt { font-size: 1rem; margin-top: 0.5rem; }.chart-insights dd { color: var(--muted-foreground); font-size: 0.85rem; line-height: 1.6; margin-top: 0.5rem; }
+.chart-comparison-desktop table { width: 100%; table-layout: fixed; font-size: 0.85rem; text-align: left; }.chart-comparison-desktop th, .chart-comparison-desktop td { padding: 1rem 0.8rem; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.6; }.chart-comparison-desktop thead th { color: var(--healthy); border-bottom: 2px solid var(--healthy); font-weight: 500; }.chart-comparison-desktop th:first-child { width: 24%; padding-left: 0; }.chart-comparison-desktop td { color: var(--muted-foreground); }.chart-comparison-desktop td:last-child { color: var(--foreground); }.chart-comparison-mobile { display: none; }
+.lifecycle-copy { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1.5rem; }.lifecycle-copy li { display: flex; gap: 1rem; padding-top: 1rem; border-top: 2px solid var(--healthy); }.lifecycle-copy li:last-child { grid-column: 1/-1; border-color: var(--primary); }.lifecycle-copy h4 { font-size: 1rem; line-height: 1.5; color: var(--accent); }.lifecycle-copy p { margin-top: 0.7rem; font-size: 0.85rem; line-height: 1.6; color: var(--foreground); }
+@media (max-width: 767px) {
+ .architecture-columns, .tracing-providers, .lifecycle-copy { grid-template-columns: 1fr; }
+ .collection-flow { grid-template-columns: 1fr; }.collection-0,.collection-1 { grid-column: 1; }.collection-0 { grid-row: 1; }.collection-1 { grid-row: 3; }.collection-arrow { grid-column: 1; grid-row: 2; justify-self: center; }.collection-arrow svg:first-child { display: none; }.collection-arrow svg:last-child { display: block; }.collection-labels { min-height: 0; }
+ .tracing-provider { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 0.5rem; text-align: left; }.tracing-provider h4 { grid-column: 1/-1; }.tracing-provider svg { display: none; }.trace-app { margin: 0; }.trace-bus { display: none; }
+ .chart-cycle ol { gap: 1rem; padding: 1rem; }.chart-cycle li { padding: 0.6rem 0; }.chart-cycle p { font-size: 0.8rem; }.chart-insights { gap: 1rem; }
+ .chart-comparison-desktop { display: none; }.chart-comparison-mobile { display: block; }.chart-comparison-mobile > div { padding: 1rem 0; border-top: 1px solid var(--border); }.chart-comparison-mobile dt { color: var(--healthy); font-size: 1rem; }.chart-comparison-mobile dd > div { margin-top: 0.8rem; }.chart-comparison-mobile strong { color: var(--primary); font-size: 0.8rem; font-weight: 500; }.chart-comparison-mobile p { margin-top: 0.3rem; font-size: 0.85rem; color: var(--foreground); line-height: 1.6; }
+}
