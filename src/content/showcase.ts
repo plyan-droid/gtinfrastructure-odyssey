@@ -176,7 +176,7 @@ export const popupCharts: Record<string, DetailChart[]> = {
     { id: "operating-models", title: "Dynatrace Operating Models", kind: "table", columns: ["Responsibility", "StackOps centrally managed", "Agency self-managed"], rows: [
       ["Primary value", "Built and operated centrally by StackOps", "Agency retains autonomy"],
       ["Operating model", "Controlled and operated by StackOps", "Operated by the individual agency"],
-      ["ActiveGate & connectivity", "Provided and maintained by StackOps", "Agency builds and maintains"],
+      ["Connectivity", "Provided and maintained by StackOps", "Agency builds and maintains"],
       ["Admin rights", "Vested with StackOps", "Agency owns feature controls"],
       ["Environment", "Shared multi-tenant environment, segregated by tagging", "Dedicated agency environment / tenant"],
       ["Alerting", "Pre-configured anomaly detection", "Agency can customise thresholds"],
@@ -363,11 +363,11 @@ export const subscriptionDraft = {
   elastic: [
     "Managed Elastic Cloud provided through StackOps",
     "StackOps provisions; agency uses its own deployment",
-    "Not applicable; SORA sets up private networking and a secure gateway",
+    "Shared responsibility",
     "Agency manages its own spaces, with role-based access",
-    "Agency serverless project",
-    "Kibana alerting with optional anomaly detection",
-    "Elastic Agent and OpenTelemetry collectors, kept current with SORA baselines",
+    "Dedicated agency environment / tenant",
+    "Agency can customise thresholds",
+    "Agency owns patch compliance",
   ],
 };
 {
