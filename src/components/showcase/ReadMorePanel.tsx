@@ -30,7 +30,7 @@ export function ReadMorePanel({
       }}
     >
       <DialogContent
-        className="detail-modal w-[calc(100%-2rem)] max-w-[72rem] gap-0 overflow-hidden rounded-lg bg-popover p-0 md:w-[72vw]"
+        className="detail-modal gap-0 overflow-hidden rounded-lg bg-popover p-0"
         onCloseAutoFocus={(event) => {
           event.preventDefault();
           onRestoreFocus();
