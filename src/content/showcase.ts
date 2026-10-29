@@ -84,10 +84,10 @@ export const popupCharts: Record<string, DetailChart[]> = {
     ] },
   ],
   sora: [
-    { id: "sora-workflow", title: "Discover, Review, Implement", kind: "pipeline", loop: "Re-run any time: safe and idempotent", steps: [
+    { id: "sora-workflow", title: "How SORA Works: Discover, Review, Deploy, Monitor", kind: "pipeline", loop: "Re-run any time: safe and idempotent. Done with it? One command removes everything SORA created.", steps: [
       { title: "Discover", body: "Scan supported resources and identify existing monitoring or gaps." },
       { title: "Review", body: "Inspect the generated configuration plan. Human approval is required.", requiresApproval: true },
-      { title: "Implement", body: "Deploy approved configurations through supported infrastructure-as-code." },
+      { title: "Deploy", body: "Deploy approved configurations through supported infrastructure-as-code." },
       { title: "Monitor", body: "Check telemetry and review the resulting monitoring setup." },
     ] },
     { id: "sora-comparison", title: "Manual Setup vs SORA", kind: "table", columns: ["Activity", "Manual approach", "Supported SORA workflow"], rows: [
@@ -118,7 +118,7 @@ export const popupCharts: Record<string, DetailChart[]> = {
       ["Governance", "React after usage has grown", "Identify potential waste earlier"],
     ] },
     { id: "soda-pipeline", title: "How SODA Collects Data", kind: "pipeline", itemsHeading: "What we collect", steps: [
-      { title: "Supported deployments", body: "Hosted deployments and serverless projects within the supported scope" },
+      { title: "Supported deployments", body: "Supported Elastic projects" },
       { title: "Collection pipeline", body: "Scheduled collection of permitted deployment information" },
       { title: "StackOps central analysis", body: "Bring supported data together for review" },
     ], items: [
@@ -242,12 +242,6 @@ const slideCharts: Record<string, ChartPlacement> = {
         { title: "Unnoticed gaps", body: "Unmonitored resources and no shared standard." },
         { title: "Hard to audit", body: "Hard to review, and hard to undo." },
       ] },
-      { id: "sora-how", title: "How SORA Works", intro: "From scan to live monitoring in four steps.", kind: "pipeline", loop: "Done with it? One command removes everything SORA created.", steps: [
-        { title: "Discover", body: "Scans your cloud and finds what is not being monitored." },
-        { title: "Review", body: "You review the generated config. Nothing changes yet.", requiresApproval: true },
-        { title: "Deploy", body: "Preview, then spin up agents and connections." },
-        { title: "Monitor", body: "Logs and metrics flow into your dashboard." },
-      ] },
     ],
     after: [
       { id: "sora-get", title: "What You Will Get", kind: "cards", items: [
@@ -308,7 +302,7 @@ const slideCharts: Record<string, ChartPlacement> = {
         { title: "Answers, not guesses", body: "Root cause based on evidence rather than intuition." },
       ] },
       { id: "answers-flow", title: "From Dependency Data to Action", kind: "journey", steps: [
-        { title: "Unified AI lakehouse", body: "All telemetry stored in context" },
+        { title: "AI Context", body: "All telemetry kept in shared context" },
         { title: "Real-time dependency graph", body: "How every component connects" },
         { title: "Agentic operations", body: "Intelligence that acts on answers" },
       ] },
@@ -349,7 +343,7 @@ const slideCharts: Record<string, ChartPlacement> = {
       { id: "elastic-basics", title: "Elastic in One Line", kind: "cards", items: [
         { title: "Elastic is the engine", body: "Stores, indexes and searches logs, metrics and traces in real time." },
         { title: "Kibana is the cockpit", body: "The dashboards, alerts and visualisations you work in." },
-        { title: "Serverless option", body: "No cluster sizing. Capacity scales with usage across Search, Observability and Security projects. Any savings are indicative and depend on usage." },
+        { title: "Workflows and AI Agents", body: "Automate response steps and use AI assistants to help investigate and act, supporting AI-assisted operations. Capability depends on subscription and configuration." },
       ] },
     ],
   },
@@ -362,11 +356,11 @@ export const subscriptionDraft = {
   columns: ["", "StackOps Dynatrace Central Managed", "Agency Dynatrace Self-Managed", "StackOps Elastic"],
   /** Elastic column is a draft pending StackOps team review. */
   elastic: [
-    "Managed Elastic Cloud (hosted or serverless) provided through StackOps",
+    "Managed Elastic Cloud provided through StackOps",
     "StackOps provisions; agency uses its own deployment",
     "Not applicable; SORA sets up private networking and a secure gateway",
     "Agency manages its own spaces, with role-based access",
-    "Agency deployment or serverless project",
+    "Agency serverless project",
     "Kibana alerting with optional anomaly detection",
     "Elastic Agent and OpenTelemetry collectors, kept current with SORA baselines",
   ],
@@ -498,7 +492,7 @@ const popupContent: Detail[] = [
       sections: [
         {
           heading: "SORA: Automated Monitoring Setup for AWS and Azure",
-          body: "StackOps Resiliency Accelerator helps streamline monitoring setup through structured, reusable workflows.\n\nSet up ingestion pipelines in hours instead of weeks.\nActual setup time varies by environment and requirements.",
+          body: "StackOps Resiliency Accelerator helps streamline monitoring setup through structured, reusable workflows.\n\nSet up ingestion pipelines in hours instead of weeks.\nActual setup time varies by environment and requirements.\n\nAutomation pipeline enables continuous coverage improvement.\nRun SORA as a scheduled job, for example daily, and it spots new cloud resources and highlights where monitoring can be added.",
         },
         {
           heading: "Discover",
@@ -542,7 +536,7 @@ const popupContent: Detail[] = [
           body: "A digital service may rely on applications and infrastructure spread across different environments.\n\nWithout connected operational context, engineers may need to investigate each component separately.\n\nBring logs, metrics and traces together across cloud environments using OpenTelemetry. Cross-agency visibility depends on the systems connected and the access available.\n\nOpenTelemetry provides open standards and tools for generating, collecting and exporting telemetry such as logs, metrics and traces.\n\nWith appropriate instrumentation and supported integrations, teams can:\n\n- Follow requests across instrumented services.\n\n- Understand relationships between components.\n\n- Investigate delays and errors.\n\n- Examine relevant operational signals together.\n\n- Support cross-team troubleshooting.",
         },
         {
-          heading: "For leaders: tracing across agencies",
+          heading: "For leaders: tracing across agencies and organisations",
           body: "A single citizen transaction may touch an application in one cloud, a data service in another and a shared identity gateway. Connected tracing helps teams treat it as one journey, so issues are not passed between separate teams before anyone sees the full picture.\n\nThis is an illustrative example, not a description of any specific agency's architecture.",
         },
         {
@@ -554,13 +548,13 @@ const popupContent: Detail[] = [
   },
   {
     id: "soda",
-    eyebrow: "COST AND HEALTH OPTIMISATION (SODA)",
+    eyebrow: "RECOMMENDATIONS FROM DATA INSIGHTS (SODA)",
     readMore: {
-      title: "SODA: Cost and Health Analysis for Elastic",
+      title: "SODA: Recommendations from Data Insights",
       sections: [
         {
-          heading: "SODA: Cost and Health Analysis for Elastic",
-          body: "StackOps Data Analysis helps teams examine supported deployment, utilisation and cost-related information.",
+          heading: "SODA: Recommendations from Data Insights",
+          body: "StackOps Data Analysis turns supported platform data into recommendations for improvement. Cost and health are examples of what it can surface, alongside configuration, sizing and lifecycle findings.",
         },
         {
           heading: "Deployment Sizing",
@@ -707,7 +701,7 @@ const popupContent: Detail[] = [
       sections: [
         {
           heading: "Elastic: Operational Data Analysis and Observability",
-          body: "Elastic is an underlying observability technology option available through StackOps.\n\nRelevant capabilities include:\n\n- Log collection and analytics.\n\n- Search and investigation.\n\n- Metrics monitoring.\n\n- Distributed tracing.\n\n- Dashboards and visualisations.\n\n- Alerting and monitoring workflows.\n\nStackOps provides relevant supporting standards, configurations and tools around the available observability offering.\n\nSpecific capabilities and deployment arrangements depend on the selected implementation.",
+          body: "Elastic is an underlying observability technology option available through StackOps.\n\nRelevant capabilities include:\n\n- Log collection and analytics.\n\n- Search and investigation.\n\n- Metrics monitoring.\n\n- Distributed tracing.\n\n- Dashboards and visualisations.\n\n- Alerting and monitoring workflows.\n\n- Workflows and AI agents that automate response steps and help teams investigate and act.\n\nStackOps provides relevant supporting standards, configurations and tools around the available observability offering.\n\nSpecific capabilities and deployment arrangements depend on the selected implementation.",
         },
       ],
     },
@@ -749,9 +743,9 @@ const popupContent: Detail[] = [
       cards: { intro: "The four things agencies get from StackOps, in brief.", closing: "Scroll through the story for detail on each, or jump ahead using the Site Map.", note: "Capabilities depend on the selected technology and subscription model." },
       sections: [
         { heading: "SHARED SERVICE: One platform, centrally run", body: "Use a government observability platform that is already set up and maintained, instead of building your own." },
-        { heading: "ONBOARDING: Faster setup with SORA", body: "Automated monitoring setup for AWS and Azure accounts, reviewed before it is applied." },
-        { heading: "TRACING: Follow requests across clouds", body: "OpenTelemetry tracing connects a transaction across services and cloud providers." },
-        { heading: "COST: Health and cost checks with SODA", body: "Regular reports grade your setup and recommend where to save or improve." },
+        { heading: "ONBOARDING: Automated provisioning with built-in best practices", body: "Monitoring for AWS and Azure accounts is set up automatically using StackOps standards, and you review it before anything is applied." },
+        { heading: "TRACING: Follow requests across cloud solutions", body: "OpenTelemetry tracing connects a transaction across services and cloud providers." },
+        { heading: "RECOMMENDATIONS: Data-driven recommendations for your configuration", body: "Regular reports use your platform data to suggest improvements to configuration, health and cost." },
       ],
     },
   },
@@ -1221,7 +1215,7 @@ export const contextSections = {
   },
   soda: {
     eyebrow: "STACKOPS-BUILT ANALYSIS",
-    headline: ["COST AND HEALTH", "OPTIMISATION WITH SODA"],
+    headline: ["DATA-DRIVEN RECOMMENDATIONS", "WITH SODA"],
     sub: "SODA (StackOps Data Analysis) helps teams examine deployment, utilisation and cost-related information to identify optimisation opportunities.",
     detail: "soda",
     note: "Synthetic data only. Recommendations support human decisions, not guaranteed savings.",

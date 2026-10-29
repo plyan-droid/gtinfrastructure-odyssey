@@ -15,7 +15,7 @@ describe("Chart workflow approval boundaries", () => {
 describe("Slide-derived popup charts", () => {
   const find = (popup: string, id: string) => popupCharts[popup]?.find(c => c.id === id);
   it("places each new chart in its intended popup", () => {
-    const expected: [string, string][] = [["foundations", "stackops-hub"], ["sora", "sora-how"], ["otel", "otel-problem"], ["soda", "soda-report"], ["dynatrace", "dt-stages"], ["subscriptions", "subscription-models"]];
+    const expected: [string, string][] = [["foundations", "stackops-hub"], ["sora", "sora-workflow"], ["otel", "otel-problem"], ["soda", "soda-report"], ["dynatrace", "dt-stages"], ["subscriptions", "subscription-models"]];
     for (const [popup, id] of expected) expect(find(popup, id)).toBeDefined();
   });
   it("keeps the 4 Golden Signals in the Capabilities popup", () => {
@@ -39,5 +39,11 @@ describe("Slide-derived popup charts", () => {
     const text = JSON.stringify(popupCharts);
     expect(text).not.toMatch(/7%/);
     expect(text).not.toMatch(/Source:/);
+  });
+  it("applies the director's feedback", async () => {
+    const { details } = await import("@/content/showcase") as any;
+    expect(popupCharts["sora"]?.filter(c => c.kind === "pipeline")).toHaveLength(1);
+    const text = JSON.stringify(popupCharts) + JSON.stringify(details ?? []);
+    expect(text).not.toMatch(/Serverless option|hosted or serverless/i);
   });
 });
