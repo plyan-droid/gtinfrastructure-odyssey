@@ -139,11 +139,11 @@ export function Showcase() {
             const cropY = (900 - height / svgScale) / 2;
             const top = 64;
             const bottom = height - 140;
-            const scale = Math.min((width - 48) / 1360, (bottom - top) / 788) / svgScale;
+            const scale = Math.min((width - 48) / 1360, (bottom - top) / 730) / svgScale;
             return {
               scale,
               x: cropX + width / (2 * svgScale) - 880 * scale,
-              y: cropY + (top + bottom) / (2 * svgScale) - 452 * scale,
+              y: cropY + (top + bottom) / (2 * svgScale) - 409 * scale,
             };
           }
           if (reduce) return { scale: 1, x: 0, y: 0 };
