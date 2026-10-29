@@ -202,7 +202,7 @@ export function TopologyMap() {
             className="node-name"
             x={s.x - CARD.w / 2 + 32}
             y={s.y + 6}
-            fontSize="18"
+            fontSize={s.label.length > 15 ? "16" : "18"}
             fill="var(--foreground)"
             fontFamily="var(--font-display)"
           >

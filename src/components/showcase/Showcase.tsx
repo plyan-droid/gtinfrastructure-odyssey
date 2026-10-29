@@ -577,7 +577,7 @@ export function Showcase() {
                 <div className="border-l border-healthy/50 pl-6">
                   <p className="text-6xl font-semibold text-healthy md:text-7xl">{story.metric}</p>
                   <p className="mt-2 max-w-xs text-base">{story.metricLabel}</p>
-                  <p className="mt-3 text-[10px] text-muted-foreground">{ui.attributed}</p>
+                  <p className="customer-attribution mt-3 text-sm text-muted-foreground">{ui.attributed}</p>
                 </div>
               )}
             </article>

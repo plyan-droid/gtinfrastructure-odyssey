@@ -501,6 +501,16 @@
  .narrative-scene .eyebrow, .story-full .eyebrow, .read-more { font-size: 1.125rem; }
  .story-disclaimer { max-width: 34rem; font-size: 1rem; }
  .detail-modal [data-slot="dialog-title"] { font-size: 2.25rem; }
+ .detail-modal header h2 { font-size: 2.25rem; }
+ .story-full article p.text-base, .scene-closing li p, .customer-attribution, .topology-card p { font-size: 1.375rem; }
+ .topology-card { max-width: 32rem; }
+ .story-full .text-muted-foreground, .narrative-scene .reading-point .text-muted-foreground { color: var(--foreground); }
+ .scene-options { padding-top: 6rem; padding-bottom: 7rem; }
+ .scene-options > p, .scene-options > .operating-models { max-width: 64rem; }
+ .scene-options > div { margin-top: 1rem; }
+ .scene-options article p { max-width: 30rem; }
+ .scene-options > p { margin-top: 0.75rem; }
+ [data-active-scene="options"] .story-disclaimer { left: auto; right: 1.5rem; max-width: 28rem; padding-right: 0; }
  .quad-core { width: 15rem; height: 15rem; }
  .quad-0, .quad-2 { padding-right: 9rem; }.quad-1, .quad-3 { padding-left: 9rem; }
  .quad { min-height: 15rem; }
