@@ -10,7 +10,7 @@ export type Node = {
   y: number;
 };
 
-export const CARD = { w: 184, h: 56 };
+export const CARD = { w: 216, h: 60 };
 export const CLOUD = { w: 260, h: 200 };
 
 export const nodes: Node[] = [
@@ -20,9 +20,9 @@ export const nodes: Node[] = [
   { id: "gateway", label: serviceLabels.gateway, kind: "svc", tier: "services", x: 640, y: 450 },
   { id: "catalog", label: serviceLabels.catalog, kind: "svc", tier: "services", x: 900, y: 330 },
   { id: "orders", label: serviceLabels.orders, kind: "queue", tier: "services", x: 900, y: 570 },
-  { id: "payments", label: serviceLabels.payments, kind: "svc", tier: "services", x: 1100, y: 640 },
+  { id: "payments", label: serviceLabels.payments, kind: "svc", tier: "services", x: 1110, y: 640 },
   { id: "inventory", label: serviceLabels.inventory, kind: "db", tier: "data", x: 1400, y: 330 },
-  { id: "cloudA", label: serviceLabels.cloudA, kind: "cloud", tier: "data", x: 1400, y: 320 },
+  { id: "cloudA", label: serviceLabels.cloudA, kind: "cloud", tier: "data", x: 1400, y: 306 },
   { id: "cloudB", label: serviceLabels.cloudB, kind: "cloud", tier: "data", x: 1400, y: 590 },
 ];
 
