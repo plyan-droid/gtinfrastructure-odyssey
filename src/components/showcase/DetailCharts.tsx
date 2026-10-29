@@ -165,7 +165,7 @@ function Chart({ chart }: { chart: DetailChart }) {
     <h3 id={`chart-${chart.id}`} className="chart-title">{chart.title}</h3>
     {chart.intro && <p className="chart-intro">{chart.intro}</p>}
     <Body chart={chart} />
-    {chart.note && <figcaption className="mt-4 text-sm leading-relaxed text-muted-foreground">{chart.note}</figcaption>}
+    {chart.note && <figcaption className="chart-note">{chart.note}</figcaption>}
   </figure>;
 }
 export function DetailCharts({ charts }: { charts: DetailChart[] }) {
