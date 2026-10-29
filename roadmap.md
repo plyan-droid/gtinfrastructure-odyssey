@@ -30,4 +30,4 @@
 ## Cross-cloud tracing POC video
 - [x] Upload the POC recording and a poster frame as CDN assets.
 - [x] Add a metadata-loading video chart to DetailCharts and place it in the Cross-Cloud Tracing popup after the architecture diagram.
-- [ ] Verify the custom seek bar, playback controls and fullscreen on desktop and phone.
+- [x] Verify the custom seek bar, playback controls and fullscreen on desktop and phone (test browser used a temporary WebM conversion of the actual recording).
