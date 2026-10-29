@@ -679,14 +679,6 @@ export function Showcase() {
               <ArrowRight />
             </Button>
           </div>
-          <div className="scene-el qr-placeholders mt-6 flex gap-8">
-            {[ui.websiteQr, ui.discussionQr].map((label) => (
-              <div key={label} className="flex max-w-40 flex-col items-center gap-2">
-                <QrCode className="h-12 w-12 text-muted-foreground/40" />
-                <p className="text-xs text-muted-foreground">{label}</p>
-              </div>
-            ))}
-          </div>
         </div>
 
         {/* Chrome */}
