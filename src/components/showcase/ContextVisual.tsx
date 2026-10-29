@@ -63,7 +63,7 @@ export function TopologyMap() {
           x="880"
           y="798"
           textAnchor="middle"
-          fontSize="16"
+          fontSize="18"
           fontWeight="600"
           letterSpacing="6"
           fill="var(--primary)"
