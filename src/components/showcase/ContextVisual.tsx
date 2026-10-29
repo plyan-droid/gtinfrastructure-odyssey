@@ -308,7 +308,7 @@ export function NetworkVisuals() {
             ))}
             {key === "fragmented" &&
               ["web", "catalog", "inventory"].map((id, i) => (
-                <foreignObject key={id} x={n(id).x - 70} y={n(id).y - 88} width="140" height="34">
+                <foreignObject key={id} x={n(id).x - 70} y={n(id).y - 74} width="140" height="34">
                   <div className={`hud-chip chip-${i}`}>{diagram.fragmented[i]}</div>
                 </foreignObject>
               ))}
