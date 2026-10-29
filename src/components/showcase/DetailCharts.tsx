@@ -132,6 +132,13 @@ function Steps({ chart }: { chart: DetailChart }) {
 function Items({ chart }: { chart: DetailChart }) {
   return <dl className="chart-insights">{chart.items?.map((item, i) => <div key={item.title}><span className="chart-number">{num(i)}</span><dt>{item.title}</dt><dd>{item.body}</dd></div>)}</dl>;
 }
+function Video({ chart }: { chart: DetailChart }) {
+  const video = chart.video;
+  if (!video?.src) return null;
+  return <div className="video-chart">
+    <video controls playsInline preload="metadata" poster={video.poster} src={video.src} />
+  </div>;
+}
 function Body({ chart }: { chart: DetailChart }) {
   switch (chart.kind) {
     case "architecture": return <Architecture chart={chart} />;
