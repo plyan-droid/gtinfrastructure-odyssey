@@ -1142,8 +1142,6 @@ export const closing = {
     { k: "03", v: "Use SORA to onboard supported cloud environments and start monitoring" },
   ],
 };
-export const disclaimer =
-  "Illustrative infrastructure and synthetic monitoring data. Customer outcomes are attributed to official StackOps stories and are not guaranteed for other deployments.";
 export const contextSections = {
   foundations: {
     eyebrow: "THE STACKOPS ADVANTAGE",

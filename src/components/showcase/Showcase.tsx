@@ -2,7 +2,6 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import {
   challenge,
   closing,
-  disclaimer,
   capabilities,
   investigation,
   customerStories,
