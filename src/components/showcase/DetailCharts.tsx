@@ -155,6 +155,7 @@ function Body({ chart }: { chart: DetailChart }) {
     case "quadrant": return <Quadrant chart={chart} />;
     case "report": return <Report chart={chart} />;
     case "table": return <Table chart={chart} />;
+    case "video": return <Video chart={chart} />;
     default:
       if (chart.cyclic) return <Cycle chart={chart} />;
       return <>{chart.steps && <Steps chart={chart} />}{chart.columns && <Table chart={chart} />}{chart.items && <Items chart={chart} />}</>;
