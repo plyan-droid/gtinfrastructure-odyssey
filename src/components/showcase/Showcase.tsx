@@ -2,7 +2,6 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import {
   challenge,
   closing,
-  disclaimer,
   capabilities,
   investigation,
   customerStories,
@@ -629,7 +628,7 @@ export function Showcase() {
             ))}
           </div>
           <div className="scene-el operating-models mt-4 max-w-5xl">
-            <h3 className="font-medium">{options.modelsHeading}</h3>
+            <h3 className="text-2xl font-medium">{options.modelsHeading}</h3>
             <div className="mt-2 grid gap-3 md:grid-cols-2">
               {options.models.map((model) => (
                 <div key={model.title}>
@@ -697,9 +696,6 @@ export function Showcase() {
         <div className="chrome absolute right-6 top-5 flex items-center gap-2">
           <SiteMap onJump={jumpTo} />
         </div>
-        <p className="story-disclaimer absolute bottom-4 left-6 max-w-md pr-28 text-xs leading-snug text-muted-foreground/70">
-          {disclaimer}
-        </p>
       </section>
 
       <ReadMorePanel
