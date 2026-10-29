@@ -25,7 +25,7 @@ export function TopologyMap() {
             x={[330, 870, 1400][i]}
             y={112}
             textAnchor="middle"
-            fontSize="16"
+            fontSize="20"
             letterSpacing="0"
             fill="var(--foreground)"
           >
@@ -104,8 +104,8 @@ export function TopologyMap() {
             />
             <text
               x={c.x - CLOUD.w / 2 + 16}
-              y={c.id === "cloudA" ? c.y + CLOUD.h / 2 - 18 : c.y - CLOUD.h / 2 + 22}
-              fontSize="15"
+              y={c.y - CLOUD.h / 2 + 26}
+              fontSize="17"
               letterSpacing="0"
               fill="var(--foreground)"
               fontFamily={mono}
@@ -202,7 +202,7 @@ export function TopologyMap() {
             className="node-name"
             x={s.x - CARD.w / 2 + 32}
             y={s.y + 6}
-            fontSize={s.label.length > 15 ? "16" : "18"}
+            fontSize={s.label.length > 15 ? "18" : "19"}
             fill="var(--foreground)"
             fontFamily="var(--font-display)"
           >
