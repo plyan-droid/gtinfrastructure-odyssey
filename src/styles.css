@@ -306,8 +306,15 @@
 .detail-charts { margin-bottom: 2.5rem; }
 .detail-chart { padding: 0 0 2.5rem; margin: 0 0 2.5rem; border-bottom: 1px solid var(--border); }
 .chart-title { font-size: 1.25rem; font-weight: 500; margin-bottom: 1.5rem; }
-.video-chart { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--secondary); }
-.video-chart video { display: block; width: 100%; aspect-ratio: 16 / 9; }
+.video-chart { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--secondary); }
+.video-chart video { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: contain; cursor: pointer; }
+.video-controls { padding: 0.5rem 0.75rem; background: var(--card); border-top: 1px solid var(--border); flex-shrink: 0; }
+.video-timeline { height: 1.5rem; }
+.video-buttons { display: flex; align-items: center; gap: 0.25rem; }
+.video-buttons button { width: 2.75rem; height: 2.75rem; flex-shrink: 0; }
+.video-time { font: 0.8rem var(--font-mono); color: var(--foreground); white-space: nowrap; margin-left: 0.5rem; }
+.video-chart:fullscreen { display: flex; flex-direction: column; justify-content: center; border: 0; border-radius: 0; background: var(--background); }
+.video-chart:fullscreen video { flex: 1; min-height: 0; aspect-ratio: auto; }
 .chart-kicker, .chart-number { font: 0.7rem var(--font-mono); color: var(--healthy); }
 .chart-column-title { display: flex; align-items: center; gap: 1rem; font-size: 1rem; font-weight: 600; margin-bottom: 1rem; }
 .architecture-diagram { padding-top: 0.5rem; }

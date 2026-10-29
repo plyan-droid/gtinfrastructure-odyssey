@@ -1,5 +1,6 @@
 import { ArrowDown, ArrowRight, CornerDownLeft, RotateCcw } from "lucide-react";
 import { chartCopy, type DetailChart } from "@/content/showcase";
+import { VideoPlayer } from "./VideoPlayer";
 
 const num = (i: number) => String(i + 1).padStart(2, "0");
 
@@ -135,9 +136,7 @@ function Items({ chart }: { chart: DetailChart }) {
 function Video({ chart }: { chart: DetailChart }) {
   const video = chart.video;
   if (!video?.src) return null;
-  return <div className="video-chart">
-    <video controls playsInline preload="metadata" poster={video.poster} src={video.src} />
-  </div>;
+  return <VideoPlayer src={video.src} poster={video.poster} />;
 }
 function Body({ chart }: { chart: DetailChart }) {
   switch (chart.kind) {
