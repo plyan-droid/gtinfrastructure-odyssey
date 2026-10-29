@@ -514,7 +514,7 @@ export function Showcase() {
             </ol>
             {"detail" in section && (
               <>
-                <p className="scene-el mt-3 text-sm text-muted-foreground">
+                <p className="scene-el side-note mt-3">
                   {"note" in section ? section.note : ""}
                 </p>
               </>
