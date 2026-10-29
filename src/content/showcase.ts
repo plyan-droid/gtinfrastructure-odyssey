@@ -800,8 +800,6 @@ export const ui = {
   resume: "Resume presentation",
   discussion: "Arrange a Discussion",
   discussionPending: "Discussion booking link pending approval",
-  websiteQr: "Website QR · approved URL pending",
-  discussionQr: "Discussion QR · approved URL pending",
   vision: "DIRECTION · PENDING VALIDATION",
 };
 export const diagram = {

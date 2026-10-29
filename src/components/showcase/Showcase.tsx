@@ -22,7 +22,7 @@ import { SiteMap } from "./SiteMap";
 import { Button } from "@/components/ui/button";
 import { NetworkVisuals, TopologyMap } from "./ContextVisual";
 import { storyStages, STAGE_DURATION, stageAtTime } from "./story-stages";
-import { ArrowRight, ArrowLeft, ExternalLink, ChevronDown, QrCode } from "lucide-react";
+import { ArrowRight, ArrowLeft, ExternalLink, ChevronDown } from "lucide-react";
 import stackopsLogo from "@/assets/stackops-logo.png.asset.json";
 
 const MOBILE_TOUR_SCALE = 0.6;
@@ -678,14 +678,6 @@ export function Showcase() {
               {ui.discussion}
               <ArrowRight />
             </Button>
-          </div>
-          <div className="scene-el qr-placeholders mt-6 flex gap-8">
-            {[ui.websiteQr, ui.discussionQr].map((label) => (
-              <div key={label} className="flex max-w-40 flex-col items-center gap-2">
-                <QrCode className="h-12 w-12 text-muted-foreground/40" />
-                <p className="text-xs text-muted-foreground">{label}</p>
-              </div>
-            ))}
           </div>
         </div>
 
