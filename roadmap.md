@@ -27,3 +27,7 @@
 - [x] Restore the selected approximately 60-second booth loop with unapproved AI excluded.
 - [x] Update Site Map, technology operating options and approved-destination CTA placeholders.
 - [x] Verify scene isolation, point synchronisation, modal restoration and readable layouts.
+## Cross-cloud tracing POC video
+- [ ] Upload the POC recording and a poster frame as CDN assets.
+- [ ] Add a lazy-loading video chart to DetailCharts and place it in the Cross-Cloud Tracing popup after the architecture diagram.
+- [ ] Add a chart test and verify the popup player on desktop and phone.
