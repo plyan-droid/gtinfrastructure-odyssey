@@ -104,7 +104,7 @@ export function TopologyMap() {
             />
             <text
               x={c.x - CLOUD.w / 2 + 16}
-              y={c.y - CLOUD.h / 2 + 26}
+              y={c.y - CLOUD.h / 2 + 24}
               fontSize="17"
               letterSpacing="0"
               fill="var(--foreground)"
