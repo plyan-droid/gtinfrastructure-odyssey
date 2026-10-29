@@ -42,6 +42,7 @@
   --detail-label-size: 1rem;
   --detail-heading-size: 1.25rem;
   --detail-title-size: 1.5rem;
+  --detail-note-size: 0.8125rem;
   --background: oklch(0.12 0.025 285);
   --foreground: oklch(0.96 0.01 300);
   --card: oklch(0.16 0.03 285);
@@ -372,6 +373,8 @@
 
 /* Slide-derived popup diagrams */
 .chart-intro { margin: -0.75rem 0 1.5rem; font-size: var(--detail-body-size); line-height: 1.6; color: var(--muted-foreground); max-width: 48rem; }
+.chart-note { margin-top: 1rem; font-size: var(--detail-note-size); line-height: 1.6; color: var(--muted-foreground); }
+.side-note { font-size: var(--detail-note-size); line-height: 1.6; color: var(--muted-foreground); }
 .hub-row { display: grid; grid-template-columns: 1fr auto 1fr auto 1.1fr auto 1.6fr; align-items: center; gap: 0.75rem; }
 .hub-arrow { width: 1.1rem; color: var(--healthy); }
 .hub-node, .hub-signals { display: grid; gap: 0.5rem; }
@@ -494,7 +497,7 @@
  .quad { min-height: 13rem; }
 }
 @media (min-width: 1500px) and (min-height: 850px) {
- :root { --detail-body-size: 1.375rem; --detail-label-size: 1.125rem; --detail-heading-size: 1.5rem; --detail-title-size: 1.875rem; }
+ :root { --detail-body-size: 1.375rem; --detail-label-size: 1.125rem; --detail-heading-size: 1.5rem; --detail-title-size: 1.875rem; --detail-note-size: 0.9375rem; }
  .narrative-scene .reading-point p, .story-full p.text-sm, .narrative-scene > p.text-sm, .scene-options .operating-models p { font-size: 1.375rem; }
  .narrative-scene > p:not(.eyebrow), .story-full > p:not(.eyebrow) { font-size: 1.5rem; }
  .narrative-scene .reading-point h3 { font-size: 1.625rem; }

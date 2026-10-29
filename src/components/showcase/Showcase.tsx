@@ -484,7 +484,7 @@ export function Showcase() {
               </li>
             ))}
           </ol>
-          <p className="scene-el mt-3 text-sm text-muted-foreground">{investigation.note}</p>
+          <p className="scene-el side-note mt-3">{investigation.note}</p>
         </div>
         {Object.entries(contextSections).map(([scene, section]) => (
           <div
@@ -514,7 +514,7 @@ export function Showcase() {
             </ol>
             {"detail" in section && (
               <>
-                <p className="scene-el mt-3 text-sm text-muted-foreground">
+                <p className="scene-el side-note mt-3">
                   {"note" in section ? section.note : ""}
                 </p>
               </>
@@ -628,7 +628,7 @@ export function Showcase() {
               </article>
             ))}
           </div>
-          <p className="scene-el mt-4 max-w-3xl text-sm text-foreground/80">{options.note}</p>
+          <p className="scene-el side-note mt-4 max-w-3xl">{options.note}</p>
           <div className="scene-el operating-models mt-4 max-w-5xl">
             <h3 className="font-medium">{options.modelsHeading}</h3>
             <div className="mt-2 grid gap-3 md:grid-cols-2">
@@ -644,7 +644,7 @@ export function Showcase() {
               <ArrowRight />
             </Button>
           </div>
-          <p className="scene-el mt-5 font-mono text-sm text-accent">{ui.pricing}</p>
+          <p className="scene-el side-note font-mono mt-5">{ui.pricing}</p>
           <p className="scene-el mt-2 max-w-3xl text-sm text-muted-foreground">{ui.optionScope}</p>
         </div>
 
@@ -683,7 +683,7 @@ export function Showcase() {
               <ArrowRight />
             </Button>
           </div>
-          <p className="scene-el mt-3 text-sm text-muted-foreground">{ui.discussionPending}</p>
+          <p className="scene-el side-note mt-3">{ui.discussionPending}</p>
           <div className="scene-el qr-placeholders mt-6 flex gap-8">
             {[ui.websiteQr, ui.discussionQr].map((label) => (
               <div key={label} className="flex max-w-40 flex-col items-center gap-2">
