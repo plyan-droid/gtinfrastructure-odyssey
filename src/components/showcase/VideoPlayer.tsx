@@ -8,7 +8,7 @@ function timeLabel(seconds: number) {
   return `${Math.floor(total / 60)}:${String(total % 60).padStart(2, "0")}`;
 }
 
-export function VideoPlayer({ src, poster }: { src: string; poster?: string }) {
+export function VideoPlayer({ src, poster }: { src: string; poster?: string | undefined }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const playerRef = useRef<HTMLDivElement>(null);
   const [playing, setPlaying] = useState(false);
