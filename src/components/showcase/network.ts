@@ -19,7 +19,7 @@ export const nodes: Node[] = [
   { id: "checkout", label: serviceLabels.checkout, kind: "svc", tier: "access", x: 330, y: 650 },
   { id: "gateway", label: serviceLabels.gateway, kind: "svc", tier: "services", x: 640, y: 450 },
   { id: "catalog", label: serviceLabels.catalog, kind: "svc", tier: "services", x: 900, y: 330 },
-  { id: "orders", label: serviceLabels.orders, kind: "queue", tier: "services", x: 900, y: 570 },
+  { id: "orders", label: serviceLabels.orders, kind: "queue", tier: "services", x: 900, y: 535 },
   { id: "payments", label: serviceLabels.payments, kind: "svc", tier: "services", x: 1110, y: 640 },
   { id: "inventory", label: serviceLabels.inventory, kind: "db", tier: "data", x: 1400, y: 330 },
   { id: "cloudA", label: serviceLabels.cloudA, kind: "cloud", tier: "data", x: 1400, y: 306 },

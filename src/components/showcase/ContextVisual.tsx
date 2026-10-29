@@ -216,7 +216,7 @@ export function TopologyMap() {
 
 type Slot = { x: number; y: number; from: [number, number]; to: [number, number]; via?: [number, number] };
 const slots: Record<string, Slot> = {
-  cat: { x: 830, y: 128, from: [880, 190], to: [900, 302] },
+  cat: { x: 830, y: 118, from: [900, 278], to: [900, 292] },
   inv: { x: 1010, y: 124, from: [1250, 244], to: [1400, 302] },
   low: { x: 880, y: 694, from: [1200, 720], to: [1290, 690] },
 };
@@ -339,7 +339,7 @@ export function NetworkVisuals() {
                   strokeOpacity="0.6"
                 />
                 <circle cx={slot.to[0]} cy={slot.to[1]} r="3" fill="var(--primary)" />
-                <foreignObject x={slot.x} y={slot.y} width="380" height="170">
+                <foreignObject x={slot.x} y={slot.y} width="380" height="160">
                   <div className="hud-panel">
                     <p className="hud-title">
                       <span className={kind === "warn" ? "hud-dot warn" : "hud-dot"} />
