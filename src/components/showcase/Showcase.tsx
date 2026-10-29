@@ -22,7 +22,7 @@ import { SiteMap } from "./SiteMap";
 import { Button } from "@/components/ui/button";
 import { NetworkVisuals, TopologyMap } from "./ContextVisual";
 import { storyStages, STAGE_DURATION, stageAtTime } from "./story-stages";
-import { ArrowRight, ArrowLeft, ExternalLink, ChevronDown, QrCode } from "lucide-react";
+import { ArrowRight, ArrowLeft, ExternalLink, ChevronDown } from "lucide-react";
 import stackopsLogo from "@/assets/stackops-logo.png.asset.json";
 
 const MOBILE_TOUR_SCALE = 0.6;
