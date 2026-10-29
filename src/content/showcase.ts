@@ -3,7 +3,9 @@ export type DetailChart = {
   id: string;
   title: string;
   note?: string;
-  kind?: "architecture" | "collection" | "tracing" | "lifecycle" | "hub" | "cards" | "pipeline" | "journey" | "stages" | "engine" | "beforeafter" | "quadrant" | "report" | "table";
+  kind?: "architecture" | "collection" | "tracing" | "lifecycle" | "hub" | "cards" | "pipeline" | "journey" | "stages" | "engine" | "beforeafter" | "quadrant" | "report" | "table" | "video";
+  /** Recorded demonstration: lazy-loaded, user-initiated playback only. */
+  video?: { src: string; poster?: string };
   intro?: string;
   center?: { title: string; body: string };
   tone?: "problem";
