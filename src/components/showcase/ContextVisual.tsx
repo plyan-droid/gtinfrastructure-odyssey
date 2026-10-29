@@ -25,9 +25,9 @@ export function TopologyMap() {
             x={[330, 870, 1400][i]}
             y={112}
             textAnchor="middle"
-            fontSize="13"
-            letterSpacing="4"
-            fill="var(--muted-foreground)"
+            fontSize="16"
+            letterSpacing="0"
+            fill="var(--foreground)"
           >
             {t}
           </text>
@@ -105,9 +105,9 @@ export function TopologyMap() {
             <text
               x={c.x - CLOUD.w / 2 + 16}
               y={c.id === "cloudA" ? c.y + CLOUD.h / 2 - 18 : c.y - CLOUD.h / 2 + 22}
-              fontSize="11"
-              letterSpacing="1.5"
-              fill="var(--muted-foreground)"
+              fontSize="15"
+              letterSpacing="0"
+              fill="var(--foreground)"
               fontFamily={mono}
             >
               {c.label.toUpperCase()}
@@ -129,7 +129,7 @@ export function TopologyMap() {
             strokeOpacity="0.55"
           />
         ))}
-        <text x="1400" y="664" textAnchor="middle" fontSize="11" fill="var(--muted-foreground)" fontFamily={mono}>
+        <text x="1400" y="664" textAnchor="middle" fontSize="15" fill="var(--foreground)" fontFamily="var(--font-display)">
           {mapCopy.support}
         </text>
       </g>
@@ -201,10 +201,10 @@ export function TopologyMap() {
           <text
             className="node-name"
             x={s.x - CARD.w / 2 + 32}
-            y={s.y + 4}
-            fontSize="14"
+            y={s.y + 6}
+            fontSize={s.label.length > 15 ? "16" : "18"}
             fill="var(--foreground)"
-            fontFamily={mono}
+            fontFamily="var(--font-display)"
           >
             {s.label}
           </text>

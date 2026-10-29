@@ -1,4 +1,7 @@
 # StackOps stakeholder update
+## TV readability
+- [x] Enlarge small story text, map labels and popup charts without changing copy or animation.
+- [x] Verify popups and story layouts on TV-sized, desktop and phone screens.
 ## Slide chart additions
 ## Chart redesign correction
 - [x] Replace slide images with native, readable architecture and flow diagrams and refine all chart treatments.
