@@ -391,7 +391,6 @@ export function Showcase() {
           className="scene-opening absolute inset-0 flex flex-col items-center justify-center px-6 text-center"
         >
           <div className="opening-copy flex flex-col items-center">
-          <p className="scene-el eyebrow mb-6">{opening.eyebrow}</p>
           <h1 className="scene-el opening-title font-semibold leading-[1.05]">
             {opening.headline[0]}
             <br />
