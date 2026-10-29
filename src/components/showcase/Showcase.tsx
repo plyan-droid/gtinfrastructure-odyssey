@@ -628,7 +628,6 @@ export function Showcase() {
               </article>
             ))}
           </div>
-          <p className="scene-el side-note mt-4 max-w-3xl">{options.note}</p>
           <div className="scene-el operating-models mt-4 max-w-5xl">
             <h3 className="font-medium">{options.modelsHeading}</h3>
             <div className="mt-2 grid gap-3 md:grid-cols-2">
@@ -644,8 +643,6 @@ export function Showcase() {
               <ArrowRight />
             </Button>
           </div>
-          <p className="scene-el side-note font-mono mt-5">{ui.pricing}</p>
-          <p className="scene-el mt-2 max-w-3xl text-sm text-muted-foreground">{ui.optionScope}</p>
         </div>
 
         <div
@@ -678,12 +675,11 @@ export function Showcase() {
                 <ExternalLink />
               </a>
             </Button>
-            <Button variant="outline" size="lg" disabled title={ui.discussionPending}>
+            <Button variant="outline" size="lg" disabled>
               {ui.discussion}
               <ArrowRight />
             </Button>
           </div>
-          <p className="scene-el side-note mt-3">{ui.discussionPending}</p>
           <div className="scene-el qr-placeholders mt-6 flex gap-8">
             {[ui.websiteQr, ui.discussionQr].map((label) => (
               <div key={label} className="flex max-w-40 flex-col items-center gap-2">

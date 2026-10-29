@@ -1117,7 +1117,7 @@ export const options = {
     },
   ],
   note: "Both provide observability capabilities. They are not mutually exclusive and are not necessarily deployed together.",
-  modelsHeading: "Dynatrace operating models",
+  modelsHeading: "Operating models",
   modelsMore: "Compare subscription models",
   models: [
     {
