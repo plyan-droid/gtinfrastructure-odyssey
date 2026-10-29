@@ -696,7 +696,7 @@ export function Showcase() {
 
         {/* Chrome */}
         <div className="chrome absolute left-6 top-6 transition-opacity">
-          <img src={stackopsLogo.url} alt={ui.brand} className="h-8 w-auto md:h-9" />
+          <img src={stackopsLogo.url} alt={ui.brand} className="h-9 w-auto md:h-11" />
         </div>
         <div className="chrome absolute right-6 top-5 flex items-center gap-2">
           <SiteMap onJump={jumpTo} />
