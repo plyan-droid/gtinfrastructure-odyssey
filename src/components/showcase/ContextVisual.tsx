@@ -23,7 +23,7 @@ export function TopologyMap() {
           <text
             key={t}
             x={[330, 870, 1400][i]}
-            y={112}
+            y={88}
             textAnchor="middle"
             fontSize="20"
             letterSpacing="0"
@@ -216,7 +216,7 @@ export function TopologyMap() {
 
 type Slot = { x: number; y: number; from: [number, number]; to: [number, number]; via?: [number, number] };
 const slots: Record<string, Slot> = {
-  cat: { x: 830, y: 118, from: [900, 278], to: [900, 292] },
+  cat: { x: 830, y: 132, from: [900, 286], to: [900, 298] },
   inv: { x: 1010, y: 124, from: [1250, 244], to: [1400, 302] },
   low: { x: 880, y: 694, from: [1200, 720], to: [1290, 690] },
 };
@@ -336,9 +336,11 @@ export function NetworkVisuals() {
                       : `M${slot.from[0]} ${slot.from[1]}L${slot.to[0]} ${slot.to[1]}`
                   }
                   stroke="var(--primary)"
-                  strokeOpacity="0.6"
+                  strokeWidth="3"
+                  strokeLinecap="round"
                 />
-                <circle cx={slot.to[0]} cy={slot.to[1]} r="3" fill="var(--primary)" />
+                <circle cx={slot.from[0]} cy={slot.from[1]} r="4" fill="var(--primary)" />
+                <circle cx={slot.to[0]} cy={slot.to[1]} r="4.5" fill="var(--primary)" />
                 <foreignObject x={slot.x} y={slot.y} width="380" height="160">
                   <div className="hud-panel">
                     <p className="hud-title">
