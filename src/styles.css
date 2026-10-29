@@ -66,7 +66,7 @@
   --input: oklch(1 0 0 / 14%);
   --ring: oklch(0.68 0.25 350);
   --gradient-signal: linear-gradient(100deg, var(--primary), var(--accent) 55%, var(--violet));
-  --opening-readability: radial-gradient(ellipse 62% 66% at 50% 50%, color-mix(in oklab, var(--background) 62%, transparent) 26%, color-mix(in oklab, var(--background) 25%, transparent) 52%, transparent 80%);
+  --opening-readability: radial-gradient(ellipse 62% 66% at 50% 50%, color-mix(in oklab, var(--background) 82%, transparent) 30%, color-mix(in oklab, var(--background) 45%, transparent) 58%, transparent 85%);
   --reading-left: linear-gradient(90deg, var(--background) 0%, var(--background) 40%, color-mix(in oklab, var(--background) 80%, transparent) 45%, transparent 52%);
   --reading-wide: linear-gradient(90deg, var(--background) 0%, color-mix(in oklab, var(--background) 97%, transparent) 72%, color-mix(in oklab, var(--background) 75%, transparent) 100%);
   --reading-mobile: linear-gradient(180deg, color-mix(in oklab, var(--background) 25%, transparent), color-mix(in oklab, var(--background) 40%, transparent) 24%, var(--background) 34%, var(--background) 88%, color-mix(in oklab, var(--background) 90%, transparent));
@@ -192,7 +192,7 @@
 
 .opening-network { opacity: 0.55; }
 .visual-layer, .network-layer, .obs-layer, .ring { visibility: hidden; }
-.opening-shield { background: var(--opening-readability); }
+.opening-shield { background: var(--opening-readability); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); mask-image: radial-gradient(ellipse 58% 62% at 50% 50%, #000 35%, rgba(0,0,0,0.6) 60%, transparent 85%); -webkit-mask-image: radial-gradient(ellipse 58% 62% at 50% 50%, #000 35%, rgba(0,0,0,0.6) 60%, transparent 85%); }
 .reading-shield-left { background: var(--reading-left); visibility: hidden; }
 .reading-shield-wide { background: var(--reading-wide); visibility: hidden; }
 .story-full { padding-top: 5.5rem; padding-bottom: 5rem; pointer-events: none; }
