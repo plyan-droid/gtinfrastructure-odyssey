@@ -1,3 +1,5 @@
+import pocVideo from "@/assets/cross-cloud-poc.mp4.asset.json";
+import pocPoster from "@/assets/cross-cloud-poc.jpg.asset.json";
 // Visitor-facing story copy and attributed evidence. All network demonstrations are fictional.
 export type DetailChart = {
   id: string;
@@ -111,6 +113,7 @@ export const popupCharts: Record<string, DetailChart[]> = {
       { title: "Propagate context", body: "Instrumented services carry trace IDs and appropriate baggage along supported request paths." },
       { title: "Connect telemetry", body: "Provider-specific tooling or an OpenTelemetry collector can feed a supported common view." },
     ] },
+    { id: "cross-cloud-poc", title: "Live POC: APM Across Different Cloud Providers", kind: "video", note: "Recorded demonstration: an order lookup traced from an AWS frontend through an Azure backend to the database in one view.", video: { src: pocVideo.url, poster: pocPoster.url } },
   ],
   soda: [
     { id: "soda-impact", title: "Before and After SODA", kind: "beforeafter", columns: ["Review area", "Without structured analysis", "With supported SODA analysis"], rows: [
