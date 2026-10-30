@@ -1137,7 +1137,7 @@ export const closing = {
   steps: [
     { k: "01", v: "Contact the StackOps team to share your agency's workloads and monitoring requirements" },
     { k: "02", v: "Review subscription options, platform fit (Elastic or Dynatrace) and pricing for your project" },
-    { k: "03", v: "Use SORA to onboard supported cloud environments and start monitoring" },
+    { k: "03", v: "Use SORA to design, onboard and start monitoring. Agencies have seen 3.9 man-days saved per deployment each month (4 → 0.1 man-days), deployment autoscaling saving 13.5 man-days a month (9 tickets × 1.5 days), and a better tenant user experience" },
   ],
 };
 export const contextSections = {
