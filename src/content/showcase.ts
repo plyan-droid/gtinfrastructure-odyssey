@@ -1135,9 +1135,9 @@ export const closing = {
   href: "https://www.developer.tech.gov.sg/products/categories/devops/stackops/customer-stories",
   stepsHeading: "How to get started",
   steps: [
-    { k: "01", v: "Contact the StackOps team to share your agency's workloads and monitoring requirements" },
-    { k: "02", v: "Review subscription options, platform fit (Elastic or Dynatrace) and pricing for your project" },
-    { k: "03", v: "Use SORA to design, onboard and start monitoring. Agencies have seen 3.9 man-days saved per deployment each month (4 → 0.1 man-days), deployment autoscaling saving 13.5 man-days a month (9 tickets × 1.5 days), and a better tenant user experience" },
+    { k: "01", v: "Talk to the StackOps team about what you need to monitor" },
+    { k: "02", v: "Choose the right plan: Elastic or Dynatrace" },
+    { k: "03", v: "Onboard with SORA and start monitoring, saving up to 3.9 man-days a month per deployment" },
   ],
 };
 export const contextSections = {
