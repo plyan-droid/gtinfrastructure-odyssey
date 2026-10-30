@@ -22,7 +22,8 @@ import { SiteMap } from "./SiteMap";
 import { Button } from "@/components/ui/button";
 import { NetworkVisuals, TopologyMap } from "./ContextVisual";
 import { storyStages, STAGE_DURATION, stageAtTime } from "./story-stages";
-import { ArrowRight, ArrowLeft, ExternalLink, ChevronDown } from "lucide-react";
+import { ArrowRight, ArrowLeft, ExternalLink, ChevronDown, Info } from "lucide-react";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import stackopsLogo from "@/assets/stackops-logo.png.asset.json";
 
 const MOBILE_TOUR_SCALE = 0.6;
@@ -662,15 +663,10 @@ export function Showcase() {
                 <li key={step.k} className="border-l border-primary/50 pl-4">
                   <span className="font-mono text-sm text-primary">
                     {step.k}
-                    {step.title && <span className="ml-2 font-sans font-semibold text-foreground">{step.title}</span>}
+                    {"title" in step && step.title && <span className="ml-2 font-sans font-semibold text-foreground">{step.title}</span>}
                   </span>
                   <p className="mt-1 text-base text-foreground/85">{step.v}</p>
-                  {step.stat && (
-                    <div className="mt-3">
-                      <p className="text-2xl font-bold tracking-wide text-primary md:text-3xl">{step.stat}</p>
-                      {step.statNote && <p className="side-note mt-1">{step.statNote}</p>}
-                    </div>
-                  )}
+                  {"stat" in step && step.stat && <StepStat step={step} />}
                 </li>
               ))}
             </ol>
@@ -776,5 +772,33 @@ function SceneHeading({
         {sub}
       </p>
     </>
+  );
+}
+
+function StepStat({ step }: { step: { stat?: string; statLabel?: string; statNote?: string; statInfo?: string } }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="mt-3">
+      <div className="flex items-center gap-2">
+        <span className="text-3xl font-bold leading-none text-primary">{step.stat}</span>
+        <span className="text-sm text-foreground/85">{step.statLabel}</span>
+        {step.statInfo && (
+          <Popover open={open} onOpenChange={setOpen}>
+            <PopoverTrigger
+              aria-label="About this saving"
+              onMouseEnter={() => setOpen(true)}
+              onMouseLeave={() => setOpen(false)}
+              className="grid size-6 place-items-center rounded-full text-muted-foreground hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            >
+              <Info className="size-4" />
+            </PopoverTrigger>
+            <PopoverContent side="top" className="w-64 text-sm leading-relaxed">
+              {step.statInfo}
+            </PopoverContent>
+          </Popover>
+        )}
+      </div>
+      {step.statNote && <p className="side-note mt-1 whitespace-nowrap">{step.statNote}</p>}
+    </div>
   );
 }
