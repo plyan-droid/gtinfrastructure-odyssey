@@ -660,8 +660,17 @@ export function Showcase() {
             <ol className="mt-3 grid gap-3 text-left md:grid-cols-3">
               {closing.steps.map((step) => (
                 <li key={step.k} className="border-l border-primary/50 pl-4">
-                  <span className="font-mono text-sm text-primary">{step.k}</span>
+                  <span className="font-mono text-sm text-primary">
+                    {step.k}
+                    {step.title && <span className="ml-2 font-sans font-semibold text-foreground">{step.title}</span>}
+                  </span>
                   <p className="mt-1 text-base text-foreground/85">{step.v}</p>
+                  {step.stat && (
+                    <div className="mt-3">
+                      <p className="text-2xl font-bold tracking-wide text-primary md:text-3xl">{step.stat}</p>
+                      {step.statNote && <p className="side-note mt-1">{step.statNote}</p>}
+                    </div>
+                  )}
                 </li>
               ))}
             </ol>
