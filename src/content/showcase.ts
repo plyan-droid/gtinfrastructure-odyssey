@@ -1137,7 +1137,13 @@ export const closing = {
   steps: [
     { k: "01", v: "Talk to the StackOps team about what you need to monitor" },
     { k: "02", v: "Choose the right plan: Elastic or Dynatrace" },
-    { k: "03", v: "Onboard with SORA and start monitoring, saving up to 3.9 man-days a month per deployment" },
+    {
+      k: "03",
+      title: "Design, Onboard & Monitor",
+      v: "Use SORA to design your monitoring setup, onboard and start monitoring.",
+      stat: "3.9 MAN-DAYS SAVED",
+      statNote: "Per month, per deployment (4 → 0.1 man-days).",
+    },
   ],
 };
 export const contextSections = {
