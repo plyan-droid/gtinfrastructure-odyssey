@@ -18,7 +18,7 @@ export const nodes: Node[] = [
   { id: "mobile", label: serviceLabels.mobile, kind: "app", tier: "access", x: 330, y: 450 },
   { id: "checkout", label: serviceLabels.checkout, kind: "svc", tier: "access", x: 330, y: 650 },
   { id: "gateway", label: serviceLabels.gateway, kind: "svc", tier: "services", x: 640, y: 450 },
-  { id: "ai", label: serviceLabels.ai, kind: "svc", tier: "services", x: 1145, y: 330 },
+  { id: "ai", label: serviceLabels.ai, kind: "svc", tier: "services", x: 900, y: 200 },
   { id: "catalog", label: serviceLabels.catalog, kind: "svc", tier: "services", x: 900, y: 330 },
   { id: "orders", label: serviceLabels.orders, kind: "queue", tier: "services", x: 900, y: 535 },
   { id: "payments", label: serviceLabels.payments, kind: "svc", tier: "services", x: 1110, y: 640 },
