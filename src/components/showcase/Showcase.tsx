@@ -151,7 +151,7 @@ export function Showcase() {
             // Readable zoom on phones; the camera then pans across the tiers.
             return { scale: MOBILE_TOUR_SCALE, x: 800 - 430 * MOBILE_TOUR_SCALE, y: 330 - 452 * MOBILE_TOUR_SCALE };
           }
-          if (mobile) return { scale: 0.54, x: 800 - center.x * 0.54, y: 65 - center.y * 0.54 };
+          if (mobile) return { scale: 0.54, x: 800 - center.x * 0.54, y: 205 - center.y * 0.54 };
           if (wide.includes(stage.scene)) {
             const s = Math.min(1.15, (visibleW - 30) / 1300);
             return { scale: s, x: 800 - 880 * s, y: 450 - 452 * s };
@@ -173,7 +173,7 @@ export function Showcase() {
           tl.to(
             q(".net"),
             {
-              opacity: stage.scene === "customers" ? 0.32 : stage.scene === "closing" ? 0.22 : 0.95,
+              opacity: stage.scene === "customers" ? 0.32 : stage.scene === "closing" ? 0.22 : mobile && stage.scene === "options" ? 0.12 : 0.95,
               duration: 0.5,
             },
             at,
@@ -389,7 +389,7 @@ export function Showcase() {
         {/* 1. Opening */}
         <div
           data-scene="opening"
-          className="scene-opening absolute inset-0 flex flex-col items-center justify-center px-6 text-center"
+          className="scene-opening absolute inset-0 flex flex-col items-center justify-center px-6 pt-16 text-center md:pt-0"
         >
           <div className="opening-copy flex flex-col items-center">
           <h1 className="scene-el opening-title font-semibold leading-[1.05]">
@@ -646,10 +646,10 @@ export function Showcase() {
 
         <div
           data-scene="closing"
-          className="scene-closing story-full absolute inset-0 flex flex-col items-center justify-center px-6 text-center"
+          className="scene-closing story-full absolute inset-0 flex flex-col items-center justify-center px-6 pt-16 text-center md:pt-0"
         >
           <p className="scene-el eyebrow mb-5">{closing.eyebrow}</p>
-          <h2 className="scene-el closing-title max-w-5xl text-4xl font-semibold leading-tight md:text-6xl">
+          <h2 className="scene-el closing-title max-w-5xl text-3xl font-semibold sm:text-4xl leading-tight md:text-6xl">
             {closing.headline[0]}
             <span className="block text-signal">{closing.headline[1]}</span>
           </h2>
