@@ -525,7 +525,7 @@ const popupContent: Detail[] = [
         },
         {
           heading: "Why it matters",
-          body: "- Less repetitive manual setup.\n\n- More consistent monitoring configurations.\n\n- Improved awareness of monitoring gaps.\n\n- Reusable deployment practices.\n\n- Clearer configuration review and control.\n\nSpecific environments, integrations and deployment capabilities depend on the supported solution.",
+          body: "- Less repetitive manual setup.\n\n- More consistent monitoring configurations.\n\n- Improved awareness of monitoring gaps.\n\n- Reusable deployment practices.\n\n- Clearer configuration review and control.",
         },
       ],
     },
@@ -914,7 +914,7 @@ export const investigation = {
   value: ["Follow the evidence.", "Understand the issue."],
   valueSub:
     "Relevant monitoring signals and service context help engineers investigate operational issues more effectively.",
-  note: "Illustrative investigation · synthetic data · no guaranteed diagnosis",
+  note: "",
 };
 export const investigationDetails = details["investigation"];
 export const modules = {
@@ -1182,7 +1182,7 @@ export const contextSections = {
     headline: ["AUTOMATED ONBOARDING", "WITH SORA"],
     sub: "SORA (StackOps Resiliency Accelerator) helps streamline monitoring setup through resource discovery, configuration review and supported automation.",
     detail: "sora",
-    note: "Specific environments, integrations and deployment capabilities depend on the supported solution.",
+    note: "",
     points: [
       {
         n: "01",
@@ -1227,7 +1227,7 @@ export const contextSections = {
     headline: ["DATA-DRIVEN RECOMMENDATIONS", "WITH SODA"],
     sub: "SODA (StackOps Data Analysis) helps teams examine deployment, utilisation and cost-related information to identify optimisation opportunities.",
     detail: "soda",
-    note: "Synthetic data only. Recommendations support human decisions, not guaranteed savings.",
+    note: "",
     points: [
       {
         n: "01",
@@ -1256,7 +1256,7 @@ export const contextSections = {
     headline: ["RECOMMENDATIONS THAT IMPROVE", "WITH EVERY TENANT"],
     sub: "Explore how AI-assisted analysis, shared benchmarks and operational knowledge can inform continuous improvement across government organisations.",
     detail: "intelligence",
-    note: "Future direction · availability, scope and data governance pending product-owner validation.",
+    note: "",
     points: [
       {
         n: "01",
