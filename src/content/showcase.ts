@@ -1134,6 +1134,7 @@ export const closing = {
   headline: ["ACCELERATE OBSERVABILITY", "FOR YOUR AGENCY"],
   sub: "Explore a government-focused approach to observability, monitoring automation and operational insight.",
   href: "https://www.developer.tech.gov.sg/products/categories/devops/stackops/customer-stories",
+  discussionHref: "https://go.gov.sg/stack26contactus",
   stepsHeading: "How to get started",
   steps: [
     { k: "01", v: "Talk to the StackOps team about what you need to monitor" },
