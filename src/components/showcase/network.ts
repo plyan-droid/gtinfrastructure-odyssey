@@ -38,12 +38,13 @@ export const ecoEdges: [string, string][] = [
   ["catalog", "orders"],
   ["orders", "payments"],
   ["catalog", "ai"],
-  ["ai", "inventory"],
+  ["catalog", "inventory"],
   ["payments", "cloudB"],
 ];
 
 export const incidentId = "catalog";
-export const tracePath = ["web", "gateway", "catalog", "ai", "inventory"];
+// Application API is the hub: it calls Data Service directly and AI / LLM Service as a separate branch.
+export const tracePath = ["web", "gateway", "catalog", "inventory"];
 
 type P = { x: number; y: number };
 function half(n: Node) {
