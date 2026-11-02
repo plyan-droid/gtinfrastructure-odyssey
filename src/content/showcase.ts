@@ -1358,7 +1358,7 @@ export const visualCopy: Record<string, { title: string; rows: string[] }> = {
   decision: { title: "DECISIONS", rows: ["Awaiting human evaluation · no automatic changes"] },
   analyse: {
     title: "CONCEPTUAL ANALYSIS",
-    rows: ["Synthetic patterns and coverage gaps", "Future direction · pending validation"],
+    rows: ["Synthetic patterns and coverage gaps"],
   },
   benchmark: {
     title: "CONCEPTUAL BENCHMARKS",
