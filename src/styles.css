@@ -543,7 +543,7 @@
   .scene-closing a, .scene-closing button { height: 2.5rem; }
   .scene-options { padding-top: 5.5rem; }
 }
-.chart-number { white-space: nowrap; }
+.chart-number { white-space: nowrap; flex-shrink: 0; }
 @media (max-width: 479px) {
   .stage-strip, .detail-chart .stage-strip { grid-template-columns: minmax(0, 1fr); }
   .lifecycle-copy li { grid-template-columns: auto minmax(0, 1fr); }
