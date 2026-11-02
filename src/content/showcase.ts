@@ -192,7 +192,7 @@ const slideCharts: Record<string, ChartPlacement> = {
       { id: "stackops-hub", title: "StackOps: SGTS Observability Solution", kind: "hub", groups: [
         { title: "Sources", labels: ["Applications", "Cloud infrastructure"] },
         { title: "Signals", labels: ["Logs", "Metrics", "Traces"] },
-      ], center: { title: "StackOps", body: "Generally available since August 2025" }, items: [
+      ], center: { title: "StackOps", body: "Generally available since August 2023" }, items: [
         { title: "Goal", body: "Help agencies improve system and site resiliency and quality through IM-compliant monitoring." },
         { title: "Purpose", body: "A common monitoring platform for collaboration on monitoring data and shared knowledge." },
       ], footer: [
@@ -842,6 +842,7 @@ export const serviceLabels = {
   payments: "Background Worker",
   orders: "Message Queue",
   inventory: "Data Service",
+  ai: "AI / LLM Service",
   cloudA: "Cloud Environment A",
   cloudB: "Cloud Environment B",
 };
