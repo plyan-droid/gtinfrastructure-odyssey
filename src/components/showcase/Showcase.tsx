@@ -678,9 +678,11 @@ export function Showcase() {
                 <ExternalLink />
               </a>
             </Button>
-            <Button variant="outline" size="lg" disabled>
-              {ui.discussion}
-              <ArrowRight />
+            <Button asChild variant="outline" size="lg">
+              <a href={closing.discussionHref} target="_blank" rel="noreferrer">
+                {ui.discussion}
+                <ArrowRight />
+              </a>
             </Button>
           </div>
         </div>
