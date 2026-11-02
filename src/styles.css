@@ -528,3 +528,23 @@
  .detail-chart .hub-node, .detail-chart .hub-signals { grid-auto-flow: row; }
  .detail-chart .quad-core { width: auto; height: auto; }
 }
+
+@media (max-width: 767px) {
+  .scene-closing { justify-content: flex-start; padding-top: 5.75rem; padding-bottom: 1.5rem; }
+  .scene-closing .closing-title { font-size: 1.75rem; }
+  .scene-closing .eyebrow { margin-bottom: 0.75rem; }
+}
+@media (max-width: 767px) {
+  .scene-closing > p.scene-el:not(.eyebrow) { margin-top: 0.75rem; font-size: 0.9rem; }
+  .scene-closing > div.scene-el { margin-top: 0.9rem; }
+  .scene-closing ol { gap: 0.5rem; }
+  .scene-closing ol p { font-size: 0.875rem; }
+  .scene-closing .closing-title { font-size: 1.6rem; }
+  .scene-closing a, .scene-closing button { height: 2.5rem; }
+  .scene-options { padding-top: 5.5rem; }
+}
+.chart-number { white-space: nowrap; flex-shrink: 0; }
+@media (max-width: 479px) {
+  .stage-strip, .detail-chart .stage-strip { grid-template-columns: minmax(0, 1fr); }
+  .lifecycle-copy li { grid-template-columns: auto minmax(0, 1fr); }
+}
