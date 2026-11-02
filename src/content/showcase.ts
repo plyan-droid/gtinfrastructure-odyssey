@@ -424,7 +424,7 @@ const popupContent: Detail[] = [
         {
           heading: "Documented customer results",
           body: "Cloud File Transfer reduced incident-handling time from approximately 2 to 3 hours to 30 minutes, and SHIP-HATS cut service recovery time by 75%. These are agency-specific reported results, not guaranteed outcomes for other agencies.",
-          links: [{ label: "StackOps customer stories", href: sources.stories }],
+          links: [{ label: "Read all StackOps customer stories", href: sources.stories }],
         },
         {
           heading: "For engineering teams",
