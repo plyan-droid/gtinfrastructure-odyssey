@@ -842,7 +842,7 @@ export const serviceLabels = {
   payments: "Background Worker",
   orders: "Message Queue",
   inventory: "Data Service",
-  ai: "AI / LLM Service",
+  ai: "AI / Agent / LLM Service",
   cloudA: "Cloud Environment A",
   cloudB: "Cloud Environment B",
 };
