@@ -528,3 +528,9 @@
  .detail-chart .hub-node, .detail-chart .hub-signals { grid-auto-flow: row; }
  .detail-chart .quad-core { width: auto; height: auto; }
 }
+
+@media (max-width: 767px) {
+  .scene-closing { justify-content: flex-start; padding-top: 5.75rem; padding-bottom: 1.5rem; }
+  .scene-closing .closing-title { font-size: 1.75rem; }
+  .scene-closing .eyebrow { margin-bottom: 0.75rem; }
+}
