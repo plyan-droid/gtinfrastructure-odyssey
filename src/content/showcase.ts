@@ -541,7 +541,7 @@ const popupContent: Detail[] = [
           body: "A digital service may rely on applications and infrastructure spread across different environments.\n\nWithout connected operational context, engineers may need to investigate each component separately.\n\nBring logs, metrics and traces together across cloud environments using OpenTelemetry. Cross-agency visibility depends on the systems connected and the access available.\n\nOpenTelemetry provides open standards and tools for generating, collecting and exporting telemetry such as logs, metrics and traces.\n\nWith appropriate instrumentation and supported integrations, teams can:\n\n- Follow requests across instrumented services.\n\n- Understand relationships between components.\n\n- Investigate delays and errors.\n\n- Examine relevant operational signals together.\n\n- Support cross-team troubleshooting.",
         },
         {
-          heading: "For leaders: tracing across agencies and organisations",
+          heading: "For leaders: tracing across organisations",
           body: "A single citizen transaction may touch an application in one cloud, a data service in another and a shared identity gateway. Connected tracing helps teams treat it as one journey, so issues are not passed between separate teams before anyone sees the full picture.\n\nThis is an illustrative example, not a description of any specific agency's architecture.",
         },
         {
@@ -749,7 +749,7 @@ const popupContent: Detail[] = [
       sections: [
         { heading: "SHARED SERVICE: One platform, centrally run", body: "Use a government observability platform that is already set up and maintained, instead of building your own." },
         { heading: "ONBOARDING: Automated provisioning with built-in best practices", body: "Monitoring for AWS and Azure accounts is set up automatically using StackOps standards, and you review it before anything is applied." },
-        { heading: "TRACING: Follow requests across cloud solutions", body: "OpenTelemetry tracing connects a transaction across services and cloud providers." },
+        { heading: "TRACING: Follow requests across solutions", body: "OpenTelemetry tracing connects a transaction across services and cloud providers." },
         { heading: "RECOMMENDATIONS: Data-driven recommendations for your configuration", body: "Regular reports use your platform data to suggest improvements to configuration, health and cost." },
       ],
     },
