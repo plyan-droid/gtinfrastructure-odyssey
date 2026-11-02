@@ -10,6 +10,7 @@ const kindColor: Record<string, string> = {
   queue: "var(--accent)",
 };
 const edgeKey = (a: string, b: string) => `${a}-${b}`;
+const cw = (s: Node) => (s.id === "ai" ? 290 : CARD.w);
 const n = (id: string) => byId[id] as Node;
 
 /** Persistent three-tier topology with the StackOps observability layer wrapped around it. */
@@ -187,9 +188,9 @@ export function TopologyMap() {
             />
           )}
           <rect
-            x={s.x - CARD.w / 2}
+            x={s.x - cw(s) / 2}
             y={s.y - CARD.h / 2}
-            width={CARD.w}
+            width={cw(s)}
             height={CARD.h}
             rx="12"
             fill="var(--card)"
@@ -197,10 +198,10 @@ export function TopologyMap() {
             stroke={kindColor[s.kind]}
             strokeOpacity="0.75"
           />
-          <circle className="status-dot" cx={s.x - CARD.w / 2 + 18} cy={s.y} r="4" fill={kindColor[s.kind]} />
+          <circle className="status-dot" cx={s.x - cw(s) / 2 + 18} cy={s.y} r="4" fill={kindColor[s.kind]} />
           <text
             className="node-name"
-            x={s.x - CARD.w / 2 + 32}
+            x={s.x - cw(s) / 2 + 32}
             y={s.y + 6}
             fontSize={s.label.length > 15 ? "18" : "19"}
             fill="var(--foreground)"
