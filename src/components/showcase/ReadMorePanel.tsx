@@ -113,16 +113,18 @@ export function ReadMorePanel({
                           {section.body}
                         </p>
                         {section.links && (
-                          <ul className="mt-3 space-y-2">
+                          <ul className="mt-4 flex flex-wrap gap-3">
                             {section.links.map((link) => (
                               <li key={link.href}>
                                 <a
                                   href={link.href}
                                   target="_blank"
-                                  rel="noreferrer"
-                                  className="text-sm text-primary underline underline-offset-4"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-2 rounded-full border border-primary bg-primary/10 px-5 py-2.5 text-base font-medium text-primary transition-colors hover:bg-primary hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                                 >
-                                  {link.label} ↗
+                                  {link.label}
+                                  <span aria-hidden="true">↗</span>
+                                  <span className="sr-only">(opens in a new tab)</span>
                                 </a>
                               </li>
                             ))}
