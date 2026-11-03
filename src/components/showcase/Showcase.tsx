@@ -347,6 +347,22 @@ export function Showcase() {
   }, []);
 
 
+  // Auto-advance customer story tabs every 4s while that scene is on screen.
+  const storiesHover = useRef(false);
+  useEffect(() => {
+    if (panel) return;
+    let elapsed = 0;
+    const id = window.setInterval(() => {
+      if (root.current?.dataset["activeScene"] !== "customers" || storiesHover.current) {
+        elapsed = 0;
+        return;
+      }
+      elapsed += 250;
+      if (elapsed >= 4000) setStoryIndex((i) => (i + 1) % customerStories.length);
+    }, 250);
+    return () => window.clearInterval(id);
+  }, [panel, storyIndex]);
+
   const story = customerStories[storyIndex] ?? customerStories[0];
   if (!story) return null;
 
@@ -530,7 +546,11 @@ export function Showcase() {
             headline={customers.headline}
             sub={customers.sub}
           />
-          <div className="scene-el interactive-stories mt-7 max-w-5xl">
+          <div
+            className="scene-el interactive-stories mt-7 max-w-5xl"
+            onPointerEnter={(e) => { if (e.pointerType === "mouse") storiesHover.current = true; }}
+            onPointerLeave={() => { storiesHover.current = false; }}
+          >
             <div
               className="flex flex-wrap gap-2 border-b pb-3"
               role="tablist"
