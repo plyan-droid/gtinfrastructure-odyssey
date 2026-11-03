@@ -546,7 +546,11 @@ export function Showcase() {
             headline={customers.headline}
             sub={customers.sub}
           />
-          <div className="scene-el interactive-stories mt-7 max-w-5xl">
+          <div
+            className="scene-el interactive-stories mt-7 max-w-5xl"
+            onPointerEnter={(e) => { if (e.pointerType === "mouse") storiesHover.current = true; }}
+            onPointerLeave={() => { storiesHover.current = false; }}
+          >
             <div
               className="flex flex-wrap gap-2 border-b pb-3"
               role="tablist"
