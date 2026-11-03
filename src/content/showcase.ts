@@ -1213,7 +1213,6 @@ export const contextSections = {
     headline: ["TRACING REQUESTS", "ACROSS CLOUD PROVIDERS"],
     sub: "Standardised telemetry helps teams investigate how appropriately instrumented services behave across connected environments.",
     detail: "otel",
-    note: "Visibility depends on instrumentation, configuration, supported integrations and access permissions.",
     points: [
       { n: "01", title: "INSTRUMENT", body: "Generate telemetry from supported services." },
       { n: "02", title: "CONNECT", body: "Collect and route relevant telemetry." },
