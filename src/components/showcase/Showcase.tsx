@@ -159,7 +159,7 @@ export function Showcase() {
               const cloud = byId[id]?.kind === "cloud";
               const hw = cloud ? CLOUD.w / 2 : (id === "ai" ? 290 : CARD.w) / 2;
               const hh = cloud ? CLOUD.h / 2 : CARD.h / 2 + 12;
-              return [nn.x - hw, nn.x + hw, nn.y - hh, nn.y + hh];
+              return [nn.x - hw, nn.x + hw, nn.y - hh, nn.y + hh] as const;
             });
             const l = Math.min(...boxes.map((b) => b[0]));
             const r = Math.max(...boxes.map((b) => b[1]));
