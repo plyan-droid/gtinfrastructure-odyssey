@@ -347,6 +347,20 @@ export function Showcase() {
   }, []);
 
 
+  // Auto-advance customer story tabs every 4s while that scene is on screen.
+  const storiesHover = useRef(false);
+  useEffect(() => {
+    if (panel) return;
+    const id = window.setTimeout(() => {
+      if (root.current?.dataset["activeScene"] !== "customers" || storiesHover.current) {
+        setStoryIndex((i) => i);
+        return;
+      }
+      setStoryIndex((i) => (i + 1) % customerStories.length);
+    }, 4000);
+    return () => window.clearTimeout(id);
+  });
+
   const story = customerStories[storyIndex] ?? customerStories[0];
   if (!story) return null;
 
