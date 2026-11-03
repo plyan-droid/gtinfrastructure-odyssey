@@ -16,7 +16,7 @@ import {
   type Detail,
   type Product,
 } from "@/content/showcase";
-import { byId, ecoEdges, nodes } from "./network";
+import { byId, CARD, CLOUD, ecoEdges, nodes } from "./network";
 import { ReadMorePanel } from "./ReadMorePanel";
 import { SiteMap } from "./SiteMap";
 import { Button } from "@/components/ui/button";
@@ -150,6 +150,32 @@ export function Showcase() {
           if (mobile && stage.key === "ecosystem") {
             // Readable zoom on phones; the camera then pans across the tiers.
             return { scale: MOBILE_TOUR_SCALE, x: 800 - 430 * MOBILE_TOUR_SCALE, y: 330 - 452 * MOBILE_TOUR_SCALE };
+          }
+          if (mobile && focused.length) {
+            // Fit every focused box into the band between the header and the reading text.
+            const svgScale = Math.max(window.innerWidth / 1600, window.innerHeight / 900);
+            const boxes = focused.map((id) => {
+              const nn = nd(id);
+              const cloud = byId[id]?.kind === "cloud";
+              const hw = cloud ? CLOUD.w / 2 : (id === "ai" ? 290 : CARD.w) / 2;
+              const hh = cloud ? CLOUD.h / 2 : CARD.h / 2 + 12;
+              return [nn.x - hw, nn.x + hw, nn.y - hh, nn.y + hh];
+            });
+            const l = Math.min(...boxes.map((b) => b[0]));
+            const r = Math.max(...boxes.map((b) => b[1]));
+            const t = Math.min(...boxes.map((b) => b[2]));
+            const btm = Math.max(...boxes.map((b) => b[3]));
+            const bandTop = 120 / svgScale;
+            const bandBot = (window.innerHeight * 0.4) / svgScale;
+            const s = Math.max(
+              0.3,
+              Math.min(0.62, (visibleW - 36) / (r - l), (bandBot - bandTop) / (btm - t)),
+            );
+            return {
+              scale: s,
+              x: 800 - ((l + r) / 2) * s,
+              y: (bandTop + bandBot) / 2 - ((t + btm) / 2) * s,
+            };
           }
           if (mobile) return { scale: 0.54, x: 800 - center.x * 0.54, y: 205 - center.y * 0.54 };
           if (wide.includes(stage.scene)) {
