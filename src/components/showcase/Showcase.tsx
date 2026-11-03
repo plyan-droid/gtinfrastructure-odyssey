@@ -351,15 +351,17 @@ export function Showcase() {
   const storiesHover = useRef(false);
   useEffect(() => {
     if (panel) return;
-    const id = window.setTimeout(() => {
+    let elapsed = 0;
+    const id = window.setInterval(() => {
       if (root.current?.dataset["activeScene"] !== "customers" || storiesHover.current) {
-        setStoryIndex((i) => i);
+        elapsed = 0;
         return;
       }
-      setStoryIndex((i) => (i + 1) % customerStories.length);
-    }, 4000);
-    return () => window.clearTimeout(id);
-  });
+      elapsed += 250;
+      if (elapsed >= 4000) setStoryIndex((i) => (i + 1) % customerStories.length);
+    }, 250);
+    return () => window.clearInterval(id);
+  }, [panel, storyIndex]);
 
   const story = customerStories[storyIndex] ?? customerStories[0];
   if (!story) return null;
