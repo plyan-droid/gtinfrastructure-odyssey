@@ -166,9 +166,9 @@ export function Showcase() {
             const t = Math.min(...boxes.map((b) => b[2]));
             const btm = Math.max(...boxes.map((b) => b[3]));
             const bandTop = 120 / svgScale;
-            const bandBot = (window.innerHeight * 0.4) / svgScale;
+            const bandBot = (window.innerHeight * 0.46) / svgScale;
             const s = Math.max(
-              0.3,
+              0.34,
               Math.min(0.62, (visibleW - 36) / (r - l), (bandBot - bandTop) / (btm - t)),
             );
             return {
