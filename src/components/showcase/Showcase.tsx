@@ -27,6 +27,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import stackopsLogo from "@/assets/stackops-logo.png.asset.json";
 
 const MOBILE_TOUR_SCALE = 0.6;
+const MOBILE_MIN_SCALE = 0.46; // smallest phone zoom that keeps box names legible
 const SCROLL_LEN = 16000; // px of scroll mapped to the full story
 
 const edgeKey = (a: string, b: string) => `${a}-${b}`;
@@ -167,13 +168,16 @@ export function Showcase() {
             const btm = Math.max(...boxes.map((b) => b[3]));
             const bandTop = 120 / svgScale;
             const bandBot = (window.innerHeight * 0.46) / svgScale;
-            const s = Math.max(
-              0.34,
-              Math.min(0.62, (visibleW - 36) / (r - l), (bandBot - bandTop) / (btm - t)),
-            );
+            const fit = Math.min(0.62, (visibleW - 36) / (r - l), (bandBot - bandTop) / (btm - t));
+            // Keep box names readable: never zoom out past MOBILE_MIN_SCALE. When the
+            // focus is too wide to fit, anchor on the rightmost box (requests flow toward
+            // Data Service) and let the left-most boxes slide off-screen.
+            const s = Math.max(MOBILE_MIN_SCALE, fit);
+            const x =
+              fit < MOBILE_MIN_SCALE ? 800 + visibleW / 2 - 18 - r * s : 800 - ((l + r) / 2) * s;
             return {
               scale: s,
-              x: 800 - ((l + r) / 2) * s,
+              x,
               y: (bandTop + bandBot) / 2 - ((t + btm) / 2) * s,
             };
           }
