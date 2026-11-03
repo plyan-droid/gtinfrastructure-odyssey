@@ -75,8 +75,10 @@
 
 @layer base {
   * { border-color: var(--color-border); }
-  html { background: var(--color-background); }
+  /* Stop the trackpad "bounce" at the top/bottom, which pulled the pinned story down and exposed an empty strip. */
+  html { background: var(--color-background); overscroll-behavior-y: none; }
   body {
+    overscroll-behavior-y: none;
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-display);
